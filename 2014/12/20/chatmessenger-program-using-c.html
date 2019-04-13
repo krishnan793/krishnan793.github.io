@@ -11,15 +11,15 @@
 <meta property="og:title" content="Chat/Messenger program using c" />
 <meta name="author" content="ANANTHAKRISHNAN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler &nbsp;used is gcc).ServerClient" />
-<meta property="og:description" content="Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler &nbsp;used is gcc).ServerClient" />
+<meta name="description" content="Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler used is gcc)." />
+<meta property="og:description" content="Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler used is gcc)." />
 <link rel="canonical" href="http://0.0.0.0:4000/2014/12/20/chatmessenger-program-using-c.html" />
 <meta property="og:url" content="http://0.0.0.0:4000/2014/12/20/chatmessenger-program-using-c.html" />
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2014-12-20T20:05:00+05:30" />
 <script type="application/ld+json">
-{"headline":"Chat/Messenger program using c","dateModified":"2014-12-20T20:05:00+05:30","datePublished":"2014-12-20T20:05:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2014/12/20/chatmessenger-program-using-c.html"},"url":"http://0.0.0.0:4000/2014/12/20/chatmessenger-program-using-c.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler &nbsp;used is gcc).ServerClient","@context":"https://schema.org"}</script>
+{"headline":"Chat/Messenger program using c","dateModified":"2014-12-20T20:05:00+05:30","datePublished":"2014-12-20T20:05:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2014/12/20/chatmessenger-program-using-c.html"},"url":"http://0.0.0.0:4000/2014/12/20/chatmessenger-program-using-c.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler used is gcc).","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -887,7 +887,115 @@
           
             <h1> Chat/Messenger program using c </h1>
           
-          <div dir="ltr" style="text-align: left;" trbidi="on"><div dir="ltr" style="text-align: left;" trbidi="on"><div dir="ltr" style="text-align: left;" trbidi="on">Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler &nbsp;used is gcc).<br /><br />Server</div><script src="https://gist.github.com/krishnan793/0073d41f5b1ff441b9a1.js"></script></div><br />Client <br /><script src="https://gist.github.com/krishnan793/7fe080c5e2cb2236716c.js"></script> <br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-N77JQz2ZrQM/VJWHNqt8bAI/AAAAAAAAAlw/8zm8y22vQ0E/s1600/CropperCapture%5B4%5D.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-N77JQz2ZrQM/VJWHNqt8bAI/AAAAAAAAAlw/8zm8y22vQ0E/s400/CropperCapture%5B4%5D.jpg" /></a></div></div>
+          <p>Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler  used is gcc).</p>
+
+<h2 id="server">Server</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;sys/socket.h&gt;
+#include&lt;netinet/in.h&gt;
+#include&lt;arpa/inet.h&gt;
+#include&lt;unistd.h&gt;
+#include&lt;errno.h&gt;
+#include&lt;string.h&gt;
+#include&lt;sys/types.h&gt;
+</span>
+<span class="cp">#define PORT 10000
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">argc</span><span class="p">[])</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">socketn</span><span class="p">,</span><span class="n">acceptn</span><span class="p">;</span>
+        <span class="kt">char</span> <span class="n">msg</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="o">=</span><span class="s">"Hello"</span><span class="p">;</span>
+
+        <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">server</span><span class="p">;</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Enter Message</span><span class="se">\n</span><span class="s">============</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+        <span class="n">socketn</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+
+        <span class="n">server</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">sin_family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>                      <span class="c1">//Internet not local</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="o">=</span><span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_ANY</span><span class="p">);</span> <span class="c1">//Connect to any address</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">socketn</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">server</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">))</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"Failed to bind"</span><span class="p">);</span>
+                <span class="n">exit</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">socketn</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="o">==-</span><span class="mi">1</span><span class="p">){</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"Failed to listen"</span><span class="p">);</span>
+                <span class="n">exit</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+
+        <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">":&gt;"</span><span class="p">);</span>
+                <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span><span class="n">msg</span><span class="p">);</span>
+                <span class="n">acceptn</span><span class="o">=</span><span class="n">accept</span><span class="p">(</span><span class="n">socketn</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="nb">NULL</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+                <span class="n">write</span><span class="p">(</span><span class="n">acceptn</span><span class="p">,</span><span class="n">msg</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
+                <span class="n">close</span><span class="p">(</span><span class="n">acceptn</span><span class="p">);</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="client">Client</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;sys/socket.h&gt;
+#include&lt;sys/types.h&gt;
+#include&lt;netinet/in.h&gt;
+#include&lt;netdb.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;unistd.h&gt;
+#include&lt;errno.h&gt;
+#include&lt;arpa/inet.h&gt;
+</span>
+<span class="cp">#define PORT 10000
+</span>
+<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">client</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">msg</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">client</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">socketn</span><span class="p">,</span><span class="n">n</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">receive</span><span class="p">();</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+        <span class="n">client</span><span class="p">.</span><span class="n">sin_family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>
+        <span class="n">client</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+        <span class="n">client</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="o">=</span><span class="n">inet_addr</span><span class="p">(</span><span class="s">"127.0.0.1"</span><span class="p">);</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="n">receive</span><span class="p">();</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">receive</span><span class="p">()</span>
+<span class="p">{</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">socketn</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"Cannot create socket."</span><span class="p">);</span>
+                <span class="n">exit</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">bind</span><span class="p">(</span><span class="n">socketn</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">client</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">client</span><span class="p">));</span>
+
+        <span class="k">if</span><span class="p">((</span><span class="n">connect</span><span class="p">(</span><span class="n">socketn</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">client</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">client</span><span class="p">)))</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"Cannot create connection"</span><span class="p">);</span>
+                <span class="n">exit</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">read</span><span class="p">(</span><span class="n">socketn</span><span class="p">,</span><span class="n">msg</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">":&gt;%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">msg</span><span class="p">);</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
         </div>
       </main>
       <!-- Main post content end -->

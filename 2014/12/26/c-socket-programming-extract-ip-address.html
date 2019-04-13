@@ -11,15 +11,15 @@
 <meta property="og:title" content="C Socket Programming Extract IP address" />
 <meta name="author" content="ANANTHAKRISHNAN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).Linux Code Windows Code" />
-<meta property="og:description" content="This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).Linux Code Windows Code" />
+<meta name="description" content="This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header)." />
+<meta property="og:description" content="This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header)." />
 <link rel="canonical" href="http://0.0.0.0:4000/2014/12/26/c-socket-programming-extract-ip-address.html" />
 <meta property="og:url" content="http://0.0.0.0:4000/2014/12/26/c-socket-programming-extract-ip-address.html" />
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2014-12-26T01:20:00+05:30" />
 <script type="application/ld+json">
-{"headline":"C Socket Programming Extract IP address","dateModified":"2014-12-26T01:20:00+05:30","datePublished":"2014-12-26T01:20:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2014/12/26/c-socket-programming-extract-ip-address.html"},"url":"http://0.0.0.0:4000/2014/12/26/c-socket-programming-extract-ip-address.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).Linux Code Windows Code","@context":"https://schema.org"}</script>
+{"headline":"C Socket Programming Extract IP address","dateModified":"2014-12-26T01:20:00+05:30","datePublished":"2014-12-26T01:20:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2014/12/26/c-socket-programming-extract-ip-address.html"},"url":"http://0.0.0.0:4000/2014/12/26/c-socket-programming-extract-ip-address.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -887,7 +887,106 @@
           
             <h1> C Socket Programming Extract IP address </h1>
           
-          <div dir="ltr" style="text-align: left;" trbidi="on"><div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).<br />Linux Code</div></div><br /><script src="https://gist.github.com/krishnan793/199b41207b80feb778a1.js"></script></div><br/>Windows Code <br/><script src="https://gist.github.com/krishnan793/0db15e9e62219ff3022b.js"></script>
+          <p>This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).</p>
+
+<h2 id="linux-code">Linux Code</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;string.h&gt;
+#include&lt;sys/socket.h&gt;
+#include&lt;sys/types.h&gt;
+#include&lt;errno.h&gt;
+#include&lt;netinet/in.h&gt;
+#include&lt;netdb.h&gt;
+#include&lt;arpa/inet.h&gt; //for inet_ntoa
+</span>
+<span class="kt">char</span> <span class="n">msg</span><span class="p">[</span><span class="mi">500</span><span class="p">]</span><span class="o">=</span><span class="s">"GET / HTTP/1.0</span><span class="se">\n</span><span class="s">Host: www.curlmyip.com</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">response</span><span class="p">[</span><span class="mi">10000</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">socketi</span><span class="p">;</span>
+
+        <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">server</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">hostent</span> <span class="o">*</span><span class="n">he</span><span class="p">;</span>
+
+        <span class="n">he</span><span class="o">=</span><span class="n">gethostbyname</span><span class="p">(</span><span class="s">"www.curlmyip.com"</span><span class="p">);</span>
+
+        <span class="n">server</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+
+        <span class="n">server</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="o">=</span><span class="n">inet_addr</span><span class="p">(</span><span class="n">inet_ntoa</span><span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="k">struct</span> <span class="n">in_addr</span> <span class="o">*</span><span class="p">)</span><span class="n">he</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">)));</span><span class="c1">//inet_addr("184.106.112.172");</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">sin_family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>
+
+        <span class="n">socketi</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">((</span><span class="n">connect</span><span class="p">(</span><span class="n">socketi</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">server</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">))</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)){</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Cannot connect to server."</span><span class="p">);</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">response</span><span class="p">));</span>
+        <span class="n">send</span><span class="p">(</span><span class="n">socketi</span><span class="p">,</span><span class="n">msg</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">size_response</span><span class="o">=</span><span class="k">sizeof</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">((</span><span class="n">size</span><span class="o">=</span><span class="n">recv</span><span class="p">(</span><span class="n">socketi</span><span class="p">,</span><span class="n">response</span><span class="o">+</span><span class="n">size</span><span class="p">,</span><span class="n">size_response</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+                <span class="c1">//response[size]=0;</span>
+                <span class="n">size_response</span><span class="o">-=</span><span class="n">size</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">%s"</span><span class="p">,</span><span class="n">response</span><span class="p">);</span>
+        <span class="n">close</span><span class="p">(</span><span class="n">socketi</span><span class="p">);</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="windows-code">Windows Code</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;winsock2.h&gt;
+</span>
+<span class="cp">#pragma comment (lib, "ws2_32.lib")
+</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span> <span class="p">[])</span>
+<span class="p">{</span>
+
+	<span class="n">WSADATA</span> <span class="n">wsa</span><span class="p">;</span>
+	<span class="n">SOCKET</span> <span class="n">socketi</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">msg</span><span class="p">[</span><span class="mi">1000</span><span class="p">]</span><span class="o">=</span><span class="s">"GET / HTTP/1.0</span><span class="se">\n</span><span class="s">Host:www.curlmyip.com</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">response</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="k">sizeof</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">server</span><span class="p">;</span>
+
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">WSAStartup</span><span class="p">(</span><span class="n">MAKEWORD</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="o">&amp;</span><span class="n">wsa</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Failed. Error Code : %d"</span><span class="p">,</span><span class="n">WSAGetLastError</span><span class="p">());</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span><span class="p">((</span><span class="n">socketi</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">==</span><span class="n">INVALID_SOCKET</span><span class="p">){</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Error creating Socket"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="n">server</span><span class="p">.</span><span class="n">sin_family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>
+	<span class="n">server</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+	<span class="n">server</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="o">=</span><span class="n">inet_addr</span><span class="p">(</span><span class="s">"184.106.112.172"</span><span class="p">);</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">socketi</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">server</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">))</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Connect error"</span><span class="p">);</span>
+		<span class="k">return</span>  <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">memset</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">response</span><span class="p">));</span>
+	<span class="n">send</span><span class="p">(</span><span class="n">socketi</span><span class="p">,</span><span class="n">msg</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+	<span class="k">while</span><span class="p">((</span><span class="n">size</span><span class="o">=</span><span class="n">recv</span><span class="p">(</span><span class="n">socketi</span><span class="p">,</span><span class="n">response</span><span class="o">+</span><span class="n">size</span><span class="p">,</span><span class="n">len</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+	<span class="p">}</span>
+	
+	<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">%s"</span><span class="p">,</span><span class="n">response</span><span class="p">);</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
         </div>
       </main>
       <!-- Main post content end -->
