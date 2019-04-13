@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2019-04-14T04:31:44+05:30</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Product Design of a 4 wheel differential drive robot</title><link href="http://0.0.0.0:4000/2019/01/09/product-design-of-4-wheel-differential.html" rel="alternate" type="text/html" title="Product Design of a 4 wheel differential drive robot" /><published>2019-01-09T12:35:00+05:30</published><updated>2019-01-09T12:35:00+05:30</updated><id>http://0.0.0.0:4000/2019/01/09/product-design-of-4-wheel-differential</id><content type="html" xml:base="http://0.0.0.0:4000/2019/01/09/product-design-of-4-wheel-differential.html">&lt;p&gt;I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.&lt;/p&gt;
+
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/Q5mC5lRfhfw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;The methods I followed may not be the best practice. The only aim is to reach from idea to actual product (prototype).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/dest.png&quot; alt=&quot;Thumbnail&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;4 Wheel Differential Drive&lt;/li&gt;
+  &lt;li&gt;Camera&lt;/li&gt;
+  &lt;li&gt;WiFi&lt;/li&gt;
+  &lt;li&gt;IMU&lt;/li&gt;
+  &lt;li&gt;GPS(optional)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;A 4 wheeled differential mobile robot with wheel encoders, camera, WiFi, IMU and GPS(optional). The first thing I did was to come up with an overall architecture. Raspberry pi 3 will be the heart of the robot. Pi Zero was considered in the beginning, but eventually had to  change because of the lack of support for ROS. Even though able to compile ROS from scratch, it became so hard to compile other packages needed for the project. Since I do not want to use pi to directly control motors, I had to design a separate controller circuit to handle motors. Encoder was later discarded to make the project simple. Controller circuit will talk with pi using i2c. Atmega328p is used for the controller circuit. IMU will also communicate with pi using i2c.&lt;/p&gt;
+
+&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://1.bp.blogspot.com/-vdBU-uljYjg/XA0lgtgnTkI/AAAAAAAABjI/Aw2r9m2bjY4nAorFAxHD-OWNnOM5bk1CwCK4BGAYYCw/s320/architectureV2.png&quot; alt=&quot;Device architecture&quot; /&gt;&lt;br /&gt;
+Selected N20 DC12V 300RPM motor for driving the robot. With a rated torque of 0.4 Kg/cm, it was more than enough to drive the robot since expected overall weight of robot will not cross 1 Kg. Selected a battery with voltage 11.1 which is enough for the motors. A voltage regulator is needed to power Pi and motor circuits. Atmega328P is selected for the controller circuit. It has enough internal PWM to drive 4 motors. Since I had to make the controller circuit as small as possible, I was searching for SMD components. Found one SMD package for l293D which is enough to drive the motor with a stall current 300 mA. In order to keep track of current, I selected ACS712. For measuring internal temperature, LM35 was selected.&lt;/p&gt;
+
+&lt;h2 id=&quot;specifications&quot;&gt;Specifications&lt;/h2&gt;
+
+&lt;h3 id=&quot;motor&quot;&gt;Motor&lt;/h3&gt;
+
+&lt;p&gt;Name: N20 DC12V 300RPM Mini Metal Gear Motor (12GAN20)&lt;br /&gt;
+shop: banggood&lt;br /&gt;
+&lt;img src=&quot;https://img.staticbg.com/thumb/view/oaupload/banggood/images/56/0F/20d5045b-fa8d-404d-983e-cfc1e1423971.jpg&quot; alt=&quot;N20 DC12V Motor&quot; height=&quot;150px&quot; /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Rated voltage&lt;/td&gt;
+      &lt;td&gt;DC 12V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Speed&lt;/td&gt;
+      &lt;td&gt;300 RPM&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Shaft Diameter&lt;/td&gt;
+      &lt;td&gt;3mm&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Diameter&lt;/td&gt;
+      &lt;td&gt;12mm&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;fuselage without shaft length&lt;/td&gt;
+      &lt;td&gt;26mm&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Output axial length&lt;/td&gt;
+      &lt;td&gt;10mm&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Screw&lt;/td&gt;
+      &lt;td&gt;M3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Quantity&lt;/td&gt;
+      &lt;td&gt;4pcs&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Non-loaded&lt;/td&gt;
+      &lt;td&gt;Non-loaded&lt;/td&gt;
+      &lt;td&gt;Rated load&lt;/td&gt;
+      &lt;td&gt;Rated load&lt;/td&gt;
+      &lt;td&gt;Rated load&lt;/td&gt;
+      &lt;td&gt;stall&lt;/td&gt;
+      &lt;td&gt;stall&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Voltage range (V)&lt;/td&gt;
+      &lt;td&gt;Rated voltage&lt;/td&gt;
+      &lt;td&gt;speed(RPM)&lt;/td&gt;
+      &lt;td&gt;current(A)&lt;/td&gt;
+      &lt;td&gt;speed(RPM)&lt;/td&gt;
+      &lt;td&gt;current(A)&lt;/td&gt;
+      &lt;td&gt;torque(KG.CM)&lt;/td&gt;
+      &lt;td&gt;torque(KG.CM)&lt;/td&gt;
+      &lt;td&gt;current(A)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6-12&lt;/td&gt;
+      &lt;td&gt;12&lt;/td&gt;
+      &lt;td&gt;300&lt;/td&gt;
+      &lt;td&gt;0.05&lt;/td&gt;
+      &lt;td&gt;240&lt;/td&gt;
+      &lt;td&gt;0.09&lt;/td&gt;
+      &lt;td&gt;0.6&lt;/td&gt;
+      &lt;td&gt;4.00&lt;/td&gt;
+      &lt;td&gt;0.3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;main-computer&quot;&gt;Main computer&lt;/h2&gt;
+
+&lt;p&gt;Name: Raspberry Pi 3 Model B+&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Processor&lt;/td&gt;
+      &lt;td&gt;Broadcom BCM2837B0, Cortex-A53 64-bit SoC @ 1.4GHz 1GB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Memory&lt;/td&gt;
+      &lt;td&gt;LPDDR2 SDRAM&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Connectivity&lt;/td&gt;
+      &lt;td&gt;2.4GHz and 5GHz IEEE 802.11.b/g/n/ac wireless LAN, Bluetooth 4.2, BLE Gigabit Ethernet over USB 2.0 (maximum throughput 300Mbps)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Access&lt;/td&gt;
+      &lt;td&gt;4 × USB 2.0 ports Extended 40-pin GPIO header&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Video &amp;amp; sound&lt;/td&gt;
+      &lt;td&gt;1 × full size HDMI MIPI DSI display port MIPI CSI camera port 4 pole stereo output and composite video port H.264, MPEG-4 decode (1080p30); H.264 encode (1080p30); OpenGL ES 1.1, 2.0 graphics&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Multimedia: SD card support&lt;/td&gt;
+      &lt;td&gt;Micro SD format for loading operating system and data storage 5V/2.5A DC via micro USB connector 5V DC via GPIO header Power over Ethernet (PoE)–enabled (requires separate PoE HAT)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Operating temperature&lt;/td&gt;
+      &lt;td&gt;0–50°C&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Production lifetime&lt;/td&gt;
+      &lt;td&gt;The Raspberry Pi 3 Model B+ will remain in production until at least January 2023&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;dimension&quot;&gt;Dimension&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://d2mxuefqeaa7sj.cloudfront.net/s_7DE74831DB2CB5D12B9EF081E317660A0AD9BDC05CFC157FD2EEC025DFA2B08F_1537454051611_Dimension_pi_3B.png&quot; alt=&quot;Raspberry pi Dimension&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Schematics: &lt;a href=&quot;Pi_3_Schematics&quot;&gt;Link&lt;/a&gt;&lt;br /&gt;
+OS: Ubuntu MATE 16.04.2 (Xenial)&lt;br /&gt;
+Installation steps: &lt;a href=&quot;Ubuntu_Xenial&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;temperature-sensor&quot;&gt;Temperature sensor&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Name: LM35&lt;/li&gt;
+  &lt;li&gt;Linear + 10-mV/°C Scale Factor&lt;/li&gt;
+  &lt;li&gt;0.5°C Ensured Accuracy (at 25°C)&lt;/li&gt;
+  &lt;li&gt;Rated for Full −55°C to 150°C Range&lt;/li&gt;
+  &lt;li&gt;Operates From 4 V to 30 V&lt;/li&gt;
+  &lt;li&gt;Less Than 60-μA Current Drain&lt;/li&gt;
+  &lt;li&gt;Low-Impedance Output, 0.1 Ω for 1-mA Load&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;current-sensor&quot;&gt;Current sensor&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Name: ACS712ELCTR-05B-T&lt;/li&gt;
+  &lt;li&gt;Small footprint, low-profile SOIC8 package&lt;/li&gt;
+  &lt;li&gt;1.2 mΩ internal conductor resistance&lt;/li&gt;
+  &lt;li&gt;2.1 kVRMS minimum isolation voltage from pins 1-4 to pins 5-8&lt;/li&gt;
+  &lt;li&gt;5.0 V, single supply operation&lt;/li&gt;
+  &lt;li&gt;66 to 185 mV/A output sensitivity&lt;/li&gt;
+  &lt;li&gt;Optimized current range : ±5&lt;/li&gt;
+  &lt;li&gt;Sensitivity: 185 mV/A&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;schematics&quot;&gt;Schematics&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/-ltmOj3ImY_c/XA0obzqc1WI/AAAAAAAABjk/yjIZtDElw-sZdqwQPbFVNOGLzJsy6ylQACK4BGAYYCw/s1600/l293dDIP.png&quot; alt=&quot;Schematics&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;pcb-layout&quot;&gt;PCB Layout&lt;/h2&gt;
+
+&lt;p&gt;After finishing with the schematics and some initial breadboard prototyping, moved directly to pcb layout design.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://3.bp.blogspot.com/-DezjGJ_SHcI/XA0o5caOeeI/AAAAAAAABkA/Juk2RpCdC6shW60tUsURsg9wwfsovas4ACK4BGAYYCw/s320/PCB.png&quot; alt=&quot;PCB layout 1&quot; /&gt;
+&lt;img src=&quot;https://2.bp.blogspot.com/-4sMIbJJQNEg/XA0pM8i_JQI/AAAAAAAABkM/hdM7r4KppikvzGeKNzxFsOFUVwCFb4_TQCK4BGAYYCw/s320/PCB_3D.png&quot; alt=&quot;PCB layout 2&quot; /&gt;
+&lt;img src=&quot;https://4.bp.blogspot.com/-uwECuCmrtJY/XA0pQEiYN-I/AAAAAAAABkU/FYGH66JfuXAPCv-SISLX9Q-k-YhhE20agCK4BGAYYCw/s320/3D.png&quot; alt=&quot;PCB layout 3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since it is a 2 layer PCB, I had to order PCB from outside. LION circuits seemed to be a good choice. Apart from the fact that choosing colour of the PCB will cost you double, service seems to be good.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://1.bp.blogspot.com/-N62WiJrh15s/XA0tN2Pq4fI/AAAAAAAABk4/162FQDdpt5E5cRptGWjb4jaPOx2i3vsAgCK4BGAYYCw/s320/IMG_20181209_201406414.jpg&quot; alt=&quot;PCB layout 4&quot; /&gt;
+&lt;img src=&quot;https://4.bp.blogspot.com/-zK4L3x5m3m8/XA0tNuMiFzI/AAAAAAAABk0/_vXzsMxcZQAM6Nq9EPDOZ27-TA2sYkwNwCK4BGAYYCw/s320/IMG_20181209_201428683.jpg&quot; alt=&quot;PCB layout 5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After an hour of hand soldering….&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://1.bp.blogspot.com/-XbqHNzFl2Xc/XA0pokgXf9I/AAAAAAAABkk/2aKwySsZcCoBYx6omQfYQIaszk5RXtkkgCK4BGAYYCw/s320/image_preview.jpeg&quot; alt=&quot;PCB layout 5&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;cad-modelling&quot;&gt;CAD Modelling&lt;/h2&gt;
+
+&lt;p&gt;I have used solidworks before. But for this project I tried fusion 360, which seems to be good. One weeks of YouTube tutorials was enough to get started. Had to redesign the model two times. But it was worth the effort.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://4.bp.blogspot.com/-xDXtBYaP2cM/XA0uYdfv0XI/AAAAAAAABlY/dipXTNpBL2s-OkwcCTqTMxvGJNAO947pgCK4BGAYYCw/s320/isometric.PNG&quot; alt=&quot;Wireframe 1&quot; /&gt;
+&lt;img src=&quot;https://1.bp.blogspot.com/-LkxivYLW3v0/XA0uWtX__UI/AAAAAAAABlQ/3xhBUE0vyGAvnIfSsR7WfT6URInOtfyvwCK4BGAYYCw/s320/Capture.PNG&quot; alt=&quot;Wireframe 2&quot; /&gt;
+&lt;img src=&quot;https://3.bp.blogspot.com/-Uit16dTn4AQ/XA0uUSH-zEI/AAAAAAAABlI/CspNW6kIvPgNk8G_aHn1ORaYRYBhU9qtACK4BGAYYCw/s320/dimension.PNG&quot; alt=&quot;3D rendered&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3d-printing&quot;&gt;3D printing&lt;/h2&gt;
+
+&lt;p&gt;I had two split the bottom body into two parts for easy 3D printing and later I glued it together.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-preview&quot;&gt;Final Preview&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://2.bp.blogspot.com/-WD8crbpPltw/XDV8JLFuNuI/AAAAAAAABmc/I6uuc2be-TMI5iBj5Ktdb5BzC8ummmNGACK4BGAYYCw/s1600/BLR_0187.JPG&quot; alt=&quot;Final preview 1&quot; height=&quot;250px&quot; /&gt;
+&lt;img src=&quot;http://2.bp.blogspot.com/-CwnWzdCNKp4/XDV8GK2aPII/AAAAAAAABmM/Af5NH8mgFXg9qXIqmOyBulJxhSMVris-gCK4BGAYYCw/s1600/BLR_0188.JPG&quot; alt=&quot;Final preview 2&quot; height=&quot;250px&quot; /&gt;
+&lt;img src=&quot;http://2.bp.blogspot.com/-JmZFS9Xr9Rw/XDV8IzknhuI/AAAAAAAABmY/WyOmIdZc7wA6BxN0bmmMeyA7_r7GgqdXQCK4BGAYYCw/s1600/BLR_0189.JPG&quot; alt=&quot;Final preview 3&quot; height=&quot;250px&quot; /&gt;
+&lt;img src=&quot;http://4.bp.blogspot.com/-6fCIj7m0DmM/XDV8KaCT8sI/AAAAAAAABmk/DmUULnhi_zohNR0SUDEvtJTIqk9hFxTPQCK4BGAYYCw/s1600/BLR_0185.JPG&quot; alt=&quot;Final preview 4&quot; height=&quot;250px&quot; /&gt;
+&lt;img src=&quot;http://3.bp.blogspot.com/-vVNex884yb0/XDWae__435I/AAAAAAAABnM/k0EXHvjcIbQcI2Av7lzCG_pMhOuZnmbHACK4BGAYYCw/s1600/BLR_0001.JPG&quot; alt=&quot;Final preview 5&quot; height=&quot;250px&quot; /&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/Q5mC5lRfhfw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Atmega328PU" /><category term="ROS" /><summary type="html">I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.</summary></entry><entry><title type="html">Inventory App for hobbyists</title><link href="http://0.0.0.0:4000/2018/10/06/inventory-app-for-hobbyists.html" rel="alternate" type="text/html" title="Inventory App for hobbyists" /><published>2018-10-06T16:39:00+05:30</published><updated>2018-10-06T16:39:00+05:30</updated><id>http://0.0.0.0:4000/2018/10/06/inventory-app-for-hobbyists</id><content type="html" xml:base="http://0.0.0.0:4000/2018/10/06/inventory-app-for-hobbyists.html">&lt;p&gt;I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.&lt;/p&gt;
+
+&lt;p&gt;You can find the whole source code + binaries on my github repository &lt;a href=&quot;https://github.com/krishnan793/inventoryApp&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;searching-the-inventory-item&quot;&gt;Searching the inventory item&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/-ujdfbPOoH74/W7iWCTGLHRI/AAAAAAAABhc/15-iDI8ZrRY_o6AuO0wg4go0agqjb-nCgCK4BGAYYCw/s1600/search.gif&quot; alt=&quot;Searching&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-entries&quot;&gt;Adding entries&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://2.bp.blogspot.com/-W-m42a8tOOs/W7iWQB6zsVI/AAAAAAAABhk/E8RoMqfow8UYVnYsSLuq_ie09De2DzhNACK4BGAYYCw/s1600/addValue.gif&quot; alt=&quot;Adding&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;modify-entry&quot;&gt;Modify entry&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://1.bp.blogspot.com/-G8ZBStXWYu0/W7iWZMv6eWI/AAAAAAAABhw/WrHfeUDLABAmWn4FUwSjTD32ZsX7u5tvgCK4BGAYYCw/s1600/change%2Bvalue.gif&quot; alt=&quot;Modifying&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;delete-entry&quot;&gt;Delete entry&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://3.bp.blogspot.com/-AN3R868aGhU/W7iW75cVgpI/AAAAAAAABiM/fhFjztMe-h0iWSHJjKG6zEa7YifScPeIwCK4BGAYYCw/s320/delete.gif&quot; alt=&quot;Deleting&quot; /&gt;&lt;/p&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html">I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.</summary></entry><entry><title type="html">Raspberry pi based Car Infotainment system</title><link href="http://0.0.0.0:4000/2018/03/11/raspberry-pi-based-car-infotainment.html" rel="alternate" type="text/html" title="Raspberry pi based Car Infotainment system" /><published>2018-03-11T22:28:00+05:30</published><updated>2018-03-11T22:28:00+05:30</updated><id>http://0.0.0.0:4000/2018/03/11/raspberry-pi-based-car-infotainment</id><content type="html" xml:base="http://0.0.0.0:4000/2018/03/11/raspberry-pi-based-car-infotainment.html">&lt;p&gt;Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.&lt;/p&gt;
+
+&lt;p&gt;At heart, it is a raspberry pi 3 Model B single board computer. For those who don’t know about raspberry pi, it is a single board compute with a Quad Core 1.2GHz Broadcom BCM2837 64bit CPU with on board WiFi and Bluetooth. See this for a complete spec. It is connected with a 7 inch multi touch display running Ubuntu Mate (a Linux variant). Os is modified so that it is only running the bare minimum services to run the system. It will save the boot up time and improve performance a little bit. It is connected to a GPS module via UART to get current location. It is used in the navigation section. It is also used to get time, when the device is not connected to internet. It uses google map API for navigation.&lt;/p&gt;
+
+&lt;p&gt;The complete infotainment system is build using nwjs (see link for a full description). It is an html + js + css + nodejs framework in which you can create cool independent apps using web technologies. There are famous apps that are built using these framework like atom editor, github-desktop (using electronjs but similar framework).&lt;/p&gt;
+
+&lt;h3 id=&quot;hardware-info&quot;&gt;Hardware Info:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Quad Core 1.2GHz Broadcom BCM2837 64bit CPU&lt;/li&gt;
+  &lt;li&gt;ublox neo-6m GPS module&lt;/li&gt;
+  &lt;li&gt;7 inch Multi Touch Display&lt;/li&gt;
+  &lt;li&gt;JBL mini speaker&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;software-features&quot;&gt;Software features&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Real time Navigation system with GPS&lt;/li&gt;
+  &lt;li&gt;Mean Sea Level Altitude info&lt;/li&gt;
+  &lt;li&gt;Music player&lt;/li&gt;
+  &lt;li&gt;YouTube player&lt;/li&gt;
+  &lt;li&gt;Google Map Location sharing to see friends/family in real time in the map&lt;/li&gt;
+  &lt;li&gt;Intuitive on screen keyboard&lt;/li&gt;
+  &lt;li&gt;Fast boot time (15 s)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This video will show you the complete UI. It is a simulated setup to show all the options.&lt;/p&gt;
+
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/K3-xnHHL5cs&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;This video will show the whole system working in the actual hardware.&lt;/p&gt;
+
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/H9mrCXnhUEk&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><category term="Electronics" /><summary type="html">Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.</summary></entry><entry><title type="html">Creating a Wireless remote for Nikon Camera using Esp8266</title><link href="http://0.0.0.0:4000/2017/08/03/creating-wireless-remote-for-nikon.html" rel="alternate" type="text/html" title="Creating a Wireless remote for Nikon Camera using Esp8266" /><published>2017-08-03T20:56:00+05:30</published><updated>2017-08-03T20:56:00+05:30</updated><id>http://0.0.0.0:4000/2017/08/03/creating-wireless-remote-for-nikon</id><content type="html" xml:base="http://0.0.0.0:4000/2017/08/03/creating-wireless-remote-for-nikon.html">&lt;p&gt;The Nikon DSLR camera I own does have a Bluetooth connection, but unfortunately it is of no use. You cannot trigger shots from Bluetooth. Also u can only share photos of low resolution across Bluetooth. What a shame!!! I also want a time lapse option which is absent in the camera.
+There is a WiFi option, but have to invest a lot more money to buy the WiFi adaptor. Fortunately it has an IR interface. So I thought of creating my own triggering device (like the ML-L3) which works over WiFi so that I can remotely trigger the shutter and also take time lapse pics.&lt;/p&gt;
+
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/7SlLCa77NC4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;I can control ESP over phone and ESP will in turn control the camera using IR. (It can also behave as a normal ML-L3 Wireless remote). I got the command sequence for taking shots from here &lt;a href=&quot;http://www.bigmike.it/ircontrol/&quot;&gt;http://www.bigmike.it/ircontrol/&lt;/a&gt;. This is the code I wrote for controlling my DSLR.&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;ESP8266WiFi.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ssid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Nikon&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;WiFiServer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OutputPIN&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;27830&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1580&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3580&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setupWiFi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ESP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eraseConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Configuring access point...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;cm&quot;&gt;/* You can remove the password parameter if you want the AP to be open. */&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;WiFi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;softAP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ssid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;IPAddress&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myIP&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WiFi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;softAPIP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AP IP address: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myIP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Server started&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// put your setup code here, to run once:&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pinMode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OutputPIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OUTPUT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;digitalWrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OutputPIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;setupWiFi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sendSignal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;milliSec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;noofRepetition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;milliSec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;noofRepetition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;digitalWrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OutputPIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HIGH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delayMicroseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;digitalWrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OutputPIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LOW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delayMicroseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;milliSec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;microSec&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;milliSec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;milliSec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;delayMicroseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;milliSec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sendCommand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/*Even places are 1 and odd places are 0*/&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;sendSignal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;    
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;takeSnap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;sendCommand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeSnap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delayMilli&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shots&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;takeSnap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delayMilli&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delayMilli&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Check if a client has connected&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;WiFiClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;available&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;// Wait until the client sends some data&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;new client&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setNoDelay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;available&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readStringUntil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;shots&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+ 
+  &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readStringUntil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'\r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;delayMilli&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delayMilli&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flush&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;timeSnap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delayMilli&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://1.bp.blogspot.com/-aDO20c05bzI/WYM_VYpGyhI/AAAAAAAABac/AJEhTPhKizUnoku-zU5qV1K_o_xtkgmtACK4BGAYYCw/s1600/IMG_20170803_204119.jpg&quot; alt=&quot;snapshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I am able to&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;remotely trigger the shutter from WiFi.&lt;/li&gt;
+  &lt;li&gt;remotely trigger the shutter from remote.&lt;/li&gt;
+  &lt;li&gt;configure to take time lapse pics from WiFi. (Will automatically take pics according to the number of shots and interval)&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html">The Nikon DSLR camera I own does have a Bluetooth connection, but unfortunately it is of no use. You cannot trigger shots from Bluetooth. Also u can only share photos of low resolution across Bluetooth. What a shame!!! I also want a time lapse option which is absent in the camera. There is a WiFi option, but have to invest a lot more money to buy the WiFi adaptor. Fortunately it has an IR interface. So I thought of creating my own triggering device (like the ML-L3) which works over WiFi so that I can remotely trigger the shutter and also take time lapse pics.</summary></entry><entry><title type="html">ROS simulating a 3 axis robot in Rviz</title><link href="http://0.0.0.0:4000/2017/04/22/ros-simulating-3-axis-robot-in-rviz.html" rel="alternate" type="text/html" title="ROS simulating a 3 axis robot in Rviz" /><published>2017-04-22T23:00:00+05:30</published><updated>2017-04-22T23:00:00+05:30</updated><id>http://0.0.0.0:4000/2017/04/22/ros-simulating-3-axis-robot-in-rviz</id><content type="html" xml:base="http://0.0.0.0:4000/2017/04/22/ros-simulating-3-axis-robot-in-rviz.html">&lt;p&gt;In this tutorial, we will create an urdf model of a 3 axis robot and simulate it in Rviz.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://4.bp.blogspot.com/-Esy3mAk11Ag/WPuRVDI-46I/AAAAAAAABZQ/I_5GMw6-EAkYbBOFOI5odkAxf6CcU4WdACK4B/s1600/robot.png&quot; alt=&quot;robot_frame&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Create a package inside your workspace (create it if u haven’t any).&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;catkin_tutorial
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;catkin_tutorial
+&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;src
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;src
+catkin_create_pkg three_axis_robot roscpp rospy urdf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create a folder named urdf to store urdf models.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;three_axis_robot/
+&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;urdf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now create a new file called my_robot.urdf with these data.&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;robot&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my_robot&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;base&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;visual&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;geometry&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;box&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2 2 2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/geometry&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/visual&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/link&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;visual&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;geometry&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;box&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.5 0.5 3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/geometry&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 1.5&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/visual&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/link&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;visual&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;geometry&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;box&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.5 0.5 3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/geometry&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 1.5&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/visual&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/link&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;visual&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;geometry&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;box&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.5 0.5 3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/geometry&amp;gt;&lt;/span&gt;
+		  &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 1.5&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/visual&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/link&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;joint&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;joint0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;continuous&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;parent&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;base&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;child&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;axis&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1 0 0&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/joint&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;joint&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;joint1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;continuous&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;parent&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;child&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;axis&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1 0 0&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/joint&amp;gt;&lt;/span&gt;	
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;joint&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;joint2&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;continuous&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;parent&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;child&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;link3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;axis&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1 0 0&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/joint&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/robot&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This &lt;a href=&quot;http://wiki.ros.org/urdf/XML/link&quot;&gt;link&lt;/a&gt; will give you a list of all possible tag tags and informations. (Read this before going further. &lt;a href=&quot;http://wiki.ros.org/urdf/Tutorials/Create%20your%20own%20urdf%20file&quot;&gt;link&lt;/a&gt;) There are 4 links and three joints in this robot. Each joint has one parent and one child.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/joint.png&quot; alt=&quot;joint&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There are different types of joints. Here we used continuous and fixed type. Joint 0 is fixed and the rest of them are continuous. The origin tag inside the &lt;joint&gt; &lt;origin rpy=&quot;0 0 0&quot; xyz=&quot;0 0 3&quot;&gt;&lt;/origin&gt; represents the amount of offset required from the parent link. This can be clearly understood from the following figure.&lt;/joint&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/-ECaC9IOrF3s/WPt9-gD7smI/AAAAAAAABYg/4KFq209qyA4HteD86O6DySC9hirZcSraQCK4B/s1600/robot_axis.png&quot; alt=&quot;joints&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There is also an another origin tag inside link tag. This represent the base frame of the link itself. We need to shift it by 1.5 (half of the link length), other wise rotation will be around the middle part of each link rather than at the joint (This will make sure both the base frame; child and parent coincides).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://1.bp.blogspot.com/-Mo9R2xYtrpg/WPt-NAmLgwI/AAAAAAAABYo/aouTUIsASm8rqw9kTU0QRAXiJ-C0RcZTQCK4B/s1600/robot_axis%25281%2529.png&quot; alt=&quot;axis&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now create a file called my_robot.launch under launch folder. This will launch joint_state_publisher and robot_state_publisher node. joint_state_publisher node will publish all the joint states. This also has one gui where you can change each joint angles. robot_state_publisher node will take the joint angles of the robot as input and publishes the 3D poses of each links.&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;launch&amp;gt;&lt;/span&gt;  
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;arg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;model&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;  
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;param&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;robot_description&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;textfile=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$(find three_axis_robot)/urdf/my_robot.urdf&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;  
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;param&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;use_gui&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;node&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;joint_state_publisher&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pkg=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;joint_state_publisher&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;joint_state_publisher&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;  
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;node&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;robot_state_publisher&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pkg=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;robot_state_publisher&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;robot_state_publisher&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;node&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rviz&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pkg=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rviz&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rviz&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;args=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;-d $(find three_axis_robot)/urdf/rviz.rviz&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;required=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/launch&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now create another file called rviz.rviz. (This is not actually needed. This is just a configuration file for Rviz saying that these panels should be there. You can open rviz and add the RobotModel and save the configuration by yourself.)&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;Panels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Displays&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Help Height&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;78&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Displays&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Property Tree Widget&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Expanded&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/Global Options1&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/Status1&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Splitter Ratio&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.5&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Tree Height&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;565&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Selection&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Selection&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Tool Properties&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Expanded&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/2D Pose Estimate1&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/2D Nav Goal1&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/Publish Point1&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Tool Properties&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Splitter Ratio&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.588679016&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Views&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Expanded&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/Current View1&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Views&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Splitter Ratio&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.5&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Time&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Experimental&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Time&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;SyncMode&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;SyncSource&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;Visualization Manager&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Displays&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Alpha&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.5&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Cell Size&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Grid&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;160; 160; 164&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Line Style&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Line Width&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0299999993&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Lines&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Grid&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Normal Cell Count&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Offset&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Z&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Plane&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;XY&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Plane Cell Count&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Reference Frame&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;lt;Fixed Frame&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Alpha&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/RobotModel&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Collision Enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Links&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;All Links Enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Expand Joint Details&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Expand Link Details&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Expand Tree&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Link Tree Style&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Links in Alphabetic Order&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Alpha&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Show Axes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Show Trail&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;link1&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Alpha&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Show Axes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Show Trail&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;link2&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Alpha&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Show Axes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Show Trail&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;link3&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Alpha&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Show Axes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Show Trail&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;RobotModel&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Robot Description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;robot_description&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;TF Prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Update Interval&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Visual Enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Global Options&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Background Color&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;48; 48; 48&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Fixed Frame&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;base&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Frame Rate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;30&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;root&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Tools&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Interact&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Hide Inactive Objects&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/MoveCamera&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Select&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/FocusCamera&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Measure&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/SetInitialPose&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Topic&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/initialpose&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/SetGoal&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Topic&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/move_base_simple/goal&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/PublishPoint&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Single click&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Topic&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/clicked_point&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Views&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Current&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rviz/Orbit&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Distance&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;50.9065704&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Enable Stereo Rendering&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Stereo Eye Separation&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0599999987&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Stereo Focal Distance&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Swap Stereo Eyes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Focal Point&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Z&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Focal Shape Fixed Size&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Focal Shape Size&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0500000007&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Current View&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Near Clip Distance&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.00999999978&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Pitch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.355398387&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Target Frame&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;lt;Fixed Frame&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Orbit (rviz)&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;Yaw&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2.21039844&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;Saved&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;~&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;Window Geometry&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Displays&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;collapsed&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Height&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;846&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Hide Left Dock&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Hide Right Dock&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;QMainWindow State&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;000000ff00000000fd00000004000000000000016a000002c4fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000028000002c4000000dd00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f000002c4fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000028000002c4000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004b00000003efc0100000002fb0000000800540069006d00650100000000000004b00000030000fffffffb0000000800540069006d006501000000000000045000000000000000000000022b000002c400000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Selection&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;collapsed&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;collapsed&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Tool Properties&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;collapsed&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Views&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;collapsed&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1200&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;345&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;105&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now launch the launch file.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;roslaunch three_axis_robot my_robot.launch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://4.bp.blogspot.com/-WRf1jOlyO1s/WPuPKHcCNbI/AAAAAAAABY4/fAwjSpfSSFQQesNphRYxLtMw042hpOoxgCK4B/s1600/Selection_003.png&quot; alt=&quot;rviz&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you are planning to create a hardware and want to simulate the same, you can create a separate node that will publish joint states instead of using joint_state_publisher node.&lt;/p&gt;
+
+&lt;p&gt;Here instead of actual hardware ESP8266 is communicating with ROS and sending joint angles of a 5 axis robot.&lt;/p&gt;
+
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/9MEKZOPODDY&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;You can refer these tutorials to get more in depth knowledge.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://wiki.ros.org/urdf/Tutorials&quot;&gt;http://wiki.ros.org/urdf/Tutorials&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=g9WHxOpAUns&quot;&gt;https://www.youtube.com/watch?v=g9WHxOpAUns&lt;/a&gt;&lt;/p&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="ROS" /><summary type="html">In this tutorial, we will create an urdf model of a 3 axis robot and simulate it in Rviz.</summary></entry><entry><title type="html">Batman Key chain with ESP8266</title><link href="http://0.0.0.0:4000/2017/01/01/batman-key-chain-with-esp8266.html" rel="alternate" type="text/html" title="Batman Key chain with ESP8266" /><published>2017-01-01T00:15:00+05:30</published><updated>2017-01-01T00:15:00+05:30</updated><id>http://0.0.0.0:4000/2017/01/01/batman-key-chain-with-esp8266</id><content type="html" xml:base="http://0.0.0.0:4000/2017/01/01/batman-key-chain-with-esp8266.html">&lt;div dir=&quot;ltr&quot; style=&quot;text-align: left;&quot; trbidi=&quot;on&quot;&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://3.bp.blogspot.com/-hbGl7JYhMrI/WGf3DlIfvqI/AAAAAAAABXI/W4ePLUWDQgATkzoQ7p-MaDbHcA6k3k5CACK4B/s1600/IMG_20161230_134157.jpg&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;320&quot; src=&quot;https://3.bp.blogspot.com/-hbGl7JYhMrI/WGf3DlIfvqI/AAAAAAAABXI/W4ePLUWDQgATkzoQ7p-MaDbHcA6k3k5CACK4B/s320/IMG_20161230_134157.jpg&quot; width=&quot;240&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;Have recently bought a small batman key chain from amazon. It &amp;nbsp;has a small button when pressed lights the batman eye with white light and sounds a pathetic sound (:(). So I thought of opening it.&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://2.bp.blogspot.com/-UgzRBbYxfa4/WGf3mu9KUQI/AAAAAAAABXQ/gZP2U8FUi-k1YNpU7a9l91Km2fRT-l5YwCK4B/s1600/IMG_20161230_134949.jpg&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;240&quot; src=&quot;https://2.bp.blogspot.com/-UgzRBbYxfa4/WGf3mu9KUQI/AAAAAAAABXQ/gZP2U8FUi-k1YNpU7a9l91Km2fRT-l5YwCK4B/s320/IMG_20161230_134949.jpg&quot; width=&quot;320&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;&quot; style=&quot;clear: both; text-align: justify;&quot;&gt;It has enough space to put some custom electronics. So I thought of customising it a bit. This is what it looks before customising.&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;iframe allowfullscreen=&quot;&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/l3ZGNKPPiXs/0.jpg&quot; frameborder=&quot;0&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/l3ZGNKPPiXs?feature=player_embedded&quot; width=&quot;320&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;br /&gt;&lt;div class=&quot;&quot; style=&quot;clear: both; text-align: justify;&quot;&gt;This is what it looks when adding a little bit of electronics into it. It has an esp8266 with 3 SMD LED (Red, Green, Blue) that can be independently controlled. It has a small speaker (from a headset) which plays a pac man tone. It is powered with a 3.7 V Lipo battery with an option to charge with an USB cable.&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://4.bp.blogspot.com/-v1xA7bmybeU/WGf6fAw6mVI/AAAAAAAABXY/MNRwLSoOF3A2P1rSZKc81JNuF9JWdbVYwCK4B/s1600/IMG_20161231_183308.jpg&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;320&quot; src=&quot;https://4.bp.blogspot.com/-v1xA7bmybeU/WGf6fAw6mVI/AAAAAAAABXY/MNRwLSoOF3A2P1rSZKc81JNuF9JWdbVYwCK4B/s320/IMG_20161231_183308.jpg&quot; width=&quot;240&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;iframe allowfullscreen=&quot;&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/WhwIaTLD6oQ/0.jpg&quot; frameborder=&quot;0&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/WhwIaTLD6oQ?feature=player_embedded&quot; width=&quot;320&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;Batman keychain is playing pacman tone... :) I know it's a bit wierd, but couldnt find a good tone (which can be expressed as a piano tone like C4, B#2, ...) for batman. Will replace it once found a better one.&lt;br /&gt;&lt;br /&gt;Things to add further&lt;/div&gt;&lt;ul&gt;&lt;li style=&quot;text-align: justify;&quot;&gt;Pressing for a long time will enable a hotspot&lt;/li&gt;&lt;li style=&quot;text-align: justify;&quot;&gt;Option to change the tone by writing it to EEPROM on the go (ESP8266 has 512 bytes of EEPROM).&lt;/li&gt;&lt;li style=&quot;text-align: justify;&quot;&gt;Option to play PCM encoded 8 bit WAV file.&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>ANANTHAKRISHNAN</name></author><summary type="html">Have recently bought a small batman key chain from amazon. It &amp;nbsp;has a small button when pressed lights the batman eye with white light and sounds a pathetic sound (:(). So I thought of opening it.It has enough space to put some custom electronics. So I thought of customising it a bit. This is what it looks before customising.This is what it looks when adding a little bit of electronics into it. It has an esp8266 with 3 SMD LED (Red, Green, Blue) that can be independently controlled. It has a small speaker (from a headset) which plays a pac man tone. It is powered with a 3.7 V Lipo battery with an option to charge with an USB cable.Batman keychain is playing pacman tone... :) I know it's a bit wierd, but couldnt find a good tone (which can be expressed as a piano tone like C4, B#2, ...) for batman. Will replace it once found a better one.Things to add furtherPressing for a long time will enable a hotspotOption to change the tone by writing it to EEPROM on the go (ESP8266 has 512 bytes of EEPROM).Option to play PCM encoded 8 bit WAV file.</summary></entry><entry><title type="html">MAV with two propeller</title><link href="http://0.0.0.0:4000/2016/11/13/mav-with-two-propeller.html" rel="alternate" type="text/html" title="MAV with two propeller" /><published>2016-11-13T14:44:00+05:30</published><updated>2016-11-13T14:44:00+05:30</updated><id>http://0.0.0.0:4000/2016/11/13/mav-with-two-propeller</id><content type="html" xml:base="http://0.0.0.0:4000/2016/11/13/mav-with-two-propeller.html">&lt;div dir=&quot;ltr&quot; style=&quot;text-align: left;&quot; trbidi=&quot;on&quot;&gt;In order to counter the rotating torque from the previous single rotor version, one more propeller is added. The second propeller rotates counter clockwise and both torques will cancel each other (Only if both propellers are rotating at same speed).&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://2.bp.blogspot.com/-Rbxph_4Cs3g/WCglyr-q_fI/AAAAAAAABWM/n-cbj9obeXAnHzpTZjPN2BrAZGTJAhAFACLcB/s1600/IMG_20161107_010610759_HDR.jpg&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;180&quot; src=&quot;https://2.bp.blogspot.com/-Rbxph_4Cs3g/WCglyr-q_fI/AAAAAAAABWM/n-cbj9obeXAnHzpTZjPN2BrAZGTJAhAFACLcB/s320/IMG_20161107_010610759_HDR.jpg&quot; width=&quot;320&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;This the video of it flying with restriction. I have attached a a small weight to its bottom. Even though the counter torque is cancelled, it can't be controlled. Very small variation in alignment will drive the MAV crazy.&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;iframe allowfullscreen=&quot;&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/hwU4HWginwk/0.jpg&quot; frameborder=&quot;0&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/hwU4HWginwk?feature=player_embedded&quot; width=&quot;320&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;br /&gt;This is an attempt to control the drone remotely with a joystick. Had changed the body from plastic (from plastic IC tube) to general purpose PCB board. The individual propellers are controlled from a joystick (logitech f710). The controller is an esp8266 es-11 WiFi chip. The telemetry data are send using a python program that run on my computer. Both the WiFi chip and my computer are on the same network.&lt;br /&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;iframe allowfullscreen=&quot;&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/-8L_U88z5k4/0.jpg&quot; frameborder=&quot;0&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/-8L_U88z5k4?feature=player_embedded&quot; width=&quot;320&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;br /&gt;&lt;iframe width=&quot;320&quot; height=&quot;266&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/y9F4RaIn9os/0.jpg&quot; src=&quot;https://www.youtube.com/embed/y9F4RaIn9os?feature=player_embedded&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Drones" /><summary type="html">In order to counter the rotating torque from the previous single rotor version, one more propeller is added. The second propeller rotates counter clockwise and both torques will cancel each other (Only if both propellers are rotating at same speed).This the video of it flying with restriction. I have attached a a small weight to its bottom. Even though the counter torque is cancelled, it can't be controlled. Very small variation in alignment will drive the MAV crazy.This is an attempt to control the drone remotely with a joystick. Had changed the body from plastic (from plastic IC tube) to general purpose PCB board. The individual propellers are controlled from a joystick (logitech f710). The controller is an esp8266 es-11 WiFi chip. The telemetry data are send using a python program that run on my computer. Both the WiFi chip and my computer are on the same network.</summary></entry><entry><title type="html">My single rotor MAV :)</title><link href="http://0.0.0.0:4000/2016/11/06/my-single-rotor-mav.html" rel="alternate" type="text/html" title="My single rotor MAV :)" /><published>2016-11-06T04:14:00+05:30</published><updated>2016-11-06T04:14:00+05:30</updated><id>http://0.0.0.0:4000/2016/11/06/my-single-rotor-mav</id><content type="html" xml:base="http://0.0.0.0:4000/2016/11/06/my-single-rotor-mav.html">&lt;div dir=&quot;ltr&quot; style=&quot;text-align: left;&quot; trbidi=&quot;on&quot;&gt;This is a small MAV (Micro Areal Vehicle) I created out of simple household stuffs. Though this one can't be controlled, it is fun to watch it fly. :) :) :)&lt;br /&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://1.bp.blogspot.com/-CYsMwmvI2kQ/WB5e5UMIYQI/AAAAAAAABVs/A7K5louA8K882V91uFiHmufJYTsB7EprwCLcB/s1600/IMG_20161106_033509130_HDR.jpg&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;180&quot; src=&quot;https://1.bp.blogspot.com/-CYsMwmvI2kQ/WB5e5UMIYQI/AAAAAAAABVs/A7K5louA8K882V91uFiHmufJYTsB7EprwCLcB/s320/IMG_20161106_033509130_HDR.jpg&quot; width=&quot;320&quot; /&gt;&lt;/a&gt;&lt;/div&gt;I have loosely connected the power supply so that once it start flying, the counter rotating torque forces the whole MAV to rotate. So after a few sec the wire connecting power supply (battery) will automatically get removed and I can catch the MAV before it crash into walls. :)&lt;br /&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;iframe allowfullscreen=&quot;&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/qQn6ANzjGFw/0.jpg&quot; frameborder=&quot;0&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/qQn6ANzjGFw?feature=player_embedded&quot; width=&quot;320&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;This one is a slow motion video of it flying. It is hard to video it while flying. Since it is not stable it will crash itself into walls after a few seconds. I am trying to get it fly vertically upwards without any deviation.&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;iframe allowfullscreen=&quot;&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/xhxmteAvNrk/0.jpg&quot; frameborder=&quot;0&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/xhxmteAvNrk?feature=player_embedded&quot; width=&quot;320&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;See this instructable (&lt;a href=&quot;https://www.instructables.com/id/Home-Made-Micro-Aerial-Vehicle-MAV-in-5-Min/&quot;&gt;https://www.instructables.com/id/Home-Made-Micro-Aerial-Vehicle-MAV-in-5-Min/&lt;/a&gt;) for more videos/photos.&lt;/div&gt;&lt;br /&gt;&lt;/div&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Drones" /><summary type="html">This is a small MAV (Micro Areal Vehicle) I created out of simple household stuffs. Though this one can't be controlled, it is fun to watch it fly. :) :) :)I have loosely connected the power supply so that once it start flying, the counter rotating torque forces the whole MAV to rotate. So after a few sec the wire connecting power supply (battery) will automatically get removed and I can catch the MAV before it crash into walls. :)This one is a slow motion video of it flying. It is hard to video it while flying. Since it is not stable it will crash itself into walls after a few seconds. I am trying to get it fly vertically upwards without any deviation.See this instructable (https://www.instructables.com/id/Home-Made-Micro-Aerial-Vehicle-MAV-in-5-Min/) for more videos/photos.</summary></entry><entry><title type="html">PlymouthTheme-TheRun</title><link href="http://0.0.0.0:4000/2016/11/02/this-is-another-theme-i-created-for.html" rel="alternate" type="text/html" title="PlymouthTheme-TheRun" /><published>2016-11-02T02:50:00+05:30</published><updated>2016-11-02T02:50:00+05:30</updated><id>http://0.0.0.0:4000/2016/11/02/this-is-another-theme-i-created-for</id><content type="html" xml:base="http://0.0.0.0:4000/2016/11/02/this-is-another-theme-i-created-for.html">&lt;div dir=&quot;ltr&quot; style=&quot;text-align: left;&quot; trbidi=&quot;on&quot;&gt;This is an another theme I created for Plymouth (&lt;span style=&quot;color: #222222; font-family: arial, sans-serif;&quot;&gt;&lt;span style=&quot;background-color: white;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://github.com/krishnan793/PlymouthTheme-TheRun/blob/master/images/PlymouthTheme-TheRun.gif?raw=true&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;279&quot; src=&quot;https://github.com/krishnan793/PlymouthTheme-TheRun/blob/master/images/PlymouthTheme-TheRun.gif?raw=true&quot; width=&quot;320&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;A step by step instruction of how to install this theme is in this video.&lt;br /&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;iframe allowfullscreen=&quot;&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/yNW1hTyDe5U/0.jpg&quot; frameborder=&quot;0&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/yNW1hTyDe5U?feature=player_embedded&quot; width=&quot;320&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><summary type="html">This is an another theme I created for Plymouth (&amp;nbsp;a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.A step by step instruction of how to install this theme is in this video.</summary></entry><entry><title type="html">Plymouth theme for Ubuntu</title><link href="http://0.0.0.0:4000/2016/10/30/plymouth-theme-for-ubuntu.html" rel="alternate" type="text/html" title="Plymouth theme for Ubuntu" /><published>2016-10-30T21:09:00+05:30</published><updated>2016-10-30T21:09:00+05:30</updated><id>http://0.0.0.0:4000/2016/10/30/plymouth-theme-for-ubuntu</id><content type="html" xml:base="http://0.0.0.0:4000/2016/10/30/plymouth-theme-for-ubuntu.html">&lt;div dir=&quot;ltr&quot; style=&quot;text-align: left;&quot; trbidi=&quot;on&quot;&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;Bored of having the same boot animation screen again and again? There are plenty of Plymouth themes available out there. This is a theme I created by slicing some cool gif files I found online. You can download the theme and find the installation steps on my github account. (&lt;a href=&quot;https://github.com/krishnan793/PlymouthTheme-Cat&quot;&gt;https://github.com/krishnan793/PlymouthTheme-Cat&lt;/a&gt;)&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://4.bp.blogspot.com/-gG0MBGjEE9M/WBYXrOGrVGI/AAAAAAAABVE/auGpLRYf7jor4hu3jurYGcjaVBapHyAVACLcB/s1600/8998adc40112985a8f29cf414925d390.gif&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;240&quot; src=&quot;https://4.bp.blogspot.com/-gG0MBGjEE9M/WBYXrOGrVGI/AAAAAAAABVE/auGpLRYf7jor4hu3jurYGcjaVBapHyAVACLcB/s320/8998adc40112985a8f29cf414925d390.gif&quot; width=&quot;320&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&amp;nbsp;The theme is created for Ubuntu 16.04. But this can be installed on previous versions with slight modification. If you have a slow computer then you can watch the whole animation loops. (The VM I used to record the screen was fast though. :))&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;iframe allowfullscreen=&quot;&quot; class=&quot;YOUTUBE-iframe-video&quot; data-thumbnail-src=&quot;https://i.ytimg.com/vi/c6f478VBhtE/0.jpg&quot; frameborder=&quot;0&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/c6f478VBhtE?feature=player_embedded&quot; width=&quot;320&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><summary type="html">Bored of having the same boot animation screen again and again? There are plenty of Plymouth themes available out there. This is a theme I created by slicing some cool gif files I found online. You can download the theme and find the installation steps on my github account. (https://github.com/krishnan793/PlymouthTheme-Cat)&amp;nbsp;The theme is created for Ubuntu 16.04. But this can be installed on previous versions with slight modification. If you have a slow computer then you can watch the whole animation loops. (The VM I used to record the screen was fast though. :))</summary></entry></feed>

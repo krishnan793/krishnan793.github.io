@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+
+    
+    <meta charset="UTF-8">
+
+    <!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Product Design of a 4 wheel differential drive robot | Ananth’s Blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Product Design of a 4 wheel differential drive robot" />
+<meta name="author" content="ANANTHAKRISHNAN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS." />
+<meta property="og:description" content="I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS." />
+<link rel="canonical" href="http://0.0.0.0:4000/2019/01/09/product-design-of-4-wheel-differential.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2019/01/09/product-design-of-4-wheel-differential.html" />
+<meta property="og:site_name" content="Ananth’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-09T12:35:00+05:30" />
+<script type="application/ld+json">
+{"headline":"Product Design of a 4 wheel differential drive robot","dateModified":"2019-01-09T12:35:00+05:30","datePublished":"2019-01-09T12:35:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2019/01/09/product-design-of-4-wheel-differential.html"},"url":"http://0.0.0.0:4000/2019/01/09/product-design-of-4-wheel-differential.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+  </head>
+
+  <body style="">
+
+    <header class="page-header" role="banner" style="padding: 5px;background-color: #323638; background-image: none;margin-bottom: 15px;">
+      <!-- Star in header start-->
+      <script src="/assets/js/particles.js"></script>
+      <style type="text/css"> 
+        #particle-container{
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          height: 200px;
+          width: 100vw;
+          z-index: 0;
+        }
+      </style>
+      <script type="text/javascript">
+        /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+        particlesJS.load('particle-container', '/assets/particle.json', function() {
+          console.log('callback - particles.js config loaded');
+        });
+      </script>
+      <div id="particle-container"></div>
+      <!-- Star in header end-->
+
+      <!-- Main title Eionix start -->
+      <h1 class="project-name">&nbsp;<style type="text/css">
+
+.content-eionix {
+  position: absolute;
+  top: 111px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 160px;
+  overflow: hidden;
+  font-family: 'Lato', sans-serif;
+  font-size: 35px;
+  line-height: 40px;
+  color: #ecf0f1;
+}
+.content__container {
+  font-weight: 600;
+  overflow: hidden;
+  height: 40px;
+  padding: 0 40px;
+}
+.content__container:before {
+  content: '[';
+  left: 0;
+}
+.content__container:after {
+  content: ']';
+  position: absolute;
+  right: 0;
+}
+.content__container:after, .content__container:before {
+  position: absolute;
+  top: 0;
+  color: #16a085;
+  font-size: 42px;
+  line-height: 40px;
+  -webkit-animation-name: opacity;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: opacity;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.content__container__text {
+  display: inline;
+  float: left;
+  margin: 0;
+}
+.content__container__list {
+  margin-top: 0;
+  padding-left: 110px;
+  text-align: left;
+  list-style: none;
+  -webkit-animation-name: change;
+  -webkit-animation-duration: 10s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: change;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+.content__container__list__item {
+  line-height: 40px;
+  margin: 0;
+}
+
+@-webkit-keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes change {
+  0%, 12.66%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  16.66%, 29.32% {
+    -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+  }
+  33.32%,45.98% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  49.98%,62.64% {
+    -webkit-transform: translate3d(0, -75%, 0);
+            transform: translate3d(0, -75%, 0);
+  }
+  66.64%,79.3% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  83.3%,95.96% {
+    -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+  }
+}
+@keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes change {
+  0%, 12.66%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  16.66%, 29.32% {
+    -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+  }
+  33.32%,45.98% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  49.98%,62.64% {
+    -webkit-transform: translate3d(0, -75%, 0);
+            transform: translate3d(0, -75%, 0);
+  }
+  66.64%,79.3% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  83.3%,95.96% {
+    -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+  }
+}
+
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+<div class="content-eionix">
+  <div class="content__container">
+    <p class="content__container__text">
+      EIONI
+    </p>
+    
+    <ul class="content__container__list">
+      <li class="content__container__list__item">X</li>
+      <li class="content__container__list__item">X</li>
+      <li class="content__container__list__item">X</li>
+      <li class="content__container__list__item">X</li>
+    </ul>
+  </div>
+</div></h1>
+      <!-- Main title Eionix end -->
+
+      <h2 class="project-tagline">A personal blog having hobby projects.</h2>
+      
+      
+
+      <!-- Navigation bar start -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+	#nav {
+		height: 40px;
+		line-height: 40px;
+		background-color: #32363996;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+		position: relative;
+		z-index: 5;
+		transition: transform 0.5s ease-in-out;
+	}
+	#nav ul {
+		display: flex;
+		justify-content: center;
+		margin: 0;
+		padding: 0;
+	}
+	#nav ul li {
+		margin: 0;
+		padding: 0;
+		list-style:none;
+	}
+	#nav ul li a {
+		text-decoration: none;
+		padding: 10px 20px;
+		color: #FFF;
+		text-align: center;
+	}
+	#nav ul li a:hover{
+		text-decoration: underline;
+	}
+	#icon-menu {
+		display: none;
+	}
+	@media screen and (max-width: 350px){
+	  #nav ul{
+	    flex-direction: column;
+	  }
+	  #nav {
+	  	height: auto;
+	  }	
+	}
+	@media screen and (max-width: 678px){
+	  #icon-menu{
+	  	display: initial;
+	  }
+	}
+	.rotated { 
+	    -webkit-transform: rotate(90deg);
+	    -moz-transform: rotate(90deg);
+	    -o-transform: rotate(90deg);
+	    -ms-transform: rotate(90deg);
+	    transform: rotate(90deg);
+	}
+</style>
+<script type="text/javascript">
+          function toggle_side_bar(){
+          	$(".fa-bars").toggleClass('rotated');
+            if($('#side_bar').is(":visible")){
+              $('#side_bar').hide("slow");
+              $('#side_bar').css("width","0%");
+              $('#content').css("width","100%");
+              $('#content').show("slow");
+            } else {
+              $('#side_bar').css("width","100%");
+              $('#side_bar').show("slow");
+              $('#content').hide();
+              //$('#main-content').css("width","0%");
+            }
+            //$('#side_bar').toggle("slow");
+          }
+        </script>
+<div id="nav">
+	<ul>
+		<li id="icon-menu">
+			<a href="javascript:toggle_side_bar();">
+    			<i class="fa fa-bars"></i>
+    		</a>
+    	</li>
+		<li><a href="/">Home</a>
+
+		</li>
+
+		<li><a href="/">Projects</a>
+
+		</li>
+		<li><a href="/about.html">About</a>
+
+		</li>
+	</ul>
+</div>
+      <!-- Navigation bar end -->
+    </header>
+
+    <div class="body">
+      <style type="text/css">
+        .body{
+          display: flex;
+        }
+      </style>
+          <!-- Side bar start -->
+    <div id="side_bar" style="">
+      <div class="author-container">
+        <style type="text/css">
+          #side_bar{
+            /*display: inline-block; */
+            /*float: left;*/
+            vertical-align: top; 
+            margin-left: 29px;
+            margin-top: 29px;
+            width: 30%;
+          }
+          #content{
+            vertical-align: top; 
+            /*display: inline-block;
+            width:70%;*/
+          }
+          @media screen and (max-width: 678px){
+            #side_bar{
+              display: none;
+              /*width:0%;*/
+            }
+          }
+          .profile-pic{
+            border-radius: 50%;
+            display: inline;
+            vertical-align: middle;
+            /*border: 4px solid black;*/
+            -webkit-border-radius: 50%;
+            transition: .5s ease;
+          }
+          .profile-pic:hover {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            -webkit-animation: flash 1.5s;
+            animation: flash 1.5s;
+          }
+          @-webkit-keyframes flash {
+            0% {
+              opacity: .4;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes flash {
+            0% {
+              opacity: .4;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          .author{    
+            position: absolute;
+            font-size: larger;
+            vertical-align: 15px;
+            margin-left: 85px;
+            margin-top: -74px;
+          }
+          .job-title{
+            margin-left: 97px;
+            margin-top: -38px;
+            font-size: medium;
+          }
+          .author-container{
+            margin: 5px;
+          }
+        </style>
+        <img src="/assets/img/profile.jpg" class="profile-pic" width="80px">
+        <div class="author">
+          ANANTHAKRISHNAN U S
+        </div>
+        <div class="job-title">
+          R&D Engineer, ABB India
+        </div>
+      </div>
+
+            <div class="tag-container">
+        <style type="text/css">
+          .tag-container{
+            margin-top: 30px;
+            margin-left: 20px;
+            max-width: 400px;
+          }
+          .tag-heading{
+            line-height: 50px;
+          }
+          .tags {
+            list-style: none;
+            margin: 0;
+            overflow: hidden; 
+            padding-left: 12px;
+          }
+
+          .tags li {
+            float: left; 
+          }
+
+          .tag {
+            background: #eee;
+            border-radius: 3px 0 0 3px;
+            color: #999;
+            display: inline-block;
+            height: 26px;
+            line-height: 26px;
+            padding: 0 20px 0 23px;
+            position: relative;
+            margin: 0 10px 10px 0;
+            text-decoration: none;
+            -webkit-transition: color 0.2s;
+            font-size: smaller;
+          }
+
+          .tag::before {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+            content: '';
+            height: 6px;
+            left: 10px;
+            position: absolute;
+            width: 6px;
+            top: 10px;
+          }
+
+          .tag::after {
+            background: #fff;
+            border-bottom: 13px solid transparent;
+            border-left: 10px solid #eee;
+            border-top: 13px solid transparent;
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+
+          .tag:hover {
+            background-color: #319957;
+            color: white;
+            text-decoration: none;
+          }
+
+          .tag:hover::after {
+           border-left-color: #319957; 
+         }
+        </style>
+        <div class="tag-heading">
+          <style type="text/css">
+            .archive-list ul{
+              margin: 0;
+            }
+          </style>
+        Tags
+        </div>
+        <ul class="tags">
+          
+          <li><a href="/tag/web designing" class="tag"> Web Designing </a></li>
+          
+          <li><a href="/tag/after effect" class="tag"> After Effect </a></li>
+          
+          <li><a href="/tag/gaming" class="tag"> Gaming </a></li>
+          
+          <li><a href="/tag/c" class="tag"> C </a></li>
+          
+          <li><a href="/tag/electronics" class="tag"> Electronics </a></li>
+          
+          <li><a href="/tag/tips and tricks" class="tag"> Tips and Tricks </a></li>
+          
+          <li><a href="/tag/matlab" class="tag"> Matlab </a></li>
+          
+          <li><a href="/tag/linux" class="tag"> Linux </a></li>
+          
+          <li><a href="/tag/networkking" class="tag"> Networkking </a></li>
+          
+          <li><a href="/tag/android" class="tag"> android </a></li>
+          
+          <li><a href="/tag/beaglebone black" class="tag"> BeagleBone Black </a></li>
+          
+          <li><a href="/tag/atmega328pu" class="tag"> Atmega328PU </a></li>
+          
+          <li><a href="/tag/robotics" class="tag"> Robotics </a></li>
+          
+          <li><a href="/tag/opencv" class="tag"> opencv </a></li>
+          
+          <li><a href="/tag/ros" class="tag"> ROS </a></li>
+          
+          <li><a href="/tag/drones" class="tag"> Drones </a></li>
+          
+        </ul>
+      </div>
+
+      <div class="tag-container" style="height: 200px; width:300px;">
+        <style type="text/css">
+          .tree-list{
+           margin-top: 0;
+         }
+         .tree-list li > ul, .tree-list li > ul {
+           display: none;
+         }
+         .tree-list input[type="checkbox"]:checked + ul, .tree-list input[type="checkbox"]:checked + ul{
+           display: block;
+         }
+         .tree-list input[type="checkbox"] {
+           display: none;
+           position: relative;
+         }
+         .tree-list label {
+           position: relative;
+           display: inline-block;
+         }
+         .tree-list label:after {
+           /*content: '+';*/
+           position: static;
+         }
+        </style>
+        <div class="tag-heading">
+        Archive
+        </div>
+        <ul class="tree-list"><li><label for="l1"> 2019 </label><input id="l1" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l1i1">January</label>
+                <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2019/01/09/product-design-of-4-wheel-differential.html">Product Design of a 4 wheel differential drive robot</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l2"> 2018 </label><input id="l2" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l2i1">October</label>
+                <input id="l2i1" type="checkbox">
+                <ul><li><a href="/2018/10/06/inventory-app-for-hobbyists.html">Inventory App for hobbyists</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l2i2">March</label>
+                <input id="l2i2" type="checkbox">
+                <ul><li><a href="/2018/03/11/raspberry-pi-based-car-infotainment.html">Raspberry pi based Car Infotainment system</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l3"> 2017 </label><input id="l3" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l3i1">August</label>
+                <input id="l3i1" type="checkbox">
+                <ul><li><a href="/2017/08/03/creating-wireless-remote-for-nikon.html">Creating a Wireless remote for Nikon Camera using Esp8266</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l3i2">April</label>
+                <input id="l3i2" type="checkbox">
+                <ul><li><a href="/2017/04/22/ros-simulating-3-axis-robot-in-rviz.html">ROS simulating a 3 axis robot in Rviz</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l3i3">January</label>
+                <input id="l3i3" type="checkbox">
+                <ul><li><a href="/2017/01/01/batman-key-chain-with-esp8266.html">Batman Key chain with ESP8266</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l4"> 2016 </label><input id="l4" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l4i1">November</label>
+                <input id="l4i1" type="checkbox">
+                <ul><li><a href="/2016/11/13/mav-with-two-propeller.html">MAV with two propeller</a></li>        
+                  <li><a href="/2016/11/06/my-single-rotor-mav.html">My single rotor MAV :)</a></li>        
+                  <li><a href="/2016/11/02/this-is-another-theme-i-created-for.html">PlymouthTheme-TheRun</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l4i2">October</label>
+                <input id="l4i2" type="checkbox">
+                <ul><li><a href="/2016/10/30/plymouth-theme-for-ubuntu.html">Plymouth theme for Ubuntu</a></li>        
+                  <li><a href="/2016/10/21/self-balancing-robot.html">Self Balancing Robot</a></li>        
+                  <li><a href="/2016/10/21/warehouse-management-system-using-drones.html">Warehouse Management System using Drones</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l4i3">September</label>
+                <input id="l4i3" type="checkbox">
+                <ul><li><a href="/2016/09/21/controlling-parrot-bebop-using-ros.html">Controlling Parrot Bebop using ROS Kinetic</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l4i4">January</label>
+                <input id="l4i4" type="checkbox">
+                <ul><li><a href="/2016/01/27/smart-room-wireless-controlled.html">Smart Room :-) | Wireless controlled appliances</a></li>        
+                  <li><a href="/2016/01/27/esp8266-wifi-iot-chip-programing.html">ESP8266 WiFi IOT chip | Programing the Firmware</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l5"> 2015 </label><input id="l5" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l5i1">November</label>
+                <input id="l5i1" type="checkbox">
+                <ul><li><a href="/2015/11/14/searching-and-precision-landing-of-ar.html">Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS </a></li>        
+                  <li><a href="/2015/11/14/precision-landing-of-ar-drone-20-using.html">Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
+                  <li><a href="/2015/11/13/visual-servoing-ar-drone-20-using.html">Visual servoing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
+                  <li><a href="/2015/11/13/simulating-controlling-ar-drone-20.html">Simulation & Controlling AR Drone 2.0 using Gamepad | Gazebo | ROS</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i2">October</label>
+                <input id="l5i2" type="checkbox">
+                <ul><li><a href="/2015/10/21/a-multilayer-neural-network-based.html">A Multilayer Neural Network Based Obstacle Avoiding Robot | ROS | Simulation</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i3">August</label>
+                <input id="l5i3" type="checkbox">
+                <ul><li><a href="/2015/08/30/controlling-turtlesim-using-gamepad-ros.html">Controlling turtlesim using a Gamepad | ROS</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i4">July</label>
+                <input id="l5i4" type="checkbox">
+                <ul><li><a href="/2015/07/30/clap-switch.html">Clap Switch</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i5">May</label>
+                <input id="l5i5" type="checkbox">
+                <ul><li><a href="/2015/05/12/vision-based-line-follower-using-opencv.html">Vision Based Line Follower using opencv</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i6">April</label>
+                <input id="l5i6" type="checkbox">
+                <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
+                  <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
+                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">Mobile Robot controlling using BeagleBone Black</a></li>        
+                  <li><a href="/2015/04/17/controlling-differential-drive-motor.html">Controlling a differential drive motor with Beaglebone black</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i7">March</label>
+                <input id="l5i7" type="checkbox">
+                <ul><li><a href="/2015/03/01/display-text-in-color-linux-terminal.html">Display text in color - Linux terminal</a></li>        
+                  <li><a href="/2015/03/01/beagleboneblack-adc.html">BeagleBoneBlack ADC</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i8">February</label>
+                <input id="l5i8" type="checkbox">
+                <ul><li><a href="/2015/02/27/beagleboneblack-gpio-push-button-led.html">BeagleBoneBlack GPIO Push Button + LED</a></li>        
+                  <li><a href="/2015/02/27/led-cube-using-atmega328p.html">LED Cube using Atmega328P</a></li>        
+                  <li><a href="/2015/02/27/gpio-blink-led-using-c-beagleboneblack.html">GPIO Blink an LED using C - BeagleBoneBlack</a></li>        
+                  <li><a href="/2015/02/27/gpio-blinking-led-using-bash-script.html">GPIO Blinking an LED using bash script</a></li>        
+                  <li><a href="/2015/02/27/getting-started-with-gpio-testing-gpio.html">Getting started with GPIO (Testing GPIO with a multimeter)</a></li>        
+                  <li><a href="/2015/02/22/beagleboneblack-apt-get-upgrade-error.html">BeagleBoneBlack apt-get upgrade error due to led-aging.sh</a></li>        
+                  <li><a href="/2015/02/22/getting-internet-on-bbb-via-usb-share.html">Getting internet on BBB via usb (Share internet from your linux machine)</a></li>        
+                  <li><a href="/2015/02/22/remote-access-your-beaglebone-black.html">Remote access your BeagleBone Black using vnc</a></li>        
+                  <li><a href="/2015/02/21/program-bbb-using-c-blink-onboard-led.html">Program BBB using C (Blink onboard LED)</a></li>        
+                  <li><a href="/2015/02/21/getting-started-with-beaglebone-black.html">Getting started with BeagleBone Black (Remote login via SSH with Linux / Windows)</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l6"> 2014 </label><input id="l6" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l6i1">December</label>
+                <input id="l6i1" type="checkbox">
+                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">C Socket Programming Extract IP address</a></li>        
+                  <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
+                  <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
+                  <li><a href="/2014/12/18/decimal-to-hex-conversion-using.html">Decimal to Hex Conversion using recursive function</a></li>        
+                  <li><a href="/2014/12/18/gray-level-transformation-negative.html">Gray Level Transformations</a></li>        
+                  <li><a href="/2014/12/18/polynomial-addition-using-linked-list.html">Polynomial Addition Using Dynamic Memory Allocation</a></li>        
+                  <li><a href="/2014/12/05/creating-and-deleting.html">Creating and Deleting Folders/Directories using C</a></li>        
+                  <li><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i2">September</label>
+                <input id="l6i2" type="checkbox">
+                <ul><li><a href="/2014/09/22/simple-dip-threshold-animation-using.html">Simple DIP threshold animation using Matlab</a></li>        
+                  <li><a href="/2014/09/15/automating-scripts-using-expect.html">Automating scripts using expect</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i3">July</label>
+                <input id="l6i3" type="checkbox">
+                <ul><li><a href="/2014/07/22/how-to-use-variable-from-bash-to-use-in.html">How to use variable from bash to use in awk?</a></li>        
+                  <li><a href="/2014/07/22/linux-command-awk.html">Linux command awk extract anything</a></li>        
+                  <li><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></li>        
+                  <li><a href="/2014/07/19/how-to-know-external-ip-address-from.html">How to know external IP address from Linux terminal?</a></li>        
+                  <li><a href="/2014/07/16/how-to-set-dns-address-in-android-phones.html">How to set dns address in android phones?</a></li>        
+                  <li><a href="/2014/07/16/how-to-see-open-ports-inlinux.html">How to see open ports inLinux?</a></li>        
+                  <li><a href="/2014/07/15/testing-nat-port-forwarding-and.html">Testing NAT Port Forwarding and reverese NAT</a></li>        
+                  <li><a href="/2014/07/15/how-to-see-dns-reply-or-testing-dns.html">How to see DNS reply? or Testing DNS server?</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i4">May</label>
+                <input id="l6i4" type="checkbox">
+                <ul><li><a href="/2014/05/14/ultrasonic-hover-input-device.html">Ultrasonic Hover Input Device</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i5">April</label>
+                <input id="l6i5" type="checkbox">
+                <ul><li><a href="/2014/04/02/how-to-send-at-commands.html">How to send AT commands?</a></li>        
+                  <li><a href="/2014/04/02/at-commands.html">AT Commands</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i6">March</label>
+                <input id="l6i6" type="checkbox">
+                <ul><li><a href="/2014/03/31/how-to-hide-and-unhide-files-in-linux.html">How to hide and unhide files in Linux?</a></li>        
+                  <li><a href="/2014/03/31/linux-how-to-find-your-serial-any.html">Linux: How to find your serial (any connected) device?</a></li>        
+                  <li><a href="/2014/03/30/serial-port-communication-in-linux.html">Serial Port Communication in Linux using Minicom</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l7"> 2013 </label><input id="l7" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l7i1">October</label>
+                <input id="l7i1" type="checkbox">
+                <ul><li><a href="/2013/10/29/wwwieeegecskpin.html">www.ieeegecskp.in</a></li>        
+                  <li><a href="/2013/10/29/use-matlab-to-read-serial-data.html">Use Matlab to read serial data</a></li>        
+                  <li><a href="/2013/10/29/creative-destruction-batch-hacks.html">Creative Destruction | Batch Hacks</a></li>        
+                  <li><a href="/2013/10/11/serial-port-communication-using-avr.html">Serial port communication using AVR</a></li>        
+                  <li><a href="/2013/10/06/mark-all-gmail-messages-as-read.html">Mark all Gmail messages as read</a></li>        
+                  <li><a href="/2013/10/02/changing-colour-of-your-mouse.html">Changing the colour of your mouse</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l7i2">January</label>
+                <input id="l7i2" type="checkbox">
+                <ul><li><a href="/2013/01/21/driving-2-led-in-fasion.html">Driving 2 LED in a Fasion</a></li>        
+                  <li><a href="/2013/01/21/blinking-led-with-microcontroller.html">Blinking an LED with Microcontroller</a></li>        
+                  <li><a href="/2013/01/21/lighting-led-with-microcontroller.html">Lighting an LED with Microcontroller | Atmega328p</a></li>        
+                  <li><a href="/2013/01/21/get-started-with-microcontroller.html">Get started with Microcontroller | Atmega328p</a></li>        
+                  <li><a href="/2013/01/21/electret-microphones-cma-4544pf-w.html">Electret Microphones (CMA-4544PF-W)</a></li>        
+                  <li><a href="/2013/01/20/encode-your-text-into-ascii-hex-code.html">Encode your text into ASCII HEX code using C</a></li>        
+                  <li><a href="/2013/01/20/authentication-of-username-and-password.html">Authentication of username and password using PHP(MySQL)</a></li>        
+                  <li><a href="/2013/01/19/after-effect-tutorial.html">After Effect Tutorial</a></li>        
+                  <li><a href="/2013/01/19/invento-promo-video-after-effects.html">Invento Promo Video | After Effects</a></li>        
+                  <li><a href="/2013/01/19/invento-logo-animation-using-after.html">Invento Logo Animation | Using After Effect</a></li>        
+                  <li><a href="/2013/01/19/nfs-mw-best-scenes-mw-gameplay-pursuits.html">NFS MW best scenes | MW Gameplay pursuits</a></li>        
+                  <li><a href="/2013/01/19/sastra-systems.html">Sastra Systems</a></li>        
+                  <li><a href="/2013/01/19/wwwinventogecskpcom.html">www.inventogecskp.com</a></li>        
+                  <li><a href="/2013/01/19/html-where-to-begin.html">HTML | Where to begin?</a></li>        
+                  <li><a href="/2013/01/19/a-basics-to-html.html">A Basics to HTML</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+<!-- Side bar end -->
+
+      <!-- Main post content start -->
+      <main id="content" class="main-content" role="main" >
+        <style type="text/css">
+          #page-content{
+            max-width: 64rem;
+            margin: auto;
+          }
+          #content{
+            max-width:70%;
+          }
+          @media screen and (max-width: 678px){
+            #content{
+              max-width:100%;
+            }
+          }
+        </style>
+        <div id="page-content">
+          
+            <h1> Product Design of a 4 wheel differential drive robot </h1>
+          
+          <p>I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.</p>
+
+<iframe width="320" height="266" src="https://www.youtube.com/embed/Q5mC5lRfhfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>The methods I followed may not be the best practice. The only aim is to reach from idea to actual product (prototype).</p>
+
+<p><img src="/assets/img/dest.png" alt="Thumbnail" /></p>
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li>4 Wheel Differential Drive</li>
+  <li>Camera</li>
+  <li>WiFi</li>
+  <li>IMU</li>
+  <li>GPS(optional)</li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>A 4 wheeled differential mobile robot with wheel encoders, camera, WiFi, IMU and GPS(optional). The first thing I did was to come up with an overall architecture. Raspberry pi 3 will be the heart of the robot. Pi Zero was considered in the beginning, but eventually had to  change because of the lack of support for ROS. Even though able to compile ROS from scratch, it became so hard to compile other packages needed for the project. Since I do not want to use pi to directly control motors, I had to design a separate controller circuit to handle motors. Encoder was later discarded to make the project simple. Controller circuit will talk with pi using i2c. Atmega328p is used for the controller circuit. IMU will also communicate with pi using i2c.</p>
+
+<h2 id="architecture">Architecture</h2>
+
+<p><img src="https://1.bp.blogspot.com/-vdBU-uljYjg/XA0lgtgnTkI/AAAAAAAABjI/Aw2r9m2bjY4nAorFAxHD-OWNnOM5bk1CwCK4BGAYYCw/s320/architectureV2.png" alt="Device architecture" /><br />
+Selected N20 DC12V 300RPM motor for driving the robot. With a rated torque of 0.4 Kg/cm, it was more than enough to drive the robot since expected overall weight of robot will not cross 1 Kg. Selected a battery with voltage 11.1 which is enough for the motors. A voltage regulator is needed to power Pi and motor circuits. Atmega328P is selected for the controller circuit. It has enough internal PWM to drive 4 motors. Since I had to make the controller circuit as small as possible, I was searching for SMD components. Found one SMD package for l293D which is enough to drive the motor with a stall current 300 mA. In order to keep track of current, I selected ACS712. For measuring internal temperature, LM35 was selected.</p>
+
+<h2 id="specifications">Specifications</h2>
+
+<h3 id="motor">Motor</h3>
+
+<p>Name: N20 DC12V 300RPM Mini Metal Gear Motor (12GAN20)<br />
+shop: banggood<br />
+<img src="https://img.staticbg.com/thumb/view/oaupload/banggood/images/56/0F/20d5045b-fa8d-404d-983e-cfc1e1423971.jpg" alt="N20 DC12V Motor" height="150px" /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Rated voltage</td>
+      <td>DC 12V</td>
+    </tr>
+    <tr>
+      <td>Speed</td>
+      <td>300 RPM</td>
+    </tr>
+    <tr>
+      <td>Shaft Diameter</td>
+      <td>3mm</td>
+    </tr>
+    <tr>
+      <td>Diameter</td>
+      <td>12mm</td>
+    </tr>
+    <tr>
+      <td>fuselage without shaft length</td>
+      <td>26mm</td>
+    </tr>
+    <tr>
+      <td>Output axial length</td>
+      <td>10mm</td>
+    </tr>
+    <tr>
+      <td>Screw</td>
+      <td>M3</td>
+    </tr>
+    <tr>
+      <td>Quantity</td>
+      <td>4pcs</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Non-loaded</td>
+      <td>Non-loaded</td>
+      <td>Rated load</td>
+      <td>Rated load</td>
+      <td>Rated load</td>
+      <td>stall</td>
+      <td>stall</td>
+    </tr>
+    <tr>
+      <td>Voltage range (V)</td>
+      <td>Rated voltage</td>
+      <td>speed(RPM)</td>
+      <td>current(A)</td>
+      <td>speed(RPM)</td>
+      <td>current(A)</td>
+      <td>torque(KG.CM)</td>
+      <td>torque(KG.CM)</td>
+      <td>current(A)</td>
+    </tr>
+    <tr>
+      <td>6-12</td>
+      <td>12</td>
+      <td>300</td>
+      <td>0.05</td>
+      <td>240</td>
+      <td>0.09</td>
+      <td>0.6</td>
+      <td>4.00</td>
+      <td>0.3</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="main-computer">Main computer</h2>
+
+<p>Name: Raspberry Pi 3 Model B+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Processor</td>
+      <td>Broadcom BCM2837B0, Cortex-A53 64-bit SoC @ 1.4GHz 1GB</td>
+    </tr>
+    <tr>
+      <td>Memory</td>
+      <td>LPDDR2 SDRAM</td>
+    </tr>
+    <tr>
+      <td>Connectivity</td>
+      <td>2.4GHz and 5GHz IEEE 802.11.b/g/n/ac wireless LAN, Bluetooth 4.2, BLE Gigabit Ethernet over USB 2.0 (maximum throughput 300Mbps)</td>
+    </tr>
+    <tr>
+      <td>Access</td>
+      <td>4 × USB 2.0 ports Extended 40-pin GPIO header</td>
+    </tr>
+    <tr>
+      <td>Video &amp; sound</td>
+      <td>1 × full size HDMI MIPI DSI display port MIPI CSI camera port 4 pole stereo output and composite video port H.264, MPEG-4 decode (1080p30); H.264 encode (1080p30); OpenGL ES 1.1, 2.0 graphics</td>
+    </tr>
+    <tr>
+      <td>Multimedia: SD card support</td>
+      <td>Micro SD format for loading operating system and data storage 5V/2.5A DC via micro USB connector 5V DC via GPIO header Power over Ethernet (PoE)–enabled (requires separate PoE HAT)</td>
+    </tr>
+    <tr>
+      <td>Operating temperature</td>
+      <td>0–50°C</td>
+    </tr>
+    <tr>
+      <td>Production lifetime</td>
+      <td>The Raspberry Pi 3 Model B+ will remain in production until at least January 2023</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="dimension">Dimension</h3>
+
+<p><img src="https://d2mxuefqeaa7sj.cloudfront.net/s_7DE74831DB2CB5D12B9EF081E317660A0AD9BDC05CFC157FD2EEC025DFA2B08F_1537454051611_Dimension_pi_3B.png" alt="Raspberry pi Dimension" /></p>
+
+<p>Schematics: <a href="Pi_3_Schematics">Link</a><br />
+OS: Ubuntu MATE 16.04.2 (Xenial)<br />
+Installation steps: <a href="Ubuntu_Xenial">Link</a></p>
+
+<h2 id="temperature-sensor">Temperature sensor</h2>
+
+<ul>
+  <li>Name: LM35</li>
+  <li>Linear + 10-mV/°C Scale Factor</li>
+  <li>0.5°C Ensured Accuracy (at 25°C)</li>
+  <li>Rated for Full −55°C to 150°C Range</li>
+  <li>Operates From 4 V to 30 V</li>
+  <li>Less Than 60-μA Current Drain</li>
+  <li>Low-Impedance Output, 0.1 Ω for 1-mA Load</li>
+</ul>
+
+<h2 id="current-sensor">Current sensor</h2>
+
+<ul>
+  <li>Name: ACS712ELCTR-05B-T</li>
+  <li>Small footprint, low-profile SOIC8 package</li>
+  <li>1.2 mΩ internal conductor resistance</li>
+  <li>2.1 kVRMS minimum isolation voltage from pins 1-4 to pins 5-8</li>
+  <li>5.0 V, single supply operation</li>
+  <li>66 to 185 mV/A output sensitivity</li>
+  <li>Optimized current range : ±5</li>
+  <li>Sensitivity: 185 mV/A</li>
+</ul>
+
+<h2 id="schematics">Schematics</h2>
+
+<p><img src="http://3.bp.blogspot.com/-ltmOj3ImY_c/XA0obzqc1WI/AAAAAAAABjk/yjIZtDElw-sZdqwQPbFVNOGLzJsy6ylQACK4BGAYYCw/s1600/l293dDIP.png" alt="Schematics" /></p>
+
+<h2 id="pcb-layout">PCB Layout</h2>
+
+<p>After finishing with the schematics and some initial breadboard prototyping, moved directly to pcb layout design.</p>
+
+<p><img src="https://3.bp.blogspot.com/-DezjGJ_SHcI/XA0o5caOeeI/AAAAAAAABkA/Juk2RpCdC6shW60tUsURsg9wwfsovas4ACK4BGAYYCw/s320/PCB.png" alt="PCB layout 1" />
+<img src="https://2.bp.blogspot.com/-4sMIbJJQNEg/XA0pM8i_JQI/AAAAAAAABkM/hdM7r4KppikvzGeKNzxFsOFUVwCFb4_TQCK4BGAYYCw/s320/PCB_3D.png" alt="PCB layout 2" />
+<img src="https://4.bp.blogspot.com/-uwECuCmrtJY/XA0pQEiYN-I/AAAAAAAABkU/FYGH66JfuXAPCv-SISLX9Q-k-YhhE20agCK4BGAYYCw/s320/3D.png" alt="PCB layout 3" /></p>
+
+<p>Since it is a 2 layer PCB, I had to order PCB from outside. LION circuits seemed to be a good choice. Apart from the fact that choosing colour of the PCB will cost you double, service seems to be good.</p>
+
+<p><img src="https://1.bp.blogspot.com/-N62WiJrh15s/XA0tN2Pq4fI/AAAAAAAABk4/162FQDdpt5E5cRptGWjb4jaPOx2i3vsAgCK4BGAYYCw/s320/IMG_20181209_201406414.jpg" alt="PCB layout 4" />
+<img src="https://4.bp.blogspot.com/-zK4L3x5m3m8/XA0tNuMiFzI/AAAAAAAABk0/_vXzsMxcZQAM6Nq9EPDOZ27-TA2sYkwNwCK4BGAYYCw/s320/IMG_20181209_201428683.jpg" alt="PCB layout 5" /></p>
+
+<p>After an hour of hand soldering….</p>
+
+<p><img src="https://1.bp.blogspot.com/-XbqHNzFl2Xc/XA0pokgXf9I/AAAAAAAABkk/2aKwySsZcCoBYx6omQfYQIaszk5RXtkkgCK4BGAYYCw/s320/image_preview.jpeg" alt="PCB layout 5" /></p>
+
+<h2 id="cad-modelling">CAD Modelling</h2>
+
+<p>I have used solidworks before. But for this project I tried fusion 360, which seems to be good. One weeks of YouTube tutorials was enough to get started. Had to redesign the model two times. But it was worth the effort.</p>
+
+<p><img src="https://4.bp.blogspot.com/-xDXtBYaP2cM/XA0uYdfv0XI/AAAAAAAABlY/dipXTNpBL2s-OkwcCTqTMxvGJNAO947pgCK4BGAYYCw/s320/isometric.PNG" alt="Wireframe 1" />
+<img src="https://1.bp.blogspot.com/-LkxivYLW3v0/XA0uWtX__UI/AAAAAAAABlQ/3xhBUE0vyGAvnIfSsR7WfT6URInOtfyvwCK4BGAYYCw/s320/Capture.PNG" alt="Wireframe 2" />
+<img src="https://3.bp.blogspot.com/-Uit16dTn4AQ/XA0uUSH-zEI/AAAAAAAABlI/CspNW6kIvPgNk8G_aHn1ORaYRYBhU9qtACK4BGAYYCw/s320/dimension.PNG" alt="3D rendered" /></p>
+
+<h2 id="3d-printing">3D printing</h2>
+
+<p>I had two split the bottom body into two parts for easy 3D printing and later I glued it together.</p>
+
+<h2 id="final-preview">Final Preview</h2>
+
+<p><img src="http://2.bp.blogspot.com/-WD8crbpPltw/XDV8JLFuNuI/AAAAAAAABmc/I6uuc2be-TMI5iBj5Ktdb5BzC8ummmNGACK4BGAYYCw/s1600/BLR_0187.JPG" alt="Final preview 1" height="250px" />
+<img src="http://2.bp.blogspot.com/-CwnWzdCNKp4/XDV8GK2aPII/AAAAAAAABmM/Af5NH8mgFXg9qXIqmOyBulJxhSMVris-gCK4BGAYYCw/s1600/BLR_0188.JPG" alt="Final preview 2" height="250px" />
+<img src="http://2.bp.blogspot.com/-JmZFS9Xr9Rw/XDV8IzknhuI/AAAAAAAABmY/WyOmIdZc7wA6BxN0bmmMeyA7_r7GgqdXQCK4BGAYYCw/s1600/BLR_0189.JPG" alt="Final preview 3" height="250px" />
+<img src="http://4.bp.blogspot.com/-6fCIj7m0DmM/XDV8KaCT8sI/AAAAAAAABmk/DmUULnhi_zohNR0SUDEvtJTIqk9hFxTPQCK4BGAYYCw/s1600/BLR_0185.JPG" alt="Final preview 4" height="250px" />
+<img src="http://3.bp.blogspot.com/-vVNex884yb0/XDWae__435I/AAAAAAAABnM/k0EXHvjcIbQcI2Av7lzCG_pMhOuZnmbHACK4BGAYYCw/s1600/BLR_0001.JPG" alt="Final preview 5" height="250px" /></p>
+
+<iframe width="320" height="266" src="https://www.youtube.com/embed/Q5mC5lRfhfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+
+        </div>
+      </main>
+      <!-- Main post content end -->
+    </div>
+    
+    <footer class="site-footer">
+      
+      <!-- <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span> -->
+    </footer>
+  </body>
+</html>
