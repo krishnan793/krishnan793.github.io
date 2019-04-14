@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-14T18:59:07+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Product Design of a 4 wheel differential drive robot</title><link href="/2019/01/09/product-design-of-4-wheel-differential.html" rel="alternate" type="text/html" title="Product Design of a 4 wheel differential drive robot" /><published>2019-01-09T12:35:00+05:30</published><updated>2019-01-09T12:35:00+05:30</updated><id>/2019/01/09/product-design-of-4-wheel-differential</id><content type="html" xml:base="/2019/01/09/product-design-of-4-wheel-differential.html">&lt;p&gt;I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-14T23:30:34+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Product Design of a 4 wheel differential drive robot</title><link href="/2019/01/09/product-design-of-4-wheel-differential.html" rel="alternate" type="text/html" title="Product Design of a 4 wheel differential drive robot" /><published>2019-01-09T12:35:00+05:30</published><updated>2019-01-09T12:35:00+05:30</updated><id>/2019/01/09/product-design-of-4-wheel-differential</id><content type="html" xml:base="/2019/01/09/product-design-of-4-wheel-differential.html">&lt;p&gt;I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.&lt;/p&gt;
 
 &lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/Q5mC5lRfhfw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
@@ -184,7 +184,7 @@ Installation steps: &lt;a href=&quot;Ubuntu_Xenial&quot;&gt;Link&lt;/a&gt;&lt;/p
 
 &lt;h2 id=&quot;schematics&quot;&gt;Schematics&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/-ltmOj3ImY_c/XA0obzqc1WI/AAAAAAAABjk/yjIZtDElw-sZdqwQPbFVNOGLzJsy6ylQACK4BGAYYCw/s1600/l293dDIP.png&quot; alt=&quot;Schematics&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://3.bp.blogspot.com/-ltmOj3ImY_c/XA0obzqc1WI/AAAAAAAABjk/yjIZtDElw-sZdqwQPbFVNOGLzJsy6ylQACK4BGAYYCw/s1600/l293dDIP.png&quot; alt=&quot;Schematics&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;pcb-layout&quot;&gt;PCB Layout&lt;/h2&gt;
 
@@ -217,11 +217,11 @@ Installation steps: &lt;a href=&quot;Ubuntu_Xenial&quot;&gt;Link&lt;/a&gt;&lt;/p
 
 &lt;h2 id=&quot;final-preview&quot;&gt;Final Preview&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://2.bp.blogspot.com/-WD8crbpPltw/XDV8JLFuNuI/AAAAAAAABmc/I6uuc2be-TMI5iBj5Ktdb5BzC8ummmNGACK4BGAYYCw/s1600/BLR_0187.JPG&quot; alt=&quot;Final preview 1&quot; height=&quot;250px&quot; /&gt;
-&lt;img src=&quot;http://2.bp.blogspot.com/-CwnWzdCNKp4/XDV8GK2aPII/AAAAAAAABmM/Af5NH8mgFXg9qXIqmOyBulJxhSMVris-gCK4BGAYYCw/s1600/BLR_0188.JPG&quot; alt=&quot;Final preview 2&quot; height=&quot;250px&quot; /&gt;
-&lt;img src=&quot;http://2.bp.blogspot.com/-JmZFS9Xr9Rw/XDV8IzknhuI/AAAAAAAABmY/WyOmIdZc7wA6BxN0bmmMeyA7_r7GgqdXQCK4BGAYYCw/s1600/BLR_0189.JPG&quot; alt=&quot;Final preview 3&quot; height=&quot;250px&quot; /&gt;
-&lt;img src=&quot;http://4.bp.blogspot.com/-6fCIj7m0DmM/XDV8KaCT8sI/AAAAAAAABmk/DmUULnhi_zohNR0SUDEvtJTIqk9hFxTPQCK4BGAYYCw/s1600/BLR_0185.JPG&quot; alt=&quot;Final preview 4&quot; height=&quot;250px&quot; /&gt;
-&lt;img src=&quot;http://3.bp.blogspot.com/-vVNex884yb0/XDWae__435I/AAAAAAAABnM/k0EXHvjcIbQcI2Av7lzCG_pMhOuZnmbHACK4BGAYYCw/s1600/BLR_0001.JPG&quot; alt=&quot;Final preview 5&quot; height=&quot;250px&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://2.bp.blogspot.com/-WD8crbpPltw/XDV8JLFuNuI/AAAAAAAABmc/I6uuc2be-TMI5iBj5Ktdb5BzC8ummmNGACK4BGAYYCw/s1600/BLR_0187.JPG&quot; alt=&quot;Final preview 1&quot; /&gt;
+&lt;img src=&quot;https://2.bp.blogspot.com/-CwnWzdCNKp4/XDV8GK2aPII/AAAAAAAABmM/Af5NH8mgFXg9qXIqmOyBulJxhSMVris-gCK4BGAYYCw/s1600/BLR_0188.JPG&quot; alt=&quot;Final preview 2&quot; /&gt;
+&lt;img src=&quot;https://2.bp.blogspot.com/-JmZFS9Xr9Rw/XDV8IzknhuI/AAAAAAAABmY/WyOmIdZc7wA6BxN0bmmMeyA7_r7GgqdXQCK4BGAYYCw/s1600/BLR_0189.JPG&quot; alt=&quot;Final preview 3&quot; /&gt;
+&lt;img src=&quot;https://4.bp.blogspot.com/-6fCIj7m0DmM/XDV8KaCT8sI/AAAAAAAABmk/DmUULnhi_zohNR0SUDEvtJTIqk9hFxTPQCK4BGAYYCw/s1600/BLR_0185.JPG&quot; alt=&quot;Final preview 4&quot; /&gt;
+&lt;img src=&quot;https://3.bp.blogspot.com/-vVNex884yb0/XDWae__435I/AAAAAAAABnM/k0EXHvjcIbQcI2Av7lzCG_pMhOuZnmbHACK4BGAYYCw/s1600/BLR_0001.JPG&quot; alt=&quot;Final preview 5&quot; /&gt;&lt;/p&gt;
 
 &lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/Q5mC5lRfhfw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Atmega328PU" /><category term="ROS" /><summary type="html">I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.</summary></entry><entry><title type="html">Inventory App for hobbyists</title><link href="/2018/10/06/inventory-app-for-hobbyists.html" rel="alternate" type="text/html" title="Inventory App for hobbyists" /><published>2018-10-06T16:39:00+05:30</published><updated>2018-10-06T16:39:00+05:30</updated><id>/2018/10/06/inventory-app-for-hobbyists</id><content type="html" xml:base="/2018/10/06/inventory-app-for-hobbyists.html">&lt;p&gt;I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.&lt;/p&gt;
 
@@ -229,15 +229,15 @@ Installation steps: &lt;a href=&quot;Ubuntu_Xenial&quot;&gt;Link&lt;/a&gt;&lt;/p
 
 &lt;h2 id=&quot;searching-the-inventory-item&quot;&gt;Searching the inventory item&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/-ujdfbPOoH74/W7iWCTGLHRI/AAAAAAAABhc/15-iDI8ZrRY_o6AuO0wg4go0agqjb-nCgCK4BGAYYCw/s1600/search.gif&quot; alt=&quot;Searching&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://3.bp.blogspot.com/-ujdfbPOoH74/W7iWCTGLHRI/AAAAAAAABhc/15-iDI8ZrRY_o6AuO0wg4go0agqjb-nCgCK4BGAYYCw/s1600/search.gif&quot; alt=&quot;Searching&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;adding-entries&quot;&gt;Adding entries&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://2.bp.blogspot.com/-W-m42a8tOOs/W7iWQB6zsVI/AAAAAAAABhk/E8RoMqfow8UYVnYsSLuq_ie09De2DzhNACK4BGAYYCw/s1600/addValue.gif&quot; alt=&quot;Adding&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://2.bp.blogspot.com/-W-m42a8tOOs/W7iWQB6zsVI/AAAAAAAABhk/E8RoMqfow8UYVnYsSLuq_ie09De2DzhNACK4BGAYYCw/s1600/addValue.gif&quot; alt=&quot;Adding&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;modify-entry&quot;&gt;Modify entry&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://1.bp.blogspot.com/-G8ZBStXWYu0/W7iWZMv6eWI/AAAAAAAABhw/WrHfeUDLABAmWn4FUwSjTD32ZsX7u5tvgCK4BGAYYCw/s1600/change%2Bvalue.gif&quot; alt=&quot;Modifying&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://1.bp.blogspot.com/-G8ZBStXWYu0/W7iWZMv6eWI/AAAAAAAABhw/WrHfeUDLABAmWn4FUwSjTD32ZsX7u5tvgCK4BGAYYCw/s1600/change%2Bvalue.gif&quot; alt=&quot;Modifying&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;delete-entry&quot;&gt;Delete entry&lt;/h2&gt;
 
@@ -279,7 +279,7 @@ There is a WiFi option, but have to invest a lot more money to buy the WiFi adap
 
 &lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/7SlLCa77NC4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;I can control ESP over phone and ESP will in turn control the camera using IR. (It can also behave as a normal ML-L3 Wireless remote). I got the command sequence for taking shots from here &lt;a href=&quot;http://www.bigmike.it/ircontrol/&quot;&gt;http://www.bigmike.it/ircontrol/&lt;/a&gt;. This is the code I wrote for controlling my DSLR.&lt;/p&gt;
+&lt;p&gt;I can control ESP over phone and ESP will in turn control the camera using IR. (It can also behave as a normal ML-L3 Wireless remote). I got the command sequence for taking shots from here &lt;a href=&quot;https://www.bigmike.it/ircontrol/&quot;&gt;https://www.bigmike.it/ircontrol/&lt;/a&gt;. This is the code I wrote for controlling my DSLR.&lt;/p&gt;
 
 &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;ESP8266WiFi.h&amp;gt;
 &lt;/span&gt;
@@ -390,7 +390,7 @@ There is a WiFi option, but have to invest a lot more money to buy the WiFi adap
   
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;http://1.bp.blogspot.com/-aDO20c05bzI/WYM_VYpGyhI/AAAAAAAABac/AJEhTPhKizUnoku-zU5qV1K_o_xtkgmtACK4BGAYYCw/s1600/IMG_20170803_204119.jpg&quot; alt=&quot;snapshot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://1.bp.blogspot.com/-aDO20c05bzI/WYM_VYpGyhI/AAAAAAAABac/AJEhTPhKizUnoku-zU5qV1K_o_xtkgmtACK4BGAYYCw/s1600/IMG_20170803_204119.jpg&quot; alt=&quot;snapshot&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I am able to&lt;/p&gt;
 
@@ -400,7 +400,7 @@ There is a WiFi option, but have to invest a lot more money to buy the WiFi adap
   &lt;li&gt;configure to take time lapse pics from WiFi. (Will automatically take pics according to the number of shots and interval)&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html">The Nikon DSLR camera I own does have a Bluetooth connection, but unfortunately it is of no use. You cannot trigger shots from Bluetooth. Also u can only share photos of low resolution across Bluetooth. What a shame!!! I also want a time lapse option which is absent in the camera. There is a WiFi option, but have to invest a lot more money to buy the WiFi adaptor. Fortunately it has an IR interface. So I thought of creating my own triggering device (like the ML-L3) which works over WiFi so that I can remotely trigger the shutter and also take time lapse pics.</summary></entry><entry><title type="html">ROS simulating a 3 axis robot in Rviz</title><link href="/2017/04/22/ros-simulating-3-axis-robot-in-rviz.html" rel="alternate" type="text/html" title="ROS simulating a 3 axis robot in Rviz" /><published>2017-04-22T23:00:00+05:30</published><updated>2017-04-22T23:00:00+05:30</updated><id>/2017/04/22/ros-simulating-3-axis-robot-in-rviz</id><content type="html" xml:base="/2017/04/22/ros-simulating-3-axis-robot-in-rviz.html">&lt;p&gt;In this tutorial, we will create an urdf model of a 3 axis robot and simulate it in Rviz.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://4.bp.blogspot.com/-Esy3mAk11Ag/WPuRVDI-46I/AAAAAAAABZQ/I_5GMw6-EAkYbBOFOI5odkAxf6CcU4WdACK4B/s1600/robot.png&quot; alt=&quot;robot_frame&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://4.bp.blogspot.com/-Esy3mAk11Ag/WPuRVDI-46I/AAAAAAAABZQ/I_5GMw6-EAkYbBOFOI5odkAxf6CcU4WdACK4B/s1600/robot.png&quot; alt=&quot;robot_frame&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Create a package inside your workspace (create it if u haven’t any).&lt;/p&gt;
 
@@ -473,17 +473,17 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/robot&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This &lt;a href=&quot;http://wiki.ros.org/urdf/XML/link&quot;&gt;link&lt;/a&gt; will give you a list of all possible tag tags and informations. (Read this before going further. &lt;a href=&quot;http://wiki.ros.org/urdf/Tutorials/Create%20your%20own%20urdf%20file&quot;&gt;link&lt;/a&gt;) There are 4 links and three joints in this robot. Each joint has one parent and one child.&lt;/p&gt;
+&lt;p&gt;This &lt;a href=&quot;https://wiki.ros.org/urdf/XML/link&quot;&gt;link&lt;/a&gt; will give you a list of all possible tag tags and informations. (Read this before going further. &lt;a href=&quot;https://wiki.ros.org/urdf/Tutorials/Create%20your%20own%20urdf%20file&quot;&gt;link&lt;/a&gt;) There are 4 links and three joints in this robot. Each joint has one parent and one child.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/joint.png&quot; alt=&quot;joint&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;There are different types of joints. Here we used continuous and fixed type. Joint 0 is fixed and the rest of them are continuous. The origin tag inside the &lt;joint&gt; &lt;origin rpy=&quot;0 0 0&quot; xyz=&quot;0 0 3&quot;&gt;&lt;/origin&gt; represents the amount of offset required from the parent link. This can be clearly understood from the following figure.&lt;/joint&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/-ECaC9IOrF3s/WPt9-gD7smI/AAAAAAAABYg/4KFq209qyA4HteD86O6DySC9hirZcSraQCK4B/s1600/robot_axis.png&quot; alt=&quot;joints&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://3.bp.blogspot.com/-ECaC9IOrF3s/WPt9-gD7smI/AAAAAAAABYg/4KFq209qyA4HteD86O6DySC9hirZcSraQCK4B/s1600/robot_axis.png&quot; alt=&quot;joints&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;There is also an another origin tag inside link tag. This represent the base frame of the link itself. We need to shift it by 1.5 (half of the link length), other wise rotation will be around the middle part of each link rather than at the joint (This will make sure both the base frame; child and parent coincides).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://1.bp.blogspot.com/-Mo9R2xYtrpg/WPt-NAmLgwI/AAAAAAAABYo/aouTUIsASm8rqw9kTU0QRAXiJ-C0RcZTQCK4B/s1600/robot_axis%25281%2529.png&quot; alt=&quot;axis&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://1.bp.blogspot.com/-Mo9R2xYtrpg/WPt-NAmLgwI/AAAAAAAABYo/aouTUIsASm8rqw9kTU0QRAXiJ-C0RcZTQCK4B/s1600/robot_axis%25281%2529.png&quot; alt=&quot;axis&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now create a file called my_robot.launch under launch folder. This will launch joint_state_publisher and robot_state_publisher node. joint_state_publisher node will publish all the joint states. This also has one gui where you can change each joint angles. robot_state_publisher node will take the joint angles of the robot as input and publishes the 3D poses of each links.&lt;/p&gt;
 
@@ -653,7 +653,7 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;roslaunch three_axis_robot my_robot.launch
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://4.bp.blogspot.com/-WRf1jOlyO1s/WPuPKHcCNbI/AAAAAAAABY4/fAwjSpfSSFQQesNphRYxLtMw042hpOoxgCK4B/s1600/Selection_003.png&quot; alt=&quot;rviz&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://4.bp.blogspot.com/-WRf1jOlyO1s/WPuPKHcCNbI/AAAAAAAABY4/fAwjSpfSSFQQesNphRYxLtMw042hpOoxgCK4B/s1600/Selection_003.png&quot; alt=&quot;rviz&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If you are planning to create a hardware and want to simulate the same, you can create a separate node that will publish joint states instead of using joint_state_publisher node.&lt;/p&gt;
 
@@ -663,20 +663,20 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 
 &lt;p&gt;You can refer these tutorials to get more in depth knowledge.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://wiki.ros.org/urdf/Tutorials&quot;&gt;http://wiki.ros.org/urdf/Tutorials&lt;/a&gt;&lt;br /&gt;
+&lt;p&gt;&lt;a href=&quot;https://wiki.ros.org/urdf/Tutorials&quot;&gt;https://wiki.ros.org/urdf/Tutorials&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;https://www.youtube.com/watch?v=g9WHxOpAUns&quot;&gt;https://www.youtube.com/watch?v=g9WHxOpAUns&lt;/a&gt;&lt;/p&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="ROS" /><summary type="html">In this tutorial, we will create an urdf model of a 3 axis robot and simulate it in Rviz.</summary></entry><entry><title type="html">Batman Key chain with ESP8266</title><link href="/2017/01/01/batman-key-chain-with-esp8266.html" rel="alternate" type="text/html" title="Batman Key chain with ESP8266" /><published>2017-01-01T00:15:00+05:30</published><updated>2017-01-01T00:15:00+05:30</updated><id>/2017/01/01/batman-key-chain-with-esp8266</id><content type="html" xml:base="/2017/01/01/batman-key-chain-with-esp8266.html">&lt;p&gt;Have recently bought a small batman key chain from amazon. It  has a small button when pressed lights the batman eye with white light and sounds a pathetic sound (:(). So I thought of opening it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://3.bp.blogspot.com/-hbGl7JYhMrI/WGf3DlIfvqI/AAAAAAAABXI/W4ePLUWDQgATkzoQ7p-MaDbHcA6k3k5CACK4B/s1600/IMG_20161230_134157.jpg&quot; alt=&quot;keychain&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://3.bp.blogspot.com/-hbGl7JYhMrI/WGf3DlIfvqI/AAAAAAAABXI/W4ePLUWDQgATkzoQ7p-MaDbHcA6k3k5CACK4B/s1600/IMG_20161230_134157.jpg&quot; alt=&quot;keychain&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It has enough space to put some custom electronics. So I thought of customising it a bit. This is what it looks before customising.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://2.bp.blogspot.com/-UgzRBbYxfa4/WGf3mu9KUQI/AAAAAAAABXQ/gZP2U8FUi-k1YNpU7a9l91Km2fRT-l5YwCK4B/s1600/IMG_20161230_134949.jpg&quot; alt=&quot;opened keychain&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://2.bp.blogspot.com/-UgzRBbYxfa4/WGf3mu9KUQI/AAAAAAAABXQ/gZP2U8FUi-k1YNpU7a9l91Km2fRT-l5YwCK4B/s1600/IMG_20161230_134949.jpg&quot; alt=&quot;opened keychain&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is what it looks when adding a little bit of electronics into it. It has an esp8266 with 3 SMD LED (Red, Green, Blue) that can be independently controlled. It has a small speaker (from a headset) which plays a pac man tone. It is powered with a 3.7 V Lipo battery with an option to charge with an USB cable.&lt;/p&gt;
 
 &lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/l3ZGNKPPiXs&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://4.bp.blogspot.com/-v1xA7bmybeU/WGf6fAw6mVI/AAAAAAAABXY/MNRwLSoOF3A2P1rSZKc81JNuF9JWdbVYwCK4B/s1600/IMG_20161231_183308.jpg&quot; alt=&quot;inside keychain&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://4.bp.blogspot.com/-v1xA7bmybeU/WGf6fAw6mVI/AAAAAAAABXY/MNRwLSoOF3A2P1rSZKc81JNuF9JWdbVYwCK4B/s1600/IMG_20161231_183308.jpg&quot; alt=&quot;inside keychain&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Batman keychain is playing pacman tone… :) I know it’s a bit wierd, but couldnt find a good tone (which can be expressed as a piano tone like C4, B#2, …) for batman. Will replace it once found a better one.&lt;/p&gt;
 

@@ -903,7 +903,7 @@
           
           <p>In this tutorial, we will create an urdf model of a 3 axis robot and simulate it in Rviz.</p>
 
-<p><img src="http://4.bp.blogspot.com/-Esy3mAk11Ag/WPuRVDI-46I/AAAAAAAABZQ/I_5GMw6-EAkYbBOFOI5odkAxf6CcU4WdACK4B/s1600/robot.png" alt="robot_frame" /></p>
+<p><img src="https://4.bp.blogspot.com/-Esy3mAk11Ag/WPuRVDI-46I/AAAAAAAABZQ/I_5GMw6-EAkYbBOFOI5odkAxf6CcU4WdACK4B/s1600/robot.png" alt="robot_frame" /></p>
 
 <p>Create a package inside your workspace (create it if u haven’t any).</p>
 
@@ -976,17 +976,17 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 <span class="nt">&lt;/robot&gt;</span>
 </code></pre></div></div>
 
-<p>This <a href="http://wiki.ros.org/urdf/XML/link">link</a> will give you a list of all possible tag tags and informations. (Read this before going further. <a href="http://wiki.ros.org/urdf/Tutorials/Create%20your%20own%20urdf%20file">link</a>) There are 4 links and three joints in this robot. Each joint has one parent and one child.</p>
+<p>This <a href="https://wiki.ros.org/urdf/XML/link">link</a> will give you a list of all possible tag tags and informations. (Read this before going further. <a href="https://wiki.ros.org/urdf/Tutorials/Create%20your%20own%20urdf%20file">link</a>) There are 4 links and three joints in this robot. Each joint has one parent and one child.</p>
 
 <p><img src="/assets/img/joint.png" alt="joint" /></p>
 
 <p>There are different types of joints. Here we used continuous and fixed type. Joint 0 is fixed and the rest of them are continuous. The origin tag inside the <joint> <origin rpy="0 0 0" xyz="0 0 3"></origin> represents the amount of offset required from the parent link. This can be clearly understood from the following figure.</joint></p>
 
-<p><img src="http://3.bp.blogspot.com/-ECaC9IOrF3s/WPt9-gD7smI/AAAAAAAABYg/4KFq209qyA4HteD86O6DySC9hirZcSraQCK4B/s1600/robot_axis.png" alt="joints" /></p>
+<p><img src="https://3.bp.blogspot.com/-ECaC9IOrF3s/WPt9-gD7smI/AAAAAAAABYg/4KFq209qyA4HteD86O6DySC9hirZcSraQCK4B/s1600/robot_axis.png" alt="joints" /></p>
 
 <p>There is also an another origin tag inside link tag. This represent the base frame of the link itself. We need to shift it by 1.5 (half of the link length), other wise rotation will be around the middle part of each link rather than at the joint (This will make sure both the base frame; child and parent coincides).</p>
 
-<p><img src="http://1.bp.blogspot.com/-Mo9R2xYtrpg/WPt-NAmLgwI/AAAAAAAABYo/aouTUIsASm8rqw9kTU0QRAXiJ-C0RcZTQCK4B/s1600/robot_axis%25281%2529.png" alt="axis" /></p>
+<p><img src="https://1.bp.blogspot.com/-Mo9R2xYtrpg/WPt-NAmLgwI/AAAAAAAABYo/aouTUIsASm8rqw9kTU0QRAXiJ-C0RcZTQCK4B/s1600/robot_axis%25281%2529.png" alt="axis" /></p>
 
 <p>Now create a file called my_robot.launch under launch folder. This will launch joint_state_publisher and robot_state_publisher node. joint_state_publisher node will publish all the joint states. This also has one gui where you can change each joint angles. robot_state_publisher node will take the joint angles of the robot as input and publishes the 3D poses of each links.</p>
 
@@ -1156,7 +1156,7 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roslaunch three_axis_robot my_robot.launch
 </code></pre></div></div>
 
-<p><img src="http://4.bp.blogspot.com/-WRf1jOlyO1s/WPuPKHcCNbI/AAAAAAAABY4/fAwjSpfSSFQQesNphRYxLtMw042hpOoxgCK4B/s1600/Selection_003.png" alt="rviz" /></p>
+<p><img src="https://4.bp.blogspot.com/-WRf1jOlyO1s/WPuPKHcCNbI/AAAAAAAABY4/fAwjSpfSSFQQesNphRYxLtMw042hpOoxgCK4B/s1600/Selection_003.png" alt="rviz" /></p>
 
 <p>If you are planning to create a hardware and want to simulate the same, you can create a separate node that will publish joint states instead of using joint_state_publisher node.</p>
 
@@ -1166,7 +1166,7 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 
 <p>You can refer these tutorials to get more in depth knowledge.</p>
 
-<p><a href="http://wiki.ros.org/urdf/Tutorials">http://wiki.ros.org/urdf/Tutorials</a><br />
+<p><a href="https://wiki.ros.org/urdf/Tutorials">https://wiki.ros.org/urdf/Tutorials</a><br />
 <a href="https://www.youtube.com/watch?v=g9WHxOpAUns">https://www.youtube.com/watch?v=g9WHxOpAUns</a></p>
 
         </div>
