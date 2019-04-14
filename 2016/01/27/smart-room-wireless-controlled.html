@@ -11,15 +11,15 @@
 <meta property="og:title" content="Smart Room :-) Wireless controlled appliances" />
 <meta name="author" content="ANANTHAKRISHNAN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$.Kind of lazy to always go and switch OFF the lights/Fans especially when sleepy :-). So 3 days straight and it&#39;s done... 2 days is spend to understand and change the firmware of WiFi chip ESP 8266. (You can add an extra micro controller along with ESP 8266, but what&#39;s the fun in it? )Made ESP 8266 ES01 chip to act as a TCP server and also to control the Relay circuit (Changed the firmware and programmed it). Control messages are interpreted and necessary signals are passed to the Relay circuit. AC to DC converter (from an old mobile charger) along with a regulator (LM2596 Module) was needed as the chip is 3.3V tolerant. Finally create a nice and tidy script (using Script Manager) in Mobile to control the appliances (Rooted the device.. Thumbs up..). Same script will works in a Linux/Windows Machine also. All the components can be found online (bought from Amazon).This is a video showing control of appliances using a smart-phone. A desktop implementation is also done which is shown at the end of the blog. A cool conky widget is also a part of this desktop integration.&nbsp;Initial setup of the ESP 8266 for downloading firmwareputting all hardware inside the switchboardEdit: Now temperature readings are also taken using DS18B20 and are send through WiFi. (DS18B20 cannot be seen in th above picture because it is placed on closing side to get temperature readings of room rather inside the box). All the schematics along with code are uploaded in github. (link) The same source file are reproduced in the blog for clarity. Replace SSID, PASSWORD, IP, PORT in the scripts to suite your needs. Comment if you need any help.Features:Control the appliances with normal switchControl the appliances wirelessly using smart phoneControl the appliances wirelessly using computerGet temperature readings in both smart phone and computerSet timer to switch your fan/light on/offAutomatic control of fan using temperature readingA clean Linux conky-widget that shows the room temperature with graphconky widget-------------------- Schematics----------------------------------- ESP8266--------------- --------------------------------------------- Controlling using Mobile---------------------------------------------App requiredScript Manager - To create widgets (see the bash scripts)Automate - To automate control of your appliancesan example script that switches the fan at 5.00 AM--------------------------------------------------- Controlling using Computer---------------------------------------------------Create scripts shown below &amp; move it in /usr/binlightONlightOFFfanONfanOFFtemp---------------------------- Conky-manager ----------------------------To create a cool widget right on your desktop showing your room temperature with&nbsp; a graph. The graph will plot you room temperature based on readings taken at every 3 minutes.Install conky-manager usingsudo apt-get install conky-managerThen save the script in~/.conky/tempwidget/ Open conky-manager and load the script.conky-manager widget" />
-<meta property="og:description" content="If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$.Kind of lazy to always go and switch OFF the lights/Fans especially when sleepy :-). So 3 days straight and it&#39;s done... 2 days is spend to understand and change the firmware of WiFi chip ESP 8266. (You can add an extra micro controller along with ESP 8266, but what&#39;s the fun in it? )Made ESP 8266 ES01 chip to act as a TCP server and also to control the Relay circuit (Changed the firmware and programmed it). Control messages are interpreted and necessary signals are passed to the Relay circuit. AC to DC converter (from an old mobile charger) along with a regulator (LM2596 Module) was needed as the chip is 3.3V tolerant. Finally create a nice and tidy script (using Script Manager) in Mobile to control the appliances (Rooted the device.. Thumbs up..). Same script will works in a Linux/Windows Machine also. All the components can be found online (bought from Amazon).This is a video showing control of appliances using a smart-phone. A desktop implementation is also done which is shown at the end of the blog. A cool conky widget is also a part of this desktop integration.&nbsp;Initial setup of the ESP 8266 for downloading firmwareputting all hardware inside the switchboardEdit: Now temperature readings are also taken using DS18B20 and are send through WiFi. (DS18B20 cannot be seen in th above picture because it is placed on closing side to get temperature readings of room rather inside the box). All the schematics along with code are uploaded in github. (link) The same source file are reproduced in the blog for clarity. Replace SSID, PASSWORD, IP, PORT in the scripts to suite your needs. Comment if you need any help.Features:Control the appliances with normal switchControl the appliances wirelessly using smart phoneControl the appliances wirelessly using computerGet temperature readings in both smart phone and computerSet timer to switch your fan/light on/offAutomatic control of fan using temperature readingA clean Linux conky-widget that shows the room temperature with graphconky widget-------------------- Schematics----------------------------------- ESP8266--------------- --------------------------------------------- Controlling using Mobile---------------------------------------------App requiredScript Manager - To create widgets (see the bash scripts)Automate - To automate control of your appliancesan example script that switches the fan at 5.00 AM--------------------------------------------------- Controlling using Computer---------------------------------------------------Create scripts shown below &amp; move it in /usr/binlightONlightOFFfanONfanOFFtemp---------------------------- Conky-manager ----------------------------To create a cool widget right on your desktop showing your room temperature with&nbsp; a graph. The graph will plot you room temperature based on readings taken at every 3 minutes.Install conky-manager usingsudo apt-get install conky-managerThen save the script in~/.conky/tempwidget/ Open conky-manager and load the script.conky-manager widget" />
+<meta name="description" content="If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$." />
+<meta property="og:description" content="If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$." />
 <link rel="canonical" href="http://0.0.0.0:4000/2016/01/27/smart-room-wireless-controlled.html" />
 <meta property="og:url" content="http://0.0.0.0:4000/2016/01/27/smart-room-wireless-controlled.html" />
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2016-01-27T23:32:00+05:30" />
 <script type="application/ld+json">
-{"headline":"Smart Room :-) Wireless controlled appliances","dateModified":"2016-01-27T23:32:00+05:30","datePublished":"2016-01-27T23:32:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2016/01/27/smart-room-wireless-controlled.html"},"url":"http://0.0.0.0:4000/2016/01/27/smart-room-wireless-controlled.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$.Kind of lazy to always go and switch OFF the lights/Fans especially when sleepy :-). So 3 days straight and it&#39;s done... 2 days is spend to understand and change the firmware of WiFi chip ESP 8266. (You can add an extra micro controller along with ESP 8266, but what&#39;s the fun in it? )Made ESP 8266 ES01 chip to act as a TCP server and also to control the Relay circuit (Changed the firmware and programmed it). Control messages are interpreted and necessary signals are passed to the Relay circuit. AC to DC converter (from an old mobile charger) along with a regulator (LM2596 Module) was needed as the chip is 3.3V tolerant. Finally create a nice and tidy script (using Script Manager) in Mobile to control the appliances (Rooted the device.. Thumbs up..). Same script will works in a Linux/Windows Machine also. All the components can be found online (bought from Amazon).This is a video showing control of appliances using a smart-phone. A desktop implementation is also done which is shown at the end of the blog. A cool conky widget is also a part of this desktop integration.&nbsp;Initial setup of the ESP 8266 for downloading firmwareputting all hardware inside the switchboardEdit: Now temperature readings are also taken using DS18B20 and are send through WiFi. (DS18B20 cannot be seen in th above picture because it is placed on closing side to get temperature readings of room rather inside the box). All the schematics along with code are uploaded in github. (link) The same source file are reproduced in the blog for clarity. Replace SSID, PASSWORD, IP, PORT in the scripts to suite your needs. Comment if you need any help.Features:Control the appliances with normal switchControl the appliances wirelessly using smart phoneControl the appliances wirelessly using computerGet temperature readings in both smart phone and computerSet timer to switch your fan/light on/offAutomatic control of fan using temperature readingA clean Linux conky-widget that shows the room temperature with graphconky widget-------------------- Schematics----------------------------------- ESP8266--------------- --------------------------------------------- Controlling using Mobile---------------------------------------------App requiredScript Manager - To create widgets (see the bash scripts)Automate - To automate control of your appliancesan example script that switches the fan at 5.00 AM--------------------------------------------------- Controlling using Computer---------------------------------------------------Create scripts shown below &amp; move it in /usr/binlightONlightOFFfanONfanOFFtemp---------------------------- Conky-manager ----------------------------To create a cool widget right on your desktop showing your room temperature with&nbsp; a graph. The graph will plot you room temperature based on readings taken at every 3 minutes.Install conky-manager usingsudo apt-get install conky-managerThen save the script in~/.conky/tempwidget/ Open conky-manager and load the script.conky-manager widget","@context":"https://schema.org"}</script>
+{"headline":"Smart Room :-) Wireless controlled appliances","dateModified":"2016-01-27T23:32:00+05:30","datePublished":"2016-01-27T23:32:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2016/01/27/smart-room-wireless-controlled.html"},"url":"http://0.0.0.0:4000/2016/01/27/smart-room-wireless-controlled.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -296,7 +296,7 @@
 
 		</li>
 
-		<li><a href="/">Projects</a>
+		<li><a href="/posts.html">Posts</a>
 
 		</li>
 		<li><a href="/about.html">About</a>
@@ -877,9 +877,21 @@
           #content{
             max-width:70%;
           }
+          #page-content p img{
+            max-width:500px;
+            transition: transform .2s;
+          }
+          #page-content p img:hover{
+            background-color: white;
+            transform: scale(2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          }
           @media screen and (max-width: 678px){
             #content{
               max-width:100%;
+            }
+            #page-content p img:hover{
+              transform: scale(1);
             }
           }
         </style>
@@ -887,7 +899,287 @@
           
             <h1> Smart Room :-) | Wireless controlled appliances </h1>
           
-          <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">If you are a geek, then you definitely want to mess with everything to  create something cool out of it. What about controlling all of your  appliances from your computer or from your smart phone wirelessly? Set  timer for light when you go to sleep; autonomously switch your fan on  when temperature exceeds; and when you are too lazy to get up from your  bed to switch fan/light off. All you need is an ESP8266 with a couple of  other components that cost &lt;10$.<br /><br />Kind of lazy to always go and switch OFF the lights/Fans especially when sleepy :-). So 3 days straight and it's done... 2 days is spend to understand and change the firmware of WiFi chip ESP 8266. (You can add an extra micro controller along with ESP 8266, but what's the fun in it? )<br /><br /></div><div style="text-align: justify;">Made ESP 8266 ES01 chip to act as a TCP server and also to control the Relay circuit (Changed the firmware and programmed it). Control messages are interpreted and necessary signals are passed to the Relay circuit. AC to DC converter (from an old mobile charger) along with a regulator (LM2596 Module) was needed as the chip is 3.3V tolerant. Finally create a nice and tidy script (using Script Manager) in Mobile to control the appliances (Rooted the device.. Thumbs up..). Same script will works in a Linux/Windows Machine also. All the components can be found online (bought from Amazon).</div><br /><br />This is a video showing control of appliances using a smart-phone. A desktop implementation is also done which is shown at the end of the blog. A cool conky widget is also a part of this desktop integration.<br /><br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/s_vi/dcYt8nGvhVs/default.jpg?sqp=CPSIpLUF&amp;rs=AOn4CLCaCRmm7sCjdCt0wBjjKV6qOCvuIw" frameborder="0" height="266" src="https://www.youtube.com/embed/dcYt8nGvhVs?feature=player_embedded" width="320"></iframe>&nbsp;</div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody></tbody></table><div class="separator" style="clear: both; text-align: center;"><br /></div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-uqn5_HL9zrk/VqjsIhb-NEI/AAAAAAAABIg/3M3mbBOHBHs/s1600/IMG_20160127_035611355.jpg" style="margin-left: auto; margin-right: auto;"><img border="0" height="180" src="https://3.bp.blogspot.com/-uqn5_HL9zrk/VqjsIhb-NEI/AAAAAAAABIg/3M3mbBOHBHs/s320/IMG_20160127_035611355.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">Initial setup of the ESP 8266 for downloading firmware</td></tr></tbody></table><div class="separator" style="clear: both; text-align: center;"><br /></div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://2.bp.blogspot.com/-Tc4DqK7XoAg/Vt8V0XYiEjI/AAAAAAAABOE/3_190zdbTGw/s1600/IMG_20160308_230805610.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="180" src="https://2.bp.blogspot.com/-Tc4DqK7XoAg/Vt8V0XYiEjI/AAAAAAAABOE/3_190zdbTGw/s320/IMG_20160308_230805610.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">putting all hardware inside the switchboard</td></tr></tbody></table><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: left;">Edit: Now temperature readings are also taken using DS18B20 and are send through WiFi.  (DS18B20 cannot be seen in th above picture because it is placed on closing side to get temperature readings of room rather inside the box). All the schematics along with code are uploaded in github. (<a href="https://github.com/krishnan793/smart_room" target="_blank">link</a>) The same source file are reproduced in the blog for clarity. Replace SSID, PASSWORD, IP, PORT in the scripts to suite your needs. Comment if you need any help.</div><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: left;">Features:</div><ul style="text-align: left;"><li>Control the appliances with normal switch</li><li>Control the appliances wirelessly using smart phone</li><li>Control the appliances wirelessly using computer</li><li>Get temperature readings in both smart phone and computer</li><li>Set timer to switch your fan/light on/off</li><li>Automatic control of fan using temperature reading</li><li>A clean Linux conky-widget that shows the room temperature with graph</li></ul><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-uE-UqmlNgA4/Vt8aXebbRmI/AAAAAAAABOU/60XFXrWCYQ0/s1600/vc6xma6wbu2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="https://4.bp.blogspot.com/-uE-UqmlNgA4/Vt8aXebbRmI/AAAAAAAABOU/60XFXrWCYQ0/s1600/vc6xma6wbu2.jpg" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">conky widget</td></tr></tbody></table><br />--------------------<b> </b><br /><b>Schematics</b><br />--------------------<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-RerRqKzKh8s/Vt7-8JvOqNI/AAAAAAAABNo/P4tlFhfi2PQ/s1600/New-Schematic-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="207" src="https://1.bp.blogspot.com/-RerRqKzKh8s/Vt7-8JvOqNI/AAAAAAAABNo/P4tlFhfi2PQ/s320/New-Schematic-2.png" width="320" /></a></div><br /><div><ul style="text-align: left;"></ul>---------------<b> </b><br /><b>ESP8266</b><br />---------------<br /><script src="http://gist-it.appspot.com/https://github.com/krishnan793/smart_room/blob/master/ESP8266_sketch.ino"></script> <br />---------------------------------------------<b> </b><br /><b>Controlling using Mobile</b><br />---------------------------------------------<br /><br />App required<br /><br /><ul style="text-align: left;"><li><a href="https://play.google.com/store/apps/details?id=os.tools.scriptmanager&amp;hl=en" target="_blank">Script Manager</a> - To create widgets (see the bash scripts)</li><li><a href="https://play.google.com/store/apps/details?id=com.llamalab.automate&amp;hl=en" target="_blank">Automate</a> - To automate control of your appliances</li></ul><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-vPRlncrxyxo/Vt8VALVo_HI/AAAAAAAABN8/0JxFg-X1dFs/s1600/automata.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="https://4.bp.blogspot.com/-vPRlncrxyxo/Vt8VALVo_HI/AAAAAAAABN8/0JxFg-X1dFs/s320/automata.png" width="180" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">an example script that switches the fan at 5.00 AM</td></tr></tbody></table><br /><ul style="text-align: left;"></ul><br />---------------------------------------------------<b> </b><br /><b>Controlling using Computer</b><br />---------------------------------------------------<br /><br />Create scripts shown below &amp; move it in /usr/bin<br /><ul style="text-align: left;"><li>lightON</li><li>lightOFF</li><li>fanON</li><li>fanOFF</li><li>temp</li></ul><br /><script src="http://gist-it.appspot.com/https://github.com/krishnan793/smart_room/blob/master/bash_scripts/lightON"></script>---------------------------- <br /><script src="http://gist-it.appspot.com/https://github.com/krishnan793/smart_room/blob/master/bash_scripts/lightOFF"></script><script src="http://gist-it.appspot.com/https://github.com/krishnan793/smart_room/blob/master/bash_scripts/fanON"></script><script src="http://gist-it.appspot.com/https://github.com/krishnan793/smart_room/blob/master/bash_scripts/fanOFF"></script><script src="http://gist-it.appspot.com/https://github.com/krishnan793/smart_room/blob/master/bash_scripts/temp"></script><b>    Conky-manager</b> <br />----------------------------<br /><br />To create a cool widget right on your desktop showing your room temperature with&nbsp; a graph. The graph will plot you room temperature based on readings taken at every 3 minutes.<br /><br />Install conky-manager using<br /><br /><span style="font-family: &quot;georgia&quot; , &quot;times new roman&quot; , serif;"><span style="font-family: &quot;helvetica neue&quot; , &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">sudo apt-get install conky-manager</span></span><br /><br />Then save the script in<br /><br />~/.conky/tempwidget/ <br /><br />Open conky-manager and load the script.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-rYzRdPgm89Y/Vt7duzWYIhI/AAAAAAAABNM/3V2pNTB8oUE/s1600/Screenshot%2Bfrom%2B2016-03-08%2B19%253A39%253A31.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="179" src="https://4.bp.blogspot.com/-rYzRdPgm89Y/Vt7duzWYIhI/AAAAAAAABNM/3V2pNTB8oUE/s320/Screenshot%2Bfrom%2B2016-03-08%2B19%253A39%253A31.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">conky-manager widget</td></tr></tbody></table><script src="http://gist-it.appspot.com/https://github.com/krishnan793/smart_room/blob/master/conky_widget/temperature"></script> <br /><div class="separator" style="clear: both; text-align: center;"><a href="https://4.bp.blogspot.com/-GY-ickgIPRk/Vt7bjip2OxI/AAAAAAAABM8/Bijl5Ya4oG4/s1600/Screenshot%2Bfrom%2B2016-03-08%2B19%253A08%253A17.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><br /></a></div><div class="separator" style="clear: both; text-align: center;"><a href="https://4.bp.blogspot.com/-T_ikZfkVVps/Vt7anxawjmI/AAAAAAAABMs/YNFeQ4x2Bxo/s1600/widget.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><br /></a></div><br /><div class="separator" style="clear: both; text-align: left;"><br /></div><div><br /></div></div></div>
+          <p>If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$.</p>
+
+<p>Kind of lazy to always go and switch OFF the lights/Fans especially when sleepy :-). So 3 days straight and it’s done… 2 days is spend to understand and change the firmware of WiFi chip ESP 8266. (You can add an extra micro controller along with ESP 8266, but what’s the fun in it? )</p>
+
+<p>Made ESP 8266 ES01 chip to act as a TCP server and also to control the Relay circuit (Changed the firmware and programmed it). Control messages are interpreted and necessary signals are passed to the Relay circuit. AC to DC converter (from an old mobile charger) along with a regulator (LM2596 Module) was needed as the chip is 3.3V tolerant. Finally create a nice and tidy script (using Script Manager) in Mobile to control the appliances (Rooted the device.. Thumbs up..). Same script will works in a Linux/Windows Machine also. All the components can be found online (bought from Amazon).</p>
+
+<p>This is a video showing control of appliances using a smart-phone. A desktop implementation is also done which is shown at the end of the blog. A cool conky widget is also a part of this desktop integration.</p>
+
+<iframe width="320" height="266" src="https://www.youtube.com/embed/dcYt8nGvhVs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>Initial setup of the ESP 8266 for downloading firmware</p>
+
+<p><img src="http://3.bp.blogspot.com/-uqn5_HL9zrk/VqjsIhb-NEI/AAAAAAAABIg/3M3mbBOHBHs/s1600/IMG_20160127_035611355.jpg" alt="breadboad setup" /></p>
+
+<p>putting all hardware inside the switchboard</p>
+
+<p><img src="https://2.bp.blogspot.com/-Tc4DqK7XoAg/Vt8V0XYiEjI/AAAAAAAABOE/3_190zdbTGw/s1600/IMG_20160308_230805610.jpg" alt="hardware setup" /></p>
+
+<p>Edit: Now temperature readings are also taken using DS18B20 and are send through WiFi. (DS18B20 cannot be seen in th above picture because it is placed on closing side to get temperature readings of room rather inside the box). All the schematics along with code are uploaded in github. (link) The same source file are reproduced in the blog for clarity. Replace SSID, PASSWORD, IP, PORT in the scripts to suite your needs. Comment if you need any help.</p>
+
+<h2 id="features">Features:</h2>
+
+<ul>
+  <li>Control the appliances with normal switch</li>
+  <li>Control the appliances wirelessly using smart phone</li>
+  <li>Control the appliances wirelessly using computer</li>
+  <li>Get temperature readings in both smart phone and computer</li>
+  <li>Set timer to switch your fan/light on/off</li>
+  <li>Automatic control of fan using temperature reading</li>
+  <li>A clean Linux conky-widget that shows the room temperature with graph</li>
+</ul>
+
+<p>conky widget</p>
+
+<p><img src="https://4.bp.blogspot.com/-uE-UqmlNgA4/Vt8aXebbRmI/AAAAAAAABOU/60XFXrWCYQ0/s1600/vc6xma6wbu2.jpg" alt="conky widget" /></p>
+
+<h2 id="schematics">Schematics</h2>
+
+<p><a href="https://1.bp.blogspot.com/-RerRqKzKh8s/Vt7-8JvOqNI/AAAAAAAABNo/P4tlFhfi2PQ/s1600/New-Schematic-2.png">!schematics</a></p>
+
+<h2 id="code">Code</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ *  This sketch demonstrates creating a smart room using ESP8266 01
+ *  
+ *  Author: Ananthakrishnan U S
+ *  GPIO0 : To relay for controlling light
+ *  GPIO2 : To relay for controlling Fan
+ *  RX    : To DS18B20 for temperature reading
+ */</span>
+
+<span class="cp">#include &lt;ESP8266WiFi.h&gt;
+#include &lt;OneWire.h&gt;
+#include &lt;DallasTemperature.h&gt;
+</span>
+<span class="cp">#define ONE_WIRE_BUS 3
+</span>
+<span class="c1">// Setup a oneWire instance to communicate with any OneWire devices </span>
+<span class="c1">// (not just Maxim/Dallas temperature ICs)</span>
+<span class="n">OneWire</span> <span class="n">oneWire</span><span class="p">(</span><span class="n">ONE_WIRE_BUS</span><span class="p">);</span>
+ 
+<span class="c1">// Pass our oneWire reference to Dallas Temperature.</span>
+<span class="n">DallasTemperature</span> <span class="n">sensors</span><span class="p">(</span><span class="o">&amp;</span><span class="n">oneWire</span><span class="p">);</span>
+ 
+
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ssid</span> <span class="o">=</span> <span class="s">"SSID"</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"PASSWORD"</span><span class="p">;</span>
+
+<span class="c1">// Create an instance of the server</span>
+<span class="c1">// specify the port to listen on as an argument</span>
+<span class="n">WiFiServer</span> <span class="n">server</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  
+  <span class="n">WiFi</span><span class="p">.</span><span class="n">mode</span><span class="p">(</span><span class="n">WIFI_STA</span><span class="p">);</span>
+  <span class="n">WiFi</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">()</span> <span class="o">!=</span> <span class="n">WL_CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Start the server</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  
+  <span class="n">sensors</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Check if a client has connected</span>
+  <span class="n">WiFiClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="n">available</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// Wait until the client sends some data</span>
+  
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+  <span class="c1">// Read the first line of the request</span>
+  <span class="n">String</span> <span class="n">req</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">'\r'</span><span class="p">);</span>
+  <span class="c1">//Serial.println(req);</span>
+  <span class="n">client</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+  
+  <span class="c1">// Match the request</span>
+  <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s">"1ON"</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// Set GPIO2 according to the request</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s">"1OFF"</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="c1">//Serial.println("1OFF");</span>
+  <span class="p">}</span> 
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s">"2ON"</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="c1">//Serial.println("2ON");</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s">"2OFF"</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="c1">//Serial.println("2OFF");</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s">"T?"</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">sensors</span><span class="p">.</span><span class="n">requestTemperatures</span><span class="p">();</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sensors</span><span class="p">.</span><span class="n">getTempCByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">//Serial.println("invalid request");</span>
+    <span class="c1">//return;</span>
+  <span class="p">}</span>
+  
+  <span class="n">client</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+
+  <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="controlling-using-mobile">Controlling using Mobile</h2>
+
+<h3 id="apps-required">Apps required</h3>
+
+<ul>
+  <li>Script Manager - To create widgets (see the bash scripts)</li>
+  <li>Automate - To automate control of your appliances</li>
+</ul>
+
+<p>An example script that switches the fan at 5.00 AM</p>
+
+<p><img src="https://4.bp.blogspot.com/-vPRlncrxyxo/Vt8VALVo_HI/AAAAAAAABN8/0JxFg-X1dFs/s1600/automata.png" alt="example script" /></p>
+
+<h2 id="controlling-using-computer">Controlling using Computer</h2>
+
+<p>Create scripts shown below &amp; move it in /usr/bin</p>
+
+<ul>
+  <li>lightON</li>
+  <li>lightOFF</li>
+  <li>fanON</li>
+  <li>fanOFF</li>
+  <li>temp</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">echo</span> <span class="nt">-ne</span> <span class="s2">"1ON/r/n"</span> | nc IP PORT
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">echo</span> <span class="nt">-ne</span> <span class="s2">"1ON/r/n"</span> | nc IP PORT
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">echo</span> <span class="nt">-ne</span> <span class="s2">"2ON/r/n"</span> | nc IP PORT
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">echo</span> <span class="nt">-ne</span> <span class="s2">"2OFF/r/n"</span> | nc IP PORT
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">temp</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nt">-ne</span> <span class="s2">"T?/r/n"</span> | nc <span class="nt">-q</span> 2 IP PORT<span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$temp</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="nv">$temp</span>
+<span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Connection Failed"</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<h3 id="conky-manager">Conky-manager</h3>
+
+<p>To create a cool widget right on your desktop showing your room temperature with  a graph. The graph will plot you room temperature based on readings taken at every 3 minutes.</p>
+
+<p>Install conky-manager using</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>conky-manager
+</code></pre></div></div>
+
+<p>Then save the script in</p>
+
+<p><code class="highlighter-rouge">~/.conky/tempwidget/ </code></p>
+
+<p>Open conky-manager and load the script.</p>
+
+<p><img src="https://4.bp.blogspot.com/-rYzRdPgm89Y/Vt7duzWYIhI/AAAAAAAABNM/3V2pNTB8oUE/s1600/Screenshot%2Bfrom%2B2016-03-08%2B19%253A39%253A31.png" alt="conky preview" /></p>
+
+<p>Conky config</p>
+<div class="language-config highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># **********************************************************************
+# "Room Temperature" widget for Conky by Ananthakrishnan
+#
+# Webpage: http://eionix.blogspot.in/
+# **********************************************************************
+</span><span class="n">alignment</span> <span class="n">middle_right</span>
+<span class="n">border_width</span> <span class="m">1</span>
+
+<span class="n">background</span> <span class="n">yes</span>
+<span class="n">double_buffer</span> <span class="n">yes</span>
+
+
+<span class="n">default_color</span> <span class="n">white</span>
+<span class="n">default_outline_color</span> <span class="n">white</span>
+<span class="n">default_shade_color</span> <span class="n">white</span>
+<span class="n">draw_borders</span> <span class="n">no</span>
+<span class="n">draw_graph_borders</span> <span class="n">yes</span>
+<span class="n">draw_outline</span> <span class="n">no</span>
+<span class="n">draw_shades</span> <span class="n">no</span>
+
+<span class="n">gap_x</span> <span class="m">1</span>
+<span class="n">gap_y</span> <span class="m">20</span>
+<span class="n">net_avg_samples</span> <span class="m">2</span>
+<span class="n">no_buffers</span> <span class="n">yes</span>
+<span class="n">out_to_console</span> <span class="n">no</span>
+<span class="n">out_to_stderr</span> <span class="n">no</span>
+<span class="n">extra_newline</span> <span class="n">no</span>
+
+<span class="n">own_window</span> <span class="n">yes</span>
+<span class="n">own_window_type</span> <span class="n">normal</span>
+<span class="n">own_window_transparent</span> <span class="n">yes</span>
+<span class="n">own_window_type</span> <span class="n">normal</span>
+<span class="n">own_window_colour</span> <span class="m">000000</span>
+<span class="n">own_window_argb_visual</span> <span class="n">yes</span>
+<span class="n">own_window_argb_value</span> <span class="m">0</span>
+<span class="n">own_window_hints</span> <span class="n">undecorated</span>,<span class="n">below</span>,<span class="n">sticky</span>,<span class="n">skip_taskbar</span>,<span class="n">skip_pager</span>
+
+<span class="n">minimum_size</span> <span class="m">170</span> <span class="m">0</span>
+<span class="n">stippled_borders</span> <span class="m">0</span>
+<span class="n">update_interval</span> <span class="m">180</span>
+<span class="n">uppercase</span> <span class="n">no</span>
+<span class="n">use_spacer</span> <span class="n">none</span>
+
+<span class="n">show_graph_scale</span> <span class="n">no</span>
+<span class="n">show_graph_range</span> <span class="n">no</span>
+
+<span class="n">use_xft</span> <span class="n">yes</span>
+<span class="n">xftalpha</span> <span class="m">0</span>.<span class="m">1</span>
+<span class="n">xftfont</span> <span class="n">Droid</span> <span class="n">Sans</span>:<span class="n">size</span>=<span class="m">10</span>
+<span class="n">color0</span> <span class="n">white</span>
+<span class="n">color1</span> <span class="n">EAEAEA</span>
+<span class="n">color2</span> <span class="n">FFA300</span>
+<span class="n">color3</span> <span class="n">grey</span>
+
+<span class="n">TEXT</span>
+${<span class="n">color2</span>}<span class="n">Temperature</span>${<span class="n">color0</span>}${<span class="n">alignr</span>}${<span class="n">exec</span> <span class="n">echo</span> -<span class="n">ne</span> <span class="s2">"T?\r\n"</span> | <span class="n">nc</span> -<span class="n">q</span> <span class="m">1</span> <span class="n">IP</span> <span class="n">PORT</span>}  <span class="n">C</span>
+${<span class="n">execgraph</span>  <span class="n">echo</span> -<span class="n">ne</span> <span class="s2">"T?\r\n"</span> | <span class="n">nc</span> -<span class="n">q</span> <span class="m">1</span> <span class="n">IP</span> <span class="n">PORT</span>}
+</code></pre></div></div>
+
         </div>
       </main>
       <!-- Main post content end -->

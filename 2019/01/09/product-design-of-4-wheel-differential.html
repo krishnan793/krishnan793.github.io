@@ -296,7 +296,7 @@
 
 		</li>
 
-		<li><a href="/">Projects</a>
+		<li><a href="/posts.html">Posts</a>
 
 		</li>
 		<li><a href="/about.html">About</a>
@@ -877,9 +877,21 @@
           #content{
             max-width:70%;
           }
+          #page-content p img{
+            max-width:500px;
+            transition: transform .2s;
+          }
+          #page-content p img:hover{
+            background-color: white;
+            transform: scale(2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          }
           @media screen and (max-width: 678px){
             #content{
               max-width:100%;
+            }
+            #page-content p img:hover{
+              transform: scale(1);
             }
           }
         </style>
@@ -911,7 +923,7 @@
 
 <h2 id="architecture">Architecture</h2>
 
-<p><img src="https://1.bp.blogspot.com/-vdBU-uljYjg/XA0lgtgnTkI/AAAAAAAABjI/Aw2r9m2bjY4nAorFAxHD-OWNnOM5bk1CwCK4BGAYYCw/s320/architectureV2.png" alt="Device architecture" /><br />
+<p><img src="https://1.bp.blogspot.com/-vdBU-uljYjg/XA0lgtgnTkI/AAAAAAAABjI/Aw2r9m2bjY4nAorFAxHD-OWNnOM5bk1CwCK4BGAYYCw/s1600/architectureV2.png" alt="Device architecture" /><br />
 Selected N20 DC12V 300RPM motor for driving the robot. With a rated torque of 0.4 Kg/cm, it was more than enough to drive the robot since expected overall weight of robot will not cross 1 Kg. Selected a battery with voltage 11.1 which is enough for the motors. A voltage regulator is needed to power Pi and motor circuits. Atmega328P is selected for the controller circuit. It has enough internal PWM to drive 4 motors. Since I had to make the controller circuit as small as possible, I was searching for SMD components. Found one SMD package for l293D which is enough to drive the motor with a stall current 300 mA. In order to keep track of current, I selected ACS712. For measuring internal temperature, LM35 was selected.</p>
 
 <h2 id="specifications">Specifications</h2>

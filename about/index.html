@@ -293,7 +293,7 @@
 
 		</li>
 
-		<li><a href="/">Projects</a>
+		<li><a href="/posts.html">Posts</a>
 
 		</li>
 		<li><a href="/about.html">About</a>
@@ -874,9 +874,21 @@
           #content{
             max-width:70%;
           }
+          #page-content p img{
+            max-width:500px;
+            transition: transform .2s;
+          }
+          #page-content p img:hover{
+            background-color: white;
+            transform: scale(2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          }
           @media screen and (max-width: 678px){
             #content{
               max-width:100%;
+            }
+            #page-content p img:hover{
+              transform: scale(1);
             }
           }
         </style>
