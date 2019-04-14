@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
 
     <!-- Begin Jekyll SEO tag v2.6.0 -->
-<title>Page 18 of 28 for Ananth’s Blog - page 18 | Ananth’s Blog</title>
+<title>Page 18 of 29 for Ananth’s Blog - page 18 | Ananth’s Blog</title>
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="Ananth’s Blog - page 18" />
 <meta property="og:locale" content="en_US" />
@@ -471,37 +471,39 @@
         </div>
         <ul class="tags">
           
-          <li><a href="/tag/web designing/posts.html" class="tag"> Web Designing </a></li>
+          <li><a href="/tag/blogging/posts.html" class="tag"> Blogging </a></li>
           
-          <li><a href="/tag/after effect/posts.html" class="tag"> After Effect </a></li>
-          
-          <li><a href="/tag/gaming/posts.html" class="tag"> Gaming </a></li>
-          
-          <li><a href="/tag/c/posts.html" class="tag"> C </a></li>
-          
-          <li><a href="/tag/electronics/posts.html" class="tag"> Electronics </a></li>
-          
-          <li><a href="/tag/tips and tricks/posts.html" class="tag"> Tips and Tricks </a></li>
-          
-          <li><a href="/tag/matlab/posts.html" class="tag"> Matlab </a></li>
-          
-          <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
-          
-          <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
-          
-          <li><a href="/tag/android/posts.html" class="tag"> android </a></li>
-          
-          <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
-          
-          <li><a href="/tag/atmega328pu/posts.html" class="tag"> Atmega328PU </a></li>
-          
-          <li><a href="/tag/robotics/posts.html" class="tag"> Robotics </a></li>
-          
-          <li><a href="/tag/opencv/posts.html" class="tag"> opencv </a></li>
+          <li><a href="/tag/drones/posts.html" class="tag"> Drones </a></li>
           
           <li><a href="/tag/ros/posts.html" class="tag"> ROS </a></li>
           
-          <li><a href="/tag/drones/posts.html" class="tag"> Drones </a></li>
+          <li><a href="/tag/opencv/posts.html" class="tag"> opencv </a></li>
+          
+          <li><a href="/tag/robotics/posts.html" class="tag"> Robotics </a></li>
+          
+          <li><a href="/tag/atmega328pu/posts.html" class="tag"> Atmega328PU </a></li>
+          
+          <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
+          
+          <li><a href="/tag/android/posts.html" class="tag"> android </a></li>
+          
+          <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
+          
+          <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
+          
+          <li><a href="/tag/matlab/posts.html" class="tag"> Matlab </a></li>
+          
+          <li><a href="/tag/tips and tricks/posts.html" class="tag"> Tips and Tricks </a></li>
+          
+          <li><a href="/tag/electronics/posts.html" class="tag"> Electronics </a></li>
+          
+          <li><a href="/tag/c/posts.html" class="tag"> C </a></li>
+          
+          <li><a href="/tag/gaming/posts.html" class="tag"> Gaming </a></li>
+          
+          <li><a href="/tag/after effect/posts.html" class="tag"> After Effect </a></li>
+          
+          <li><a href="/tag/web designing/posts.html" class="tag"> Web Designing </a></li>
           
         </ul>
       </div>
@@ -538,8 +540,17 @@
               
               
               <li>  
-                <label for="l1i1">January</label>
+                <label for="l1i1">April</label>
                 <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">Blog using Jekyll | Github Pages with custom domain</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i2">January</label>
+                <input id="l1i2" type="checkbox">
                 <ul><li><a href="/2019/01/09/product-design-of-4-wheel-differential.html">Product Design of a 4 wheel differential drive robot</a></li>        
                   
                 </ul>
@@ -905,6 +916,19 @@
 
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/07/22/linux-command-awk.html">Linux command awk extract anything</a></h2></div>
+	  	<div class="post-date">22 Jul 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Awk is pretty use full when you are writing automatic scripts to do your jobs. Some simple examples of how we can use awk are given below<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1}'</span><br /><br />It will print first column of ps command. &nbsp;If you want to print second column also write<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 $2}'</span><br /><br />Output seems to be pretty crowded? Add a simple space by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 " " $2}'</span><br /><br />Want to limit it display only second line?<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk ' NR==2{print $1 " " $2}'</span><br /><br />Want to exclede first row? You can do it by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR !=1{print &nbsp;$1 " " $2}'</span><br /><br />Similarly you can print rows greater than a value by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR &gt;1{print &nbsp;$1 " " $2}'</span><br /><br />You can extract virtually anything using awk... Feel free to explore every options. Type man awk or awk --help to explore other options. Feel free to comment also... :)<br /><br />This <a href="https://www.ibm.com/developerworks/library/l-awk1/" target="_blank">site</a> has some good examlpes.<br /><br /><br /></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></h2></div>
 	  	<div class="post-date">22 Jul 2014</div>
       <div class="post-inner">
@@ -929,19 +953,6 @@
 	</div>
 </div>
 
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/07/16/how-to-set-dns-address-in-android-phones.html">How to set dns address in android phones?</a></h2></div>
-	  	<div class="post-date">16 Jul 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Ever wondered how setup dns address in android phones. You can do it if your phone is rooted.<br />You may have a terminal installed with busybox if your phone is rooted. Otherwise install a terminal and gain root permission by typing<br /><br /><span style="font-family: Courier New, Courier, monospace;">su</span><br /><br />Then list all the device dns entries using this command<br /><br /><span style="font-family: Courier New, Courier, monospace;">getprop | grep dns</span><br /><br />Then set the dns entries by the command<br /><br /><span style="font-family: Courier New, Courier, monospace;">setprop net.rmnet0.dns1 &nbsp;8.8.8.8</span><br /><br />Here rmnet0.dns1 is given as an example. This may vary depending on which dns entry you have to choose. 8.8.8.8 is the googles dns server address. Replace it with your choice.</div> </div>
-      </div>
-	</div>
-</div>
-
 
 
 <!-- Pagination links -->
@@ -949,7 +960,7 @@
   
     <a href="/page/17/posts.html" class="previous">Previous</a>
   
-  <span class="page_number ">Page: 18 of 28</span>
+  <span class="page_number ">Page: 18 of 29</span>
   
     <a href="/page/19/posts.html" class="next">Next</a>
   

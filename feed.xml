@@ -1,4 +1,207 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-14T23:30:34+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Product Design of a 4 wheel differential drive robot</title><link href="/2019/01/09/product-design-of-4-wheel-differential.html" rel="alternate" type="text/html" title="Product Design of a 4 wheel differential drive robot" /><published>2019-01-09T12:35:00+05:30</published><updated>2019-01-09T12:35:00+05:30</updated><id>/2019/01/09/product-design-of-4-wheel-differential</id><content type="html" xml:base="/2019/01/09/product-design-of-4-wheel-differential.html">&lt;p&gt;I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-15T02:07:00+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Blog using Jekyll | Github Pages with custom domain</title><link href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html" rel="alternate" type="text/html" title="Blog using Jekyll | Github Pages with custom domain" /><published>2019-04-14T00:00:00+05:30</published><updated>2019-04-14T00:00:00+05:30</updated><id>/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github</id><content type="html" xml:base="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">&lt;p&gt;This post talks about how you can setup a blog using Jekyll and host it using
+GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll
+takes your content, renders Markdown and Liquid templates, and spits out a
+complete, static website ready to be served by Apache, Nginx or another web
+server.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Github_Jekyll.png&quot; alt=&quot;Github_Jekyll&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;First you have to cerate a layout for your pages. Consider it as a template.
+For example all your posts can have one template. Then your home page and about
+page have a different template. Then all contents, you can write in a
+markdown format (you can also use HTML). If you want to create a post, you write
+it in a plain text using markdown and then save those in _posts folder. You
+will specify which layout to use in this file. Then you compile your site
+using Jekyll. Jekyll will automatically create HTML files and folder structure
+for you. You can create layouts and templates so that Jekyll will
+automatically create pagination, organize your posts based on tags, etc. Once
+you have your setup, then it is pretty straight forward and easy to maintain.&lt;/p&gt;
+
+&lt;p&gt;GitHub supports hosting web contents on GitHub. If you have a repository, then
+you can create a folder called Docs and upload all your html files in it.
+After enabling GitHub pages, you can browse to
+&lt;code class=&quot;highlighter-rouge&quot;&gt;https://&amp;lt;username&amp;gt;.github.io/repository&lt;/code&gt;. If the repository name itself is
+&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt;, then you can host your html files in the root folder
+and it will be available at &lt;code class=&quot;highlighter-rouge&quot;&gt;https://&amp;lt;username&amp;gt;.github.io/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;GitHub also supports Jekyll directly. This means you do not need to compile
+and then upload HTML files to your repository. GitHub will do that for you.
+One disadvantage of this is that, GitHub only supports a handful of Jekyll
+plug-ins. If you are planning to customize your blog down to every detail,
+and need to include some fancy modifications, then better compile locally and
+host it on GitHub.&lt;/p&gt;
+
+&lt;p&gt;I started by hosting Jekyll files directly and let GitHub compiled for me.
+Then I changed to uploading compiled HTML files directly to GitHub. The best
+part is, if you have a custom domain, (like www.eionix.co.in) then you can point
+this directly to your GitHub page. Now GitHub support HTTPS. This means even
+if you don’t have an HTTPS certificate for you domain, GitHub will give one
+for you completely free. Cool!!! So you can go to &lt;code class=&quot;highlighter-rouge&quot;&gt;https://yourdomain.co.in&lt;/code&gt;
+and GitHub will serve you the blog.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-blog-using-jekyll&quot;&gt;Creating Blog using Jekyll&lt;/h2&gt;
+
+&lt;p&gt;Let’s start. Following instructions are for Ubuntu (Linux). If you are having
+a different distro or OS, refer &lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;Link&lt;/a&gt;. These steps were
+taken directly from Jekyll docs. For any queries, refer &lt;a href=&quot;https://jekyllrb.com/docs/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ruby-full build-essential zlib1g-dev
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'# Install Ruby Gems to ~/gems'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bashrc
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export GEM_HOME=&quot;$HOME/gems&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bashrc
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;$HOME/gems/bin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bashrc
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.bashrc
+gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll bundler
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create your blog&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll new myblog
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;myblog
+bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Your site is ready. Go to &lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt; and
+you can view your blog.&lt;/p&gt;
+
+&lt;p&gt;A complete Jekyll folder structure will look like this.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;/_draft&lt;/li&gt;
+  &lt;li&gt;/_includes&lt;/li&gt;
+  &lt;li&gt;/_layouts&lt;/li&gt;
+  &lt;li&gt;/_posts&lt;/li&gt;
+  &lt;li&gt;/_site&lt;/li&gt;
+  &lt;li&gt;/assets&lt;/li&gt;
+  &lt;li&gt;/404.html&lt;/li&gt;
+  &lt;li&gt;/about.md&lt;/li&gt;
+  &lt;li&gt;/_config.yml&lt;/li&gt;
+  &lt;li&gt;/Gemfile&lt;/li&gt;
+  &lt;li&gt;/Gemfile.lock&lt;/li&gt;
+  &lt;li&gt;/index.md&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a file with following format &lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt; inside &lt;code class=&quot;highlighter-rouge&quot;&gt;/\_posts&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;posts
+nano 2019-04-14-my-first-post.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Type following contents to the file. For a complete reference of markdown,
+refer &lt;a href=&quot;Markdown_Reference&quot;&gt;Markdown_Reference&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eionix&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+my first post
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Go to root folder and build it.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; will automatically build if you have any changes (except
+changes in _config.yml). In that case use &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll build&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;export-your-old-blog-to-jekyll&quot;&gt;Export your old blog to Jekyll&lt;/h3&gt;
+
+&lt;p&gt;If you are migrating from an existing framework like Google’s Blogger, you can
+directly convert your existing posts. First export your old blog into an xml
+file. If you were using Blogger, there is an option to export under blog
+settings. After exporting copy the xml file to the root folder and type this
+command.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; rubygems &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'require &quot;jekyll-import&quot;;
+    JekyllImport::Importers::Blogger.run({
+      &quot;source&quot;                =&amp;gt; &quot;/path/to/blog-MM-DD-YYYY.xml&quot;,
+      &quot;no-blogger-info&quot;       =&amp;gt; false, # not to leave blogger-URL info (id and old URL) in the front matter
+      &quot;replace-internal-link&quot; =&amp;gt; false, # replace internal links using the post_url liquid tag.
+    })'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Mind you that, you may require to modify those files later. (can cause slight layout issues)&lt;/p&gt;
+
+&lt;h2 id=&quot;hosting-the-site-in-github&quot;&gt;Hosting the site in GitHub&lt;/h2&gt;
+
+&lt;p&gt;Now create a repository in GitHub with name &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt;. Now git
+init either root folder or _posts folder. If you init root folder github will
+build your site for you. If you git init _sites folder, you are directly
+uploading compiled files. &lt;em&gt;If you are hosting compiled HTML files, run this
+before uploading.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;JEKYLL_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will build HTML files for production environment.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/create_repo.png&quot; alt=&quot;Create repository&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init
+git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;first commit&quot;&lt;/span&gt;
+git remote add origin https://github.com/&amp;lt;username&amp;gt;/&amp;lt;username.github.io&amp;gt;.git
+git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can now test your blog at &lt;code class=&quot;highlighter-rouge&quot;&gt;https://&amp;lt;username.github.io&amp;gt;&lt;/code&gt;. It will take
+some time to reflect the changes. If you upload root folder, github will now
+compile that into html files. Otherwise the compiled files will be directly
+available at the url.&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-custom-domain&quot;&gt;Adding custom domain&lt;/h2&gt;
+
+&lt;p&gt;Now if you have a custom domain like ‘www.yourdomain.co.in’, then you can
+point this to your blog rather than &lt;code class=&quot;highlighter-rouge&quot;&gt;https://&amp;lt;username.github.io&amp;gt;&lt;/code&gt;. Also you
+can make it &lt;code class=&quot;highlighter-rouge&quot;&gt;https://&lt;/code&gt;. So your blog url becomes
+&lt;code class=&quot;highlighter-rouge&quot;&gt;https://www.yourdomain.co.in&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Go to GitHub repository settings and add the custom domain.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/add_custom_domain.png&quot; alt=&quot;adding custom domain&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This will add a CNAME file at the root of your repository&lt;/p&gt;
+
+&lt;p&gt;Now you need to update your DNS records to point to GitHub. GO to your domain
+registrar (like godaddy, etc) and change the DNS A record to following
+entries. Always refer this link
+&lt;a href=&quot;https://help.github.com/en/articles/setting-up-an-apex-domain&quot;&gt;https://help.github.com/en/articles/setting-up-an-apex-domain&lt;/a&gt;
+to make sure following are the updated DNS records.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;185.199.108.153&lt;/li&gt;
+  &lt;li&gt;185.199.109.153&lt;/li&gt;
+  &lt;li&gt;185.199.110.153&lt;/li&gt;
+  &lt;li&gt;185.199.111.153&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/dns_record.png&quot; alt=&quot;dns record&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now add a CNAME record&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/cname_record.png&quot; alt=&quot;cname record&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Your blog will now be able to access using custom domain id
+&lt;code class=&quot;highlighter-rouge&quot;&gt;https://www.yourdomain.co.in&lt;/code&gt;. It will take some time to reflect the changes.&lt;/p&gt;
+
+&lt;p&gt;If you add &lt;code class=&quot;highlighter-rouge&quot;&gt;\_posts&lt;/code&gt; as the GitHub repository root folder, you can create a
+new repository at root level for your blogs source file. This will seperate
+your blog into two repository. One will have source files which you can make
+private and one with the build files.&lt;/p&gt;
+
+&lt;p&gt;Now you can advance and edit and customize layouts to suit your needs.&lt;/p&gt;
+
+&lt;p&gt;Happy blogging !!!&lt;/p&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;Jekyl_Installation&quot;&gt;Jekyl_Installation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Jekyl_Docs&quot;&gt;Jekyl_Docs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Markdown_Reference&quot;&gt;Markdown_Reference&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;GitHub_DNS_Link&quot;&gt;GitHub_DNS_Link&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Jekyll_Adding_Layouts&quot;&gt;Jekyll_Adding_Layouts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="Blogging" /><summary type="html">This post talks about how you can setup a blog using Jekyll and host it using GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll takes your content, renders Markdown and Liquid templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server.</summary></entry><entry><title type="html">Product Design of a 4 wheel differential drive robot</title><link href="/2019/01/09/product-design-of-4-wheel-differential.html" rel="alternate" type="text/html" title="Product Design of a 4 wheel differential drive robot" /><published>2019-01-09T12:35:00+05:30</published><updated>2019-01-09T12:35:00+05:30</updated><id>/2019/01/09/product-design-of-4-wheel-differential</id><content type="html" xml:base="/2019/01/09/product-design-of-4-wheel-differential.html">&lt;p&gt;I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.&lt;/p&gt;
 
 &lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/Q5mC5lRfhfw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
@@ -717,10 +920,4 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 
 &lt;p&gt;A step by step instruction of how to install this theme is in this video.&lt;/p&gt;
 
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/yNW1hTyDe5U&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><summary type="html">This is an another theme I created for Plymouth ( a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.</summary></entry><entry><title type="html">Plymouth theme for Ubuntu</title><link href="/2016/10/30/plymouth-theme-for-ubuntu.html" rel="alternate" type="text/html" title="Plymouth theme for Ubuntu" /><published>2016-10-30T21:09:00+05:30</published><updated>2016-10-30T21:09:00+05:30</updated><id>/2016/10/30/plymouth-theme-for-ubuntu</id><content type="html" xml:base="/2016/10/30/plymouth-theme-for-ubuntu.html">&lt;p&gt;Bored of having the same boot animation screen again and again? There are plenty of Plymouth themes available out there. This is a theme I created by slicing some cool gif files I found online. You can download the theme and find the installation steps on my github account. &lt;a href=&quot;https://github.com/krishnan793/PlymouthTheme-Cat&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://4.bp.blogspot.com/-gG0MBGjEE9M/WBYXrOGrVGI/AAAAAAAABVE/auGpLRYf7jor4hu3jurYGcjaVBapHyAVACLcB/s320/8998adc40112985a8f29cf414925d390.gif&quot; alt=&quot;Theme preview&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The theme is created for Ubuntu 16.04. But this can be installed on previous versions with slight modification. If you have a slow computer then you can watch the whole animation loops. (The VM I used to record the screen was fast though. :))&lt;/p&gt;
-
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/c6f478VBhtE&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><summary type="html">Bored of having the same boot animation screen again and again? There are plenty of Plymouth themes available out there. This is a theme I created by slicing some cool gif files I found online. You can download the theme and find the installation steps on my github account. Link</summary></entry></feed>
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/yNW1hTyDe5U&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><summary type="html">This is an another theme I created for Plymouth ( a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.</summary></entry></feed>
