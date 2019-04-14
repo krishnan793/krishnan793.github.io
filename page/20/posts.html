@@ -220,7 +220,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -246,7 +246,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -254,7 +254,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -329,7 +329,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -867,7 +867,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -877,10 +877,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -911,7 +913,9 @@
         	<p><img src="https://i.ytimg.com/vi/_qCvkru3AY4/0.jpg" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><style type="text/css">p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-align: left; widows: 2; orphans: 2; }</style>  <br /><div align="justify" style="line-height: 115%; margin-bottom: 0.35cm;"><span style="font-size: small;">This was my Bachelor Project. The project was selected for the Malayala Manorama Yuva Master Mind 2014. This is a video describing the project at the final round in the competition.</span></div><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/_qCvkru3AY4/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/_qCvkru3AY4?feature=player_embedded" width="320"></iframe></div><div align="justify" style="line-height: 115%; margin-bottom: 0.35cm;"><span style="font-size: small;"><br /></span></div><div align="justify" style="line-height: 115%; margin-bottom: 0.35cm;"><span style="font-size: small;">About the project&nbsp;</span></div><div align="justify" style="line-height: 115%; margin-bottom: 0.35cm;"><span style="font-size: small;">The project is made possible by making use of ultrasonic sound to map the location of an object. This device enables an user to control the screen by hovering his/her hands above it. A 3D virtual space will be created and any hand movement in that space is directly mapped to the display.</span></div><div align="justify" style="line-height: 115%; margin-bottom: 0.35cm;"><span style="font-size: small;">Group Members: <a href="https://www.linkedin.com/profile/view?id=222419072" target="_blank">Ananthakrishnan U S</a>, <a href="https://www.linkedin.com/profile/view?id=269669532" target="_blank">Arun Raveendran</a>, <a href="https://www.linkedin.com/profile/view?id=203657336" target="_blank">Alfred Do<span id="goog_1828304667"></span><span id="goog_1828304668"></span>minic</a>, <a href="https://www.linkedin.com/profile/view?id=224122261" target="_blank">Anju Dony </a></span></div></div> </div>
+  	  	<div class="post-desc"> <p>This was my Bachelor Project. The project was selected for the Malayala Manorama Yuva Master Mind 2014. This is a video describing the project at the final round in the competition.</p>
+
+ </div>
       </div>
 	</div>
 </div>

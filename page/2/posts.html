@@ -220,7 +220,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -246,7 +246,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -254,7 +254,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -329,7 +329,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -867,7 +867,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -877,10 +877,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -943,10 +945,12 @@ There is a WiFi option, but have to invest a lot more money to buy the WiFi adap
       <div class="post-inner">
       	<div class="post-thumbnail">
       	
-        	<p><img src="https://3.bp.blogspot.com/-hbGl7JYhMrI/WGf3DlIfvqI/AAAAAAAABXI/W4ePLUWDQgATkzoQ7p-MaDbHcA6k3k5CACK4B/s72-c/IMG_20161230_134157.jpg" style="max-width: 300px;" /></p>
+        	<p><img src="http://3.bp.blogspot.com/-hbGl7JYhMrI/WGf3DlIfvqI/AAAAAAAABXI/W4ePLUWDQgATkzoQ7p-MaDbHcA6k3k5CACK4B/s1600/IMG_20161230_134157.jpg" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-hbGl7JYhMrI/WGf3DlIfvqI/AAAAAAAABXI/W4ePLUWDQgATkzoQ7p-MaDbHcA6k3k5CACK4B/s1600/IMG_20161230_134157.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="https://3.bp.blogspot.com/-hbGl7JYhMrI/WGf3DlIfvqI/AAAAAAAABXI/W4ePLUWDQgATkzoQ7p-MaDbHcA6k3k5CACK4B/s320/IMG_20161230_134157.jpg" width="240" /></a></div><div style="text-align: justify;">Have recently bought a small batman key chain from amazon. It &nbsp;has a small button when pressed lights the batman eye with white light and sounds a pathetic sound (:(). So I thought of opening it.</div><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-UgzRBbYxfa4/WGf3mu9KUQI/AAAAAAAABXQ/gZP2U8FUi-k1YNpU7a9l91Km2fRT-l5YwCK4B/s1600/IMG_20161230_134949.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="240" src="https://2.bp.blogspot.com/-UgzRBbYxfa4/WGf3mu9KUQI/AAAAAAAABXQ/gZP2U8FUi-k1YNpU7a9l91Km2fRT-l5YwCK4B/s320/IMG_20161230_134949.jpg" width="320" /></a></div><div class="" style="clear: both; text-align: justify;">It has enough space to put some custom electronics. So I thought of customising it a bit. This is what it looks before customising.</div><div class="separator" style="clear: both; text-align: center;"></div><div style="text-align: justify;"><br /></div><div style="text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/l3ZGNKPPiXs/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/l3ZGNKPPiXs?feature=player_embedded" width="320"></iframe></div><br /><div class="" style="clear: both; text-align: justify;">This is what it looks when adding a little bit of electronics into it. It has an esp8266 with 3 SMD LED (Red, Green, Blue) that can be independently controlled. It has a small speaker (from a headset) which plays a pac man tone. It is powered with a 3.7 V Lipo battery with an option to charge with an USB cable.</div><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-v1xA7bmybeU/WGf6fAw6mVI/AAAAAAAABXY/MNRwLSoOF3A2P1rSZKc81JNuF9JWdbVYwCK4B/s1600/IMG_20161231_183308.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="https://4.bp.blogspot.com/-v1xA7bmybeU/WGf6fAw6mVI/AAAAAAAABXY/MNRwLSoOF3A2P1rSZKc81JNuF9JWdbVYwCK4B/s320/IMG_20161231_183308.jpg" width="240" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div><div style="text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/WhwIaTLD6oQ/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/WhwIaTLD6oQ?feature=player_embedded" width="320"></iframe></div><div class="separator" style="clear: both; text-align: center;"></div><div style="text-align: justify;">Batman keychain is playing pacman tone... :) I know it's a bit wierd, but couldnt find a good tone (which can be expressed as a piano tone like C4, B#2, ...) for batman. Will replace it once found a better one.<br /><br />Things to add further</div><ul><li style="text-align: justify;">Pressing for a long time will enable a hotspot</li><li style="text-align: justify;">Option to change the tone by writing it to EEPROM on the go (ESP8266 has 512 bytes of EEPROM).</li><li style="text-align: justify;">Option to play PCM encoded 8 bit WAV file.</li></ul><br /><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><br /></div></div> </div>
+  	  	<div class="post-desc"> <p>Have recently bought a small batman key chain from amazon. It  has a small button when pressed lights the batman eye with white light and sounds a pathetic sound (:(). So I thought of opening it.</p>
+
+ </div>
       </div>
 	</div>
 </div>

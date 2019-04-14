@@ -220,7 +220,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -246,7 +246,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -254,7 +254,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -329,7 +329,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -867,7 +867,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -877,10 +877,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -911,7 +913,9 @@
         	<p><img src="https://i.ytimg.com/vi/WrEmulklfXU/0.jpg" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.<br /><div style="text-align: justify;"><span style="background-color: white; color: #333333; font-family: &quot;roboto&quot; , &quot;arial&quot; , sans-serif; font-size: 13px; line-height: 17px;"><br /></span></div><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/WrEmulklfXU/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/WrEmulklfXU?feature=player_embedded" width="320"></iframe></div><div style="text-align: justify;"><span style="background-color: white; color: #333333; font-family: &quot;roboto&quot; , &quot;arial&quot; , sans-serif; font-size: 13px; line-height: 17px;"><br /></span></div></div> </div>
+  	  	<div class="post-desc"> <p>The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.</p>
+
+ </div>
       </div>
 	</div>
 </div>
@@ -941,7 +945,9 @@
         	<p><img src="https://i.ytimg.com/vi/ka7FmJtNVVY/0.jpg" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">This video is a part of an AR Drone autonomous landing project. Here the AR Drone is controlling itself so that the landing platform is exactly in the middle so that it can &nbsp;initiate a proper landing. Here AR Drone is also tracking the Tag embedded on the landing platform (Not using the inbuilt tag detection. The tag that is being used here is from the ar_track_alvar package.). This is implemented using Neural Network. The video is not a part of a completed project.&nbsp;(The video is playing at a slightly faster rate.)<br /><br /></div><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/ka7FmJtNVVY/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/ka7FmJtNVVY?feature=player_embedded" width="320"></iframe></div><div class="separator" style="clear: both; text-align: center;">[NB: As you can see the drone is not orienting itself as it is trying to reach just above the tag. This is only because I didn't train it to do so.]</div><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;">Packages used: ardrone_autonomy, tum_simulator, ar_track_alvar, custom packages (some packages I created for collecting data for training, republishing twist cmd_vel with time stamp, implementation of NN, custom launch files and worlds.)</div><div class="separator" style="clear: both; text-align: center;"><br /></div><br /><br /><br /></div> </div>
+  	  	<div class="post-desc"> <p>This video is a part of an AR Drone autonomous landing project. Here the AR Drone is controlling itself so that the landing platform is exactly in the middle so that it can  initiate a proper landing. Here AR Drone is also tracking the Tag embedded on the landing platform (Not using the inbuilt tag detection. The tag that is being used here is from the ar_track_alvar package.). This is implemented using Neural Network. The video is not a part of a completed project. (The video is playing at a slightly faster rate.)</p>
+
+ </div>
       </div>
 	</div>
 </div>

@@ -219,7 +219,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -245,7 +245,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -253,7 +253,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -328,7 +328,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -866,7 +866,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -876,10 +876,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -922,10 +924,12 @@
       <div class="post-inner">
       	<div class="post-thumbnail">
       	
-        	<p><img src="https://i.ytimg.com/vi/yNW1hTyDe5U/0.jpg" style="max-width: 300px;" /></p>
+        	<p><img src="https://raw.githubusercontent.com/krishnan793/PlymouthTheme-TheRun/master/images/PlymouthTheme-TheRun.gif" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">This is an another theme I created for Plymouth (<span style="color: #222222; font-family: arial, sans-serif;"><span style="background-color: white;">&nbsp;</span></span>a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://github.com/krishnan793/PlymouthTheme-TheRun/blob/master/images/PlymouthTheme-TheRun.gif?raw=true" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="279" src="https://github.com/krishnan793/PlymouthTheme-TheRun/blob/master/images/PlymouthTheme-TheRun.gif?raw=true" width="320" /></a></div><br />A step by step instruction of how to install this theme is in this video.<br /><br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/yNW1hTyDe5U/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/yNW1hTyDe5U?feature=player_embedded" width="320"></iframe></div></div> </div>
+  	  	<div class="post-desc"> <p>This is an another theme I created for Plymouth ( a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.</p>
+
+ </div>
       </div>
 	</div>
 </div>

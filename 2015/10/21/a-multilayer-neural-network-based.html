@@ -11,15 +11,15 @@
 <meta property="og:title" content="A Multilayer Neural Network Based Obstacle Avoiding Robot ROS Simulation" />
 <meta name="author" content="ANANTHAKRISHNAN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is an obstacle avoiding robot which I and Sooraj Krishna built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below.The 4 inputs are distances from sonar sensors placed on the Robot. The two outputs are linear velocity on x -axis and angular velocity on z-axis. The Neural Network is first trained using the data captured from joystick controlling the simulated Robot. Then the&nbsp; trained weights are used in the NN for controlling the Robot. This is the first version that is trained with small training set. The video is showing the Robot avoiding obstacles on its own.This is after a bit more training.NB: The video is playing a bit more faster than the actual simulation as you can see from the time showing in simulator.NB: Among two outputs one is for angular velocity. For turning right the value will be positive and for turning left it will be negative. The network was unable to converge since the output has negative values. I had to shift the range so that all the output values are positive. Need to play with this some more time to figure out the rest. :-)" />
-<meta property="og:description" content="This is an obstacle avoiding robot which I and Sooraj Krishna built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below.The 4 inputs are distances from sonar sensors placed on the Robot. The two outputs are linear velocity on x -axis and angular velocity on z-axis. The Neural Network is first trained using the data captured from joystick controlling the simulated Robot. Then the&nbsp; trained weights are used in the NN for controlling the Robot. This is the first version that is trained with small training set. The video is showing the Robot avoiding obstacles on its own.This is after a bit more training.NB: The video is playing a bit more faster than the actual simulation as you can see from the time showing in simulator.NB: Among two outputs one is for angular velocity. For turning right the value will be positive and for turning left it will be negative. The network was unable to converge since the output has negative values. I had to shift the range so that all the output values are positive. Need to play with this some more time to figure out the rest. :-)" />
+<meta name="description" content="This is an obstacle avoiding robot which I and Sooraj Krishna built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below." />
+<meta property="og:description" content="This is an obstacle avoiding robot which I and Sooraj Krishna built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below." />
 <link rel="canonical" href="http://0.0.0.0:4000/2015/10/21/a-multilayer-neural-network-based.html" />
 <meta property="og:url" content="http://0.0.0.0:4000/2015/10/21/a-multilayer-neural-network-based.html" />
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2015-10-21T01:54:00+05:30" />
 <script type="application/ld+json">
-{"headline":"A Multilayer Neural Network Based Obstacle Avoiding Robot ROS Simulation","dateModified":"2015-10-21T01:54:00+05:30","datePublished":"2015-10-21T01:54:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2015/10/21/a-multilayer-neural-network-based.html"},"url":"http://0.0.0.0:4000/2015/10/21/a-multilayer-neural-network-based.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"This is an obstacle avoiding robot which I and Sooraj Krishna built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below.The 4 inputs are distances from sonar sensors placed on the Robot. The two outputs are linear velocity on x -axis and angular velocity on z-axis. The Neural Network is first trained using the data captured from joystick controlling the simulated Robot. Then the&nbsp; trained weights are used in the NN for controlling the Robot. This is the first version that is trained with small training set. The video is showing the Robot avoiding obstacles on its own.This is after a bit more training.NB: The video is playing a bit more faster than the actual simulation as you can see from the time showing in simulator.NB: Among two outputs one is for angular velocity. For turning right the value will be positive and for turning left it will be negative. The network was unable to converge since the output has negative values. I had to shift the range so that all the output values are positive. Need to play with this some more time to figure out the rest. :-)","@context":"https://schema.org"}</script>
+{"headline":"A Multilayer Neural Network Based Obstacle Avoiding Robot ROS Simulation","dateModified":"2015-10-21T01:54:00+05:30","datePublished":"2015-10-21T01:54:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2015/10/21/a-multilayer-neural-network-based.html"},"url":"http://0.0.0.0:4000/2015/10/21/a-multilayer-neural-network-based.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"This is an obstacle avoiding robot which I and Sooraj Krishna built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -221,7 +221,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -247,7 +247,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -255,7 +255,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -330,7 +330,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -868,7 +868,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -878,10 +878,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -899,7 +901,22 @@
           
             <h1> A Multilayer Neural Network Based Obstacle Avoiding Robot | ROS | Simulation </h1>
           
-          <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">This is an obstacle avoiding robot which I and <a href="https://www.facebook.com/sooraj.krishna.359126?fref=ts" target="_blank">Sooraj Krishna</a> built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below.</div><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-fWw3o-VrmGU/ViaiZ3Ejc8I/AAAAAAAABAU/3xnt4kSIloM/s1600/NN.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="234" src="http://4.bp.blogspot.com/-fWw3o-VrmGU/ViaiZ3Ejc8I/AAAAAAAABAU/3xnt4kSIloM/s320/NN.png" width="320" /></a></div><br /><div style="text-align: justify;">The 4 inputs are distances from sonar sensors placed on the Robot. The two outputs are linear velocity on x -axis and angular velocity on z-axis. The Neural Network is first trained using the data captured from joystick controlling the simulated Robot. Then the&nbsp; trained weights are used in the NN for controlling the Robot. This is the first version that is trained with small training set. The video is showing the Robot avoiding obstacles on its own.</div><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/WYR3-2vfQ9g/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/WYR3-2vfQ9g?feature=player_embedded" width="320"></iframe></div><br />This is after a bit more training.<br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/1UBbbEy7uGk/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/1UBbbEy7uGk?feature=player_embedded" width="320"></iframe></div><br /><div style="text-align: justify;">NB: The video is playing a bit more faster than the actual simulation as you can see from the time showing in simulator.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="color: red;">NB:</span> <span style="color: red;">Among two outputs one is for angular velocity. For turning right the value will be positive and for turning left it will be negative. The network was unable to converge since the output has negative values. I had to shift the range so that all the output values are positive. Need to play with this some more time to figure out the rest. :-)</span></div></div>
+          <p>This is an obstacle avoiding robot which I and Sooraj Krishna built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below.</p>
+
+<p><img src="http://4.bp.blogspot.com/-fWw3o-VrmGU/ViaiZ3Ejc8I/AAAAAAAABAU/3xnt4kSIloM/s1600/NN.png" alt="neural network" /></p>
+
+<p>The 4 inputs are distances from sonar sensors placed on the Robot. The two outputs are linear velocity on x -axis and angular velocity on z-axis. The Neural Network is first trained using the data captured from joystick controlling the simulated Robot. Then the  trained weights are used in the NN for controlling the Robot. This is the first version that is trained with small training set. The video is showing the Robot avoiding obstacles on its own.</p>
+
+<iframe width="320" height="266" src="https://www.youtube.com/embed/WYR3-2vfQ9g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>This is after a bit more training.</p>
+
+<iframe width="320" height="266" src="https://www.youtube.com/embed/1UBbbEy7uGk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>NB: The video is playing a bit more faster than the actual simulation as you can see from the time showing in simulator.</p>
+
+<p>NB: Among two outputs one is for angular velocity. For turning right the value will be positive and for turning left it will be negative. The network was unable to converge since the output has negative values. I had to shift the range so that all the output values are positive. Need to play with this some more time to figure out the rest. :-)</p>
+
         </div>
       </main>
       <!-- Main post content end -->

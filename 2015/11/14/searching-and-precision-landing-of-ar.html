@@ -221,7 +221,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -247,7 +247,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -255,7 +255,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -330,7 +330,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -868,7 +868,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -878,10 +878,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -899,7 +901,10 @@
           
             <h1> Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS  </h1>
           
-          <div dir="ltr" style="text-align: left;" trbidi="on">The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.<br /><div style="text-align: justify;"><span style="background-color: white; color: #333333; font-family: &quot;roboto&quot; , &quot;arial&quot; , sans-serif; font-size: 13px; line-height: 17px;"><br /></span></div><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/WrEmulklfXU/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/WrEmulklfXU?feature=player_embedded" width="320"></iframe></div><div style="text-align: justify;"><span style="background-color: white; color: #333333; font-family: &quot;roboto&quot; , &quot;arial&quot; , sans-serif; font-size: 13px; line-height: 17px;"><br /></span></div></div>
+          <p>The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.</p>
+
+<iframe width="320" height="266" src="https://www.youtube.com/embed/WrEmulklfXU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
         </div>
       </main>
       <!-- Main post content end -->

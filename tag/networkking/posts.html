@@ -218,7 +218,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -244,7 +244,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -252,7 +252,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -327,7 +327,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -865,7 +865,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -875,10 +875,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -904,7 +906,7 @@
       <div class="post-inner">
       	<div class="post-thumbnail">
       	
-        	<p><img src="https://i.ytimg.com/s_vi/dcYt8nGvhVs/default.jpg?sqp=CPSIpLUF&rs=AOn4CLCaCRmm7sCjdCt0wBjjKV6qOCvuIw" style="max-width: 300px;" /></p>
+        	<p><img src="https://4.bp.blogspot.com/-rYzRdPgm89Y/Vt7duzWYIhI/AAAAAAAABNM/3V2pNTB8oUE/s1600/Screenshot%2Bfrom%2B2016-03-08%2B19%253A39%253A31.png" style="max-width: 300px;" /></p>
       	
       	</div>
   	  	<div class="post-desc"> <p>If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$.</p>

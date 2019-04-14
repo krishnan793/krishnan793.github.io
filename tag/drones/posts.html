@@ -219,7 +219,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -245,7 +245,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -253,7 +253,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -328,7 +328,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -866,7 +866,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -876,10 +876,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -905,10 +907,12 @@
       <div class="post-inner">
       	<div class="post-thumbnail">
       	
-        	<p><img src="https://2.bp.blogspot.com/-Rbxph_4Cs3g/WCglyr-q_fI/AAAAAAAABWM/n-cbj9obeXAnHzpTZjPN2BrAZGTJAhAFACLcB/s72-c/IMG_20161107_010610759_HDR.jpg" style="max-width: 300px;" /></p>
+        	<p><img src="https://2.bp.blogspot.com/-Rbxph_4Cs3g/WCglyr-q_fI/AAAAAAAABWM/n-cbj9obeXAnHzpTZjPN2BrAZGTJAhAFACLcB/s1600/IMG_20161107_010610759_HDR.jpg" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">In order to counter the rotating torque from the previous single rotor version, one more propeller is added. The second propeller rotates counter clockwise and both torques will cancel each other (Only if both propellers are rotating at same speed).<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-Rbxph_4Cs3g/WCglyr-q_fI/AAAAAAAABWM/n-cbj9obeXAnHzpTZjPN2BrAZGTJAhAFACLcB/s1600/IMG_20161107_010610759_HDR.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="180" src="https://2.bp.blogspot.com/-Rbxph_4Cs3g/WCglyr-q_fI/AAAAAAAABWM/n-cbj9obeXAnHzpTZjPN2BrAZGTJAhAFACLcB/s320/IMG_20161107_010610759_HDR.jpg" width="320" /></a></div><br /><br />This the video of it flying with restriction. I have attached a a small weight to its bottom. Even though the counter torque is cancelled, it can't be controlled. Very small variation in alignment will drive the MAV crazy.<br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/hwU4HWginwk/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/hwU4HWginwk?feature=player_embedded" width="320"></iframe></div><br />This is an attempt to control the drone remotely with a joystick. Had changed the body from plastic (from plastic IC tube) to general purpose PCB board. The individual propellers are controlled from a joystick (logitech f710). The controller is an esp8266 es-11 WiFi chip. The telemetry data are send using a python program that run on my computer. Both the WiFi chip and my computer are on the same network.<br /><br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/-8L_U88z5k4/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/-8L_U88z5k4?feature=player_embedded" width="320"></iframe></div><div class="separator" style="clear: both; text-align: center;"><br /><iframe width="320" height="266" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/y9F4RaIn9os/0.jpg" src="https://www.youtube.com/embed/y9F4RaIn9os?feature=player_embedded" frameborder="0" allowfullscreen></iframe></div><br /><br /></div> </div>
+  	  	<div class="post-desc"> <p>In order to counter the rotating torque from the previous single rotor version, one more propeller is added. The second propeller rotates counter clockwise and both torques will cancel each other (Only if both propellers are rotating at same speed).</p>
+
+ </div>
       </div>
 	</div>
 </div>
@@ -920,10 +924,12 @@
       <div class="post-inner">
       	<div class="post-thumbnail">
       	
-        	<p><img src="https://1.bp.blogspot.com/-CYsMwmvI2kQ/WB5e5UMIYQI/AAAAAAAABVs/A7K5louA8K882V91uFiHmufJYTsB7EprwCLcB/s72-c/IMG_20161106_033509130_HDR.jpg" style="max-width: 300px;" /></p>
+        	<p><img src="https://1.bp.blogspot.com/-CYsMwmvI2kQ/WB5e5UMIYQI/AAAAAAAABVs/A7K5louA8K882V91uFiHmufJYTsB7EprwCLcB/s1600/IMG_20161106_033509130_HDR.jpg" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">This is a small MAV (Micro Areal Vehicle) I created out of simple household stuffs. Though this one can't be controlled, it is fun to watch it fly. :) :) :)<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-CYsMwmvI2kQ/WB5e5UMIYQI/AAAAAAAABVs/A7K5louA8K882V91uFiHmufJYTsB7EprwCLcB/s1600/IMG_20161106_033509130_HDR.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="180" src="https://1.bp.blogspot.com/-CYsMwmvI2kQ/WB5e5UMIYQI/AAAAAAAABVs/A7K5louA8K882V91uFiHmufJYTsB7EprwCLcB/s320/IMG_20161106_033509130_HDR.jpg" width="320" /></a></div>I have loosely connected the power supply so that once it start flying, the counter rotating torque forces the whole MAV to rotate. So after a few sec the wire connecting power supply (battery) will automatically get removed and I can catch the MAV before it crash into walls. :)<br /><br /><div class="separator" style="clear: both; text-align: center;"></div><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/qQn6ANzjGFw/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/qQn6ANzjGFw?feature=player_embedded" width="320"></iframe></div><br /><br />This one is a slow motion video of it flying. It is hard to video it while flying. Since it is not stable it will crash itself into walls after a few seconds. I am trying to get it fly vertically upwards without any deviation.<br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/xhxmteAvNrk/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/xhxmteAvNrk?feature=player_embedded" width="320"></iframe></div><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;">See this instructable (<a href="https://www.instructables.com/id/Home-Made-Micro-Aerial-Vehicle-MAV-in-5-Min/">https://www.instructables.com/id/Home-Made-Micro-Aerial-Vehicle-MAV-in-5-Min/</a>) for more videos/photos.</div><br /></div> </div>
+  	  	<div class="post-desc"> <p>This is a small MAV (Micro Areal Vehicle) I created out of simple household stuffs. Though this one can’t be controlled, it is fun to watch it fly. :) :) :)</p>
+
+ </div>
       </div>
 	</div>
 </div>

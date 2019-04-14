@@ -218,7 +218,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -244,7 +244,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -252,7 +252,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -327,7 +327,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -865,7 +865,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -875,10 +875,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -950,6 +952,23 @@
 
 
 
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2016/11/02/this-is-another-theme-i-created-for.html">PlymouthTheme-TheRun</a></h2></div>
+	  	<div class="post-date">02 Nov 2016</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+        	<p><img src="https://raw.githubusercontent.com/krishnan793/PlymouthTheme-TheRun/master/images/PlymouthTheme-TheRun.gif" style="max-width: 300px;" /></p>
+      	
+      	</div>
+  	  	<div class="post-desc"> <p>This is an another theme I created for Plymouth ( a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.</p>
+
+ </div>
+      </div>
+	</div>
+</div>
+
 
 
 <div class="post-outer">
@@ -1001,7 +1020,7 @@
       <div class="post-inner">
       	<div class="post-thumbnail">
       	
-        	<p><img src="https://i.ytimg.com/s_vi/dcYt8nGvhVs/default.jpg?sqp=CPSIpLUF&rs=AOn4CLCaCRmm7sCjdCt0wBjjKV6qOCvuIw" style="max-width: 300px;" /></p>
+        	<p><img src="https://4.bp.blogspot.com/-rYzRdPgm89Y/Vt7duzWYIhI/AAAAAAAABNM/3V2pNTB8oUE/s1600/Screenshot%2Bfrom%2B2016-03-08%2B19%253A39%253A31.png" style="max-width: 300px;" /></p>
       	
       	</div>
   	  	<div class="post-desc"> <p>If you are a geek, then you definitely want to mess with everything to create something cool out of it. What about controlling all of your appliances from your computer or from your smart phone wirelessly? Set timer for light when you go to sleep; autonomously switch your fan on when temperature exceeds; and when you are too lazy to get up from your bed to switch fan/light off. All you need is an ESP8266 with a couple of other components that cost &lt;10$.</p>
@@ -1025,7 +1044,9 @@
         	<p><img src="https://i.ytimg.com/vi/WrEmulklfXU/0.jpg" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.<br /><div style="text-align: justify;"><span style="background-color: white; color: #333333; font-family: &quot;roboto&quot; , &quot;arial&quot; , sans-serif; font-size: 13px; line-height: 17px;"><br /></span></div><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/WrEmulklfXU/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/WrEmulklfXU?feature=player_embedded" width="320"></iframe></div><div style="text-align: justify;"><span style="background-color: white; color: #333333; font-family: &quot;roboto&quot; , &quot;arial&quot; , sans-serif; font-size: 13px; line-height: 17px;"><br /></span></div></div> </div>
+  	  	<div class="post-desc"> <p>The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.</p>
+
+ </div>
       </div>
 	</div>
 </div>
@@ -1045,10 +1066,12 @@
       <div class="post-inner">
       	<div class="post-thumbnail">
       	
-        	<p><img src="http://4.bp.blogspot.com/-fWw3o-VrmGU/ViaiZ3Ejc8I/AAAAAAAABAU/3xnt4kSIloM/s72-c/NN.png" style="max-width: 300px;" /></p>
+        	<p><img src="http://4.bp.blogspot.com/-fWw3o-VrmGU/ViaiZ3Ejc8I/AAAAAAAABAU/3xnt4kSIloM/s1600/NN.png" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">This is an obstacle avoiding robot which I and <a href="https://www.facebook.com/sooraj.krishna.359126?fref=ts" target="_blank">Sooraj Krishna</a> built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below.</div><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-fWw3o-VrmGU/ViaiZ3Ejc8I/AAAAAAAABAU/3xnt4kSIloM/s1600/NN.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="234" src="http://4.bp.blogspot.com/-fWw3o-VrmGU/ViaiZ3Ejc8I/AAAAAAAABAU/3xnt4kSIloM/s320/NN.png" width="320" /></a></div><br /><div style="text-align: justify;">The 4 inputs are distances from sonar sensors placed on the Robot. The two outputs are linear velocity on x -axis and angular velocity on z-axis. The Neural Network is first trained using the data captured from joystick controlling the simulated Robot. Then the&nbsp; trained weights are used in the NN for controlling the Robot. This is the first version that is trained with small training set. The video is showing the Robot avoiding obstacles on its own.</div><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/WYR3-2vfQ9g/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/WYR3-2vfQ9g?feature=player_embedded" width="320"></iframe></div><br />This is after a bit more training.<br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/1UBbbEy7uGk/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/1UBbbEy7uGk?feature=player_embedded" width="320"></iframe></div><br /><div style="text-align: justify;">NB: The video is playing a bit more faster than the actual simulation as you can see from the time showing in simulator.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="color: red;">NB:</span> <span style="color: red;">Among two outputs one is for angular velocity. For turning right the value will be positive and for turning left it will be negative. The network was unable to converge since the output has negative values. I had to shift the range so that all the output values are positive. Need to play with this some more time to figure out the rest. :-)</span></div></div> </div>
+  	  	<div class="post-desc"> <p>This is an obstacle avoiding robot which I and Sooraj Krishna built in ROS using STDR simulator. The robot is making decision based on a 3 layer Neural Network. The learning algorithm used is back-propagation (which we wrote in python). The network design is shown below.</p>
+
+ </div>
       </div>
 	</div>
 </div>
@@ -1128,6 +1151,23 @@
 
 
 
+
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/05/14/ultrasonic-hover-input-device.html">Ultrasonic Hover Input Device</a></h2></div>
+	  	<div class="post-date">14 May 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+        	<p><img src="https://i.ytimg.com/vi/_qCvkru3AY4/0.jpg" style="max-width: 300px;" /></p>
+      	
+      	</div>
+  	  	<div class="post-desc"> <p>This was my Bachelor Project. The project was selected for the Malayala Manorama Yuva Master Mind 2014. This is a video describing the project at the final round in the competition.</p>
+
+ </div>
+      </div>
+	</div>
+</div>
 
 
 

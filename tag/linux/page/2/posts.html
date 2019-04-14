@@ -220,7 +220,7 @@
 		background-color: #32363996;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 		position: relative;
-		z-index: 5;
+		z-index: 2;
 		transition: transform 0.5s ease-in-out;
 	}
 	#nav ul {
@@ -246,7 +246,7 @@
 	#icon-menu {
 		display: none;
 	}
-	@media screen and (max-width: 350px){
+	@media only screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
 	  }
@@ -254,7 +254,7 @@
 	  	height: auto;
 	  }	
 	}
-	@media screen and (max-width: 678px){
+	@media only screen and (max-width: 678px){
 	  #icon-menu{
 	  	display: initial;
 	  }
@@ -329,7 +329,7 @@
             /*display: inline-block;
             width:70%;*/
           }
-          @media screen and (max-width: 678px){
+          @media only screen and (max-width: 678px){
             #side_bar{
               display: none;
               /*width:0%;*/
@@ -867,7 +867,7 @@
 <!-- Side bar end -->
 
       <!-- Main post content start -->
-      <main id="content" class="main-content" role="main" >
+      <main id="content" class="main-content" role="main" style="margin: 0;">
         <style type="text/css">
           #page-content{
             max-width: 64rem;
@@ -877,10 +877,12 @@
             max-width:70%;
           }
           #page-content p img{
-            max-width:500px;
+            max-width:400px;
             transition: transform .2s;
           }
           #page-content p img:hover{
+            z-index: 3;
+            position: relative;
             background-color: white;
             transform: scale(2);
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -906,10 +908,12 @@
       <div class="post-inner">
       	<div class="post-thumbnail">
       	
-        	<p><img src="https://2.bp.blogspot.com/-oZ7hNjwwBUw/VqYJzjmvMFI/AAAAAAAABIQ/pGR7GuWZ52c/s72-c/esp8266-pinout_etch_copper_top.png" style="max-width: 300px;" /></p>
+        	<p><img src="http://2.bp.blogspot.com/-oZ7hNjwwBUw/VqYJzjmvMFI/AAAAAAAABIQ/pGR7GuWZ52c/s1600/esp8266-pinout_etch_copper_top.png" style="max-width: 300px;" /></p>
       	
       	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">ESP8266 is a cheap WiFi chip you can use in your embedded projects. You can communicate the chip using AT commands through UART. You can setup a WiFi hotspot, connect to an existing WiFi network, act as a web server, send data (TCP/UDP). The real fun is that you can reprogram the whole chip and you don't need an other micro controller to control it. The ESP8266 ES1 come with 2 GPIO pins. There are other variants of this chip with more GPIO. This ESP 01 cost around Rs. 250 which is so cheap while comparing with other WiFi modules.</div><div style="text-align: center;"><a href="http://2.bp.blogspot.com/-oZ7hNjwwBUw/VqYJzjmvMFI/AAAAAAAABIQ/pGR7GuWZ52c/s1600/esp8266-pinout_etch_copper_top.png" imageanchor="1"><img border="0" height="188" src="https://2.bp.blogspot.com/-oZ7hNjwwBUw/VqYJzjmvMFI/AAAAAAAABIQ/pGR7GuWZ52c/s320/esp8266-pinout_etch_copper_top.png" width="320" /></a></div><div style="text-align: left;"><div style="text-align: justify;">One thing to remember is that the device is 3.3 V logic. Do not connect 5V supply or 5V RX/TX pins to the device.</div></div><div style="text-align: left;"><br /></div><div style="text-align: left;">Connection</div><div style="text-align: left;">========</div><div style="text-align: left;"><br /></div><div style="text-align: left;">VCC &nbsp; &nbsp; &nbsp; -&gt; &nbsp; &nbsp; &nbsp; 3.3V</div><div style="text-align: left;">GND &nbsp; &nbsp; &nbsp; -&gt; &nbsp; &nbsp; &nbsp; GND</div><div style="text-align: left;">CH_PD &nbsp; -&gt; &nbsp; &nbsp; &nbsp; 3.3V</div><div style="text-align: left;">RX &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-&gt; &nbsp; &nbsp; &nbsp; TX</div><div style="text-align: left;">TX &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-&gt; &nbsp; &nbsp; &nbsp; RX</div><div style="text-align: left;"><br /></div><div style="text-align: left;"><div style="text-align: justify;">If you are using a USB/TTL serial connector try to power the device separately using a 3.3 V supply (Needs &gt;200mA).</div></div><div style="text-align: left;"><div style="text-align: justify;"><br /></div><div style="text-align: justify;">These are the list of AT commands that is supported. (<a href="https://cdn.sparkfun.com/assets/learn_tutorials/4/0/3/4A-ESP8266__AT_Instruction_Set__EN_v0.30.pdf" target="_blank">Link</a>) But some variations will be there (depends on the firmware you are using). Here is a good post that talks about the AT commands. (<a href="https://alselectro.wordpress.com/2015/05/13/wifi-module-esp8266-2-tcp-client-server-mode/" target="_blank">Link</a>) If you are talking to this chip using putty or minicom (Linux) then you need to press Cntrl+Enter to send a line feed.</div></div><div style="text-align: left;"><div style="text-align: justify;">The real beauty of this chip is that you can change the firmware and flash it. The ESP8266 has a 40 Mhz chip in it and several GPIO pins (2 for ESP 01) which you can configure just like a micro controller. Going through the forum and figuring out the right firmware, tools and referring the SDK user manual is really painful. But you will get the hang of it. This forum (<a href="http://bbs.espressif.com/" target="_blank">link</a>) is exclusively for this chip. There are several flavors for programming this chip also. There is also a micro python library for it. The one which is easy is using an aurdino IDE. Refer this site (<a href="http://williamdurand.fr/2015/03/17/playing-with-a-esp8266-wifi-module/" target="_blank">link</a>) to get started. You need esptool when trying out different firmware in order to burn. (<a href="https://github.com/themadinventor/esptool" target="_blank">link</a>)</div><div style="text-align: justify;"><br /><div style="text-align: left;">Connection (Flashing the Device)</div><div style="text-align: left;">========</div><div style="text-align: left;"><br /></div><div style="text-align: left;">VCC &nbsp; &nbsp; &nbsp; -&gt; &nbsp; &nbsp; &nbsp; 3.3 V</div><div style="text-align: left;">GND &nbsp; &nbsp; &nbsp; -&gt; &nbsp; &nbsp; &nbsp; GND</div><div style="text-align: left;">CH_PD &nbsp; -&gt; &nbsp; &nbsp; &nbsp; 3.3 V<br />GPIO0 &nbsp; &nbsp;-&gt; &nbsp; &nbsp; &nbsp; 0 V<br />Reset &nbsp; &nbsp; &nbsp;-&gt; &nbsp; &nbsp; &nbsp; GND</div><div style="text-align: left;">RX &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-&gt; &nbsp; &nbsp; &nbsp; TX</div><div style="text-align: left;">TX &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-&gt; &nbsp; &nbsp; &nbsp; RX</div><br /></div></div></div> </div>
+  	  	<div class="post-desc"> <p>ESP8266 is a cheap WiFi chip you can use in your embedded projects. You can communicate the chip using AT commands through UART. You can setup a WiFi hotspot, connect to an existing WiFi network, act as a web server, send data (TCP/UDP). The real fun is that you can reprogram the whole chip and you don’t need an other micro controller to control it. The ESP8266 ES1 come with 2 GPIO pins. There are other variants of this chip with more GPIO. This ESP 01 cost around Rs. 250 which is so cheap while comparing with other WiFi modules.</p>
+
+ </div>
       </div>
 	</div>
 </div>
