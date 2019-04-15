@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-15T02:07:00+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Blog using Jekyll | Github Pages with custom domain</title><link href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html" rel="alternate" type="text/html" title="Blog using Jekyll | Github Pages with custom domain" /><published>2019-04-14T00:00:00+05:30</published><updated>2019-04-14T00:00:00+05:30</updated><id>/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github</id><content type="html" xml:base="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">&lt;p&gt;This post talks about how you can setup a blog using Jekyll and host it using
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-16T01:51:27+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Blog using Jekyll | Github Pages with custom domain</title><link href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html" rel="alternate" type="text/html" title="Blog using Jekyll | Github Pages with custom domain" /><published>2019-04-14T00:00:00+05:30</published><updated>2019-04-14T00:00:00+05:30</updated><id>/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github</id><content type="html" xml:base="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">&lt;p&gt;This post talks about how you can setup a blog using Jekyll and host it using
 GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll
 takes your content, renders Markdown and Liquid templates, and spits out a
 complete, static website ready to be served by Apache, Nginx or another web
@@ -10,7 +10,7 @@ server.&lt;/p&gt;
 For example all your posts can have one template. Then your home page and about
 page have a different template. Then all contents, you can write in a
 markdown format (you can also use HTML). If you want to create a post, you write
-it in a plain text using markdown and then save those in _posts folder. You
+it in a plain text using markdown and then save those in /_posts folder. You
 will specify which layout to use in this file. Then you compile your site
 using Jekyll. Jekyll will automatically create HTML files and folder structure
 for you. You can create layouts and templates so that Jekyll will
@@ -80,9 +80,9 @@ you can view your blog.&lt;/p&gt;
   &lt;li&gt;/index.md&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Create a file with following format &lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt; inside &lt;code class=&quot;highlighter-rouge&quot;&gt;/\_posts&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Create a file with following format &lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt; inside &lt;code class=&quot;highlighter-rouge&quot;&gt;/_posts&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;posts
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /_posts
 nano 2019-04-14-my-first-post.md
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -184,7 +184,7 @@ to make sure following are the updated DNS records.&lt;/p&gt;
 &lt;p&gt;Your blog will now be able to access using custom domain id
 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://www.yourdomain.co.in&lt;/code&gt;. It will take some time to reflect the changes.&lt;/p&gt;
 
-&lt;p&gt;If you add &lt;code class=&quot;highlighter-rouge&quot;&gt;\_posts&lt;/code&gt; as the GitHub repository root folder, you can create a
+&lt;p&gt;If you add &lt;code class=&quot;highlighter-rouge&quot;&gt;/_posts&lt;/code&gt; as the GitHub repository root folder, you can create a
 new repository at root level for your blogs source file. This will seperate
 your blog into two repository. One will have source files which you can make
 private and one with the build files.&lt;/p&gt;

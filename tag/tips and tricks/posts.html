@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Ananth’s Blog" />
 <link rel="next" href="/tag/tips%20and%20tricks/page/2/posts.html" />
 <script type="application/ld+json">
-{"headline":"Posts tagged with tips and tricks","@type":"WebPage","url":"/tag/tips%20and%20tricks/posts.html","description":"A personal blog having hobby projects.","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/tag/tips%20and%20tricks/posts.html","headline":"Posts tagged with tips and tricks","description":"A personal blog having hobby projects.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -484,8 +484,6 @@
           
           <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
           
-          <li><a href="/tag/android/posts.html" class="tag"> android </a></li>
-          
           <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
           
           <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
@@ -715,8 +713,7 @@
                 <input id="l5i6" type="checkbox">
                 <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
                   <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
-                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">Mobile Robot controlling using BeagleBone Black</a></li>        
-                  <li><a href="/2015/04/17/controlling-differential-drive-motor.html">Controlling a differential drive motor with Beaglebone black</a></li>        
+                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
                   
                 </ul>
               </li>
@@ -758,12 +755,10 @@
               <li>  
                 <label for="l6i1">December</label>
                 <input id="l6i1" type="checkbox">
-                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">C Socket Programming Extract IP address</a></li>        
+                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
                   <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
                   <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
-                  <li><a href="/2014/12/18/decimal-to-hex-conversion-using.html">Decimal to Hex Conversion using recursive function</a></li>        
                   <li><a href="/2014/12/18/gray-level-transformation-negative.html">Gray Level Transformations</a></li>        
-                  <li><a href="/2014/12/18/polynomial-addition-using-linked-list.html">Polynomial Addition Using Dynamic Memory Allocation</a></li>        
                   <li><a href="/2014/12/05/creating-and-deleting.html">Creating and Deleting Folders/Directories using C</a></li>        
                   <li><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></li>        
                   
@@ -909,6 +904,7 @@
         <div id="page-content">
           
             <h1> Posts tagged with tips and tricks </h1>
+            
           
           
 <div class="post-outer">
@@ -950,6 +946,32 @@
 	</div>
 </div>
 
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/07/22/linux-command-awk.html">Linux command awk extract anything</a></h2></div>
+	  	<div class="post-date">22 Jul 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Awk is pretty use full when you are writing automatic scripts to do your jobs. Some simple examples of how we can use awk are given below<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1}'</span><br /><br />It will print first column of ps command. &nbsp;If you want to print second column also write<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 $2}'</span><br /><br />Output seems to be pretty crowded? Add a simple space by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 " " $2}'</span><br /><br />Want to limit it display only second line?<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk ' NR==2{print $1 " " $2}'</span><br /><br />Want to exclede first row? You can do it by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR !=1{print &nbsp;$1 " " $2}'</span><br /><br />Similarly you can print rows greater than a value by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR &gt;1{print &nbsp;$1 " " $2}'</span><br /><br />You can extract virtually anything using awk... Feel free to explore every options. Type man awk or awk --help to explore other options. Feel free to comment also... :)<br /><br />This <a href="https://www.ibm.com/developerworks/library/l-awk1/" target="_blank">site</a> has some good examlpes.<br /><br /><br /></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></h2></div>
+	  	<div class="post-date">22 Jul 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Well Linux is famous for combining things in power full ways in which anything is possible from a command line. The real fun of Linux came when you start focusing on terminal to do everything...<br /><br />It's possible to pipeline commands in terminal. Also it's possible to pass output of something as an argument of other.<br /><br />For example you can ping to your own external ip by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ping $(curl -s &nbsp;curlmyip.com)</span><br /><br />curl curlmyip.com returns you ip address. This address is passed to &nbsp;the telnet as an argument. Whatever you put between $( and ) will execute as if it is a bash command.<br /><br /><br /></div> </div>
+      </div>
+	</div>
+</div>
+
 
 
 <!-- Pagination links -->
@@ -957,7 +979,7 @@
   
     <span class="previous">Previous</span>
   
-  <span class="page_number ">Page: 1 of 4</span>
+  <span class="page_number ">Page: 1 of 3</span>
   
     <a href="/tag/tips and tricks/page/2/posts.html" class="next">Next</a>
   

@@ -19,7 +19,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2015-02-22T12:50:00+05:30" />
 <script type="application/ld+json">
-{"headline":"Remote access your BeagleBone Black using vnc","dateModified":"2015-02-22T12:50:00+05:30","datePublished":"2015-02-22T12:50:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/2015/02/22/remote-access-your-beaglebone-black.html"},"url":"/2015/02/22/remote-access-your-beaglebone-black.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"Before going into how to share desktop with your BBB I assume you have a proper ssh access to your BBB. (through USB) (if not read this) Also this tutorial is for BBB with Debian installed (type cat /etc/*-release to know which distro you are currently using. Or refer here)First install the vnc server in BBB.(After logging into BBB)ssh root@192.168.7.2apt-get install x11vncThen go to your local computer and open a terminal window. Install a vnc viewer like vinagre.sudo apt-get install vinagreNow its time to start vnc server in BBB.x11vnc -auth /var/run/lightdm/root/:0 -foreverThis will start a vnc server at port 5900. Note this server setup is temporary. If you want to remotely connect to your BBB after a reboot type the above command again.Go to your local computer and type&nbsp;vinagre 192.168.7.2::5900 A remote desktop will be shown if all goes well. Try exploring other options in x11vnc using (in BBB)man x11vncThe server that&#39;s currently running will not have any password set. So if you want to set a password or want to know more about x11vnc refer here.Note: These descriptions are for getting started with BBB. Do not run a vnc server without any password if you are planning to deploy it directly to internet.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/2015/02/22/remote-access-your-beaglebone-black.html"},"@type":"BlogPosting","url":"/2015/02/22/remote-access-your-beaglebone-black.html","headline":"Remote access your BeagleBone Black using vnc","dateModified":"2015-02-22T12:50:00+05:30","datePublished":"2015-02-22T12:50:00+05:30","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"Before going into how to share desktop with your BBB I assume you have a proper ssh access to your BBB. (through USB) (if not read this) Also this tutorial is for BBB with Debian installed (type cat /etc/*-release to know which distro you are currently using. Or refer here)First install the vnc server in BBB.(After logging into BBB)ssh root@192.168.7.2apt-get install x11vncThen go to your local computer and open a terminal window. Install a vnc viewer like vinagre.sudo apt-get install vinagreNow its time to start vnc server in BBB.x11vnc -auth /var/run/lightdm/root/:0 -foreverThis will start a vnc server at port 5900. Note this server setup is temporary. If you want to remotely connect to your BBB after a reboot type the above command again.Go to your local computer and type&nbsp;vinagre 192.168.7.2::5900 A remote desktop will be shown if all goes well. Try exploring other options in x11vnc using (in BBB)man x11vncThe server that&#39;s currently running will not have any password set. So if you want to set a password or want to know more about x11vnc refer here.Note: These descriptions are for getting started with BBB. Do not run a vnc server without any password if you are planning to deploy it directly to internet.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -486,8 +486,6 @@
           
           <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
           
-          <li><a href="/tag/android/posts.html" class="tag"> android </a></li>
-          
           <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
           
           <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
@@ -717,8 +715,7 @@
                 <input id="l5i6" type="checkbox">
                 <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
                   <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
-                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">Mobile Robot controlling using BeagleBone Black</a></li>        
-                  <li><a href="/2015/04/17/controlling-differential-drive-motor.html">Controlling a differential drive motor with Beaglebone black</a></li>        
+                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
                   
                 </ul>
               </li>
@@ -760,12 +757,10 @@
               <li>  
                 <label for="l6i1">December</label>
                 <input id="l6i1" type="checkbox">
-                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">C Socket Programming Extract IP address</a></li>        
+                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
                   <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
                   <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
-                  <li><a href="/2014/12/18/decimal-to-hex-conversion-using.html">Decimal to Hex Conversion using recursive function</a></li>        
                   <li><a href="/2014/12/18/gray-level-transformation-negative.html">Gray Level Transformations</a></li>        
-                  <li><a href="/2014/12/18/polynomial-addition-using-linked-list.html">Polynomial Addition Using Dynamic Memory Allocation</a></li>        
                   <li><a href="/2014/12/05/creating-and-deleting.html">Creating and Deleting Folders/Directories using C</a></li>        
                   <li><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></li>        
                   
@@ -911,7 +906,8 @@
         <div id="page-content">
           
             <h1> Remote access your BeagleBone Black using vnc </h1>
-          
+            
+          22 Feb 2015
           <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">Before going into how to share desktop with your BBB I assume you have a proper ssh access to your BBB. (through USB) (if not read <a href="https://eionix.blogspot.in/2015/02/getting-started-with-beaglebone-black.html" target="_blank">this</a>) Also this tutorial is for BBB with Debian installed (type <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cat /etc/*-release</span> to know which distro you are currently using. Or refer <a href="https://www.cyberciti.biz/faq/find-linux-distribution-name-version-number/" target="_blank">here</a>)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">First install the vnc server in BBB.(After logging into BBB)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ssh root@192.168.7.2</span></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">apt-get install x11vnc</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Then go to your local computer and open a terminal window. Install a vnc viewer like vinagre.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo apt-get install vinagre</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Now its time to start vnc server in BBB.</div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">x11vnc -auth /var/run/lightdm/root/:0 -forever</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">This will start a vnc server at port 5900. Note this server setup is temporary. If you want to remotely connect to your BBB after a reboot type the above command again.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Go to your local computer and type&nbsp;</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vinagre 192.168.7.2::5900 </span></div><div style="text-align: justify;"><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-p4bKcxTZjDE/VOmHeRPwSyI/AAAAAAAAAnw/P2GLJEL0r3Y/s1600/Screenshot%2Bfrom%2B2015-02-22%2B13%3A05%3A55.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://1.bp.blogspot.com/-p4bKcxTZjDE/VOmHeRPwSyI/AAAAAAAAAnw/P2GLJEL0r3Y/s1600/Screenshot%2Bfrom%2B2015-02-22%2B13%3A05%3A55.png" height="257" width="400" /></a></div><br /><br /></div><div style="text-align: justify;">A remote desktop will be shown if all goes well. Try exploring other options in x11vnc using (in BBB)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">man x11vnc</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">The server that's currently running will not have any password set. So if you want to set a password or want to know more about x11vnc refer <a href="https://wiki.archlinux.org/index.php/X11vnc" target="_blank">here</a>.<br /><br />Note: These descriptions are for getting started with BBB. Do not run a vnc server without any password if you are planning to deploy it directly to internet. </div></div>
         </div>
       </main>

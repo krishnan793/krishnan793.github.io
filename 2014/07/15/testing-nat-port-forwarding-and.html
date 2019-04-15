@@ -19,7 +19,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2014-07-15T23:32:00+05:30" />
 <script type="application/ld+json">
-{"headline":"Testing NAT Port Forwarding and reverese NAT","dateModified":"2014-07-15T23:32:00+05:30","datePublished":"2014-07-15T23:32:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/2014/07/15/testing-nat-port-forwarding-and.html"},"url":"/2014/07/15/testing-nat-port-forwarding-and.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"For a long time I have been trying to configure port forwarding using NAT. But every attempt was futile... &nbsp;Finally I found that my port forwarding works just fine. But it just appears to be not working because my router doesn&#39;t support reverse NAT. In this post I will show you guys how to test whether you configure your NAT correctly or not. (Read a detailed write up by shane. Link)First make a port forwarding rule in your router say 1600. Download this little tool called simple internet tools. Install it and open port listener and select your internal IP(192.168.x.x). Then type your port number and press start listening.Go to this site&nbsp;and check whether it says port is opened. If your connection is successful you will notice it in the port listener application.Then go to your browser and type your internet ip address. (You can find it from www.whatismyip.com) . Tnen type your port number after a colon. (116.211.22.12:1600). Your browser shows a webpage not available window. Check your port listener. If you find a connection successful message it means your router supports reverse NAT. Otherwise reverse NAT is not available.You can also check it by an nc command like this.nc 116.211.22.12 1600If you didn&#39;t want to test the connection using the above site you can do it by nc from a remote ssh account. Login to your ssh account and try to connect it with nc.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/2014/07/15/testing-nat-port-forwarding-and.html"},"@type":"BlogPosting","url":"/2014/07/15/testing-nat-port-forwarding-and.html","headline":"Testing NAT Port Forwarding and reverese NAT","dateModified":"2014-07-15T23:32:00+05:30","datePublished":"2014-07-15T23:32:00+05:30","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"For a long time I have been trying to configure port forwarding using NAT. But every attempt was futile... &nbsp;Finally I found that my port forwarding works just fine. But it just appears to be not working because my router doesn&#39;t support reverse NAT. In this post I will show you guys how to test whether you configure your NAT correctly or not. (Read a detailed write up by shane. Link)First make a port forwarding rule in your router say 1600. Download this little tool called simple internet tools. Install it and open port listener and select your internal IP(192.168.x.x). Then type your port number and press start listening.Go to this site&nbsp;and check whether it says port is opened. If your connection is successful you will notice it in the port listener application.Then go to your browser and type your internet ip address. (You can find it from www.whatismyip.com) . Tnen type your port number after a colon. (116.211.22.12:1600). Your browser shows a webpage not available window. Check your port listener. If you find a connection successful message it means your router supports reverse NAT. Otherwise reverse NAT is not available.You can also check it by an nc command like this.nc 116.211.22.12 1600If you didn&#39;t want to test the connection using the above site you can do it by nc from a remote ssh account. Login to your ssh account and try to connect it with nc.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -486,8 +486,6 @@
           
           <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
           
-          <li><a href="/tag/android/posts.html" class="tag"> android </a></li>
-          
           <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
           
           <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
@@ -717,8 +715,7 @@
                 <input id="l5i6" type="checkbox">
                 <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
                   <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
-                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">Mobile Robot controlling using BeagleBone Black</a></li>        
-                  <li><a href="/2015/04/17/controlling-differential-drive-motor.html">Controlling a differential drive motor with Beaglebone black</a></li>        
+                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
                   
                 </ul>
               </li>
@@ -760,12 +757,10 @@
               <li>  
                 <label for="l6i1">December</label>
                 <input id="l6i1" type="checkbox">
-                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">C Socket Programming Extract IP address</a></li>        
+                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
                   <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
                   <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
-                  <li><a href="/2014/12/18/decimal-to-hex-conversion-using.html">Decimal to Hex Conversion using recursive function</a></li>        
                   <li><a href="/2014/12/18/gray-level-transformation-negative.html">Gray Level Transformations</a></li>        
-                  <li><a href="/2014/12/18/polynomial-addition-using-linked-list.html">Polynomial Addition Using Dynamic Memory Allocation</a></li>        
                   <li><a href="/2014/12/05/creating-and-deleting.html">Creating and Deleting Folders/Directories using C</a></li>        
                   <li><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></li>        
                   
@@ -911,7 +906,8 @@
         <div id="page-content">
           
             <h1> Testing NAT Port Forwarding and reverese NAT </h1>
-          
+            
+          15 Jul 2014
           <div dir="ltr" style="text-align: left;" trbidi="on">For a long time I have been trying to configure port forwarding using NAT. But every attempt was futile... &nbsp;Finally I found that my port forwarding works just fine. But it just appears to be not working because my router doesn't support reverse NAT. In this post I will show you guys how to test whether you configure your NAT correctly or not. (Read a detailed write up by shane. <a href="https://www.pcwintech.com/test-for-reverse-nat" target="_blank">Link</a>)<br /><br />First make a port forwarding rule in your router say 1600. Download this little tool called simple internet tools. Install it and open port listener and select your internal IP(192.168.x.x). Then type your port number and press start listening.<br /><br />Go to this <a href="https://www.pcwintech.com/port_test.php?result=online&amp;port=1979" target="_blank">site</a>&nbsp;and check whether it says port is opened. If your connection is successful you will notice it in the port listener application.<br /><br />Then go to your browser and type your internet ip address. (You can find it from www.whatismyip.com) . Tnen type your port number after a colon. (116.211.22.12:1600). Your browser shows a webpage not available window. Check your port listener. If you find a connection successful message it means your router supports reverse NAT. Otherwise reverse NAT is not available.<br /><br />You can also check it by an nc command like this.<br /><br />nc 116.211.22.12 1600<br /><br />If you didn't want to test the connection using the above site you can do it by nc from a remote ssh account. Login to your ssh account and try to connect it with nc.<br /><br /></div>
         </div>
       </main>

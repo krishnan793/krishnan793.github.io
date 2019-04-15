@@ -18,7 +18,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-04-14T00:00:00+05:30" />
 <script type="application/ld+json">
-{"headline":"Blog using Jekyll Github Pages with custom domain","dateModified":"2019-04-14T00:00:00+05:30","datePublished":"2019-04-14T00:00:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html"},"url":"/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html","description":"This post talks about how you can setup a blog using Jekyll and host it using GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll takes your content, renders Markdown and Liquid templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html"},"@type":"BlogPosting","url":"/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html","headline":"Blog using Jekyll Github Pages with custom domain","dateModified":"2019-04-14T00:00:00+05:30","datePublished":"2019-04-14T00:00:00+05:30","description":"This post talks about how you can setup a blog using Jekyll and host it using GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll takes your content, renders Markdown and Liquid templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -485,8 +485,6 @@
           
           <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
           
-          <li><a href="/tag/android/posts.html" class="tag"> android </a></li>
-          
           <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
           
           <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
@@ -716,8 +714,7 @@
                 <input id="l5i6" type="checkbox">
                 <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
                   <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
-                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">Mobile Robot controlling using BeagleBone Black</a></li>        
-                  <li><a href="/2015/04/17/controlling-differential-drive-motor.html">Controlling a differential drive motor with Beaglebone black</a></li>        
+                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
                   
                 </ul>
               </li>
@@ -759,12 +756,10 @@
               <li>  
                 <label for="l6i1">December</label>
                 <input id="l6i1" type="checkbox">
-                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">C Socket Programming Extract IP address</a></li>        
+                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
                   <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
                   <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
-                  <li><a href="/2014/12/18/decimal-to-hex-conversion-using.html">Decimal to Hex Conversion using recursive function</a></li>        
                   <li><a href="/2014/12/18/gray-level-transformation-negative.html">Gray Level Transformations</a></li>        
-                  <li><a href="/2014/12/18/polynomial-addition-using-linked-list.html">Polynomial Addition Using Dynamic Memory Allocation</a></li>        
                   <li><a href="/2014/12/05/creating-and-deleting.html">Creating and Deleting Folders/Directories using C</a></li>        
                   <li><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></li>        
                   
@@ -910,7 +905,8 @@
         <div id="page-content">
           
             <h1> Blog using Jekyll | Github Pages with custom domain </h1>
-          
+            
+          14 Apr 2019
           <p>This post talks about how you can setup a blog using Jekyll and host it using
 GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll
 takes your content, renders Markdown and Liquid templates, and spits out a
@@ -923,7 +919,7 @@ server.</p>
 For example all your posts can have one template. Then your home page and about
 page have a different template. Then all contents, you can write in a
 markdown format (you can also use HTML). If you want to create a post, you write
-it in a plain text using markdown and then save those in _posts folder. You
+it in a plain text using markdown and then save those in /_posts folder. You
 will specify which layout to use in this file. Then you compile your site
 using Jekyll. Jekyll will automatically create HTML files and folder structure
 for you. You can create layouts and templates so that Jekyll will
@@ -993,9 +989,9 @@ you can view your blog.</p>
   <li>/index.md</li>
 </ul>
 
-<p>Create a file with following format <code class="highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code> inside <code class="highlighter-rouge">/\_posts</code></p>
+<p>Create a file with following format <code class="highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code> inside <code class="highlighter-rouge">/_posts</code></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /<span class="se">\_</span>posts
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /_posts
 nano 2019-04-14-my-first-post.md
 </code></pre></div></div>
 
@@ -1097,7 +1093,7 @@ to make sure following are the updated DNS records.</p>
 <p>Your blog will now be able to access using custom domain id
 <code class="highlighter-rouge">https://www.yourdomain.co.in</code>. It will take some time to reflect the changes.</p>
 
-<p>If you add <code class="highlighter-rouge">\_posts</code> as the GitHub repository root folder, you can create a
+<p>If you add <code class="highlighter-rouge">/_posts</code> as the GitHub repository root folder, you can create a
 new repository at root level for your blogs source file. This will seperate
 your blog into two repository. One will have source files which you can make
 private and one with the build files.</p>

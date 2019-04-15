@@ -19,7 +19,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2015-02-27T15:21:00+05:30" />
 <script type="application/ld+json">
-{"headline":"Getting started with GPIO (Testing GPIO with a multimeter)","dateModified":"2015-02-27T15:21:00+05:30","datePublished":"2015-02-27T15:21:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/2015/02/27/getting-started-with-gpio-testing-gpio.html"},"url":"/2015/02/27/getting-started-with-gpio-testing-gpio.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"There are 65 possible GPIO pins that you can control. Some of the GPIO pins are normally configured to different functions. Let&#39;s play with one of them.Go to the beaglebone website and figure out the header pin corresponding to gpio23.The gpio23 is mapped to the 13th header pin. In this tutorial we are testing the gpio23 output using a multimeter (Do not connect an LED directly to BBB IO pin).First go to following directorycd /sys/class/gpio/Then make gpio23 availableecho 23 &gt; exportA new directory will be created. Open gpio directory.cd gpio23The direction of IO will be normally set as in (input).&nbsp; To make it as output,echo out &gt; directionThen set the pin to high usingecho 1 &gt; valueMeasure the voltage at pin 13 of P8 header. If its 3.3 V then you are on the right track. Pin 1 and 2 will be ground. You can connect the negative terminal of multimeter to pin 1 or 2. To set output as zero,echo 0 &gt; valueAfter finished with the tutorial unexport the gpio23 pin.cd ..echo 23 &gt; unexportTo get a better idea refer this site.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/2015/02/27/getting-started-with-gpio-testing-gpio.html"},"@type":"BlogPosting","url":"/2015/02/27/getting-started-with-gpio-testing-gpio.html","headline":"Getting started with GPIO (Testing GPIO with a multimeter)","dateModified":"2015-02-27T15:21:00+05:30","datePublished":"2015-02-27T15:21:00+05:30","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"There are 65 possible GPIO pins that you can control. Some of the GPIO pins are normally configured to different functions. Let&#39;s play with one of them.Go to the beaglebone website and figure out the header pin corresponding to gpio23.The gpio23 is mapped to the 13th header pin. In this tutorial we are testing the gpio23 output using a multimeter (Do not connect an LED directly to BBB IO pin).First go to following directorycd /sys/class/gpio/Then make gpio23 availableecho 23 &gt; exportA new directory will be created. Open gpio directory.cd gpio23The direction of IO will be normally set as in (input).&nbsp; To make it as output,echo out &gt; directionThen set the pin to high usingecho 1 &gt; valueMeasure the voltage at pin 13 of P8 header. If its 3.3 V then you are on the right track. Pin 1 and 2 will be ground. You can connect the negative terminal of multimeter to pin 1 or 2. To set output as zero,echo 0 &gt; valueAfter finished with the tutorial unexport the gpio23 pin.cd ..echo 23 &gt; unexportTo get a better idea refer this site.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -486,8 +486,6 @@
           
           <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
           
-          <li><a href="/tag/android/posts.html" class="tag"> android </a></li>
-          
           <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
           
           <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
@@ -717,8 +715,7 @@
                 <input id="l5i6" type="checkbox">
                 <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
                   <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
-                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">Mobile Robot controlling using BeagleBone Black</a></li>        
-                  <li><a href="/2015/04/17/controlling-differential-drive-motor.html">Controlling a differential drive motor with Beaglebone black</a></li>        
+                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
                   
                 </ul>
               </li>
@@ -760,12 +757,10 @@
               <li>  
                 <label for="l6i1">December</label>
                 <input id="l6i1" type="checkbox">
-                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">C Socket Programming Extract IP address</a></li>        
+                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
                   <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
                   <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
-                  <li><a href="/2014/12/18/decimal-to-hex-conversion-using.html">Decimal to Hex Conversion using recursive function</a></li>        
                   <li><a href="/2014/12/18/gray-level-transformation-negative.html">Gray Level Transformations</a></li>        
-                  <li><a href="/2014/12/18/polynomial-addition-using-linked-list.html">Polynomial Addition Using Dynamic Memory Allocation</a></li>        
                   <li><a href="/2014/12/05/creating-and-deleting.html">Creating and Deleting Folders/Directories using C</a></li>        
                   <li><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></li>        
                   
@@ -911,7 +906,8 @@
         <div id="page-content">
           
             <h1> Getting started with GPIO (Testing GPIO with a multimeter) </h1>
-          
+            
+          27 Feb 2015
           <div dir="ltr" style="text-align: left;" trbidi="on">There are 65 possible GPIO pins that you can control. Some of the GPIO pins are normally configured to different functions. Let's play with one of them.<br /><br />Go to the <a href="https://beagleboard.org/support/bone101" target="_blank">beaglebone website</a> and figure out the header pin corresponding to gpio23.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://beagleboard.org/static/images/cape-headers-digital.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://beagleboard.org/static/images/cape-headers-digital.png" height="240" width="320" /></a></div><br />The gpio23 is mapped to the 13th header pin. In this tutorial we are testing the gpio23 output using a multimeter (Do not connect an LED directly to BBB IO pin).<br /><br />First go to following directory<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd /sys/class/gpio</span>/<br /><br />Then make gpio23 available<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 23 &gt; export</span><br /><br />A new directory will be created. Open gpio directory.<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd gpio23</span><br /><br />The direction of IO will be normally set as in (input).&nbsp; To make it as output,<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo out &gt; direction</span><br /><br />Then set the pin to high using<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 1 &gt; value</span><br /><br />Measure the voltage at pin 13 of P8 header. If its 3.3 V then you are on the right track. Pin 1 and 2 will be ground. You can connect the negative terminal of multimeter to pin 1 or 2. <br /><br />To set output as zero,<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 0 &gt; value</span><br /><br />After finished with the tutorial unexport the gpio23 pin.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd ..</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 23 &gt; unexport</span><br /><br />To get a better idea refer this <a href="https://kilobaser.com/blog/2014-07-15-beaglebone-black-gpios" target="_blank">site</a>.</div>
         </div>
       </main>

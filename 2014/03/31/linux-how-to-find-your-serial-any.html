@@ -11,15 +11,15 @@
 <meta property="og:title" content="Linux: How to find your serial (any connected) device?" />
 <meta name="author" content="ANANTHAKRISHNAN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In Linux all devices that are connected to the system are listed in/dev If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it&#39;s name ( for ex: you want to connect it via minicom ), first go to /dev using cd /devThen list the contents of folder using ls But it will be hard to figure out the name of your device from the long list. So here is a trick for it. Disconnect the device and type this in terminal.ls &gt; removed.txt Connect your device again and typels &gt;connected.txt Your device&#39;s name will be on the connected.txt file. But how to know filter it? Compare both list and the odd one will be your device. Type this.diff removed.txt connected.txt You will get the name of your device." />
-<meta property="og:description" content="In Linux all devices that are connected to the system are listed in/dev If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it&#39;s name ( for ex: you want to connect it via minicom ), first go to /dev using cd /devThen list the contents of folder using ls But it will be hard to figure out the name of your device from the long list. So here is a trick for it. Disconnect the device and type this in terminal.ls &gt; removed.txt Connect your device again and typels &gt;connected.txt Your device&#39;s name will be on the connected.txt file. But how to know filter it? Compare both list and the odd one will be your device. Type this.diff removed.txt connected.txt You will get the name of your device." />
+<meta name="description" content="In Linux all devices that are connected to the system are listed in/dev If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it’s name ( for ex: you want to connect it via minicom ), first go to /dev using" />
+<meta property="og:description" content="In Linux all devices that are connected to the system are listed in/dev If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it’s name ( for ex: you want to connect it via minicom ), first go to /dev using" />
 <link rel="canonical" href="/2014/03/31/linux-how-to-find-your-serial-any.html" />
 <meta property="og:url" content="/2014/03/31/linux-how-to-find-your-serial-any.html" />
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2014-03-31T02:34:00+05:30" />
 <script type="application/ld+json">
-{"headline":"Linux: How to find your serial (any connected) device?","dateModified":"2014-03-31T02:34:00+05:30","datePublished":"2014-03-31T02:34:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/2014/03/31/linux-how-to-find-your-serial-any.html"},"url":"/2014/03/31/linux-how-to-find-your-serial-any.html","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"In Linux all devices that are connected to the system are listed in/dev If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it&#39;s name ( for ex: you want to connect it via minicom ), first go to /dev using cd /devThen list the contents of folder using ls But it will be hard to figure out the name of your device from the long list. So here is a trick for it. Disconnect the device and type this in terminal.ls &gt; removed.txt Connect your device again and typels &gt;connected.txt Your device&#39;s name will be on the connected.txt file. But how to know filter it? Compare both list and the odd one will be your device. Type this.diff removed.txt connected.txt You will get the name of your device.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/2014/03/31/linux-how-to-find-your-serial-any.html"},"@type":"BlogPosting","url":"/2014/03/31/linux-how-to-find-your-serial-any.html","headline":"Linux: How to find your serial (any connected) device?","dateModified":"2014-03-31T02:34:00+05:30","datePublished":"2014-03-31T02:34:00+05:30","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"In Linux all devices that are connected to the system are listed in/dev If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it’s name ( for ex: you want to connect it via minicom ), first go to /dev using","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -486,8 +486,6 @@
           
           <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
           
-          <li><a href="/tag/android/posts.html" class="tag"> android </a></li>
-          
           <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
           
           <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
@@ -717,8 +715,7 @@
                 <input id="l5i6" type="checkbox">
                 <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
                   <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
-                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">Mobile Robot controlling using BeagleBone Black</a></li>        
-                  <li><a href="/2015/04/17/controlling-differential-drive-motor.html">Controlling a differential drive motor with Beaglebone black</a></li>        
+                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
                   
                 </ul>
               </li>
@@ -760,12 +757,10 @@
               <li>  
                 <label for="l6i1">December</label>
                 <input id="l6i1" type="checkbox">
-                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">C Socket Programming Extract IP address</a></li>        
+                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
                   <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
                   <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
-                  <li><a href="/2014/12/18/decimal-to-hex-conversion-using.html">Decimal to Hex Conversion using recursive function</a></li>        
                   <li><a href="/2014/12/18/gray-level-transformation-negative.html">Gray Level Transformations</a></li>        
-                  <li><a href="/2014/12/18/polynomial-addition-using-linked-list.html">Polynomial Addition Using Dynamic Memory Allocation</a></li>        
                   <li><a href="/2014/12/05/creating-and-deleting.html">Creating and Deleting Folders/Directories using C</a></li>        
                   <li><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></li>        
                   
@@ -911,8 +906,30 @@
         <div id="page-content">
           
             <h1> Linux: How to find your serial (any connected) device? </h1>
-          
-          <div dir="ltr" style="text-align: left;" trbidi="on">In Linux all devices that are connected to the system are listed in<br /><br /><pre style="background-color: #f0f0f0; background-image: url(https://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif); border: 1px dashed rgb(204, 204, 204); font-family: arial; font-size: 12px; height: auto; line-height: 20px; overflow: auto; padding: 0px; width: 450.828125px;"><code style="word-wrap: normal;">/dev </code></pre><br />If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it's name ( for ex: you want to connect it via minicom ), first go to /dev using<br /><br /><pre style="background-color: #f0f0f0; background-image: url(https://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif); border: 1px dashed rgb(204, 204, 204); font-family: arial; font-size: 12px; height: auto; line-height: 20px; overflow: auto; padding: 0px; width: 450.828125px;"><code style="word-wrap: normal;"> cd /dev</code></pre><br />Then list the contents of folder using<br /><br /><pre style="background-color: #f0f0f0; background-image: url(https://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif); border: 1px dashed rgb(204, 204, 204); font-family: arial; font-size: 12px; height: auto; line-height: 20px; overflow: auto; padding: 0px; width: 450.828125px;"><code style="word-wrap: normal;"> ls  </code></pre><br />But it will be hard to figure out the name of your device from the long list. So here is a trick for it. Disconnect the device and type this in terminal.<br /><br /><pre style="background-color: #f0f0f0; background-image: url(https://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif); border: 1px dashed rgb(204, 204, 204); font-family: arial; font-size: 12px; height: auto; line-height: 20px; overflow: auto; padding: 0px; width: 450.828125px;"><code style="word-wrap: normal;">ls &gt; removed.txt </code></pre><br />Connect your device again and type<br /><br /><pre style="background-color: #f0f0f0; background-image: url(https://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif); border: 1px dashed rgb(204, 204, 204); font-family: arial; font-size: 12px; height: auto; line-height: 20px; overflow: auto; padding: 0px; width: 450.828125px;"><code style="word-wrap: normal;">ls &gt;connected.txt </code></pre><br />Your device's name will be on the connected.txt file. But how to know filter it? Compare both list and the odd one will be your device. Type this.<br /><br /><pre style="background-color: #f0f0f0; background-image: url(https://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif); border: 1px dashed rgb(204, 204, 204); font-family: arial; font-size: 12px; height: auto; line-height: 20px; overflow: auto; padding: 0px; width: 450.828125px;"><code style="word-wrap: normal;">diff removed.txt connected.txt  </code></pre><br />You will get the name of your device.<br /><br /><br /></div>
+            
+          31 Mar 2014
+          <p>In Linux all devices that are connected to the system are listed in/dev If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it’s name ( for ex: you want to connect it via minicom ), first go to /dev using</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /dev
+</code></pre></div></div>
+
+<p>Then list the contents of folder using ls  But it will be hard to figure out the name of your device from the long list. So here is a trick for it. Disconnect the device and type this in terminal.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="o">&gt;</span> removed.txt 
+</code></pre></div></div>
+
+<p>Connect your device again and type</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="o">&gt;</span>connected.txt 
+</code></pre></div></div>
+
+<p>Your device’s name will be on the connected.txt file. But how to know filter it? Compare both list and the odd one will be your device. Type this.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff removed.txt connected.txt  
+</code></pre></div></div>
+
+<p>You will get the name of your device.</p>
+
         </div>
       </main>
       <!-- Main post content end -->
