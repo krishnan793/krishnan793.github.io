@@ -280,6 +280,7 @@
           function toggle_side_bar(){
           	$(".fa-bars").toggleClass('rotated');
             if($('#side_bar').is(":visible")){
+              $('#search-box').show("slow");
               $('#side_bar').hide("slow");
               $('#side_bar').css("width","0%");
               $('#content').css("width","100%");
@@ -287,6 +288,7 @@
             } else {
               $('#side_bar').css("width","100%");
               $('#side_bar').show("slow");
+              $('#search-box').hide("slow");
               $('#content').hide();
               //$('#main-content').css("width","0%");
             }
@@ -369,6 +371,7 @@
       <style type="text/css">
         .body{
           display: flex;
+          overflow: auto;
         }
       </style>
           <!-- Side bar start -->
