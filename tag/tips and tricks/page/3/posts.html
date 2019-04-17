@@ -36,8 +36,7 @@
   </head>
 
   <body style="">
-
-    <header class="page-header" role="banner" style="padding: 5px;background-color: #323638; background-image: none;margin-bottom: 15px;">
+    <header class="page-header" role="banner" style="padding: 0px;background-color: #323638; background-image: none;margin-bottom: 15px;">
       <!-- Star in header start-->
       <script src="/assets/js/particles.js"></script>
       <style type="text/css"> 
@@ -253,6 +252,7 @@
 	#icon-menu {
 		display: none;
 	}
+
 	@media screen and (max-device-width: 350px), screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
@@ -265,7 +265,6 @@
 	  #icon-menu{
 	  	display: initial;
 	  }
-	}
 	.rotated { 
 	    -webkit-transform: rotate(90deg);
 	    -moz-transform: rotate(90deg);
@@ -273,6 +272,7 @@
 	    -ms-transform: rotate(90deg);
 	    transform: rotate(90deg);
 	}
+}
 </style>
 <script type="text/javascript">
           function toggle_side_bar(){
@@ -311,6 +311,56 @@
 	</ul>
 </div>
       <!-- Navigation bar end -->
+      <style type="text/css">
+	.gsc-control-cse {
+		border-color: #32353700 !important;
+		background-color: #FFFFFFFF !important;
+	}
+	.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+		background-color: #FFFFFFFF !important;
+	}
+	#search-box{
+		position: absolute;
+		right: 0px;
+		/* float: right; */
+		margin-top: 10px;
+		width: 30%;
+		/* height: 55px; */
+		line-height: 15px;
+		color: black;
+	}
+	@media screen and (max-device-width: 678px),  screen and (max-width: 678px){
+
+		#search-box{
+			position: absolute;
+			right: 0px;
+			margin-top: 0px;
+			margin-left: -6px;
+			width: 100%;
+			line-height: 15px;
+			color: black;
+		}
+		.gsc-results-wrapper-overlay{
+			width: 100% !important;
+			/*padding: 0px !important;*/
+			left: 0px !important; 
+		}
+	}
+</style>
+<div id="search-box">
+<script>
+  (function() {
+    var cx = '017758302252310002688:ep7ig_licse';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div>
     </header>
 
     <div class="body">
@@ -924,6 +974,7 @@
       	
       	</div>
   	  	<div class="post-desc"> <p>Ever tried to put windows to crawl? Let’s do it. This simple code is an infinite loop where each time it runs a copy of itself. The amount of computational power it requires increase exponentially. With an i5 configuration with descent RAM your PC will hang in seconds. You won’t even get time to kill the process or log off. One thing you can do is to shut you PC using your power button.  You will have 5 second timer. It will execute only after 5 seconds. It won’t do any harm to your PC other than hanging… Use it for educational purpose only…Save this file as tryme.bat and run it.</p>
+
  </div>
       </div>
 	</div>

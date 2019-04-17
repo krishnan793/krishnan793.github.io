@@ -38,8 +38,7 @@
   </head>
 
   <body style="">
-
-    <header class="page-header" role="banner" style="padding: 5px;background-color: #323638; background-image: none;margin-bottom: 15px;">
+    <header class="page-header" role="banner" style="padding: 0px;background-color: #323638; background-image: none;margin-bottom: 15px;">
       <!-- Star in header start-->
       <script src="/assets/js/particles.js"></script>
       <style type="text/css"> 
@@ -255,6 +254,7 @@
 	#icon-menu {
 		display: none;
 	}
+
 	@media screen and (max-device-width: 350px), screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
@@ -267,7 +267,6 @@
 	  #icon-menu{
 	  	display: initial;
 	  }
-	}
 	.rotated { 
 	    -webkit-transform: rotate(90deg);
 	    -moz-transform: rotate(90deg);
@@ -275,6 +274,7 @@
 	    -ms-transform: rotate(90deg);
 	    transform: rotate(90deg);
 	}
+}
 </style>
 <script type="text/javascript">
           function toggle_side_bar(){
@@ -313,6 +313,56 @@
 	</ul>
 </div>
       <!-- Navigation bar end -->
+      <style type="text/css">
+	.gsc-control-cse {
+		border-color: #32353700 !important;
+		background-color: #FFFFFFFF !important;
+	}
+	.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+		background-color: #FFFFFFFF !important;
+	}
+	#search-box{
+		position: absolute;
+		right: 0px;
+		/* float: right; */
+		margin-top: 10px;
+		width: 30%;
+		/* height: 55px; */
+		line-height: 15px;
+		color: black;
+	}
+	@media screen and (max-device-width: 678px),  screen and (max-width: 678px){
+
+		#search-box{
+			position: absolute;
+			right: 0px;
+			margin-top: 0px;
+			margin-left: -6px;
+			width: 100%;
+			line-height: 15px;
+			color: black;
+		}
+		.gsc-results-wrapper-overlay{
+			width: 100% !important;
+			/*padding: 0px !important;*/
+			left: 0px !important; 
+		}
+	}
+</style>
+<div id="search-box">
+<script>
+  (function() {
+    var cx = '017758302252310002688:ep7ig_licse';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div>
     </header>
 
     <div class="body">
@@ -918,7 +968,31 @@
           21 Jan 2013
           <p><img src="https://lh5.ggpht.com/-bztqsY2gNgQ/UPxZ9GTIBII/AAAAAAAAAKo/bNDGZQdvoiQ/DSC_0117_thumb%25255B24%25255D.jpg?imgmax=800" alt="image" /></p>
 
-<p>This code make 2 LED blink one after other. LEDs are connected to PORT C (P0 and P1). Make sure use a 330 ohm resistance to protect your LED.Code  1: /*  2:  * Driving_2_LED_in_a_Fashion.c  3:  *  4:  * Created: 01-01-2013 PM 12:24:34  5:  *  Author: ANANTHAKRISHNAN.U.S  6:  */   7:   8:   9: #include &lt;avr/io.h&gt; 10: #include &lt;util/delay.h&gt; 11:  12: int main(void) 13: { 14:   DDRC = 0b00000011; 15:     while(1) 16:     { 17:      PORTC = 0b00000001; 18:      _delay_ms(500); 19:      PORTC = 0b00000010; 20:     _delay_ms(500);  21:     } 22: }</p>
+<p>This code make 2 LED blink one after other. LEDs are connected to PORT C (P0 and P1). Make sure use a 330 ohm resistance to protect your LED.Code</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cm">/*  
+  * Driving_2_LED_in_a_Fashion.c  
+  *  
+  * Created: 01-01-2013 PM 12:24:34  
+  *  Author: ANANTHAKRISHNAN.U.S  
+  */</span>   
+   
+   
+ <span class="cp">#include &lt;avr/io.h&gt; 
+</span> <span class="cp">#include &lt;util/delay.h&gt; 
+</span>  
+ <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> 
+ <span class="p">{</span> 
+   <span class="n">DDRC</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b00000011</span><span class="p">;</span> 
+     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+     <span class="p">{</span> 
+      <span class="n">PORTC</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b00000001</span><span class="p">;</span> 
+      <span class="n">_delay_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> 
+      <span class="n">PORTC</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b00000010</span><span class="p">;</span> 
+     <span class="n">_delay_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>  
+     <span class="p">}</span> 
+ <span class="p">}</span>
+</code></pre></div></div>
 
         </div>
       </main>

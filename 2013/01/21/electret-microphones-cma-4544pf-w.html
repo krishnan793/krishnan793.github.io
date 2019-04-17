@@ -38,8 +38,7 @@
   </head>
 
   <body style="">
-
-    <header class="page-header" role="banner" style="padding: 5px;background-color: #323638; background-image: none;margin-bottom: 15px;">
+    <header class="page-header" role="banner" style="padding: 0px;background-color: #323638; background-image: none;margin-bottom: 15px;">
       <!-- Star in header start-->
       <script src="/assets/js/particles.js"></script>
       <style type="text/css"> 
@@ -255,6 +254,7 @@
 	#icon-menu {
 		display: none;
 	}
+
 	@media screen and (max-device-width: 350px), screen and (max-width: 350px){
 	  #nav ul{
 	    flex-direction: column;
@@ -267,7 +267,6 @@
 	  #icon-menu{
 	  	display: initial;
 	  }
-	}
 	.rotated { 
 	    -webkit-transform: rotate(90deg);
 	    -moz-transform: rotate(90deg);
@@ -275,6 +274,7 @@
 	    -ms-transform: rotate(90deg);
 	    transform: rotate(90deg);
 	}
+}
 </style>
 <script type="text/javascript">
           function toggle_side_bar(){
@@ -313,6 +313,56 @@
 	</ul>
 </div>
       <!-- Navigation bar end -->
+      <style type="text/css">
+	.gsc-control-cse {
+		border-color: #32353700 !important;
+		background-color: #FFFFFFFF !important;
+	}
+	.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+		background-color: #FFFFFFFF !important;
+	}
+	#search-box{
+		position: absolute;
+		right: 0px;
+		/* float: right; */
+		margin-top: 10px;
+		width: 30%;
+		/* height: 55px; */
+		line-height: 15px;
+		color: black;
+	}
+	@media screen and (max-device-width: 678px),  screen and (max-width: 678px){
+
+		#search-box{
+			position: absolute;
+			right: 0px;
+			margin-top: 0px;
+			margin-left: -6px;
+			width: 100%;
+			line-height: 15px;
+			color: black;
+		}
+		.gsc-results-wrapper-overlay{
+			width: 100% !important;
+			/*padding: 0px !important;*/
+			left: 0px !important; 
+		}
+	}
+</style>
+<div id="search-box">
+<script>
+  (function() {
+    var cx = '017758302252310002688:ep7ig_licse';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div>
     </header>
 
     <div class="body">
@@ -918,7 +968,11 @@
           21 Jan 2013
           <p><img src="https://www.electroncomponents.com/image/cache/data/Sensors/EC_electret-condenser-microphone-228x228.jpg" alt="image" /></p>
 
-<p>An electret mic is the best choice for money and low power requirements. It is extremely compact in size and has a good performance value.For some time I have been searching for a microphone for my project that works above 20 KHz. It started from electret microphones and ended just right back at the same electret condenser microphones. Even though the datasheets says it has a frequency range of 20 to 20 kHz, it is possible to obtain the signal having around 24kHz. Obviously will have some high attenuation. But will work quite at 24khz range.Many types of microphones need power to operate. They are generally called condenser microphones. If you google around the webpages for mic circuits, you will definitely find out that all the condenser type microphones need a biasing arrangement. Electret condenser type microphone has a built in FET buffer. So it needs to be powered. Normal biasing voltage ranges from 3 to 9v. Also you need to add a capacitor to block the dc voltage from getting into. When you bias the mic make sure it is free from noise or any other fluctuation. It will surely affect its sensitivity.If you want to work with higher frequency signals there is also a 40 kHz transceiver pair(190Rs). Electret condenser microphone costs only around 10Rs. If you are planning to buy one here is the link. Electret condenser micwww.electroncomponents.com/Mini-Components/Sensors_Transducer/Electret-Microphone-Condenser40 kHz pairwww.electroncomponents.com/Mini-Components/Sensors_Transducer/Ultrasonic-Transducer-Pair-Transmitter-ReceiverDatasheethttps://www.adafruit.com/datasheets/CMA-4544PF-W.pdf</p>
+<p>An electret mic is the best choice for money and low power requirements. It is extremely compact in size and has a good performance value.For some time I have been searching for a microphone for my project that works above 20 KHz. It started from electret microphones and ended just right back at the same electret condenser microphones. Even though the datasheets says it has a frequency range of 20 to 20 kHz, it is possible to obtain the signal having around 24kHz. Obviously will have some high attenuation. But will work quite at 24khz range.Many types of microphones need power to operate. They are generally called condenser microphones. If you google around the webpages for mic circuits, you will definitely find out that all the condenser type microphones need a biasing arrangement. Electret condenser type microphone has a built in FET buffer. So it needs to be powered. Normal biasing voltage ranges from 3 to 9v. Also you need to add a capacitor to block the dc voltage from getting into. When you bias the mic make sure it is free from noise or any other fluctuation. It will surely affect its sensitivity.If you want to work with higher frequency signals there is also a 40 kHz transceiver pair(190Rs). Electret condenser microphone costs only around 10Rs. If you are planning to buy one here is the <a href="https://www.electroncomponents.com/Mini-Components/Sensors_Transducer/Electret-Microphone-Condenser40">link</a>.</p>
+
+<p><a href="https://www.electroncomponents.com/Mini-Components/Sensors_Transducer/Ultrasonic-Transducer-Pair-Transmitter-Receiver">Electret condenser mic kHz pair</a></p>
+
+<p><a href="https://www.adafruit.com/datasheets/CMA-4544PF-W.pdf">Datasheet</a></p>
 
         </div>
       </main>
