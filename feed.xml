@@ -1,4 +1,218 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-23T02:32:29+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Blog using Jekyll | Github Pages with custom domain</title><link href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html" rel="alternate" type="text/html" title="Blog using Jekyll | Github Pages with custom domain" /><published>2019-04-14T00:00:00+05:30</published><updated>2019-04-14T00:00:00+05:30</updated><id>/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github</id><content type="html" xml:base="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">&lt;p&gt;This post talks about how you can setup a blog using Jekyll and host it using
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-06-04T22:08:35+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Raspberry pi Tips and Tricks</title><link href="/2019/06/04/raspberry-pi-tips-and-tricks.html" rel="alternate" type="text/html" title="Raspberry pi Tips and Tricks" /><published>2019-06-04T00:00:00+05:30</published><updated>2019-06-04T00:00:00+05:30</updated><id>/2019/06/04/raspberry-pi-tips-and-tricks</id><content type="html" xml:base="/2019/06/04/raspberry-pi-tips-and-tricks.html">&lt;p&gt;If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.&lt;/p&gt;
+
+&lt;h2 id=&quot;enable-ssh&quot;&gt;Enable ssh&lt;/h2&gt;
+
+&lt;p&gt;create an empty file in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/boot/ssh&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;connect-to-wifi-on-boot&quot;&gt;Connect to WiFi on boot&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /etc/wpa_supplicant/wpa_supplicant.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=GB
+
+
+
+network={
+        ssid=&quot;insert_your_hidden_SSID_here&quot;
+        scan_ssid=1
+        psk=&quot;insert_your_wifi_password_here&quot;
+        key_mgmt=WPA-PSK
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;disable-rainbow-screen&quot;&gt;Disable rainbow screen&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /boot/config.txt&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;disable_splash=1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;disable-boot-logs&quot;&gt;Disable boot logs&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /boot/cmdline.txt&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Change the console from tty1 to&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;console=tty3 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add this to the end of the line. &lt;code class=&quot;highlighter-rouge&quot;&gt;'loglevel=0'&lt;/code&gt; removes most of the messages from the boot. You can also use &lt;code class=&quot;highlighter-rouge&quot;&gt;'loglevel=3'&lt;/code&gt;, but some boot messages may re-appear.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you are going to use Plymouth add this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plymouth.ignore-serial-consoles 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;change-boot-animation&quot;&gt;Change boot animation&lt;/h2&gt;
+&lt;p&gt;Change raspbian plymouth theme&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /usr/share/plymouth/themes/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Clone this repository.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo git clone https://github.com/krishnan793/PlymouthTheme-TheRun.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Install the theme.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/PlymouthTheme-TheRun/PlymouthTheme-TheRun.plymouth 100
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Select the default theme.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo update-alternatives --config default.plymouth
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Update the initramfs image.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo update-initramfs -u
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /etc/plymouth/plymouthd.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Theme=pix to&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Theme=PlymouthTheme-TheRun
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;waveshare-7-inch-display&quot;&gt;Waveshare 7 inch display&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /boot/config.txt&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hdmi_force_hotplug=1
+config_hdmi_boost=0
+overscan_left=0
+overscan_right=0
+overscan_top=0
+overscan_bottom=0
+disable_overscan=0
+hdmi_cvt=1024 600 60 6 ##
+framebuffer_width=1024 ##
+framebuffer_height=600 ##
+hdmi_group=2
+hdmi_mode=1
+hdmi_mode=87
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;rotate-display&quot;&gt;Rotate display&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /boot/config.txt&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lcd_rotate=2 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;display_rotate=0 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;display_rotate=0 Normal&lt;/li&gt;
+  &lt;li&gt;display_rotate=1 90 degrees&lt;/li&gt;
+  &lt;li&gt;display_rotate=2 180 degrees&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;set-display-brightness&quot;&gt;Set display brightness&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo echo 50 &amp;gt; /sys/class/backlight/rpi_backlight/brightness
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To make it persistent add the above statement in &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/rc.local&lt;/code&gt; (before exit 0)&lt;/p&gt;
+
+&lt;h2 id=&quot;switch-off-display&quot;&gt;Switch off display&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo echo 1 &amp;gt; /sys/class/backlight/rpi_backlight/b1_power
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;switch-on-display&quot;&gt;Switch on display&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo echo 0 &amp;gt; /sys/class/backlight/rpi_backlight/b1_power
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;to-remove-low-power-indication-lightning-icon&quot;&gt;To remove low power indication (lightning icon)&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /boot/config.txt&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;avoid_warnings=1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;hide-cursor&quot;&gt;Hide cursor&lt;/h2&gt;
+
+&lt;p&gt;sudo nano &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/lightdm/lightdm.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Seat:*]
+xserver-command=X -nocursor 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;start-app-in-fullscreen-with-desktop-on-boot&quot;&gt;Start app in fullscreen with desktop on boot&lt;/h2&gt;
+
+&lt;p&gt;Make sure you enable auto login using &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo raspi-config&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;sudo nano &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/xdg/autostart/smart_room.desktop&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Desktop Entry]
+Type=Application
+Name=smart_room
+Comment=Kivy RPI Infoscreen
+NoDisplay=false
+Exec=chromium-browser http://192.168.1.5/src/home.html --start-fullscreen
+NotShowIn=GNOME;KDE;XFCE;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;start-app-in-fullscreen-without-desktop-on-boot&quot;&gt;Start app in fullscreen without desktop on boot&lt;/h2&gt;
+
+&lt;p&gt;Make sure you enable auto login using &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo raspi-config&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /etc/lightdm/lightdm.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Seat:*]
+user-session=myxclient
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /usr/share/xsessions/myxclient.desktop&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Desktop Entry]
+Type=Application
+Name=smart_room
+Comment=Kivy RPI Infoscreen
+NoDisplay=false
+Exec=/home/pi/start.sh
+NotShowIn=GNOME;KDE;XFCE;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo nano /home/pi/start.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+/usr/bin/chromium-browser &lt;span class=&quot;nt&quot;&gt;--kiosk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https://www.google.com &lt;span class=&quot;nt&quot;&gt;--start-fullscreen&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--window-size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1024,600 &lt;span class=&quot;nt&quot;&gt;--window-position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0,0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;uart&quot;&gt;UART&lt;/h2&gt;
+
+&lt;p&gt;The SoCs used on the Raspberry Pis have two built-in UARTs, a PL011 and a mini UART. both are 3.3V devices. By default, on Raspberry Pis equipped with the wireless/Bluetooth module (Raspberry Pi 3 and Raspberry Pi Zero W), the PL011 UART is connected to the Bluetooth module, while the mini UART is used as the primary UART and will have a Linux console on it. On all other models, the PL011 is used as the primary UART.&lt;/p&gt;
+
+&lt;p&gt;For pi3 &amp;amp; zero&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;/dev/ttyS0 (mini UART) primary UART  symlink to /dev/serial0&lt;/li&gt;
+  &lt;li&gt;/dev/ttyAMA0 (PL011) bluetooth module symlink to /dev/serial1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The baud rate of the mini UART is linked to the core frequency of the VPU (VideoCore processor) on the VC4 GPU.&lt;/p&gt;
+
+&lt;p&gt;Steps to enable mini UART&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;add &lt;code class=&quot;highlighter-rouge&quot;&gt;enable_uart=1&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;/boot/config.txt&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;remove &lt;code class=&quot;highlighter-rouge&quot;&gt;console=serial0&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;/boot/cmdline.txt&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;default baud rate is: 115200&lt;/p&gt;</content><author><name></name></author><category term="Linux" /><category term="Pi" /><summary type="html">If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.</summary></entry><entry><title type="html">Blog using Jekyll | Github Pages with custom domain</title><link href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html" rel="alternate" type="text/html" title="Blog using Jekyll | Github Pages with custom domain" /><published>2019-04-14T00:00:00+05:30</published><updated>2019-04-14T00:00:00+05:30</updated><id>/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github</id><content type="html" xml:base="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">&lt;p&gt;This post talks about how you can setup a blog using Jekyll and host it using
 GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll
 takes your content, renders Markdown and Liquid templates, and spits out a
 complete, static website ready to be served by Apache, Nginx or another web
@@ -914,10 +1128,4 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 
 &lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/xhxmteAvNrk&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;See this instructable &lt;a href=&quot;https://www.instructables.com/id/Home-Made-Micro-Aerial-Vehicle-MAV-in-5-Min/&quot;&gt;link&lt;/a&gt; for more videos/photos.&lt;/p&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Drones" /><summary type="html">This is a small MAV (Micro Areal Vehicle) I created out of simple household stuffs. Though this one can’t be controlled, it is fun to watch it fly. :) :) :)</summary></entry><entry><title type="html">PlymouthTheme-TheRun</title><link href="/2016/11/02/this-is-another-theme-i-created-for.html" rel="alternate" type="text/html" title="PlymouthTheme-TheRun" /><published>2016-11-02T02:50:00+05:30</published><updated>2016-11-02T02:50:00+05:30</updated><id>/2016/11/02/this-is-another-theme-i-created-for</id><content type="html" xml:base="/2016/11/02/this-is-another-theme-i-created-for.html">&lt;p&gt;This is an another theme I created for Plymouth ( a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/krishnan793/PlymouthTheme-TheRun/master/images/PlymouthTheme-TheRun.gif&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;A step by step instruction of how to install this theme is in this video.&lt;/p&gt;
-
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/yNW1hTyDe5U&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><summary type="html">This is an another theme I created for Plymouth ( a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.</summary></entry></feed>
+&lt;p&gt;See this instructable &lt;a href=&quot;https://www.instructables.com/id/Home-Made-Micro-Aerial-Vehicle-MAV-in-5-Min/&quot;&gt;link&lt;/a&gt; for more videos/photos.&lt;/p&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Drones" /><summary type="html">This is a small MAV (Micro Areal Vehicle) I created out of simple household stuffs. Though this one can’t be controlled, it is fun to watch it fly. :) :) :)</summary></entry></feed>

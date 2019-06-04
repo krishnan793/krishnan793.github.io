@@ -532,6 +532,8 @@
         </div>
         <ul class="tags">
           
+          <li><a href="/tag/pi/posts.html" class="tag"> Pi </a></li>
+          
           <li><a href="/tag/blogging/posts.html" class="tag"> Blogging </a></li>
           
           <li><a href="/tag/drones/posts.html" class="tag"> Drones </a></li>
@@ -599,8 +601,17 @@
               
               
               <li>  
-                <label for="l1i1">April</label>
+                <label for="l1i1">June</label>
                 <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2019/06/04/raspberry-pi-tips-and-tricks.html">Raspberry pi Tips and Tricks</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i2">April</label>
+                <input id="l1i2" type="checkbox">
                 <ul><li><a href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">Blog using Jekyll | Github Pages with custom domain</a></li>        
                   
                 </ul>
@@ -608,8 +619,8 @@
               
               
               <li>  
-                <label for="l1i2">January</label>
-                <input id="l1i2" type="checkbox">
+                <label for="l1i3">January</label>
+                <input id="l1i3" type="checkbox">
                 <ul><li><a href="/2019/01/09/product-design-of-4-wheel-differential.html">Product Design of a 4 wheel differential drive robot</a></li>        
                   
                 </ul>
@@ -972,6 +983,19 @@
           
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/07/19/how-to-know-external-ip-address-from.html">How to know external IP address from Linux terminal?</a></h2></div>
+	  	<div class="post-date">19 Jul 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">ifconfig displays only local ip address of your system. If your system is directly connected to internet then it will be your external ip address. It may not be the case always. Because you will be behind a router or a modem.<br />You can know the external IP address by going to <a href="https://www.whatismyip.com/">www.whatismyip.com</a> or <a href="https://www.ipecho.net/">www.ipecho.net</a>. If you want to know it from a terminal type<br /><br /><span style="font-family: Courier New, Courier, monospace;">curl curlmyip.com</span><br /><br />What curl do is it fetches the content of the link to the terminal. There are also several other websites that offers this same service. Some of them are listed below.<br /><br /><span style="color: #073763;"><span style="font-family: 'Courier New', Courier, monospace;">curl&nbsp;</span><a href="https://ipecho.net/plain" style="font-family: 'Courier New', Courier, monospace;">ipecho.net/plain</a></span><br /><span style="color: #073763;"><br /></span><span style="color: #073763; font-family: Courier New, Courier, monospace;">curl <a href="https://myexternalip.com/raw">myexternalip.com/raw</a></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://curlmyip.com/">curlmyip.com</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://ifconfig.me/ip">ifconfig.me/ip</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://icanhazip.com/">icanhazip.com</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://ip.appspot.com/">ip.appspot.com</a></span></span><br /><br /><br /></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2014/07/16/how-to-see-open-ports-inlinux.html">How to see open ports inLinux?</a></h2></div>
 	  	<div class="post-date">16 Jul 2014</div>
       <div class="post-inner">
@@ -1018,21 +1042,6 @@
       	
       	</div>
   	  	<div class="post-desc"> <p>If you are new to linux OS, it’s a common mistake to add a (.) in front of your files and suddenly the file disappears. In Linux filenames starting with a dot (.) are hidden. You can intentionally make a folder or file hidden by renaming it.mv filename .filename  If you want to view you hidden files or folders, first go to the location where the file resides using cd command.</p>
-
- </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/03/31/linux-how-to-find-your-serial-any.html">Linux: How to find your serial (any connected) device?</a></h2></div>
-	  	<div class="post-date">31 Mar 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>In Linux all devices that are connected to the system are listed in/dev If you connect your mouse to your system it will detect it as hidraw. Other serial devices will be named as tty0, tty1,etc. So if you connect a serial (any) device and you want to know it’s name ( for ex: you want to connect it via minicom ), first go to /dev using</p>
 
  </div>
       </div>

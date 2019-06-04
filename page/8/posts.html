@@ -532,6 +532,8 @@
         </div>
         <ul class="tags">
           
+          <li><a href="/tag/pi/posts.html" class="tag"> Pi </a></li>
+          
           <li><a href="/tag/blogging/posts.html" class="tag"> Blogging </a></li>
           
           <li><a href="/tag/drones/posts.html" class="tag"> Drones </a></li>
@@ -599,8 +601,17 @@
               
               
               <li>  
-                <label for="l1i1">April</label>
+                <label for="l1i1">June</label>
                 <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2019/06/04/raspberry-pi-tips-and-tricks.html">Raspberry pi Tips and Tricks</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i2">April</label>
+                <input id="l1i2" type="checkbox">
                 <ul><li><a href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">Blog using Jekyll | Github Pages with custom domain</a></li>        
                   
                 </ul>
@@ -608,8 +619,8 @@
               
               
               <li>  
-                <label for="l1i2">January</label>
-                <input id="l1i2" type="checkbox">
+                <label for="l1i3">January</label>
+                <input id="l1i3" type="checkbox">
                 <ul><li><a href="/2019/01/09/product-design-of-4-wheel-differential.html">Product Design of a 4 wheel differential drive robot</a></li>        
                   
                 </ul>
@@ -974,6 +985,19 @@
 
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2015/02/22/beagleboneblack-apt-get-upgrade-error.html">BeagleBoneBlack apt-get upgrade error due to led-aging.sh</a></h2></div>
+	  	<div class="post-date">22 Feb 2015</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">When I try to upgrade my new BBB bought from element14 (4gb emmc) it throws a list of errors.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">stem facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv:&nbsp; loop involving service mountkernfs at depth 1<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: exiting now without changing boot order!<br />update-rc.d: error: insserv rejected the script header<br />dpkg: error processing ppp (--configure):<br />&nbsp;subprocess installed post-installation script returned error exit status 1<br />Errors were encountered while processing:<br />&nbsp;rsyslog<br />&nbsp;apache2.2-common<br />&nbsp;apache2-mpm-worker<br />&nbsp;apache2<br />&nbsp;dbus<br />&nbsp;dbus-x11<br />&nbsp;hostapd<br />&nbsp;openssh-server<br />&nbsp;ppp<br />E: Sub-process /usr/bin/dpkg returned an error code (1)</span><br /><br />The error was due to a file led-aging.sh. I found the solution from <a href="https://groups.google.com/forum/#!topic/beagleboard/LPjCn4LEY2I" target="_blank">here</a>. (By <span class="_username"><span class="H1SYRSB-P-a g-hovercard" data-name="Dirk Koopman" data-userid="104743563382885048548" style="color: #222222;">Dirk Koopman</span></span>)<br /><br />Edit the file<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">nano /etc/init.d/led_aging.sh </span><br /><br />and replace the contents with<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">#!/bin/sh -e<br />### BEGIN INIT INFO<br /># Provides:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; led_aging.sh<br /># Required-Start:&nbsp;&nbsp;&nbsp; $local_fs<br /># Required-Stop:&nbsp;&nbsp;&nbsp;&nbsp; $local_fs<br /># Default-Start:&nbsp;&nbsp;&nbsp;&nbsp; 2 3 4 5<br /># Default-Stop:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 1 6<br /># Short-Description: Start LED aging<br /># Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Starts LED aging (whatever that is)<br />### END INIT INFO<br /><br />x=$(/bin/ps -ef | /bin/grep "[l]ed_acc")<br />if [ ! -n "$x" -a -x /usr/bin/led_acc ]; then<br />&nbsp;&nbsp;&nbsp; /usr/bin/led_acc &amp;<br />fi</span><br />&nbsp; <br />Then run<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">apt-get upgrade</span><br /><br />again. It will solve the issue.</div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2015/02/22/getting-internet-on-bbb-via-usb-share.html">Getting internet on BBB via usb (Share internet from your linux machine)</a></h2></div>
 	  	<div class="post-date">22 Feb 2015</div>
       <div class="post-inner">
@@ -1022,21 +1046,6 @@
       	
       	</div>
   	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Just started working with beaglebone black Rev C. As I move on with beaglebone black I will keep my blog posted. It may be helpful for newbies like me... :-)<br /><br />Connect your BBB (BeagleBone Black) with your PC. Open up your terminal and type<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ifconfig</span><br /><br />to check whether it's connected. You will see an eth1 (ethx) connection with an IP assigned as 192.168.7.1<br /><br />When you connect your BBB, you will see a drive mounted up (if not mount the disk). Open the drive and open start.htm. You will see documentation of the device there. You can install drivers from there. (Driver installation isn't required, but you might find a few udev rules helpful.) Just download the mkudevrule.sh file. Go to the folder where you download the file. Then give permission to execute the file.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd ~/Downloads/</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">chmod +x mkudevrule.sh</span><br /><br />Then run it by,<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo ./mkudevrule.sh</span><br /><br />In orded to remotly login to your BBB using ssh type<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ssh root@192.168.7.2</span><br /><br />There won't be any root password set yet. For windows users download any terminal software like putty. Then try to connect with 192.168.7.2 on port 22. </div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></h2></div>
-	  	<div class="post-date">26 Dec 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).</p>
-
- </div>
       </div>
 	</div>
 </div>

@@ -14,18 +14,19 @@
     <meta charset="UTF-8">
 
     <!-- Begin Jekyll SEO tag v2.6.0 -->
-<title>Posts tagged with linux | Ananth’s Blog</title>
+<title>Raspberry pi Tips and Tricks | Ananth’s Blog</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Posts tagged with linux" />
+<meta property="og:title" content="Raspberry pi Tips and Tricks" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="A personal blog having hobby projects." />
-<meta property="og:description" content="A personal blog having hobby projects." />
-<link rel="canonical" href="/tag/linux/posts.html" />
-<meta property="og:url" content="/tag/linux/posts.html" />
+<meta name="description" content="If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop." />
+<meta property="og:description" content="If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop." />
+<link rel="canonical" href="/2019/06/04/raspberry-pi-tips-and-tricks.html" />
+<meta property="og:url" content="/2019/06/04/raspberry-pi-tips-and-tricks.html" />
 <meta property="og:site_name" content="Ananth’s Blog" />
-<link rel="next" href="/tag/linux/page/2/posts.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-06-04T00:00:00+05:30" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"/tag/linux/posts.html","headline":"Posts tagged with linux","description":"A personal blog having hobby projects.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/2019/06/04/raspberry-pi-tips-and-tricks.html"},"@type":"BlogPosting","url":"/2019/06/04/raspberry-pi-tips-and-tricks.html","headline":"Raspberry pi Tips and Tricks","dateModified":"2019-06-04T00:00:00+05:30","datePublished":"2019-06-04T00:00:00+05:30","description":"If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -976,107 +977,225 @@
         </style>
         <div id="page-content">
           
-            <h1> Posts tagged with linux </h1>
+            <h1> Raspberry pi Tips and Tricks </h1>
             
-          
-          
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2019/06/04/raspberry-pi-tips-and-tricks.html">Raspberry pi Tips and Tricks</a></h2></div>
-	  	<div class="post-date">04 Jun 2019</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="/assets/img/raspberyy_pi.jpg" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.</p>
+          04 Jun 2019
+          <p>If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.</p>
 
- </div>
-      </div>
-	</div>
-</div>
+<h2 id="enable-ssh">Enable ssh</h2>
 
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2018/03/11/raspberry-pi-based-car-infotainment.html">Raspberry pi based Car Infotainment system</a></h2></div>
-	  	<div class="post-date">11 Mar 2018</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://i.ytimg.com/vi/K3-xnHHL5cs/0.jpg" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.</p>
+<p>create an empty file in
+<code class="highlighter-rouge">/boot/ssh</code></p>
 
- </div>
-      </div>
-	</div>
-</div>
+<h2 id="connect-to-wifi-on-boot">Connect to WiFi on boot</h2>
 
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2016/11/02/this-is-another-theme-i-created-for.html">PlymouthTheme-TheRun</a></h2></div>
-	  	<div class="post-date">02 Nov 2016</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://raw.githubusercontent.com/krishnan793/PlymouthTheme-TheRun/master/images/PlymouthTheme-TheRun.gif" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>This is an another theme I created for Plymouth ( a bootsplash for Linux). This will replace your native boot and shutdown animation. Credits to Joel Roset for the FX animation.</p>
+<p><code class="highlighter-rouge">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></p>
 
- </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2016/10/30/plymouth-theme-for-ubuntu.html">Plymouth theme for Ubuntu</a></h2></div>
-	  	<div class="post-date">30 Oct 2016</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://4.bp.blogspot.com/-gG0MBGjEE9M/WBYXrOGrVGI/AAAAAAAABVE/auGpLRYf7jor4hu3jurYGcjaVBapHyAVACLcB/s320/8998adc40112985a8f29cf414925d390.gif" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>Bored of having the same boot animation screen again and again? There are plenty of Plymouth themes available out there. This is a theme I created by slicing some cool gif files I found online. You can download the theme and find the installation steps on my github account. <a href="https://github.com/krishnan793/PlymouthTheme-Cat">Link</a></p>
-
- </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2016/01/27/esp8266-wifi-iot-chip-programing.html">ESP8266 WiFi IOT chip | Programing the Firmware</a></h2></div>
-	  	<div class="post-date">27 Jan 2016</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://2.bp.blogspot.com/-oZ7hNjwwBUw/VqYJzjmvMFI/AAAAAAAABIQ/pGR7GuWZ52c/s1600/esp8266-pinout_etch_copper_top.png" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>ESP8266 is a cheap WiFi chip you can use in your embedded projects. You can communicate the chip using AT commands through UART. You can setup a WiFi hotspot, connect to an existing WiFi network, act as a web server, send data (TCP/UDP). The real fun is that you can reprogram the whole chip and you don’t need an other micro controller to control it. The ESP8266 ES1 come with 2 GPIO pins. There are other variants of this chip with more GPIO. This ESP 01 cost around Rs. 250 which is so cheap while comparing with other WiFi modules.</p>
-
- </div>
-      </div>
-	</div>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=GB
 
 
 
-<!-- Pagination links -->
-<div class="pagination">
-  
-    <span class="previous">Previous</span>
-  
-  <span class="page_number ">Page: 1 of 4</span>
-  
-    <a href="/tag/linux/page/2/posts.html" class="next">Next</a>
-  
-</div>
+network={
+        ssid="insert_your_hidden_SSID_here"
+        scan_ssid=1
+        psk="insert_your_wifi_password_here"
+        key_mgmt=WPA-PSK
+}
+</code></pre></div></div>
+
+<h2 id="disable-rainbow-screen">Disable rainbow screen</h2>
+
+<p><code class="highlighter-rouge">sudo nano /boot/config.txt</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>disable_splash=1
+</code></pre></div></div>
+
+<h2 id="disable-boot-logs">Disable boot logs</h2>
+
+<p><code class="highlighter-rouge">sudo nano /boot/cmdline.txt</code></p>
+
+<p>Change the console from tty1 to</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>console=tty3 
+</code></pre></div></div>
+
+<p>Add this to the end of the line. <code class="highlighter-rouge">'loglevel=0'</code> removes most of the messages from the boot. You can also use <code class="highlighter-rouge">'loglevel=3'</code>, but some boot messages may re-appear.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0
+</code></pre></div></div>
+
+<p>If you are going to use Plymouth add this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plymouth.ignore-serial-consoles 
+</code></pre></div></div>
+
+<h2 id="change-boot-animation">Change boot animation</h2>
+<p>Change raspbian plymouth theme</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /usr/share/plymouth/themes/
+</code></pre></div></div>
+
+<p>Clone this repository.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo git clone https://github.com/krishnan793/PlymouthTheme-TheRun.git
+</code></pre></div></div>
+
+<p>Install the theme.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/PlymouthTheme-TheRun/PlymouthTheme-TheRun.plymouth 100
+</code></pre></div></div>
+
+<p>Select the default theme.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-alternatives --config default.plymouth
+</code></pre></div></div>
+
+<p>Update the initramfs image.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-initramfs -u
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">sudo nano /etc/plymouth/plymouthd.conf</code></p>
+
+<p>Theme=pix to</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Theme=PlymouthTheme-TheRun
+</code></pre></div></div>
+
+<h2 id="waveshare-7-inch-display">Waveshare 7 inch display</h2>
+
+<p><code class="highlighter-rouge">sudo nano /boot/config.txt</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hdmi_force_hotplug=1
+config_hdmi_boost=0
+overscan_left=0
+overscan_right=0
+overscan_top=0
+overscan_bottom=0
+disable_overscan=0
+hdmi_cvt=1024 600 60 6 ##
+framebuffer_width=1024 ##
+framebuffer_height=600 ##
+hdmi_group=2
+hdmi_mode=1
+hdmi_mode=87
+</code></pre></div></div>
+
+<h2 id="rotate-display">Rotate display</h2>
+
+<p><code class="highlighter-rouge">sudo nano /boot/config.txt</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lcd_rotate=2 
+</code></pre></div></div>
+<p>or</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>display_rotate=0 
+</code></pre></div></div>
+
+<ul>
+  <li>display_rotate=0 Normal</li>
+  <li>display_rotate=1 90 degrees</li>
+  <li>display_rotate=2 180 degrees</li>
+</ul>
+
+<h2 id="set-display-brightness">Set display brightness</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 50 &gt; /sys/class/backlight/rpi_backlight/brightness
+</code></pre></div></div>
+
+<p>To make it persistent add the above statement in <code class="highlighter-rouge">/etc/rc.local</code> (before exit 0)</p>
+
+<h2 id="switch-off-display">Switch off display</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 1 &gt; /sys/class/backlight/rpi_backlight/b1_power
+</code></pre></div></div>
+
+<h2 id="switch-on-display">Switch on display</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 0 &gt; /sys/class/backlight/rpi_backlight/b1_power
+</code></pre></div></div>
+
+<h2 id="to-remove-low-power-indication-lightning-icon">To remove low power indication (lightning icon)</h2>
+
+<p><code class="highlighter-rouge">sudo nano /boot/config.txt</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>avoid_warnings=1
+</code></pre></div></div>
+
+<h2 id="hide-cursor">Hide cursor</h2>
+
+<p>sudo nano <code class="highlighter-rouge">/etc/lightdm/lightdm.conf</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Seat:*]
+xserver-command=X -nocursor 
+</code></pre></div></div>
+
+<h2 id="start-app-in-fullscreen-with-desktop-on-boot">Start app in fullscreen with desktop on boot</h2>
+
+<p>Make sure you enable auto login using <code class="highlighter-rouge">sudo raspi-config</code></p>
+
+<p>sudo nano <code class="highlighter-rouge">/etc/xdg/autostart/smart_room.desktop</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
+Type=Application
+Name=smart_room
+Comment=Kivy RPI Infoscreen
+NoDisplay=false
+Exec=chromium-browser http://192.168.1.5/src/home.html --start-fullscreen
+NotShowIn=GNOME;KDE;XFCE;
+</code></pre></div></div>
+
+<h2 id="start-app-in-fullscreen-without-desktop-on-boot">Start app in fullscreen without desktop on boot</h2>
+
+<p>Make sure you enable auto login using <code class="highlighter-rouge">sudo raspi-config</code></p>
+
+<p><code class="highlighter-rouge">sudo nano /etc/lightdm/lightdm.conf</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Seat:*]
+user-session=myxclient
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">sudo nano /usr/share/xsessions/myxclient.desktop</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
+Type=Application
+Name=smart_room
+Comment=Kivy RPI Infoscreen
+NoDisplay=false
+Exec=/home/pi/start.sh
+NotShowIn=GNOME;KDE;XFCE;
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">sudo nano /home/pi/start.sh</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+/usr/bin/chromium-browser <span class="nt">--kiosk</span> <span class="nt">--app</span><span class="o">=</span>https://www.google.com <span class="nt">--start-fullscreen</span> <span class="nt">--window-size</span><span class="o">=</span>1024,600 <span class="nt">--window-position</span><span class="o">=</span>0,0
+</code></pre></div></div>
+
+<h2 id="uart">UART</h2>
+
+<p>The SoCs used on the Raspberry Pis have two built-in UARTs, a PL011 and a mini UART. both are 3.3V devices. By default, on Raspberry Pis equipped with the wireless/Bluetooth module (Raspberry Pi 3 and Raspberry Pi Zero W), the PL011 UART is connected to the Bluetooth module, while the mini UART is used as the primary UART and will have a Linux console on it. On all other models, the PL011 is used as the primary UART.</p>
+
+<p>For pi3 &amp; zero</p>
+
+<ul>
+  <li>/dev/ttyS0 (mini UART) primary UART  symlink to /dev/serial0</li>
+  <li>/dev/ttyAMA0 (PL011) bluetooth module symlink to /dev/serial1</li>
+</ul>
+
+<p>The baud rate of the mini UART is linked to the core frequency of the VPU (VideoCore processor) on the VC4 GPU.</p>
+
+<p>Steps to enable mini UART</p>
+
+<ol>
+  <li>add <code class="highlighter-rouge">enable_uart=1</code> in <code class="highlighter-rouge">/boot/config.txt</code></li>
+  <li>remove <code class="highlighter-rouge">console=serial0</code> from <code class="highlighter-rouge">/boot/cmdline.txt</code></li>
+</ol>
+
+<p>default baud rate is: 115200</p>
+
         </div>
       </main>
       <!-- Main post content end -->
