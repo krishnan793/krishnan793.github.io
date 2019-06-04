@@ -737,8 +737,6 @@
                 <label for="l5i1">November</label>
                 <input id="l5i1" type="checkbox">
                 <ul><li><a href="/2015/11/14/searching-and-precision-landing-of-ar.html">Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS </a></li>        
-                  <li><a href="/2015/11/14/precision-landing-of-ar-drone-20-using.html">Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
-                  <li><a href="/2015/11/13/visual-servoing-ar-drone-20-using.html">Visual servoing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
                   <li><a href="/2015/11/13/simulating-controlling-ar-drone-20.html">Simulation & Controlling AR Drone 2.0 using Gamepad | Gazebo | ROS</a></li>        
                   
                 </ul>
@@ -985,32 +983,6 @@
 
 <div class="post-outer">
 	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></h2></div>
-	  	<div class="post-date">05 Dec 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><span style="font-family: Times, Times New Roman, serif;">This program will dynamically allocate memory and shows the amount of memory it uses. When heap is empty it will show Memory Full. The memory will be freed once you close the program (No harm by the way!). The rate at which memory is allocated is small (1 Kb per each iteration) so you can see at which point heap becomes empty.</span><br /><script src="https://gist.github.com/krishnan793/e8caf6f5cb314b340994.js"></script><span style="font-family: Courier New, Courier, monospace;"><br /></span></div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/09/22/simple-dip-threshold-animation-using.html">Simple DIP threshold animation using Matlab</a></h2></div>
-	  	<div class="post-date">22 Sep 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><div style="background-color: white; border: 0px; color: #222222; font-size: 13px; margin: 0px; padding: 0px; vertical-align: baseline;"><br /><script src="https://gist.github.com/krishnan793/08c6fc41c182bd4036ab.js"></script></div></div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2014/09/15/automating-scripts-using-expect.html">Automating scripts using expect</a></h2></div>
 	  	<div class="post-date">15 Sep 2014</div>
       <div class="post-inner">
@@ -1044,6 +1016,32 @@
       	
       	</div>
   	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Awk is pretty use full when you are writing automatic scripts to do your jobs. Some simple examples of how we can use awk are given below<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1}'</span><br /><br />It will print first column of ps command. &nbsp;If you want to print second column also write<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 $2}'</span><br /><br />Output seems to be pretty crowded? Add a simple space by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 " " $2}'</span><br /><br />Want to limit it display only second line?<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk ' NR==2{print $1 " " $2}'</span><br /><br />Want to exclede first row? You can do it by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR !=1{print &nbsp;$1 " " $2}'</span><br /><br />Similarly you can print rows greater than a value by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR &gt;1{print &nbsp;$1 " " $2}'</span><br /><br />You can extract virtually anything using awk... Feel free to explore every options. Type man awk or awk --help to explore other options. Feel free to comment also... :)<br /><br />This <a href="https://www.ibm.com/developerworks/library/l-awk1/" target="_blank">site</a> has some good examlpes.<br /><br /><br /></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></h2></div>
+	  	<div class="post-date">22 Jul 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Well Linux is famous for combining things in power full ways in which anything is possible from a command line. The real fun of Linux came when you start focusing on terminal to do everything...<br /><br />It's possible to pipeline commands in terminal. Also it's possible to pass output of something as an argument of other.<br /><br />For example you can ping to your own external ip by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ping $(curl -s &nbsp;curlmyip.com)</span><br /><br />curl curlmyip.com returns you ip address. This address is passed to &nbsp;the telnet as an argument. Whatever you put between $( and ) will execute as if it is a bash command.<br /><br /><br /></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/07/19/how-to-know-external-ip-address-from.html">How to know external IP address from Linux terminal?</a></h2></div>
+	  	<div class="post-date">19 Jul 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">ifconfig displays only local ip address of your system. If your system is directly connected to internet then it will be your external ip address. It may not be the case always. Because you will be behind a router or a modem.<br />You can know the external IP address by going to <a href="https://www.whatismyip.com/">www.whatismyip.com</a> or <a href="https://www.ipecho.net/">www.ipecho.net</a>. If you want to know it from a terminal type<br /><br /><span style="font-family: Courier New, Courier, monospace;">curl curlmyip.com</span><br /><br />What curl do is it fetches the content of the link to the terminal. There are also several other websites that offers this same service. Some of them are listed below.<br /><br /><span style="color: #073763;"><span style="font-family: 'Courier New', Courier, monospace;">curl&nbsp;</span><a href="https://ipecho.net/plain" style="font-family: 'Courier New', Courier, monospace;">ipecho.net/plain</a></span><br /><span style="color: #073763;"><br /></span><span style="color: #073763; font-family: Courier New, Courier, monospace;">curl <a href="https://myexternalip.com/raw">myexternalip.com/raw</a></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://curlmyip.com/">curlmyip.com</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://ifconfig.me/ip">ifconfig.me/ip</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://icanhazip.com/">icanhazip.com</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://ip.appspot.com/">ip.appspot.com</a></span></span><br /><br /><br /></div> </div>
       </div>
 	</div>
 </div>

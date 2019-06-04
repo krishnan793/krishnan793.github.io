@@ -19,15 +19,15 @@
 <meta property="og:title" content="Searching and Precision Landing of AR Drone 2.0 using Neural Network Gazebo ROS" />
 <meta name="author" content="ANANTHAKRISHNAN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar." />
-<meta property="og:description" content="The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar." />
+<meta name="description" content="This video is a part of an AR Drone autonomous landing project. Here the AR Drone is controlling itself so that the landing platform is exactly in the middle so that it can initiate a proper landing. Here AR Drone is also tracking the Tag embedded on the landing platform (Not using the inbuilt tag detection. The tag that is being used here is from the ar_track_alvar package.). This is implemented using Neural Network. (The video is playing at a slightly faster rate.)" />
+<meta property="og:description" content="This video is a part of an AR Drone autonomous landing project. Here the AR Drone is controlling itself so that the landing platform is exactly in the middle so that it can initiate a proper landing. Here AR Drone is also tracking the Tag embedded on the landing platform (Not using the inbuilt tag detection. The tag that is being used here is from the ar_track_alvar package.). This is implemented using Neural Network. (The video is playing at a slightly faster rate.)" />
 <link rel="canonical" href="/2015/11/14/searching-and-precision-landing-of-ar.html" />
 <meta property="og:url" content="/2015/11/14/searching-and-precision-landing-of-ar.html" />
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2015-11-14T23:44:00+05:30" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"/2015/11/14/searching-and-precision-landing-of-ar.html"},"@type":"BlogPosting","url":"/2015/11/14/searching-and-precision-landing-of-ar.html","headline":"Searching and Precision Landing of AR Drone 2.0 using Neural Network Gazebo ROS","dateModified":"2015-11-14T23:44:00+05:30","datePublished":"2015-11-14T23:44:00+05:30","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/2015/11/14/searching-and-precision-landing-of-ar.html"},"@type":"BlogPosting","url":"/2015/11/14/searching-and-precision-landing-of-ar.html","headline":"Searching and Precision Landing of AR Drone 2.0 using Neural Network Gazebo ROS","dateModified":"2015-11-14T23:44:00+05:30","datePublished":"2015-11-14T23:44:00+05:30","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"description":"This video is a part of an AR Drone autonomous landing project. Here the AR Drone is controlling itself so that the landing platform is exactly in the middle so that it can initiate a proper landing. Here AR Drone is also tracking the Tag embedded on the landing platform (Not using the inbuilt tag detection. The tag that is being used here is from the ar_track_alvar package.). This is implemented using Neural Network. (The video is playing at a slightly faster rate.)","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -738,8 +738,6 @@
                 <label for="l5i1">November</label>
                 <input id="l5i1" type="checkbox">
                 <ul><li><a href="/2015/11/14/searching-and-precision-landing-of-ar.html">Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS </a></li>        
-                  <li><a href="/2015/11/14/precision-landing-of-ar-drone-20-using.html">Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
-                  <li><a href="/2015/11/13/visual-servoing-ar-drone-20-using.html">Visual servoing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
                   <li><a href="/2015/11/13/simulating-controlling-ar-drone-20.html">Simulation & Controlling AR Drone 2.0 using Gamepad | Gazebo | ROS</a></li>        
                   
                 </ul>
@@ -981,9 +979,19 @@
             <h1> Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS  </h1>
             
           14 Nov 2015
-          <p>The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.</p>
+          <p>This video is a part of an AR Drone autonomous landing project. Here the AR Drone is controlling itself so that the landing platform is exactly in the middle so that it can  initiate a proper landing. Here AR Drone is also tracking the Tag embedded on the landing platform (Not using the inbuilt tag detection. The tag that is being used here is from the ar_track_alvar package.). This is implemented using Neural Network. (The video is playing at a slightly faster rate.)</p>
+
+<iframe width="320" height="266" src="https://www.youtube.com/embed/ka7FmJtNVVY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p><br /></p>
+
+<iframe width="320" height="266" src="https://www.youtube.com/embed/MvIe7LREHHo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>The drone is able to search and find the landing platform. Once it finds the landing platform it will try to orient itself and land in the platform. Both of these are implemented using Neural Network. The tag used in the landing platform is from the ros package ar_track_alvar.</p>
 
 <iframe width="320" height="266" src="https://www.youtube.com/embed/WrEmulklfXU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>Packages used: ardrone_autonomy, tum_simulator, ar_track_alvar, custom packages (some packages I created for collecting data for training, republishing twist cmd_vel with time stamp, implementation of NN, custom launch files and worlds.)</p>
 
         </div>
       </main>

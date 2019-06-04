@@ -737,8 +737,6 @@
                 <label for="l5i1">November</label>
                 <input id="l5i1" type="checkbox">
                 <ul><li><a href="/2015/11/14/searching-and-precision-landing-of-ar.html">Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS </a></li>        
-                  <li><a href="/2015/11/14/precision-landing-of-ar-drone-20-using.html">Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
-                  <li><a href="/2015/11/13/visual-servoing-ar-drone-20-using.html">Visual servoing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
                   <li><a href="/2015/11/13/simulating-controlling-ar-drone-20.html">Simulation & Controlling AR Drone 2.0 using Gamepad | Gazebo | ROS</a></li>        
                   
                 </ul>
@@ -985,36 +983,6 @@
 
 <div class="post-outer">
 	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2015/02/27/beagleboneblack-gpio-push-button-led.html">BeagleBoneBlack GPIO Push Button + LED</a></h2></div>
-	  	<div class="post-date">27 Feb 2015</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://i.ytimg.com/vi/lt5YRmMmm1Y/0.jpg" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/lt5YRmMmm1Y/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/lt5YRmMmm1Y?feature=player_embedded" width="320"></iframe></div><script src="https://gist.github.com/krishnan793/29c75261168040c99102.js"></script>&nbsp; </div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2015/02/27/led-cube-using-atmega328p.html">LED Cube using Atmega328P</a></h2></div>
-	  	<div class="post-date">27 Feb 2015</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://i.ytimg.com/vi/l7LvH9lhbLw/0.jpg" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><div class="separator" style="clear: both; text-align: center;"><iframe width="320" height="266" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/l7LvH9lhbLw/0.jpg" src="https://www.youtube.com/embed/l7LvH9lhbLw?feature=player_embedded" frameborder="0" allowfullscreen></iframe></div><div class="separator" style="clear: both; text-align: center;"></div><div class="separator" style="clear: both; text-align: center;"><iframe width="320" height="266" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/wTDrMkGO0YM/0.jpg" src="https://www.youtube.com/embed/wTDrMkGO0YM?feature=player_embedded" frameborder="0" allowfullscreen></iframe><iframe width="320" height="266" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/z24KUUJe6l4/0.jpg" src="https://www.youtube.com/embed/z24KUUJe6l4?feature=player_embedded" frameborder="0" allowfullscreen></iframe></div><br /></div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2015/02/27/gpio-blink-led-using-c-beagleboneblack.html">GPIO Blink an LED using C - BeagleBoneBlack</a></h2></div>
 	  	<div class="post-date">27 Feb 2015</div>
       <div class="post-inner">
@@ -1050,6 +1018,32 @@
       	
       	</div>
   	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">There are 65 possible GPIO pins that you can control. Some of the GPIO pins are normally configured to different functions. Let's play with one of them.<br /><br />Go to the <a href="https://beagleboard.org/support/bone101" target="_blank">beaglebone website</a> and figure out the header pin corresponding to gpio23.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://beagleboard.org/static/images/cape-headers-digital.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://beagleboard.org/static/images/cape-headers-digital.png" height="240" width="320" /></a></div><br />The gpio23 is mapped to the 13th header pin. In this tutorial we are testing the gpio23 output using a multimeter (Do not connect an LED directly to BBB IO pin).<br /><br />First go to following directory<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd /sys/class/gpio</span>/<br /><br />Then make gpio23 available<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 23 &gt; export</span><br /><br />A new directory will be created. Open gpio directory.<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd gpio23</span><br /><br />The direction of IO will be normally set as in (input).&nbsp; To make it as output,<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo out &gt; direction</span><br /><br />Then set the pin to high using<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 1 &gt; value</span><br /><br />Measure the voltage at pin 13 of P8 header. If its 3.3 V then you are on the right track. Pin 1 and 2 will be ground. You can connect the negative terminal of multimeter to pin 1 or 2. <br /><br />To set output as zero,<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 0 &gt; value</span><br /><br />After finished with the tutorial unexport the gpio23 pin.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd ..</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 23 &gt; unexport</span><br /><br />To get a better idea refer this <a href="https://kilobaser.com/blog/2014-07-15-beaglebone-black-gpios" target="_blank">site</a>.</div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2015/02/22/beagleboneblack-apt-get-upgrade-error.html">BeagleBoneBlack apt-get upgrade error due to led-aging.sh</a></h2></div>
+	  	<div class="post-date">22 Feb 2015</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">When I try to upgrade my new BBB bought from element14 (4gb emmc) it throws a list of errors.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">stem facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv:&nbsp; loop involving service mountkernfs at depth 1<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: Starting led_aging.sh depends on rmnologin and therefore on system facility `$all' which can not be true!<br />insserv: exiting now without changing boot order!<br />update-rc.d: error: insserv rejected the script header<br />dpkg: error processing ppp (--configure):<br />&nbsp;subprocess installed post-installation script returned error exit status 1<br />Errors were encountered while processing:<br />&nbsp;rsyslog<br />&nbsp;apache2.2-common<br />&nbsp;apache2-mpm-worker<br />&nbsp;apache2<br />&nbsp;dbus<br />&nbsp;dbus-x11<br />&nbsp;hostapd<br />&nbsp;openssh-server<br />&nbsp;ppp<br />E: Sub-process /usr/bin/dpkg returned an error code (1)</span><br /><br />The error was due to a file led-aging.sh. I found the solution from <a href="https://groups.google.com/forum/#!topic/beagleboard/LPjCn4LEY2I" target="_blank">here</a>. (By <span class="_username"><span class="H1SYRSB-P-a g-hovercard" data-name="Dirk Koopman" data-userid="104743563382885048548" style="color: #222222;">Dirk Koopman</span></span>)<br /><br />Edit the file<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">nano /etc/init.d/led_aging.sh </span><br /><br />and replace the contents with<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">#!/bin/sh -e<br />### BEGIN INIT INFO<br /># Provides:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; led_aging.sh<br /># Required-Start:&nbsp;&nbsp;&nbsp; $local_fs<br /># Required-Stop:&nbsp;&nbsp;&nbsp;&nbsp; $local_fs<br /># Default-Start:&nbsp;&nbsp;&nbsp;&nbsp; 2 3 4 5<br /># Default-Stop:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 1 6<br /># Short-Description: Start LED aging<br /># Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Starts LED aging (whatever that is)<br />### END INIT INFO<br /><br />x=$(/bin/ps -ef | /bin/grep "[l]ed_acc")<br />if [ ! -n "$x" -a -x /usr/bin/led_acc ]; then<br />&nbsp;&nbsp;&nbsp; /usr/bin/led_acc &amp;<br />fi</span><br />&nbsp; <br />Then run<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">apt-get upgrade</span><br /><br />again. It will solve the issue.</div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2015/02/22/getting-internet-on-bbb-via-usb-share.html">Getting internet on BBB via usb (Share internet from your linux machine)</a></h2></div>
+	  	<div class="post-date">22 Feb 2015</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><br /><div style="text-align: justify;"><br />Login to your BBB and type<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">route add default gw 192.168.7.1</span><br /><br />Then type the follwing in your linux machine to route the network.<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"></span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo su</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">iptables --table nat --append POSTROUTING --out-interface eth0 -j MASQUERADE</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">iptables --append FORWARD --in-interface eth1 -j ACCEPT&nbsp;</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 1 &gt; /proc/sys/net/ipv4/ip_forw</span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ard </span><br /><br /><br />Note: eth0 is LAN interface which has internet connectivity. eth1 is the usb network connection with BBB. 192.168.7.1 is the ip address that assigned to your PC.<br /><br />Following part is not needed if internet is working properly.<br /><br />If you are using network that doesn't allow third party dns server (like google dns 8.8.8.8 or 8.8.4.4), you had to configure /etc/resolv.conf.<br /><br />First find out what dns server address your internet provider (your college) gives you. If you have a working network type <br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">nm-tool</span><br /><br />to find out the dnsaddress. Then delete all the entries in /etc/resolve.conf and replace it with<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">nameserver &lt;dnsaddr&gt;</span><br /><br />eg: nameserver 192.168.0.5</div></div> </div>
       </div>
 	</div>
 </div>

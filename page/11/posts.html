@@ -737,8 +737,6 @@
                 <label for="l5i1">November</label>
                 <input id="l5i1" type="checkbox">
                 <ul><li><a href="/2015/11/14/searching-and-precision-landing-of-ar.html">Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS </a></li>        
-                  <li><a href="/2015/11/14/precision-landing-of-ar-drone-20-using.html">Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
-                  <li><a href="/2015/11/13/visual-servoing-ar-drone-20-using.html">Visual servoing of AR Drone 2.0 using Neural Network | Gazebo | ROS</a></li>        
                   <li><a href="/2015/11/13/simulating-controlling-ar-drone-20.html">Simulation & Controlling AR Drone 2.0 using Gamepad | Gazebo | ROS</a></li>        
                   
                 </ul>
@@ -985,32 +983,6 @@
 
 <div class="post-outer">
 	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></h2></div>
-	  	<div class="post-date">22 Jul 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Well Linux is famous for combining things in power full ways in which anything is possible from a command line. The real fun of Linux came when you start focusing on terminal to do everything...<br /><br />It's possible to pipeline commands in terminal. Also it's possible to pass output of something as an argument of other.<br /><br />For example you can ping to your own external ip by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ping $(curl -s &nbsp;curlmyip.com)</span><br /><br />curl curlmyip.com returns you ip address. This address is passed to &nbsp;the telnet as an argument. Whatever you put between $( and ) will execute as if it is a bash command.<br /><br /><br /></div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/07/19/how-to-know-external-ip-address-from.html">How to know external IP address from Linux terminal?</a></h2></div>
-	  	<div class="post-date">19 Jul 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">ifconfig displays only local ip address of your system. If your system is directly connected to internet then it will be your external ip address. It may not be the case always. Because you will be behind a router or a modem.<br />You can know the external IP address by going to <a href="https://www.whatismyip.com/">www.whatismyip.com</a> or <a href="https://www.ipecho.net/">www.ipecho.net</a>. If you want to know it from a terminal type<br /><br /><span style="font-family: Courier New, Courier, monospace;">curl curlmyip.com</span><br /><br />What curl do is it fetches the content of the link to the terminal. There are also several other websites that offers this same service. Some of them are listed below.<br /><br /><span style="color: #073763;"><span style="font-family: 'Courier New', Courier, monospace;">curl&nbsp;</span><a href="https://ipecho.net/plain" style="font-family: 'Courier New', Courier, monospace;">ipecho.net/plain</a></span><br /><span style="color: #073763;"><br /></span><span style="color: #073763; font-family: Courier New, Courier, monospace;">curl <a href="https://myexternalip.com/raw">myexternalip.com/raw</a></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://curlmyip.com/">curlmyip.com</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://ifconfig.me/ip">ifconfig.me/ip</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://icanhazip.com/">icanhazip.com</a></span></span><br /><span style="color: #073763;"><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">curl <a href="https://ip.appspot.com/">ip.appspot.com</a></span></span><br /><br /><br /></div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2014/07/16/how-to-set-dns-address-in-android-phones.html">How to set dns address in android phones?</a></h2></div>
 	  	<div class="post-date">16 Jul 2014</div>
       <div class="post-inner">
@@ -1044,6 +1016,36 @@
       	
       	</div>
   	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">For a long time I have been trying to configure port forwarding using NAT. But every attempt was futile... &nbsp;Finally I found that my port forwarding works just fine. But it just appears to be not working because my router doesn't support reverse NAT. In this post I will show you guys how to test whether you configure your NAT correctly or not. (Read a detailed write up by shane. <a href="https://www.pcwintech.com/test-for-reverse-nat" target="_blank">Link</a>)<br /><br />First make a port forwarding rule in your router say 1600. Download this little tool called simple internet tools. Install it and open port listener and select your internal IP(192.168.x.x). Then type your port number and press start listening.<br /><br />Go to this <a href="https://www.pcwintech.com/port_test.php?result=online&amp;port=1979" target="_blank">site</a>&nbsp;and check whether it says port is opened. If your connection is successful you will notice it in the port listener application.<br /><br />Then go to your browser and type your internet ip address. (You can find it from www.whatismyip.com) . Tnen type your port number after a colon. (116.211.22.12:1600). Your browser shows a webpage not available window. Check your port listener. If you find a connection successful message it means your router supports reverse NAT. Otherwise reverse NAT is not available.<br /><br />You can also check it by an nc command like this.<br /><br />nc 116.211.22.12 1600<br /><br />If you didn't want to test the connection using the above site you can do it by nc from a remote ssh account. Login to your ssh account and try to connect it with nc.<br /><br /></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/07/15/how-to-see-dns-reply-or-testing-dns.html">How to see DNS reply? or Testing DNS server?</a></h2></div>
+	  	<div class="post-date">15 Jul 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Wonder how the dns works or want to know the dns reply from server? Sometimes when setting up a local dns server we have to test whether it is working or not. Here is how you can test it in Linux.<br /><br />dig @127.0.0.1 www.google.com</div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/05/14/ultrasonic-hover-input-device.html">Ultrasonic Hover Input Device</a></h2></div>
+	  	<div class="post-date">14 May 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+        	<p><img src="https://i.ytimg.com/vi/_qCvkru3AY4/0.jpg" style="max-width: 300px;" /></p>
+      	
+      	</div>
+  	  	<div class="post-desc"> <p>This was my Bachelor Project. The project was selected for the Malayala Manorama Yuva Master Mind 2014. This is a video describing the project at the final round in the competition.</p>
+
+ </div>
       </div>
 	</div>
 </div>
