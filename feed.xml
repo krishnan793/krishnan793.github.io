@@ -1,4 +1,171 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-06-04T22:20:44+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Raspberry pi Tips and Tricks</title><link href="/2019/06/04/raspberry-pi-tips-and-tricks.html" rel="alternate" type="text/html" title="Raspberry pi Tips and Tricks" /><published>2019-06-04T00:00:00+05:30</published><updated>2019-06-04T00:00:00+05:30</updated><id>/2019/06/04/raspberry-pi-tips-and-tricks</id><content type="html" xml:base="/2019/06/04/raspberry-pi-tips-and-tricks.html">&lt;p&gt;If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-01T21:53:49+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Smart Home Display IOT | DIY Google Nest Hub</title><link href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html" rel="alternate" type="text/html" title="Smart Home Display IOT | DIY Google Nest Hub" /><published>2019-06-29T00:00:00+05:30</published><updated>2019-06-29T00:00:00+05:30</updated><id>/2019/06/29/smart-home-display-iot--diy-google-home-hub</id><content type="html" xml:base="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">&lt;p&gt;This is a DIY smart dislpay that you can embed to your wall. You can control your smart appliance, set timer to control it, get weather info, and act as a cool clock. Let’s get straight into how I made it.&lt;/p&gt;
+
+&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot;&gt;
+  &lt;source src=&quot;/assets/res/exploded_view.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+
+&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
+
+&lt;h3 id=&quot;hardware&quot;&gt;Hardware&lt;/h3&gt;
+
+&lt;p&gt;It consists of&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Frame
+    &lt;ul&gt;
+      &lt;li&gt;Front panel&lt;/li&gt;
+      &lt;li&gt;Back panel&lt;/li&gt;
+      &lt;li&gt;Processing Unit Cover&lt;/li&gt;
+      &lt;li&gt;Relay Cover&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Display (7 inch 800x480 resolution)&lt;/li&gt;
+  &lt;li&gt;Processing Unit - Raspberry Pi&lt;/li&gt;
+  &lt;li&gt;Relay circuit (4 channel)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Panel and display are snapped together. Processing Unit and display are secured using screws. Processing unit and relay cover are attached using 3 mm screws.&lt;/p&gt;
+
+&lt;h3 id=&quot;software&quot;&gt;Software&lt;/h3&gt;
+
+&lt;p&gt;Chromium-browser is used in a kisok mode where it render the UI from a backend server. Python with the help of Flask will server both static pages and also serve a REST API service. JS will invoke REST APIs to control and view stats of appliances.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/arch_smart_room.png&quot; alt=&quot;architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;rest-api-service&quot;&gt;REST API Service&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;List room names&lt;/p&gt;
+
+    &lt;p&gt;GET /api/&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     {
+     &quot;rooms&quot;:[&quot;room1&quot;,&quot;room2&quot;]
+     }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;List all appliances in a given room&lt;/p&gt;
+
+    &lt;p&gt;GET /api/{room_name}&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     {
+       &quot;Fan 1&quot;: {
+         &quot;power-control&quot;: {
+           &quot;enabled&quot;: true, 
+           &quot;level&quot;: 100
+         }, 
+         &quot;status&quot;: true, 
+         &quot;timer&quot;: -1, 
+         &quot;type&quot;: &quot;fan&quot;
+       }, 
+       &quot;Light 1&quot;: {
+         &quot;power-control&quot;: {
+           &quot;enabled&quot;: false, 
+           &quot;level&quot;: 100
+         }, 
+         &quot;status&quot;: true, 
+         &quot;timer&quot;: -1, 
+         &quot;type&quot;: &quot;light&quot;
+       }, 
+       &quot;Light 2&quot;: {
+         &quot;power-control&quot;: {
+           &quot;enabled&quot;: false, 
+           &quot;level&quot;: 100
+         }, 
+         &quot;status&quot;: true, 
+         &quot;timer&quot;: -1, 
+         &quot;type&quot;: &quot;light&quot;
+       }
+     }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Change appliance properties&lt;/p&gt;
+
+    &lt;p&gt;POST /api/{room_name}/{appliance_name}&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     {
+     &quot;status&quot;:true,
+     &quot;timer&quot;:10,
+     &quot;power-control&quot;:{
+             &quot;level&quot;:50
+             }
+     }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Scan wifi APs&lt;/p&gt;
+
+    &lt;p&gt;GET /api/wifi_scan&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     {
+       &quot;result&quot;:[&quot;WiFi-1&quot;,&quot;WiFi-2&quot;]
+     }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Connect to an AP&lt;/p&gt;
+
+    &lt;p&gt;POST /wifi_connect&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     {
+       &quot;ssid&quot;:&quot;WiFi-1&quot;,
+       &quot;passkey&quot;:&quot;password&quot;
+     }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Disconnect already established connection&lt;/p&gt;
+
+    &lt;p&gt;POST /api/wifi_disconnect&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     {
+     }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Get current ip&lt;/p&gt;
+
+    &lt;p&gt;GET /api/ip&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     {
+       &quot;ip&quot;: &quot;192.168.1.5&quot;
+     }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;ui-features&quot;&gt;UI features&lt;/h2&gt;
+
+&lt;p&gt;These shows the features that are supported.&lt;/p&gt;
+
+&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot;&gt;
+  &lt;source src=&quot;/assets/res/smart_home_soft_preview.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+
+&lt;h2 id=&quot;cad-design&quot;&gt;CAD Design&lt;/h2&gt;
+
+&lt;p&gt;I have used fusion 360 to model the parts.&lt;/p&gt;
+
+&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot;&gt;
+  &lt;source src=&quot;/assets/res/cad_design_overlay.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+
+&lt;h2 id=&quot;3d-printing&quot;&gt;3D printing&lt;/h2&gt;
+
+&lt;p&gt;Thanks to Sumit Goyl for helping out with 3D printing, and painting the parts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/3D_part1.jpg&quot; alt=&quot;preview&quot; /&gt;
+&lt;img src=&quot;/assets/img/3D_part2.jpg&quot; alt=&quot;preview&quot; /&gt;
+&lt;img src=&quot;/assets/img/3D_part3.jpg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;final-preview&quot;&gt;Final preview&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/preview_smart_home.jpg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This still need some more work to fit this to a wall with proper wiring.&lt;/p&gt;</content><author><name></name></author><category term="IOT" /><category term="Product Design" /><summary type="html">This is a DIY smart dislpay that you can embed to your wall. You can control your smart appliance, set timer to control it, get weather info, and act as a cool clock. Let’s get straight into how I made it.</summary></entry><entry><title type="html">Raspberry pi Tips and Tricks</title><link href="/2019/06/04/raspberry-pi-tips-and-tricks.html" rel="alternate" type="text/html" title="Raspberry pi Tips and Tricks" /><published>2019-06-04T00:00:00+05:30</published><updated>2019-06-04T00:00:00+05:30</updated><id>/2019/06/04/raspberry-pi-tips-and-tricks</id><content type="html" xml:base="/2019/06/04/raspberry-pi-tips-and-tricks.html">&lt;p&gt;If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.&lt;/p&gt;
 
 &lt;h2 id=&quot;enable-ssh&quot;&gt;Enable ssh&lt;/h2&gt;
 
@@ -640,7 +807,7 @@ Installation steps: &lt;a href=&quot;Ubuntu_Xenial&quot;&gt;Link&lt;/a&gt;&lt;/p
 &lt;img src=&quot;https://4.bp.blogspot.com/-6fCIj7m0DmM/XDV8KaCT8sI/AAAAAAAABmk/DmUULnhi_zohNR0SUDEvtJTIqk9hFxTPQCK4BGAYYCw/s1600/BLR_0185.JPG&quot; alt=&quot;Final preview 4&quot; /&gt;
 &lt;img src=&quot;https://3.bp.blogspot.com/-vVNex884yb0/XDWae__435I/AAAAAAAABnM/k0EXHvjcIbQcI2Av7lzCG_pMhOuZnmbHACK4BGAYYCw/s1600/BLR_0001.JPG&quot; alt=&quot;Final preview 5&quot; /&gt;&lt;/p&gt;
 
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/Q5mC5lRfhfw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Atmega328PU" /><category term="ROS" /><summary type="html">I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.</summary></entry><entry><title type="html">Inventory App for hobbyists</title><link href="/2018/10/06/inventory-app-for-hobbyists.html" rel="alternate" type="text/html" title="Inventory App for hobbyists" /><published>2018-10-06T16:39:00+05:30</published><updated>2018-10-06T16:39:00+05:30</updated><id>/2018/10/06/inventory-app-for-hobbyists</id><content type="html" xml:base="/2018/10/06/inventory-app-for-hobbyists.html">&lt;p&gt;I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.&lt;/p&gt;
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/Q5mC5lRfhfw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Atmega328PU" /><category term="ROS" /><category term="Product Design" /><summary type="html">I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.</summary></entry><entry><title type="html">Inventory App for hobbyists</title><link href="/2018/10/06/inventory-app-for-hobbyists.html" rel="alternate" type="text/html" title="Inventory App for hobbyists" /><published>2018-10-06T16:39:00+05:30</published><updated>2018-10-06T16:39:00+05:30</updated><id>/2018/10/06/inventory-app-for-hobbyists</id><content type="html" xml:base="/2018/10/06/inventory-app-for-hobbyists.html">&lt;p&gt;I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.&lt;/p&gt;
 
 &lt;p&gt;You can find the whole source code + binaries on my github repository &lt;a href=&quot;https://github.com/krishnan793/inventoryApp&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
 
@@ -691,7 +858,7 @@ Installation steps: &lt;a href=&quot;Ubuntu_Xenial&quot;&gt;Link&lt;/a&gt;&lt;/p
 
 &lt;p&gt;This video will show the whole system working in the actual hardware.&lt;/p&gt;
 
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/H9mrCXnhUEk&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><category term="Electronics" /><summary type="html">Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.</summary></entry><entry><title type="html">Creating a Wireless remote for Nikon Camera using Esp8266</title><link href="/2017/08/03/creating-wireless-remote-for-nikon.html" rel="alternate" type="text/html" title="Creating a Wireless remote for Nikon Camera using Esp8266" /><published>2017-08-03T20:56:00+05:30</published><updated>2017-08-03T20:56:00+05:30</updated><id>/2017/08/03/creating-wireless-remote-for-nikon</id><content type="html" xml:base="/2017/08/03/creating-wireless-remote-for-nikon.html">&lt;p&gt;The Nikon DSLR camera I own does have a Bluetooth connection, but unfortunately it is of no use. You cannot trigger shots from Bluetooth. Also u can only share photos of low resolution across Bluetooth. What a shame!!! I also want a time lapse option which is absent in the camera.
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/H9mrCXnhUEk&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><category term="Electronics" /><category term="Product Design" /><summary type="html">Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.</summary></entry><entry><title type="html">Creating a Wireless remote for Nikon Camera using Esp8266</title><link href="/2017/08/03/creating-wireless-remote-for-nikon.html" rel="alternate" type="text/html" title="Creating a Wireless remote for Nikon Camera using Esp8266" /><published>2017-08-03T20:56:00+05:30</published><updated>2017-08-03T20:56:00+05:30</updated><id>/2017/08/03/creating-wireless-remote-for-nikon</id><content type="html" xml:base="/2017/08/03/creating-wireless-remote-for-nikon.html">&lt;p&gt;The Nikon DSLR camera I own does have a Bluetooth connection, but unfortunately it is of no use. You cannot trigger shots from Bluetooth. Also u can only share photos of low resolution across Bluetooth. What a shame!!! I also want a time lapse option which is absent in the camera.
 There is a WiFi option, but have to invest a lot more money to buy the WiFi adaptor. Fortunately it has an IR interface. So I thought of creating my own triggering device (like the ML-L3) which works over WiFi so that I can remotely trigger the shutter and also take time lapse pics.&lt;/p&gt;
 
 &lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/7SlLCa77NC4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
@@ -1116,16 +1283,4 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
 
 &lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/-8L_U88z5k4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/y9F4RaIn9os&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Drones" /><summary type="html">In order to counter the rotating torque from the previous single rotor version, one more propeller is added. The second propeller rotates counter clockwise and both torques will cancel each other (Only if both propellers are rotating at same speed).</summary></entry><entry><title type="html">My single rotor MAV :)</title><link href="/2016/11/06/my-single-rotor-mav.html" rel="alternate" type="text/html" title="My single rotor MAV :)" /><published>2016-11-06T04:14:00+05:30</published><updated>2016-11-06T04:14:00+05:30</updated><id>/2016/11/06/my-single-rotor-mav</id><content type="html" xml:base="/2016/11/06/my-single-rotor-mav.html">&lt;p&gt;This is a small MAV (Micro Areal Vehicle) I created out of simple household stuffs. Though this one can’t be controlled, it is fun to watch it fly. :) :) :)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://1.bp.blogspot.com/-CYsMwmvI2kQ/WB5e5UMIYQI/AAAAAAAABVs/A7K5louA8K882V91uFiHmufJYTsB7EprwCLcB/s1600/IMG_20161106_033509130_HDR.jpg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I have loosely connected the power supply so that once it start flying, the counter rotating torque forces the whole MAV to rotate. So after a few sec the wire connecting power supply (battery) will automatically get removed and I can catch the MAV before it crash into walls. :)&lt;/p&gt;
-
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/qQn6ANzjGFw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;This one is a slow motion video of it flying. It is hard to video it while flying. Since it is not stable it will crash itself into walls after a few seconds. I am trying to get it fly vertically upwards without any deviation.&lt;/p&gt;
-
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/xhxmteAvNrk&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;See this instructable &lt;a href=&quot;https://www.instructables.com/id/Home-Made-Micro-Aerial-Vehicle-MAV-in-5-Min/&quot;&gt;link&lt;/a&gt; for more videos/photos.&lt;/p&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Drones" /><summary type="html">This is a small MAV (Micro Areal Vehicle) I created out of simple household stuffs. Though this one can’t be controlled, it is fun to watch it fly. :) :) :)</summary></entry></feed>
+&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/y9F4RaIn9os&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Drones" /><summary type="html">In order to counter the rotating torque from the previous single rotor version, one more propeller is added. The second propeller rotates counter clockwise and both torques will cancel each other (Only if both propellers are rotating at same speed).</summary></entry></feed>
