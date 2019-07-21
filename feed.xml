@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-02T21:22:07+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Smart Home Display IOT</title><link href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html" rel="alternate" type="text/html" title="Smart Home Display IOT" /><published>2019-06-29T00:00:00+05:30</published><updated>2019-06-29T00:00:00+05:30</updated><id>/2019/06/29/smart-home-display-iot--diy-google-home-hub</id><content type="html" xml:base="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">&lt;p&gt;This is a DIY smart display that you can embed in to your wall. You can control your smart appliance, set timer to control it, get weather info, and act as a cool clock. Let’s get straight into how I made it.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-21T12:31:39+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Smart Home Display IOT</title><link href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html" rel="alternate" type="text/html" title="Smart Home Display IOT" /><published>2019-06-29T00:00:00+05:30</published><updated>2019-06-29T00:00:00+05:30</updated><id>/2019/06/29/smart-home-display-iot--diy-google-home-hub</id><content type="html" xml:base="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">&lt;p&gt;&lt;img src=&quot;/assets/img/thumbnail_smart_room.png&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a DIY smart display that you can embed in to your wall. You can control your smart appliance, set timer to control it, get weather info, and act as a cool clock. Let’s get straight into how I made it.&lt;/p&gt;
+
+&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
 
 &lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot;&gt;
   &lt;source src=&quot;/assets/res/exploded_view.mp4&quot; type=&quot;video/mp4&quot; /&gt;
 &lt;/video&gt;
-
-&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
 
 &lt;h3 id=&quot;hardware&quot;&gt;Hardware&lt;/h3&gt;
 
@@ -155,17 +157,15 @@
 
 &lt;h2 id=&quot;3d-printing&quot;&gt;3D printing&lt;/h2&gt;
 
-&lt;p&gt;Thanks to &lt;a href=&quot;https://www.linkedin.com/in/sumitgoyal11/&quot;&gt;Sumit Goyl&lt;/a&gt; for helping out with 3D printing and beautifully painting the parts.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href=&quot;https://www.linkedin.com/in/sumitgoyal11/&quot;&gt;Sumit Goyal&lt;/a&gt; for helping out with 3D printing and beautifully painting the parts.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/3D_part1.jpg&quot; alt=&quot;preview&quot; /&gt;
-&lt;img src=&quot;/assets/img/3D_part2.jpg&quot; alt=&quot;preview&quot; /&gt;
-&lt;img src=&quot;/assets/img/3D_part3.jpg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/img/3D_part2.jpg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;final-preview&quot;&gt;Final preview&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/preview_smart_home.jpg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This still need some more work to fit to a wall with proper wiring.&lt;/p&gt;</content><author><name></name></author><category term="IOT" /><category term="Product Design" /><summary type="html">This is a DIY smart display that you can embed in to your wall. You can control your smart appliance, set timer to control it, get weather info, and act as a cool clock. Let’s get straight into how I made it.</summary></entry><entry><title type="html">Raspberry pi Tips and Tricks</title><link href="/2019/06/04/raspberry-pi-tips-and-tricks.html" rel="alternate" type="text/html" title="Raspberry pi Tips and Tricks" /><published>2019-06-04T00:00:00+05:30</published><updated>2019-06-04T00:00:00+05:30</updated><id>/2019/06/04/raspberry-pi-tips-and-tricks</id><content type="html" xml:base="/2019/06/04/raspberry-pi-tips-and-tricks.html">&lt;p&gt;If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/preview_smart_home.jpg&quot; alt=&quot;preview&quot; /&gt;
+&lt;img src=&quot;/assets/img/preview.jpeg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="IOT" /><category term="Product Design" /><summary type="html"></summary></entry><entry><title type="html">Raspberry pi Tips and Tricks</title><link href="/2019/06/04/raspberry-pi-tips-and-tricks.html" rel="alternate" type="text/html" title="Raspberry pi Tips and Tricks" /><published>2019-06-04T00:00:00+05:30</published><updated>2019-06-04T00:00:00+05:30</updated><id>/2019/06/04/raspberry-pi-tips-and-tricks</id><content type="html" xml:base="/2019/06/04/raspberry-pi-tips-and-tricks.html">&lt;p&gt;If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.&lt;/p&gt;
 
 &lt;h2 id=&quot;enable-ssh&quot;&gt;Enable ssh&lt;/h2&gt;
 
