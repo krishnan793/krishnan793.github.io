@@ -482,7 +482,16 @@
 			"file": "_posts/2019-06-29-smart-home-display-iot--diy-google-home-hub.md",
 			"settings":
 			{
-				"buffer_size": 3364,
+				"buffer_size": 3348,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_site/index.html",
+			"settings":
+			{
+				"buffer_size": 43292,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -574,15 +583,9 @@
 	"expanded_folders":
 	[
 		"/home/angel/Documents/MyWorks/blog",
-		"/home/angel/Documents/MyWorks/blog/.sass-cache",
 		"/home/angel/Documents/MyWorks/blog/_drafts",
-		"/home/angel/Documents/MyWorks/blog/_includes",
-		"/home/angel/Documents/MyWorks/blog/_layouts",
 		"/home/angel/Documents/MyWorks/blog/_posts",
-		"/home/angel/Documents/MyWorks/blog/_site",
-		"/home/angel/Documents/MyWorks/blog/assets",
-		"/home/angel/Documents/MyWorks/blog/assets/css",
-		"/home/angel/Documents/MyWorks/blog/assets/img"
+		"/home/angel/Documents/MyWorks/blog/_site"
 	],
 	"file_history":
 	[
@@ -814,7 +817,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -845,7 +848,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -854,15 +857,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3364,
+						"buffer_size": 3348,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								205,
-								205
+								414,
+								414
 							]
 						],
 						"settings":
@@ -877,11 +880,44 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "_site/index.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 43292,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1173.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "_site/posts.html",
 					"semi_transient": false,
 					"settings":
@@ -910,7 +946,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
