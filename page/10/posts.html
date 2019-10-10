@@ -532,6 +532,8 @@
         </div>
         <ul class="tags">
           
+          <li><a href="/tag/reverse engineering/posts.html" class="tag"> Reverse Engineering </a></li>
+          
           <li><a href="/tag/pi/posts.html" class="tag"> Pi </a></li>
           
           <li><a href="/tag/blogging/posts.html" class="tag"> Blogging </a></li>
@@ -605,8 +607,17 @@
               
               
               <li>  
-                <label for="l1i1">June</label>
+                <label for="l1i1">October</label>
                 <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i2">June</label>
+                <input id="l1i2" type="checkbox">
                 <ul><li><a href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">Smart Home Display IOT</a></li>        
                   <li><a href="/2019/06/04/raspberry-pi-tips-and-tricks.html">Raspberry pi Tips and Tricks</a></li>        
                   
@@ -615,8 +626,8 @@
               
               
               <li>  
-                <label for="l1i2">April</label>
-                <input id="l1i2" type="checkbox">
+                <label for="l1i3">April</label>
+                <input id="l1i3" type="checkbox">
                 <ul><li><a href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">Blog using Jekyll | Github Pages with custom domain</a></li>        
                   
                 </ul>
@@ -624,8 +635,8 @@
               
               
               <li>  
-                <label for="l1i3">January</label>
-                <input id="l1i3" type="checkbox">
+                <label for="l1i4">January</label>
+                <input id="l1i4" type="checkbox">
                 <ul><li><a href="/2019/01/09/product-design-of-4-wheel-differential.html">Product Design of a 4 wheel differential drive robot</a></li>        
                   
                 </ul>
@@ -998,6 +1009,19 @@
 
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></h2></div>
+	  	<div class="post-date">05 Dec 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><span style="font-family: Times, Times New Roman, serif;">This program will dynamically allocate memory and shows the amount of memory it uses. When heap is empty it will show Memory Full. The memory will be freed once you close the program (No harm by the way!). The rate at which memory is allocated is small (1 Kb per each iteration) so you can see at which point heap becomes empty.</span><br /><script src="https://gist.github.com/krishnan793/e8caf6f5cb314b340994.js"></script><span style="font-family: Courier New, Courier, monospace;"><br /></span></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2014/09/22/simple-dip-threshold-animation-using.html">Simple DIP threshold animation using Matlab</a></h2></div>
 	  	<div class="post-date">22 Sep 2014</div>
       <div class="post-inner">
@@ -1044,19 +1068,6 @@
       	
       	</div>
   	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Awk is pretty use full when you are writing automatic scripts to do your jobs. Some simple examples of how we can use awk are given below<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1}'</span><br /><br />It will print first column of ps command. &nbsp;If you want to print second column also write<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 $2}'</span><br /><br />Output seems to be pretty crowded? Add a simple space by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 " " $2}'</span><br /><br />Want to limit it display only second line?<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk ' NR==2{print $1 " " $2}'</span><br /><br />Want to exclede first row? You can do it by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR !=1{print &nbsp;$1 " " $2}'</span><br /><br />Similarly you can print rows greater than a value by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR &gt;1{print &nbsp;$1 " " $2}'</span><br /><br />You can extract virtually anything using awk... Feel free to explore every options. Type man awk or awk --help to explore other options. Feel free to comment also... :)<br /><br />This <a href="https://www.ibm.com/developerworks/library/l-awk1/" target="_blank">site</a> has some good examlpes.<br /><br /><br /></div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></h2></div>
-	  	<div class="post-date">22 Jul 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Well Linux is famous for combining things in power full ways in which anything is possible from a command line. The real fun of Linux came when you start focusing on terminal to do everything...<br /><br />It's possible to pipeline commands in terminal. Also it's possible to pass output of something as an argument of other.<br /><br />For example you can ping to your own external ip by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ping $(curl -s &nbsp;curlmyip.com)</span><br /><br />curl curlmyip.com returns you ip address. This address is passed to &nbsp;the telnet as an argument. Whatever you put between $( and ) will execute as if it is a bash command.<br /><br /><br /></div> </div>
       </div>
 	</div>
 </div>

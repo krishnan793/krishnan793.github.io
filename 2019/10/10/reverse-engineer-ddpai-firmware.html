@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138410033-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-138410033-1');
+      </script>
+    
+    <meta charset="UTF-8">
+
+    <!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Reverse Engineer DDPAI Dash Cam Firmware | Ananth’s Blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Reverse Engineer DDPAI Dash Cam Firmware" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon Link (Official site Link), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible." />
+<meta property="og:description" content="I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon Link (Official site Link), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible." />
+<link rel="canonical" href="/2019/10/10/reverse-engineer-ddpai-firmware.html" />
+<meta property="og:url" content="/2019/10/10/reverse-engineer-ddpai-firmware.html" />
+<meta property="og:site_name" content="Ananth’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-10T00:00:00+05:30" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/2019/10/10/reverse-engineer-ddpai-firmware.html"},"@type":"BlogPosting","url":"/2019/10/10/reverse-engineer-ddpai-firmware.html","headline":"Reverse Engineer DDPAI Dash Cam Firmware","dateModified":"2019-10-10T00:00:00+05:30","datePublished":"2019-10-10T00:00:00+05:30","description":"I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon Link (Official site Link), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+  </head>
+
+  <body style="">
+    <header class="page-header" role="banner" style="padding: 0px;background-color: #323638; background-image: none;margin-bottom: 15px;">
+      <!-- Star in header start-->
+      <script src="/assets/js/particles.js"></script>
+      <style type="text/css"> 
+        #particle-container{
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          height: 200px;
+          width: 100vw;
+          z-index: 0;
+        }
+      </style>
+      <script type="text/javascript">
+        /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+        particlesJS.load('particle-container', '/assets/particle.json', function() {
+          console.log('callback - particles.js config loaded');
+        });
+      </script>
+      <div id="particle-container"></div>
+      <!-- Star in header end-->
+
+      <!-- Main title Eionix start -->
+      <h1 class="project-name">&nbsp;<style type="text/css">
+
+.content-eionix {
+  position: absolute;
+  top: 111px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 160px;
+  overflow: hidden;
+  font-family: 'Lato', sans-serif;
+  font-size: 35px;
+  line-height: 40px;
+  color: #ecf0f1;
+}
+.content__container {
+  font-weight: 600;
+  overflow: hidden;
+  height: 40px;
+  padding: 0 40px;
+}
+.content__container:before {
+  content: '[';
+  left: 0;
+}
+.content__container:after {
+  content: ']';
+  position: absolute;
+  right: 0;
+}
+.content__container:after, .content__container:before {
+  position: absolute;
+  top: 0;
+  color: #16a085;
+  font-size: 42px;
+  line-height: 40px;
+  -webkit-animation-name: opacity;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: opacity;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.content__container__text {
+  display: inline;
+  float: left;
+  margin: 0;
+}
+.content__container__list {
+  margin-top: 0;
+  padding-left: 110px;
+  text-align: left;
+  list-style: none;
+  -webkit-animation-name: change;
+  -webkit-animation-duration: 10s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: change;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+.content__container__list__item {
+  line-height: 40px;
+  margin: 0;
+}
+
+@-webkit-keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes change {
+  0%, 12.66%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  16.66%, 29.32% {
+    -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+  }
+  33.32%,45.98% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  49.98%,62.64% {
+    -webkit-transform: translate3d(0, -75%, 0);
+            transform: translate3d(0, -75%, 0);
+  }
+  66.64%,79.3% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  83.3%,95.96% {
+    -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+  }
+}
+@keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes change {
+  0%, 12.66%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  16.66%, 29.32% {
+    -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+  }
+  33.32%,45.98% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  49.98%,62.64% {
+    -webkit-transform: translate3d(0, -75%, 0);
+            transform: translate3d(0, -75%, 0);
+  }
+  66.64%,79.3% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  83.3%,95.96% {
+    -webkit-transform: translate3d(0, -25%, 0);
+            transform: translate3d(0, -25%, 0);
+  }
+}
+
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+<div class="content-eionix">
+  <div class="content__container">
+    <p class="content__container__text">
+      EIONI
+    </p>
+    
+    <ul class="content__container__list">
+      <li class="content__container__list__item">X</li>
+      <li class="content__container__list__item">X</li>
+      <li class="content__container__list__item">X</li>
+      <li class="content__container__list__item">X</li>
+    </ul>
+  </div>
+</div></h1>
+      <!-- Main title Eionix end -->
+
+      <h2 class="project-tagline">A personal blog having hobby projects.</h2>
+      
+      
+
+      <!-- Navigation bar start -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+	#nav {
+		height: 40px;
+		line-height: 40px;
+		background-color: #32363996;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+		position: relative;
+		z-index: 2;
+		transition: transform 0.5s ease-in-out;
+	}
+	#nav ul {
+		display: flex;
+		justify-content: center;
+		margin: 0;
+		padding: 0;
+	}
+	#nav ul li {
+		margin: 0;
+		padding: 0;
+		list-style:none;
+	}
+	#nav ul li a {
+		text-decoration: none;
+		padding: 10px 20px;
+		color: #FFF;
+		text-align: center;
+	}
+	#nav ul li a:hover{
+		text-decoration: underline;
+	}
+	#icon-menu {
+		display: none;
+	}
+
+	@media screen and (max-device-width: 350px), screen and (max-width: 350px){
+	  #nav ul{
+	    flex-direction: column;
+	  }
+	  #nav {
+	  	height: auto;
+	  }	
+	}
+	@media screen and (max-device-width: 678px),  screen and (max-width: 678px){
+	  #icon-menu{
+	  	display: initial;
+	  }
+	.rotated { 
+	    -webkit-transform: rotate(90deg);
+	    -moz-transform: rotate(90deg);
+	    -o-transform: rotate(90deg);
+	    -ms-transform: rotate(90deg);
+	    transform: rotate(90deg);
+	}
+}
+</style>
+<script type="text/javascript">
+          function toggle_side_bar(){
+          	$(".fa-bars").toggleClass('rotated');
+            if($('#side_bar').is(":visible")){
+              $('#search-box').show("slow");
+              $('#side_bar').hide("slow");
+              $('#side_bar').css("width","0%");
+              $('#content').css("width","100%");
+              $('#content').show("slow");
+            } else {
+              $('#side_bar').css("width","100%");
+              $('#side_bar').show("slow");
+              $('#search-box').hide("slow");
+              $('#content').hide();
+              //$('#main-content').css("width","0%");
+            }
+            //$('#side_bar').toggle("slow");
+          }
+        </script>
+<div id="nav">
+	<ul>
+		<li id="icon-menu">
+			<a href="javascript:toggle_side_bar();">
+    			<i class="fa fa-bars"></i>
+    		</a>
+    	</li>
+		<li><a href="/">Home</a>
+
+		</li>
+
+		<li><a href="/posts.html">Posts</a>
+
+		</li>
+		<li><a href="/about/">About</a>
+
+		</li>
+	</ul>
+</div>
+      <!-- Navigation bar end -->
+      <style type="text/css">
+	.gsc-control-cse {
+		border-color: #32353700 !important;
+		background-color: #FFFFFFFF !important;
+	}
+	.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+		background-color: #FFFFFFFF !important;
+	}
+	#search-box{
+		position: absolute;
+		right: 0px;
+		/* float: right; */
+		margin-top: 10px;
+		width: 30%;
+		/* height: 55px; */
+		line-height: 15px;
+		color: black;
+	}
+	@media screen and (max-device-width: 678px),  screen and (max-width: 678px){
+
+		#search-box{
+			position: absolute;
+			right: 0px;
+			margin-top: 0px;
+			margin-left: -6px;
+			width: 100%;
+			line-height: 15px;
+			color: black;
+		}
+		.gsc-results-wrapper-overlay{
+			width: 100% !important;
+			/*padding: 0px !important;*/
+			left: 0px !important; 
+		}
+	}
+</style>
+<div id="search-box">
+<script>
+  (function() {
+    var cx = '017758302252310002688:ep7ig_licse';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div>
+    </header>
+
+    <div class="body">
+      <style type="text/css">
+        .body{
+          display: flex;
+          overflow: auto;
+        }
+      </style>
+          <!-- Side bar start -->
+    <div id="side_bar" style="">
+      <div class="author-container">
+        <style type="text/css">
+          #side_bar{
+            /*display: inline-block; */
+            /*float: left;*/
+            vertical-align: top; 
+            margin-left: 29px;
+            margin-top: 29px;
+            width: 30%; 
+            /*overflow: hidden !important;*/
+          }
+          #content{
+            vertical-align: top; 
+            /*display: inline-block;
+            width:70%;*/
+          }
+          @media screen and (max-device-width: 678px), screen and (max-width: 678px){
+            #side_bar{
+              display: none;
+              /*width:0%;*/
+            }
+          }
+          .profile-pic{
+            border-radius: 50%;
+            display: inline;
+            vertical-align: middle;
+            /*border: 4px solid black;*/
+            -webkit-border-radius: 50%;
+            transition: .5s ease;
+          }
+          .profile-pic:hover {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            -webkit-animation: flash 1.5s;
+            animation: flash 1.5s;
+          }
+          @-webkit-keyframes flash {
+            0% {
+              opacity: .4;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes flash {
+            0% {
+              opacity: .4;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          .author{    
+            font-size: larger;
+            vertical-align: 15px;
+            margin-left: 85px;
+            margin-top: -74px;
+          }
+          .job-title{
+            margin-left: 97px;
+            /*margin-top: -38px;*/
+            font-size: medium;
+          }
+          .author-container{
+            margin: 5px;
+          }
+        </style>
+        <img src="/assets/img/profile.jpg" class="profile-pic" width="80px">
+        <div class="author">
+          ANANTHAKRISHNAN U S
+        </div>
+        <div class="job-title">
+          R&D Engineer, ABB India
+        </div>
+      </div>
+
+            <div class="tag-container">
+        <style type="text/css">
+          .tag-container{
+            margin-top: 30px;
+            margin-left: 20px;
+            max-width: 400px;
+          }
+          .tag-heading{
+            line-height: 50px;
+          }
+          .tags {
+            list-style: none;
+            margin: 0;
+            overflow: hidden; 
+            padding-left: 12px;
+          }
+
+          .tags li {
+            float: left; 
+          }
+
+          .tag {
+            background: #eee;
+            border-radius: 3px 0 0 3px;
+            color: #999;
+            display: inline-block;
+            height: 26px;
+            line-height: 26px;
+            padding: 0 20px 0 23px;
+            position: relative;
+            margin: 0 10px 10px 0;
+            text-decoration: none;
+            -webkit-transition: color 0.2s;
+            font-size: smaller;
+          }
+
+          .tag::before {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+            content: '';
+            height: 6px;
+            left: 10px;
+            position: absolute;
+            width: 6px;
+            top: 10px;
+          }
+
+          .tag::after {
+            background: #fff;
+            border-bottom: 13px solid transparent;
+            border-left: 10px solid #eee;
+            border-top: 13px solid transparent;
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+
+          .tag:hover {
+            background-color: #319957;
+            color: white;
+            text-decoration: none;
+          }
+
+          .tag:hover::after {
+           border-left-color: #319957; 
+         }
+        </style>
+        <div class="tag-heading">
+          <style type="text/css">
+            .archive-list ul{
+              margin: 0;
+            }
+          </style>
+        Tags
+        </div>
+        <ul class="tags">
+          
+          <li><a href="/tag/reverse engineering/posts.html" class="tag"> Reverse Engineering </a></li>
+          
+          <li><a href="/tag/pi/posts.html" class="tag"> Pi </a></li>
+          
+          <li><a href="/tag/blogging/posts.html" class="tag"> Blogging </a></li>
+          
+          <li><a href="/tag/product design/posts.html" class="tag"> Product Design </a></li>
+          
+          <li><a href="/tag/drones/posts.html" class="tag"> Drones </a></li>
+          
+          <li><a href="/tag/ros/posts.html" class="tag"> ROS </a></li>
+          
+          <li><a href="/tag/iot/posts.html" class="tag"> IOT </a></li>
+          
+          <li><a href="/tag/opencv/posts.html" class="tag"> opencv </a></li>
+          
+          <li><a href="/tag/robotics/posts.html" class="tag"> Robotics </a></li>
+          
+          <li><a href="/tag/atmega328pu/posts.html" class="tag"> Atmega328PU </a></li>
+          
+          <li><a href="/tag/beaglebone black/posts.html" class="tag"> BeagleBone Black </a></li>
+          
+          <li><a href="/tag/networkking/posts.html" class="tag"> Networkking </a></li>
+          
+          <li><a href="/tag/linux/posts.html" class="tag"> Linux </a></li>
+          
+          <li><a href="/tag/matlab/posts.html" class="tag"> Matlab </a></li>
+          
+          <li><a href="/tag/tips and tricks/posts.html" class="tag"> Tips and Tricks </a></li>
+          
+          <li><a href="/tag/electronics/posts.html" class="tag"> Electronics </a></li>
+          
+          <li><a href="/tag/c/posts.html" class="tag"> C </a></li>
+          
+          <li><a href="/tag/gaming/posts.html" class="tag"> Gaming </a></li>
+          
+          <li><a href="/tag/after effect/posts.html" class="tag"> After Effect </a></li>
+          
+          <li><a href="/tag/web designing/posts.html" class="tag"> Web Designing </a></li>
+          
+        </ul>
+      </div>
+
+      <div class="tag-container" style="width:300px;">
+        <style type="text/css">
+          .tree-list{
+           margin-top: 0;
+         }
+         .tree-list li > ul, .tree-list li > ul {
+           display: none;
+         }
+         .tree-list input[type="checkbox"]:checked + ul, .tree-list input[type="checkbox"]:checked + ul{
+           display: block;
+         }
+         .tree-list input[type="checkbox"] {
+           display: none;
+           position: relative;
+         }
+         .tree-list label {
+           position: relative;
+           display: inline-block;
+         }
+         .tree-list label:after {
+           /*content: '+';*/
+           position: static;
+         }
+        </style>
+        <div class="tag-heading">
+        Archive
+        </div>
+        <ul class="tree-list"><li><label for="l1"> 2019 </label><input id="l1" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l1i1">October</label>
+                <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i2">June</label>
+                <input id="l1i2" type="checkbox">
+                <ul><li><a href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">Smart Home Display IOT</a></li>        
+                  <li><a href="/2019/06/04/raspberry-pi-tips-and-tricks.html">Raspberry pi Tips and Tricks</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i3">April</label>
+                <input id="l1i3" type="checkbox">
+                <ul><li><a href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">Blog using Jekyll | Github Pages with custom domain</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i4">January</label>
+                <input id="l1i4" type="checkbox">
+                <ul><li><a href="/2019/01/09/product-design-of-4-wheel-differential.html">Product Design of a 4 wheel differential drive robot</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l2"> 2018 </label><input id="l2" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l2i1">October</label>
+                <input id="l2i1" type="checkbox">
+                <ul><li><a href="/2018/10/06/inventory-app-for-hobbyists.html">Inventory App for hobbyists</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l2i2">March</label>
+                <input id="l2i2" type="checkbox">
+                <ul><li><a href="/2018/03/11/raspberry-pi-based-car-infotainment.html">Raspberry pi based Car Infotainment system</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l3"> 2017 </label><input id="l3" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l3i1">August</label>
+                <input id="l3i1" type="checkbox">
+                <ul><li><a href="/2017/08/03/creating-wireless-remote-for-nikon.html">Creating a Wireless remote for Nikon Camera using Esp8266</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l3i2">April</label>
+                <input id="l3i2" type="checkbox">
+                <ul><li><a href="/2017/04/22/ros-simulating-3-axis-robot-in-rviz.html">ROS simulating a 3 axis robot in Rviz</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l3i3">January</label>
+                <input id="l3i3" type="checkbox">
+                <ul><li><a href="/2017/01/01/batman-key-chain-with-esp8266.html">Batman Key chain with ESP8266</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l4"> 2016 </label><input id="l4" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l4i1">November</label>
+                <input id="l4i1" type="checkbox">
+                <ul><li><a href="/2016/11/13/mav-with-two-propeller.html">MAV with two propeller</a></li>        
+                  <li><a href="/2016/11/06/my-single-rotor-mav.html">My single rotor MAV :)</a></li>        
+                  <li><a href="/2016/11/02/this-is-another-theme-i-created-for.html">PlymouthTheme-TheRun</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l4i2">October</label>
+                <input id="l4i2" type="checkbox">
+                <ul><li><a href="/2016/10/30/plymouth-theme-for-ubuntu.html">Plymouth theme for Ubuntu</a></li>        
+                  <li><a href="/2016/10/21/self-balancing-robot.html">Self Balancing Robot</a></li>        
+                  <li><a href="/2016/10/21/warehouse-management-system-using-drones.html">Warehouse Management System using Drones</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l4i3">September</label>
+                <input id="l4i3" type="checkbox">
+                <ul><li><a href="/2016/09/21/controlling-parrot-bebop-using-ros.html">Controlling Parrot Bebop using ROS Kinetic</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l4i4">January</label>
+                <input id="l4i4" type="checkbox">
+                <ul><li><a href="/2016/01/27/smart-room-wireless-controlled.html">Smart Room :-) | Wireless controlled appliances</a></li>        
+                  <li><a href="/2016/01/27/esp8266-wifi-iot-chip-programing.html">ESP8266 WiFi IOT chip | Programing the Firmware</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l5"> 2015 </label><input id="l5" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l5i1">November</label>
+                <input id="l5i1" type="checkbox">
+                <ul><li><a href="/2015/11/14/searching-and-precision-landing-of-ar.html">Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS </a></li>        
+                  <li><a href="/2015/11/13/simulating-controlling-ar-drone-20.html">Simulation & Controlling AR Drone 2.0 using Gamepad | Gazebo | ROS</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i2">October</label>
+                <input id="l5i2" type="checkbox">
+                <ul><li><a href="/2015/10/21/a-multilayer-neural-network-based.html">A Multilayer Neural Network Based Obstacle Avoiding Robot | ROS | Simulation</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i3">August</label>
+                <input id="l5i3" type="checkbox">
+                <ul><li><a href="/2015/08/30/controlling-turtlesim-using-gamepad-ros.html">Controlling turtlesim using a Gamepad | ROS</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i4">July</label>
+                <input id="l5i4" type="checkbox">
+                <ul><li><a href="/2015/07/30/clap-switch.html">Clap Switch</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i5">May</label>
+                <input id="l5i5" type="checkbox">
+                <ul><li><a href="/2015/05/12/vision-based-line-follower-using-opencv.html">Vision Based Line Follower using opencv</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i6">April</label>
+                <input id="l5i6" type="checkbox">
+                <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
+                  <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
+                  <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i7">March</label>
+                <input id="l5i7" type="checkbox">
+                <ul><li><a href="/2015/03/01/display-text-in-color-linux-terminal.html">Display text in color - Linux terminal</a></li>        
+                  <li><a href="/2015/03/01/beagleboneblack-adc.html">BeagleBoneBlack ADC</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l5i8">February</label>
+                <input id="l5i8" type="checkbox">
+                <ul><li><a href="/2015/02/27/beagleboneblack-gpio-push-button-led.html">BeagleBoneBlack GPIO Push Button + LED</a></li>        
+                  <li><a href="/2015/02/27/led-cube-using-atmega328p.html">LED Cube using Atmega328P</a></li>        
+                  <li><a href="/2015/02/27/gpio-blink-led-using-c-beagleboneblack.html">GPIO Blink an LED using C - BeagleBoneBlack</a></li>        
+                  <li><a href="/2015/02/27/gpio-blinking-led-using-bash-script.html">GPIO Blinking an LED using bash script</a></li>        
+                  <li><a href="/2015/02/27/getting-started-with-gpio-testing-gpio.html">Getting started with GPIO (Testing GPIO with a multimeter)</a></li>        
+                  <li><a href="/2015/02/22/beagleboneblack-apt-get-upgrade-error.html">BeagleBoneBlack apt-get upgrade error due to led-aging.sh</a></li>        
+                  <li><a href="/2015/02/22/getting-internet-on-bbb-via-usb-share.html">Getting internet on BBB via usb (Share internet from your linux machine)</a></li>        
+                  <li><a href="/2015/02/22/remote-access-your-beaglebone-black.html">Remote access your BeagleBone Black using vnc</a></li>        
+                  <li><a href="/2015/02/21/program-bbb-using-c-blink-onboard-led.html">Program BBB using C (Blink onboard LED)</a></li>        
+                  <li><a href="/2015/02/21/getting-started-with-beaglebone-black.html">Getting started with BeagleBone Black (Remote login via SSH with Linux / Windows)</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l6"> 2014 </label><input id="l6" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l6i1">December</label>
+                <input id="l6i1" type="checkbox">
+                <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
+                  <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
+                  <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
+                  <li><a href="/2014/12/18/gray-level-transformation-negative.html">Gray Level Transformations</a></li>        
+                  <li><a href="/2014/12/05/creating-and-deleting.html">Creating and Deleting Folders/Directories using C</a></li>        
+                  <li><a href="/2014/12/05/flooding-ram-with-c.html">Flooding RAM ( C )</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i2">September</label>
+                <input id="l6i2" type="checkbox">
+                <ul><li><a href="/2014/09/22/simple-dip-threshold-animation-using.html">Simple DIP threshold animation using Matlab</a></li>        
+                  <li><a href="/2014/09/15/automating-scripts-using-expect.html">Automating scripts using expect</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i3">July</label>
+                <input id="l6i3" type="checkbox">
+                <ul><li><a href="/2014/07/22/how-to-use-variable-from-bash-to-use-in.html">How to use variable from bash to use in awk?</a></li>        
+                  <li><a href="/2014/07/22/linux-command-awk.html">Linux command awk extract anything</a></li>        
+                  <li><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></li>        
+                  <li><a href="/2014/07/19/how-to-know-external-ip-address-from.html">How to know external IP address from Linux terminal?</a></li>        
+                  <li><a href="/2014/07/16/how-to-set-dns-address-in-android-phones.html">How to set dns address in android phones?</a></li>        
+                  <li><a href="/2014/07/16/how-to-see-open-ports-inlinux.html">How to see open ports inLinux?</a></li>        
+                  <li><a href="/2014/07/15/testing-nat-port-forwarding-and.html">Testing NAT Port Forwarding and reverese NAT</a></li>        
+                  <li><a href="/2014/07/15/how-to-see-dns-reply-or-testing-dns.html">How to see DNS reply? or Testing DNS server?</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i4">May</label>
+                <input id="l6i4" type="checkbox">
+                <ul><li><a href="/2014/05/14/ultrasonic-hover-input-device.html">Ultrasonic Hover Input Device</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i5">April</label>
+                <input id="l6i5" type="checkbox">
+                <ul><li><a href="/2014/04/02/how-to-send-at-commands.html">How to send AT commands?</a></li>        
+                  <li><a href="/2014/04/02/at-commands.html">AT Commands</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l6i6">March</label>
+                <input id="l6i6" type="checkbox">
+                <ul><li><a href="/2014/03/31/how-to-hide-and-unhide-files-in-linux.html">How to hide and unhide files in Linux?</a></li>        
+                  <li><a href="/2014/03/31/linux-how-to-find-your-serial-any.html">Linux: How to find your serial (any connected) device?</a></li>        
+                  <li><a href="/2014/03/30/serial-port-communication-in-linux.html">Serial Port Communication in Linux using Minicom</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l7"> 2013 </label><input id="l7" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l7i1">October</label>
+                <input id="l7i1" type="checkbox">
+                <ul><li><a href="/2013/10/29/wwwieeegecskpin.html">www.ieeegecskp.in</a></li>        
+                  <li><a href="/2013/10/29/use-matlab-to-read-serial-data.html">Use Matlab to read serial data</a></li>        
+                  <li><a href="/2013/10/29/creative-destruction-batch-hacks.html">Creative Destruction | Batch Hacks</a></li>        
+                  <li><a href="/2013/10/11/serial-port-communication-using-avr.html">Serial port communication using AVR</a></li>        
+                  <li><a href="/2013/10/06/mark-all-gmail-messages-as-read.html">Mark all Gmail messages as read</a></li>        
+                  <li><a href="/2013/10/02/changing-colour-of-your-mouse.html">Changing the colour of your mouse</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l7i2">January</label>
+                <input id="l7i2" type="checkbox">
+                <ul><li><a href="/2013/01/21/driving-2-led-in-fasion.html">Driving 2 LED in a Fasion</a></li>        
+                  <li><a href="/2013/01/21/blinking-led-with-microcontroller.html">Blinking an LED with Microcontroller</a></li>        
+                  <li><a href="/2013/01/21/lighting-led-with-microcontroller.html">Lighting an LED with Microcontroller | Atmega328p</a></li>        
+                  <li><a href="/2013/01/21/get-started-with-microcontroller.html">Get started with Microcontroller | Atmega328p</a></li>        
+                  <li><a href="/2013/01/21/electret-microphones-cma-4544pf-w.html">Electret Microphones (CMA-4544PF-W)</a></li>        
+                  <li><a href="/2013/01/20/encode-your-text-into-ascii-hex-code.html">Encode your text into ASCII HEX code using C</a></li>        
+                  <li><a href="/2013/01/20/authentication-of-username-and-password.html">Authentication of username and password using PHP(MySQL)</a></li>        
+                  <li><a href="/2013/01/19/after-effect-tutorial.html">After Effect Tutorial</a></li>        
+                  <li><a href="/2013/01/19/invento-promo-video-after-effects.html">Invento Promo Video | After Effects</a></li>        
+                  <li><a href="/2013/01/19/invento-logo-animation-using-after.html">Invento Logo Animation | Using After Effect</a></li>        
+                  <li><a href="/2013/01/19/nfs-mw-best-scenes-mw-gameplay-pursuits.html">NFS MW best scenes | MW Gameplay pursuits</a></li>        
+                  <li><a href="/2013/01/19/sastra-systems.html">Sastra Systems</a></li>        
+                  <li><a href="/2013/01/19/wwwinventogecskpcom.html">www.inventogecskp.com</a></li>        
+                  <li><a href="/2013/01/19/html-where-to-begin.html">HTML | Where to begin?</a></li>        
+                  <li><a href="/2013/01/19/a-basics-to-html.html">A Basics to HTML</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+      <div class="tag-heading">
+        Found useful?
+      </div>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="78ASX9A6245B6">
+      <input type="image" src="/assets/img/donate.png" width="120px" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+      </form>
+
+    </div>
+<!-- Side bar end -->
+
+      <!-- Main post content start -->
+      <main id="content" class="main-content" role="main" style="margin: 0;">
+        <style type="text/css">
+          #page-content{
+            max-width: 64rem;
+            margin: auto;
+          }
+          #content{
+            max-width:70%;
+            margin-top: 30px !important;
+          }
+          #page-content p img{
+            max-width:400px;
+            transition: transform .2s;
+          }
+          #page-content p img:hover{
+            z-index: 3;
+            position: relative;
+            background-color: white;
+            transform: scale(2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          }
+          @media screen and (max-width: 678px){
+            #content{
+              max-width:100%;
+            }
+            #page-content p img:hover{
+              transform: scale(1);
+            }
+          }
+        </style>
+        <div id="page-content">
+          
+            <h1> Reverse Engineer DDPAI Dash Cam Firmware </h1>
+            
+          10 Oct 2019
+          <p>I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon <a href="https://www.amazon.in/gp/product/B07L6JVT92/">Link</a> (Official site <a href="http://en.ddpai.com/product/mini/4.html">Link</a>), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible.</p>
+
+<p><img src="/assets/img/ddpai.png" alt="DDPAI" /></p>
+
+<p>In the officail site, they have mentioned about Hi3516E. it is an SoC buid by HISILICON that runs on Linux-3.18 (probably running Huawei LiteOS <a href="https://liteos.github.io/en/kernel/task.html#overview">Link</a>). Looking into the datasheet <a href="http://support.hkvstar.com/file/Hi3516E%20V100%20Professional%20HD%20IP%20Camera%20SoC%20Brief%20Data%20Sheet.pdf">Link</a>, it supports following encodings,</p>
+<ul>
+  <li>H.264 BP/MP/HP</li>
+  <li>H.265 Main Profile</li>
+  <li>MJPEG/JPEG baseline</li>
+</ul>
+
+<p>But from the official site, it’s mentioned H.264. So most probably the stream will be in this format. This came handy later in the process.</p>
+
+<p>Once powered, camera starts a WiFi AP. Client can connect to this using default password 1234567890 and use companion app to configure. Put your WiFi interface to monitor mode and start listening on the traffic.</p>
+
+<p><img src="/assets/img/init_traffic.jpg" alt="Initial traffic" /></p>
+
+<p>I could see a lot of HTTP traffic between companion app and 193.168.0.1 which is the camera device. So they have some kind of REST API service running on port 80. Let’s look into the flow.</p>
+
+<p><img src="/assets/img/flow.jpg" alt="Flow" /></p>
+
+<p>To get a sessionid they are calling <code class="highlighter-rouge">POST /vcam/cmd.cgi?cmd=API_RequestSessionID</code>. This set a Cookie and they are reusing it for further communication. Then they are synching the time. Why do they need imei number for that? Strange. let’s look the subsequent requests.</p>
+
+<div class="language-config highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">POST</span> /<span class="n">vcam</span>/<span class="n">cmd</span>.<span class="n">cgi</span>?<span class="n">cmd</span>=<span class="n">API_GetBaseInfo</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
+<span class="n">Accept</span>-<span class="n">Encoding</span>: <span class="n">gzip</span>
+<span class="n">sessionid</span>: <span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Cookie</span>: <span class="n">SessionID</span>=<span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">application</span>/<span class="n">x</span>-<span class="n">www</span>-<span class="n">form</span>-<span class="n">urlencoded</span>
+<span class="n">User</span>-<span class="n">Agent</span>: ****************************************
+<span class="n">Host</span>: <span class="m">193</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">0</span>
+
+<span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span> <span class="m">200</span> <span class="n">OK</span>
+<span class="n">Server</span>: <span class="n">VYOU_HTTP_SERVER</span>/<span class="m">2</span>.<span class="m">1</span>.<span class="m">3</span> <span class="n">CAM</span> <span class="n">WEB</span> <span class="m">1</span>.<span class="m">0</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">text</span>/<span class="n">plain</span>; <span class="n">charset</span>=<span class="n">UTF</span>-<span class="m">8</span>
+<span class="n">Date</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Last</span>-<span class="n">Modified</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Cache</span>-<span class="n">Control</span>: <span class="n">no</span>-<span class="n">cache</span>,<span class="n">no</span>-<span class="n">store</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">651</span>
+
+{<span class="s2">"errcode"</span>:<span class="m">0</span>,<span class="s2">"data"</span>:<span class="s2">"{\"</span><span class="n">nickname</span>\<span class="s2">":\"</span><span class="n">vYou_DDPai_MINI</span>\<span class="s2">",\"</span><span class="n">password</span>\<span class="s2">":\"</span><span class="m">1234567890</span>\<span class="s2">",\"</span><span class="n">ordernum</span>\<span class="s2">":\"</span><span class="n">DDPaiMin</span>\<span class="s2">",\"</span><span class="n">model</span>\<span class="s2">":\"</span><span class="n">DDPai</span> <span class="n">miniONE_LITE_Overseas</span>\<span class="s2">",\"</span><span class="n">version</span>\<span class="s2">":\"</span><span class="n">v4</span>.<span class="m">7</span>.<span class="m">0</span>.<span class="m">22</span>\<span class="s2">",\"</span><span class="n">uuid</span>\<span class="s2">":\"</span>*****-****-****-****-********\<span class="s2">",\"</span><span class="n">sn</span>\<span class="s2">":\"</span>\<span class="s2">",\"</span><span class="n">macaddr</span>\<span class="s2">":\"</span>**:**:**:**:**:**\<span class="s2">",\"</span><span class="n">chipsn</span>\<span class="s2">":\"</span>\<span class="s2">",\"</span><span class="n">legalret</span>\<span class="s2">":1,\"</span><span class="n">btnver</span>\<span class="s2">":3,\"</span><span class="n">totalruntime</span>\<span class="s2">":7471,\"</span><span class="n">sdcapacity</span>\<span class="s2">":31158784,\"</span><span class="n">sdspare</span>\<span class="s2">":24202912,\"</span><span class="n">sdbrand</span>\<span class="s2">":\"</span>\<span class="s2">",\"</span><span class="n">hbbitrate</span>\<span class="s2">":10240,\"</span><span class="n">hsbitrate</span>\<span class="s2">":2048,\"</span><span class="n">mbbitrate</span>\<span class="s2">":10240,\"</span><span class="n">msbitrate</span>\<span class="s2">":2048,\"</span><span class="n">lbbitrate</span>\<span class="s2">":10240,\"</span><span class="n">lsbitrate</span>\<span class="s2">":2048,\"</span><span class="n">default_user</span>\<span class="s2">":\"</span><span class="n">A1000030EBAA94</span>\<span class="s2">",\"</span><span class="n">is_neeed_update</span>\<span class="s2">":0,\"</span><span class="n">edog_model</span>\<span class="s2">":\"</span>\<span class="s2">",\"</span><span class="n">edog_version</span>\<span class="s2">":\"</span>\<span class="s2">",\"</span><span class="n">edog_status</span>\<span class="s2">":2,\"</span><span class="n">cid</span>\<span class="s2">":\"</span>\<span class="s2">"}"</span>}
+
+<span class="n">GET</span> /<span class="n">record</span>.<span class="n">log</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
+<span class="n">Accept</span>-<span class="n">Encoding</span>: 
+<span class="n">User</span>-<span class="n">Agent</span>: ****************************************
+<span class="n">Host</span>: <span class="m">193</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+
+<span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span> <span class="m">200</span> <span class="n">OK</span>
+<span class="n">Server</span>: <span class="n">VYOU_HTTP_SERVER</span>/<span class="m">2</span>.<span class="m">1</span>.<span class="m">3</span> <span class="n">CAM</span> <span class="n">WEB</span> <span class="m">1</span>.<span class="m">0</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">text</span>/<span class="n">plain</span>; <span class="n">charset</span>=<span class="n">UTF</span>-<span class="m">8</span>
+<span class="n">Date</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Last</span>-<span class="n">Modified</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Cache</span>-<span class="n">Control</span>: <span class="n">no</span>-<span class="n">cache</span>,<span class="n">no</span>-<span class="n">store</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">4329</span>
+
+{<span class="s2">"nickname"</span>:<span class="s2">"vYou_DDPai_MINI"</span>,<span class="s2">"password"</span>:<span class="s2">"1234567890"</span>,<span class="s2">"ordernum"</span>:<span class="s2">"DDPaiMin"</span>,<span class="s2">"model"</span>:<span class="s2">""</span>,<span class="s2">"version"</span>:<span class="s2">"v4.7.0.22"</span>,<span class="s2">"uuid"</span>:<span class="s2">"***********************"</span>,<span class="s2">"sn"</span>:<span class="s2">""</span>,<span class="s2">"macaddr"</span>:<span class="s2">"**:**:**:**:**:**"</span>,<span class="s2">"chipsn"</span>:<span class="s2">""</span>,<span class="s2">"legalret"</span>:<span class="m">1</span>,<span class="s2">"btnver"</span>:<span class="m">3</span>,<span class="s2">"totalruntime"</span>:<span class="m">7471</span>,<span class="s2">"sdcapacity"</span>:<span class="m">31158784</span>,<span class="s2">"sdspare"</span>:<span class="m">24202912</span>,<span class="s2">"sdbrand"</span>:<span class="s2">""</span>,<span class="s2">"hbbitrate"</span>:<span class="m">10240</span>,<span class="s2">"hsbitrate"</span>:<span class="m">2048</span>,<span class="s2">"mbbitrate"</span>:<span class="m">10240</span>,<span class="s2">"msbitrate"</span>:<span class="m">2048</span>,<span class="s2">"lbbitrate"</span>:<span class="m">10240</span>,<span class="s2">"lsbitrate"</span>:<span class="m">2048</span>,<span class="s2">"default_user"</span>:<span class="s2">"A1000030EBAA94"</span>,<span class="s2">"is_neeed_update"</span>:<span class="m">0</span>,<span class="s2">"edog_model"</span>:<span class="s2">""</span>,<span class="s2">"edog_version"</span>:<span class="s2">""</span>,<span class="s2">"edog_status"</span>:<span class="m">2</span>,<span class="s2">"cid"</span>:<span class="s2">""</span>}
+....
+
+<span class="n">POST</span> /<span class="n">vcam</span>/<span class="n">cmd</span>.<span class="n">cgi</span>?<span class="n">cmd</span>=<span class="n">APP_AvCapSet</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
+<span class="n">Accept</span>-<span class="n">Encoding</span>: <span class="n">gzip</span>
+<span class="n">sessionid</span>: <span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Cookie</span>: <span class="n">SessionID</span>=<span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">application</span>/<span class="n">x</span>-<span class="n">www</span>-<span class="n">form</span>-<span class="n">urlencoded</span>
+<span class="n">User</span>-<span class="n">Agent</span>: ****************************************
+<span class="n">Host</span>: <span class="m">193</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">30</span>
+
+{<span class="s2">"stream_type"</span>:<span class="m">0</span>,<span class="s2">"frmrate"</span>:<span class="m">30</span>}
+
+<span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span> <span class="m">200</span> <span class="n">OK</span>
+<span class="n">Server</span>: <span class="n">VYOU_HTTP_SERVER</span>/<span class="m">2</span>.<span class="m">1</span>.<span class="m">3</span> <span class="n">CAM</span> <span class="n">WEB</span> <span class="m">1</span>.<span class="m">0</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">text</span>/<span class="n">plain</span>; <span class="n">charset</span>=<span class="n">UTF</span>-<span class="m">8</span>
+<span class="n">Date</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Last</span>-<span class="n">Modified</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Cache</span>-<span class="n">Control</span>: <span class="n">no</span>-<span class="n">cache</span>,<span class="n">no</span>-<span class="n">store</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">23</span>
+
+{<span class="s2">"errcode"</span>:<span class="m">0</span>,<span class="s2">"data"</span>:<span class="s2">""</span>}
+</code></pre></div></div>
+<p>Some default user names, password, etc… It seems <code class="highlighter-rouge">POST /vcam/cmd.cgi?cmd=APP_AvCapSet</code> sets stream channel and fps.</p>
+
+<div class="language-config highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">POST</span> /<span class="n">vcam</span>/<span class="n">cmd</span>.<span class="n">cgi</span>?<span class="n">cmd</span>=<span class="n">API_RequestCertificate</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
+<span class="n">Accept</span>-<span class="n">Encoding</span>: <span class="n">gzip</span>
+<span class="n">sessionid</span>: <span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Cookie</span>: <span class="n">SessionID</span>=<span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">application</span>/<span class="n">x</span>-<span class="n">www</span>-<span class="n">form</span>-<span class="n">urlencoded</span>
+<span class="n">User</span>-<span class="n">Agent</span>: ****************************************
+<span class="n">Host</span>: <span class="m">193</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">70</span>
+
+{<span class="s2">"user"</span>:<span class="s2">"admin"</span>,<span class="s2">"password"</span>:<span class="s2">"admin"</span>,<span class="s2">"level"</span>:<span class="m">0</span>,<span class="s2">"uid"</span>:<span class="s2">"*************"</span>}
+
+<span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span> <span class="m">200</span> <span class="n">OK</span>
+<span class="n">Server</span>: <span class="n">VYOU_HTTP_SERVER</span>/<span class="m">2</span>.<span class="m">1</span>.<span class="m">3</span> <span class="n">CAM</span> <span class="n">WEB</span> <span class="m">1</span>.<span class="m">0</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">text</span>/<span class="n">plain</span>; <span class="n">charset</span>=<span class="n">UTF</span>-<span class="m">8</span>
+<span class="n">Date</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Last</span>-<span class="n">Modified</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Cache</span>-<span class="n">Control</span>: <span class="n">no</span>-<span class="n">cache</span>,<span class="n">no</span>-<span class="n">store</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">23</span>
+
+{<span class="s2">"errcode"</span>:<span class="m">0</span>,<span class="s2">"data"</span>:<span class="s2">""</span>}
+
+<span class="n">POST</span> /<span class="n">vcam</span>/<span class="n">cmd</span>.<span class="n">cgi</span>?<span class="n">cmd</span>=<span class="n">APP_AvCapReq</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
+<span class="n">Accept</span>-<span class="n">Encoding</span>: <span class="n">gzip</span>
+<span class="n">sessionid</span>: <span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Cookie</span>: <span class="n">SessionID</span>=<span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">application</span>/<span class="n">x</span>-<span class="n">www</span>-<span class="n">form</span>-<span class="n">urlencoded</span>
+<span class="n">User</span>-<span class="n">Agent</span>: ****************************************
+<span class="n">Host</span>: <span class="m">193</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">0</span>
+
+<span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span> <span class="m">200</span> <span class="n">OK</span>
+<span class="n">Server</span>: <span class="n">VYOU_HTTP_SERVER</span>/<span class="m">2</span>.<span class="m">1</span>.<span class="m">3</span> <span class="n">CAM</span> <span class="n">WEB</span> <span class="m">1</span>.<span class="m">0</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">text</span>/<span class="n">plain</span>; <span class="n">charset</span>=<span class="n">UTF</span>-<span class="m">8</span>
+<span class="n">Date</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Last</span>-<span class="n">Modified</span>: <span class="n">Wed</span>, <span class="m">09</span> <span class="n">Oct</span> <span class="m">2019</span> <span class="m">21</span>:<span class="m">54</span>:<span class="m">41</span> <span class="n">GMT</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Cache</span>-<span class="n">Control</span>: <span class="n">no</span>-<span class="n">cache</span>,<span class="n">no</span>-<span class="n">store</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">173</span>
+
+{<span class="s2">"errcode"</span>:<span class="m">0</span>,<span class="s2">"data"</span>:{<span class="s2">"bs_pixel"</span>:<span class="s2">"1920x1080"</span>,<span class="s2">"bs_bitrat"</span>:<span class="m">10240</span>,<span class="s2">"bs_frmrate"</span>:<span class="m">30</span>,<span class="s2">"ss_pixel"</span>:<span class="s2">"854x480"</span>,<span class="s2">"ss_bitrat"</span>:<span class="m">1536</span>,<span class="s2">"ss_frmrate"</span>:<span class="m">30</span>,<span class="s2">"aud_samplerate"</span>:<span class="m">16000</span>,<span class="s2">"aud_pt"</span>:<span class="s2">"AACLC"</span>}}
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">POST /vcam/cmd.cgi?cmd=APP_AvCapReq</code> This request put some light into the video stream details.</p>
+
+<div class="language-config highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">POST</span> /<span class="n">vcam</span>/<span class="n">cmd</span>.<span class="n">cgi</span>?<span class="n">cmd</span>=<span class="n">APP_PlaybackLiveSwitch</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
+<span class="n">Accept</span>-<span class="n">Encoding</span>: <span class="n">gzip</span>
+<span class="n">sessionid</span>: <span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Cookie</span>: <span class="n">SessionID</span>=<span class="n">sjqPqaCL9GPT8WanzOn1THq4T1iSKLm</span>
+<span class="n">Content</span>-<span class="n">Type</span>: <span class="n">application</span>/<span class="n">x</span>-<span class="n">www</span>-<span class="n">form</span>-<span class="n">urlencoded</span>
+<span class="n">User</span>-<span class="n">Agent</span>: ****************************************
+<span class="n">Host</span>: <span class="m">193</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>
+<span class="n">Connection</span>: <span class="n">Keep</span>-<span class="n">Alive</span>
+<span class="n">Content</span>-<span class="n">Length</span>: <span class="m">31</span>
+
+{<span class="s2">"switch"</span>:<span class="s2">"live"</span>,<span class="s2">"playtime"</span>:<span class="s2">""</span>}
+</code></pre></div></div>
+
+<p>This seems to be the one that triggers the live streams. Just after this request I could see a new TCP connection got established on port 6200.</p>
+
+<p><img src="/assets/img/stream_tcp.jpg" alt="stream tcp" /></p>
+
+<p>This might be the port for streaming video. I could see a lot of traffic on this connection just after this.</p>
+
+<p><img src="/assets/img/video_stream.jpg" alt="stream tcp" /></p>
+
+<p>Let’s see which all ports are opened in the cam. A quick scan using nmap shows following ports.</p>
+
+<p><img src="/assets/img/nmap.jpg" alt="stream tcp" /></p>
+
+<p>Port 443 is opened. But it is not a web/REST server like port 80. Sending <code class="highlighter-rouge">curl http://193.168.0.1:443</code> doesn’t return anything. No respone from server. <code class="highlighter-rouge">telnet 193.168.0.1 443</code> also had no luck. Might be running some other service. May be for flashing firmware.</p>
+
+<p>Port 553 is running an rtsp service. This looks promising. Rtsp is for streaming video. Tried several common rtsp urls using VLC. All are returning BAD_REQUEST. No luck there. Port 6100 looks promissing. Let’s try opening this using VLC.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget "http://193.168.0.1:6200" -qO- | cvlc -
+</code></pre></div></div>
+
+<p>Vlc is unable to show any streams. Let’s try to specify the stream details. May be Vlc was unable to figure out proper streaming details.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget "http://193.168.0.1:6200" -qO- | cvlc - :demux=h264 --h264-fps=30 :clock-jitter=0
+</code></pre></div></div>
+
+<video autoplay="" muted="" playsinline="" width="600px" controls="">
+  <source src="/assets/res/stream_vlc2.mp4" type="video/mp4" />
+</video>
+
+<p>Finally!!! Vlc is able to get the stream with no issues. Smile… :-)</p>
+
+<p>Now this is done let’s see whether I can access this from python &amp; opencv.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="s">'tcp://193.168.0.1:6200/'</span><span class="p">)</span>
+<span class="n">cap</span><span class="o">.</span><span class="nb">set</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+
+<span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+    <span class="c1"># Capture frame-by-frame
+</span>    <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1"># Our operations on the frame come here
+</span>    <span class="c1">#gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+</span>
+    <span class="c1"># Display the resulting frame
+</span>    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'frame'</span><span class="p">,</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'q'</span><span class="p">):</span>
+        <span class="k">break</span>
+
+<span class="c1"># When everything done, release the capture
+</span><span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+
+<video autoplay="" muted="" playsinline="" width="600px" controls="">
+  <source src="/assets/res/python_stream.mp4" type="video/mp4" />
+</video>
+
+<p>Perfect. I was able to get the stream from python. Mission accomplished. But let’s look further.</p>
+
+<p>I ran nmap one more time covering all the ports. It’s extensive and took some time. It showed one more port 6100. Later found to be audio stream from the camera.</p>
+
+<p>Let’s check whether we can have a look into the firmware. I could not find any links online to download firmware. When I first started the companion app, it asked for firmware update. So there should be some way to get it. Let’s look into the companion app traffic.</p>
+
+<p>Download some packet capture software for Android like ‘Packet Capture’. It’s similar to wireshark, but for Android. It seems comapnion app is communicating with server in plain http. No SSL certificate for the server. That’s not good. They are sending some personal details back to the server which is not good. Let’s look into the firmware update details.</p>
+
+<p>Clicking on check firmware option triggers this request.</p>
+
+<p><img src="/assets/img/companion_app.png" alt="stream tcp" /></p>
+
+<p>It seems they are sending both version details of firmware and companion app. Server seems to only respond with companion app details. This might probably because I am having latest firmware. Lets modify this request so that server think I am having a previous version.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-v</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-X</span> POST http://apphw.ddpai.com/d/api/v1/version/check <span class="nt">--data</span> <span class="s1">'{
+  "data": [
+    {
+      "model": "camera_app_android_overseas",
+      "version": "v5.7.12.0926"
+    },
+    {
+      "model": "DDPai miniONE_LITE_Overseas",
+      "version": "v4.6.0.22"
+    }
+  ]
+}'</span>
+Note: Unnecessary use of <span class="nt">-X</span> or <span class="nt">--request</span>, POST is already inferred.
+<span class="k">*</span>   Trying 47.89.133.142...
+<span class="k">*</span> TCP_NODELAY <span class="nb">set</span>
+<span class="k">*</span> Connected to apphw.ddpai.com <span class="o">(</span>47.89.133.142<span class="o">)</span> port 80 <span class="o">(</span><span class="c">#0)</span>
+<span class="o">&gt;</span> POST /d/api/v1/version/check HTTP/1.1
+<span class="o">&gt;</span> Host: apphw.ddpai.com
+<span class="o">&gt;</span> User-Agent: curl/7.58.0
+<span class="o">&gt;</span> Accept: <span class="k">*</span>/<span class="k">*</span>
+<span class="o">&gt;</span> Content-Type: application/json
+<span class="o">&gt;</span> Content-Length: 197
+<span class="o">&gt;</span> 
+<span class="k">*</span> upload completely sent off: 197 out of 197 bytes
+&lt; HTTP/1.1 200 OK
+&lt; Date: Thu, 10 Oct 2019 17:33:54 GMT
+&lt; Content-Type: application/json<span class="p">;</span><span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Length: 1457
+&lt; Connection: keep-alive
+&lt; 
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"bigMd5"</span>: <span class="s2">"63D8900C41169ED76A107140F3119433"</span>,
+            <span class="s2">"bigPath"</span>: <span class="s2">"http://httpsdatacdn.ddpai.com/update/camera_app_android_overseas/20180620/C05_ddpai_v5.7.9.0613_release_0613-1439_zip.apk"</span>,
+            <span class="s2">"bigSize"</span>: 42322062,
+            <span class="s2">"bigSmallSplit"</span>: <span class="s2">""</span>,
+            <span class="s2">"bigTime"</span>: 0,
+            <span class="s2">"commitDate"</span>: 1529486660540,
+            <span class="s2">"desc"</span>: <span class="s2">"1、适配mix3机型；</span><span class="se">\n</span><span class="s2">2、使用新的视觉风格；</span><span class="se">\n</span><span class="s2">3、修复已知问题；"</span>,
+            <span class="s2">"descCn"</span>: <span class="s2">"1、适配mix3机型；</span><span class="se">\n</span><span class="s2">2、使用新的视觉风格；</span><span class="se">\n</span><span class="s2">3、修复已知问题；"</span>,
+            <span class="s2">"descDe"</span>: <span class="s2">""</span>,
+            <span class="s2">"descEn"</span>: <span class="s2">"1、Adopted to mix3;</span><span class="se">\n</span><span class="s2">2、Adopted a new VI style；</span><span class="se">\n</span><span class="s2">3、Fixed bugs;"</span>,
+            <span class="s2">"descEs"</span>: <span class="s2">""</span>,
+            <span class="s2">"descFr"</span>: <span class="s2">""</span>,
+            <span class="s2">"descIt"</span>: <span class="s2">""</span>,
+            <span class="s2">"descPt"</span>: <span class="s2">""</span>,
+            <span class="s2">"descRu"</span>: <span class="s2">""</span>,
+            <span class="s2">"descTw"</span>: <span class="s2">""</span>,
+            <span class="s2">"hasDel"</span>: <span class="nb">false</span>,
+            <span class="s2">"id"</span>: 64,
+            <span class="s2">"model"</span>: <span class="s2">"camera_app_android_overseas"</span>,
+            <span class="s2">"name"</span>: <span class="s2">"camera_app_android_overseas"</span>,
+            <span class="s2">"smallMd5"</span>: <span class="s2">""</span>,
+            <span class="s2">"smallPath"</span>: <span class="s2">""</span>,
+            <span class="s2">"smallSize"</span>: 0,
+            <span class="s2">"smallTime"</span>: 0,
+            <span class="s2">"smallVersion"</span>: <span class="s2">""</span>,
+            <span class="s2">"version"</span>: <span class="s2">"v5.7.9.0613"</span>,
+            <span class="s2">"versionType"</span>: 1
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"bigMd5"</span>: <span class="s2">"768A1E03AF163ACC53C0841AE5F5EF8B"</span>,
+            <span class="s2">"bigPath"</span>: <span class="s2">"http://httpsdatacdn.ddpai.com/update/DDPaiminiONE_LITE_Overseas/20190614/update_nolog.tar.gz"</span>,
+            <span class="s2">"bigSize"</span>: 5365231,
+            <span class="s2">"bigSmallSplit"</span>: <span class="s2">""</span>,
+            <span class="s2">"bigTime"</span>: 60,
+            <span class="s2">"commitDate"</span>: 1560481333328,
+            <span class="s2">"desc"</span>: <span class="s2">"修复已知问题；"</span>,
+            <span class="s2">"descCn"</span>: <span class="s2">"修复已知问题；"</span>,
+            <span class="s2">"descDe"</span>: <span class="s2">""</span>,
+            <span class="s2">"descEn"</span>: <span class="s2">"Fixed bugs;"</span>,
+            <span class="s2">"descEs"</span>: <span class="s2">""</span>,
+            <span class="s2">"descFr"</span>: <span class="s2">""</span>,
+            <span class="s2">"descIt"</span>: <span class="s2">""</span>,
+            <span class="s2">"descPt"</span>: <span class="s2">""</span>,
+            <span class="s2">"descRu"</span>: <span class="s2">""</span>,
+            <span class="s2">"descTw"</span>: <span class="s2">""</span>,
+            <span class="s2">"hasDel"</span>: <span class="nb">false</span>,
+            <span class="s2">"id"</span>: 74,
+            <span class="s2">"model"</span>: <span class="s2">"DDPai miniONE_LITE_Overseas"</span>,
+            <span class="s2">"name"</span>: <span class="s2">"DDPai miniONE_LITE_Overseas"</span>,
+            <span class="s2">"smallMd5"</span>: <span class="s2">""</span>,
+            <span class="s2">"smallPath"</span>: <span class="s2">""</span>,
+            <span class="s2">"smallSize"</span>: 0,
+            <span class="s2">"smallTime"</span>: 0,
+            <span class="s2">"smallVersion"</span>: <span class="s2">""</span>,
+            <span class="s2">"version"</span>: <span class="s2">"v4.7.0.22"</span>,
+            <span class="s2">"versionType"</span>: 1
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"error_code"</span>: 0
+<span class="o">}</span>
+<span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>Ta daa!!! Our new firmware ready to be downloaded here <code class="highlighter-rouge">http://httpsdatacdn.ddpai.com/update/DDPaiminiONE_LITE_Overseas/20190614/update_nolog.tar.gz</code>. This is good. Let’s try to analyze the firmware.</p>
+
+<p><img src="/assets/img/bin_walk.jpg" alt="bin walk" /></p>
+
+<p>Eventhough it’s ramed as .gz, it doesn’t look a gzip compression. Running binwalk reveals that they use zlib compression. Let’s try to extract each part.</p>
+
+<p><img src="/assets/img/bin_walk_extract.jpg" alt="bin_walk_extract" /></p>
+
+<p>Let’s see what each part is.</p>
+
+<p><img src="/assets/img/bin_walk_bin.jpg" alt="bin_walk_bin" /></p>
+
+<p>We have two JFFS2 file system. Let’s see what’s inside. To extract JFFS2 file system you need to install jefferson.</p>
+
+<p><img src="/assets/img/jefferson.jpg" alt="jefferson" /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/sviehb/jefferson.git
+Cloning into <span class="s1">'jefferson'</span>...
+remote: Enumerating objects: 74, <span class="k">done</span><span class="nb">.</span>
+remote: Total 74 <span class="o">(</span>delta 0<span class="o">)</span>, reused 0 <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused 74
+Unpacking objects: 100% <span class="o">(</span>74/74<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+<span class="o">&gt;</span><span class="nb">ls
+</span>1CD  1CD.zlib  21458  21458.zlib  35DE85  35DE85.zlib  50AB7A  50AB7A.zlib  56  56.zlib  E3  E3.zlib  jefferson
+<span class="o">&gt;</span><span class="nb">cd </span>jefferson/
+<span class="o">&gt;</span><span class="nb">ls
+</span>LICENSE  README.md  setup.py  src
+<span class="o">&gt;</span><span class="nb">sudo </span>python setup.py <span class="nb">install
+</span>running <span class="nb">install
+</span>running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/jefferson
+copying src/jefferson/rtime.py -&gt; build/lib.linux-x86_64-2.7/jefferson
+copying src/jefferson/jffs2_lzma.py -&gt; build/lib.linux-x86_64-2.7/jefferson
+copying src/jefferson/__init__.py -&gt; build/lib.linux-x86_64-2.7/jefferson
+running build_scripts
+creating build/scripts-2.7
+copying and adjusting src/scripts/jefferson -&gt; build/scripts-2.7
+changing mode of build/scripts-2.7/jefferson from 644 to 755
+running install_lib
+creating /usr/local/lib/python2.7/dist-packages/jefferson
+copying build/lib.linux-x86_64-2.7/jefferson/rtime.py -&gt; /usr/local/lib/python2.7/dist-packages/jefferson
+copying build/lib.linux-x86_64-2.7/jefferson/jffs2_lzma.py -&gt; /usr/local/lib/python2.7/dist-packages/jefferson
+copying build/lib.linux-x86_64-2.7/jefferson/__init__.py -&gt; /usr/local/lib/python2.7/dist-packages/jefferson
+byte-compiling /usr/local/lib/python2.7/dist-packages/jefferson/rtime.py to rtime.pyc
+byte-compiling /usr/local/lib/python2.7/dist-packages/jefferson/jffs2_lzma.py to jffs2_lzma.pyc
+byte-compiling /usr/local/lib/python2.7/dist-packages/jefferson/__init__.py to __init__.pyc
+running install_scripts
+copying build/scripts-2.7/jefferson -&gt; /usr/local/bin
+changing mode of /usr/local/bin/jefferson to 755
+running install_egg_info
+Writing /usr/local/lib/python2.7/dist-packages/jefferson-0.2.egg-info
+<span class="o">&gt;</span><span class="nb">cd</span> ../
+<span class="o">&gt;</span><span class="nb">ls
+</span>1CD  1CD.zlib  21458  21458.zlib  35DE85  35DE85.zlib  50AB7A  50AB7A.zlib  56  56.zlib  E3  E3.zlib  jefferson
+<span class="o">&gt;</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span>binwalk <span class="nt">-e</span> 35DE85
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+<span class="nt">--------------------------------------------------------------------------------</span>
+0             0x0             JFFS2 filesystem, little endian
+</code></pre></div></div>
+
+<p>Let’s look into the file system.</p>
+
+<p><img src="/assets/img/tree_1.jpg" alt="tree_1" /></p>
+
+<p>Under aud_res there are several raw audio files are present. These are the notofication sounds, produced by the dashcam. Replacing these with custom sounds and reflashing the firmware will be cool.</p>
+
+<p><img src="/assets/img/audacity.jpg" alt="audacity" /></p>
+
+<p>There is some <code class="highlighter-rouge">libaiengine-80-liteos-2.9.4-20180402220227.so</code> file. The filename liteos confirms it is running Huawei LiteOS.</p>
+
+<p>There is one bin file called paramdef.bin located in paramdef. Seems to be binary file. Let’s see the strings in it.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span>strings paramdef.bin 
+arap
+12.0
+720P30
+1080P30
+1080P60
+1440P30
+1520P30
+/app/sd/DCIM
+/usrcfg/lastfilename.txt
+/app/sd
+/dev/mmcblk0p0
+3.18.y
+v4.7.0.22
+DDPai miniONE_LITE
+vYou_DDPai_MINI
+1234567890
+000000000000000
+000000000000000
+admin
+admin
+yyyy-MM-dd HH:mm:ss
+zh_CN
+DDPaiMin
+v4.5.0.0
+DDPai miniONE
+2018-01-01
+mrap
+</code></pre></div></div>
+
+<p>You could see WiFi SSID and default password, Firmware version, etc</p>
+
+<p>Let’s see the other file system.</p>
+
+<p><img src="/assets/img/tree2.jpg" alt="tree_2" /></p>
+
+<p>This seems mostly configuration files. <code class="highlighter-rouge">config_product_devmng.ini</code> have details regarding WiFi SSID &amp; passwords.</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[devinfo]</span>
+<span class="py">system_version</span>     <span class="p">=</span> <span class="s">"3.18.y"</span>
+<span class="py">software_version</span>   <span class="p">=</span> <span class="s">"v4.7.0.22"</span>
+<span class="py">model</span>              <span class="p">=</span> <span class="s">"DDPai miniONE_LITE"</span>
+
+<span class="nn">[wifi]</span>
+<span class="py">ssid</span>               <span class="p">=</span> <span class="s">"vYou_DDPai_MINI"</span>
+<span class="py">password</span>           <span class="p">=</span> <span class="s">"1234567890"</span>
+<span class="py">channel</span>            <span class="p">=</span> <span class="s">"11"</span>
+<span class="py">enable</span>             <span class="p">=</span> <span class="s">"1"</span> <span class="s">1:true 0:false</span>
+<span class="py">stawifissid</span>        <span class="p">=</span> <span class="s">"0"</span>
+<span class="py">stawifipwd</span>         <span class="p">=</span> <span class="s">"0"</span>
+<span class="py">stawifiauth</span>        <span class="p">=</span> <span class="s">"4"</span><span class="c">; 0:OPEN 1:WEP 2:WPAPSK 3:WPA2PSK 4:WPAPSK_WPA2PSK_MIX
+</span>
+<span class="nn">[autooff]</span>
+<span class="py">enable</span>             <span class="p">=</span> <span class="s">"0"</span>
+<span class="py">time</span>               <span class="p">=</span> <span class="s">"300"</span><span class="c">; unit s
+</span>
+<span class="nn">[dormant]</span>
+<span class="py">enable</span>             <span class="p">=</span> <span class="s">"0"</span>
+<span class="py">time</span>               <span class="p">=</span> <span class="s">"60"</span><span class="c">; unit s
+</span>
+<span class="nn">[clock]</span>
+<span class="py">enable</span>             <span class="p">=</span> <span class="s">"0"</span>
+
+<span class="nn">[onoff]</span>
+<span class="py">auto_poweron_en</span>    <span class="p">=</span> <span class="s">"0"</span><span class="c">; 0:disable, 1:enable
+</span><span class="s">auto_poweron_time  = "600"; seconds</span>
+<span class="py">sd_card_cid</span>        <span class="p">=</span> <span class="s">"0000000000000000"</span>
+<span class="py">sd_card_csd</span>        <span class="p">=</span> <span class="s">"0000000000000000"</span>
+<span class="py">abnormal_poweroff</span>  <span class="p">=</span> <span class="s">"1"</span><span class="c">; 
+</span><span class="s">onoff_key_press_time = "2000"; 200ms~2000ms</span>
+
+<span class="nn">[sound]</span>
+<span class="py">keysound</span>           <span class="p">=</span> <span class="s">"1"</span>
+<span class="py">bootmusic</span>          <span class="p">=</span> <span class="s">"0"</span><span class="c">; 0: open bootmusic 1: close bootmusic
+</span>
+<span class="nn">[gsensor]</span>
+<span class="py">gsensorrange</span>       <span class="p">=</span> <span class="s">"0"</span>
+
+<span class="nn">[banma]</span>
+<span class="py">verification</span>	   <span class="p">=</span> <span class="s">"0"</span>
+</code></pre></div></div>
+<p>There is some stawifissid params. May be enabling this will make Dashcam connect to a particular WiFi than creating an AP. Could see some reference for mounting at /app/sd/DCIM. Some of the config files have the details required for the live stream.</p>
+
+<p>There is one more to extract.</p>
+
+<p><img src="/assets/img/bin_walk_last.jpg" alt="bin_walk_last" /></p>
+
+<p>This seems to be the main binary file resposible for the REST interface. Running strings list a lot of useful details. It seems to be written in c since I could see some reference here and there.</p>
+
+<p><img src="/assets/img/bin_walk_c.jpg" alt="bin_walk_c" /></p>
+
+<p>By just looking into strings, you will get a lot of information. I could able to extract the list of all APIs supported by the REST service.</p>
+
+<ul>
+  <li>API_RequestSessionID</li>
+  <li>API_RequestCertificate</li>
+  <li>API_SyncDate</li>
+  <li>API_GetBaseInfo</li>
+  <li>APP_AvCapReq</li>
+  <li>APP_AvCapSet</li>
+  <li>APP_PlaybackLiveSwitch</li>
+  <li>API_GetMailboxData</li>
+  <li>API_Logout</li>
+  <li>API_TestGsensor</li>
+  <li>API_TestSerial</li>
+  <li>API_TestIndicator</li>
+  <li>APP_PlaybackListReq</li>
+  <li>APP_PlaybackPageListReq</li>
+  <li>API_GeneralSave</li>
+  <li>API_GeneralQuery</li>
+  <li>APP_DeleteEvent</li>
+  <li>API_CameraCapture</li>
+  <li>API_AuthModify</li>
+  <li>API_GetStorageInfo</li>
+  <li>API_MmcFormat</li>
+  <li>API_GetModuleState</li>
+  <li>API_SetTimeForUpdateOrderNum</li>
+  <li>API_ClearModuleFlags</li>
+  <li>APP_AvInit</li>
+  <li>APP_EventListReq</li>
+  <li>APP_TimeLapseVideoListReq</li>
+  <li>API_PlayModeQuery</li>
+  <li>API_AuthQuery</li>
+  <li>API_Reboot</li>
+  <li>API_RestartWifi</li>
+  <li>API_UpdFileMd5</li>
+  <li>API_SetLogonInfo</li>
+  <li>API_GetLogonRecord</li>
+  <li>APP_ParkingEventListReq</li>
+  <li>APP_ParkingEventListClear</li>
+  <li>API_SuperDownload</li>
+  <li>API_ButtonMatch</li>
+  <li>API_WpsConnect</li>
+  <li>API_GetResolution</li>
+  <li>API_SetLockFile</li>
+  <li>APP_StopDownload</li>
+  <li>API_SetRouterAuth</li>
+  <li>API_GetRouterStatus</li>
+  <li>API_UpdateCamera</li>
+  <li>API_GetLegalInfo</li>
+  <li>API_GetSdBadClus</li>
+  <li>API_SetDefaultCfg</li>
+  <li>API_SetUuid</li>
+  <li>API_SetSn</li>
+  <li>API_GetEachFileSize</li>
+  <li>API_BanMaUnbind</li>
+  <li>API_BanMaSync</li>
+  <li>API_SetApMode</li>
+  <li>APP_EquipTestReady</li>
+  <li>API_HwinfoQuery</li>
+  <li>API_EquipAudioLoop</li>
+  <li>API_EquipGetTime</li>
+  <li>API_EquipLED</li>
+  <li>API_EquipButtonMatch</li>
+  <li>API_SetTestResult</li>
+  <li>API_EquipGSensor</li>
+  <li>API_EquipSpeaker</li>
+  <li>API_EquipResetBtn</li>
+  <li>API_EquipPhotoBtn</li>
+  <li>API_EquipMuteBtn</li>
+  <li>API_EquipMuteBtn</li>
+  <li>API_EquipResetCfg</li>
+  <li>API_EquipLegalSet</li>
+  <li>API_EquipGetSensorVer</li>
+  <li>API_EquipOpenRtsp</li>
+  <li>API_RecordOpt</li>
+  <li>API_GetGsensorState</li>
+  <li>API_EquipACCState</li>
+  <li>API_EquipGetTempetureAndHumidity</li>
+  <li>API_EquipGetWiFiStatus</li>
+  <li>API_EquipDeleteFacUsbFile</li>
+  <li>API_EquipODBTest</li>
+  <li>API_SetGsensorValue</li>
+  <li>API_SetAudioCapGain</li>
+  <li>API_SetBitRate1</li>
+  <li>API_SetBitRate2</li>
+  <li>API_SetBitRate3</li>
+  <li>API_SetBitRate4</li>
+  <li>API_SetBitRate5</li>
+  <li>API_SetBitRate6</li>
+  <li>API_SetBitRate7</li>
+  <li>API_SetBitRate8</li>
+  <li>API_SetBitRate9</li>
+  <li>API_SetBitRate10</li>
+  <li>API_SetBitRate11</li>
+  <li>API_SetBitRate12</li>
+  <li>API_SetBitRate13</li>
+  <li>API_SetBitRate14</li>
+  <li>API_SetBitRate15</li>
+  <li>API_SetBitRate16</li>
+  <li>API_SetBitRate17</li>
+  <li>API_SetBitRate18</li>
+  <li>API_GetAispeechState</li>
+  <li>API_SetSpeakRange</li>
+  <li>API_SetEmmcMeasure</li>
+  <li>API_GetEmmcMeasure</li>
+  <li>API_Get_ConnectAccStatus</li>
+  <li>API_Get_PageFileListStatus</li>
+  <li>API_SetTarCamlog</li>
+  <li>API_GetCarCustomVersion</li>
+  <li>API_SetPowerOff</li>
+</ul>
+
+<p>This is fun… !!!</p>
+
+        </div>
+      </main>
+      <!-- Main post content end -->
+    </div>
+    
+    <footer class="site-footer">
+      
+      <!-- <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span> -->
+    </footer>
+  </body>
+</html>

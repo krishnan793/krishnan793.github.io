@@ -1,4 +1,601 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-09-01T14:42:08+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Smart Home Display IOT</title><link href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html" rel="alternate" type="text/html" title="Smart Home Display IOT" /><published>2019-06-29T00:00:00+05:30</published><updated>2019-06-29T00:00:00+05:30</updated><id>/2019/06/29/smart-home-display-iot--diy-google-home-hub</id><content type="html" xml:base="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">&lt;p&gt;This is a DIY smart display that you can embed in to your wall. You can control your smart appliance, set timer to control it, get weather info, and act as a cool clock. Let’s get straight into how I made it.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-10-11T01:26:57+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Reverse Engineer DDPAI Dash Cam Firmware</title><link href="/2019/10/10/reverse-engineer-ddpai-firmware.html" rel="alternate" type="text/html" title="Reverse Engineer DDPAI Dash Cam Firmware" /><published>2019-10-10T00:00:00+05:30</published><updated>2019-10-10T00:00:00+05:30</updated><id>/2019/10/10/reverse-engineer-ddpai-firmware</id><content type="html" xml:base="/2019/10/10/reverse-engineer-ddpai-firmware.html">&lt;p&gt;I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon &lt;a href=&quot;https://www.amazon.in/gp/product/B07L6JVT92/&quot;&gt;Link&lt;/a&gt; (Official site &lt;a href=&quot;http://en.ddpai.com/product/mini/4.html&quot;&gt;Link&lt;/a&gt;), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/ddpai.png&quot; alt=&quot;DDPAI&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the officail site, they have mentioned about Hi3516E. it is an SoC buid by HISILICON that runs on Linux-3.18 (probably running Huawei LiteOS &lt;a href=&quot;https://liteos.github.io/en/kernel/task.html#overview&quot;&gt;Link&lt;/a&gt;). Looking into the datasheet &lt;a href=&quot;http://support.hkvstar.com/file/Hi3516E%20V100%20Professional%20HD%20IP%20Camera%20SoC%20Brief%20Data%20Sheet.pdf&quot;&gt;Link&lt;/a&gt;, it supports following encodings,&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;H.264 BP/MP/HP&lt;/li&gt;
+  &lt;li&gt;H.265 Main Profile&lt;/li&gt;
+  &lt;li&gt;MJPEG/JPEG baseline&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But from the official site, it’s mentioned H.264. So most probably the stream will be in this format. This came handy later in the process.&lt;/p&gt;
+
+&lt;p&gt;Once powered, camera starts a WiFi AP. Client can connect to this using default password 1234567890 and use companion app to configure. Put your WiFi interface to monitor mode and start listening on the traffic.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/init_traffic.jpg&quot; alt=&quot;Initial traffic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I could see a lot of HTTP traffic between companion app and 193.168.0.1 which is the camera device. So they have some kind of REST API service running on port 80. Let’s look into the flow.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/flow.jpg&quot; alt=&quot;Flow&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To get a sessionid they are calling &lt;code class=&quot;highlighter-rouge&quot;&gt;POST /vcam/cmd.cgi?cmd=API_RequestSessionID&lt;/code&gt;. This set a Cookie and they are reusing it for further communication. Then they are synching the time. Why do they need imei number for that? Strange. let’s look the subsequent requests.&lt;/p&gt;
+
+&lt;div class=&quot;language-config highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;POST&lt;/span&gt; /&lt;span class=&quot;n&quot;&gt;vcam&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;cgi&lt;/span&gt;?&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;API_GetBaseInfo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Accept&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Encoding&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;gzip&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sessionid&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cookie&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;SessionID&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;application&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;form&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;urlencoded&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Agent&lt;/span&gt;: ****************************************
+&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;193&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;168&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OK&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Server&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;VYOU_HTTP_SERVER&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CAM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WEB&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;plain&lt;/span&gt;; &lt;span class=&quot;n&quot;&gt;charset&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;UTF&lt;/span&gt;-&lt;span class=&quot;m&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Last&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Modified&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cache&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Control&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;,&lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;651&lt;/span&gt;
+
+{&lt;span class=&quot;s2&quot;&gt;&quot;errcode&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;data&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;{\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nickname&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vYou_DDPai_MINI&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1234567890&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ordernum&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDPaiMin&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDPai&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;miniONE_LITE_Overseas&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v4&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;7&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;22&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uuid&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;*****-****-****-****-********\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sn&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;macaddr&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;**:**:**:**:**:**\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chipsn&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;legalret&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:1,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;btnver&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:3,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;totalruntime&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:7471,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sdcapacity&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:31158784,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sdspare&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:24202912,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sdbrand&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hbbitrate&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:10240,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hsbitrate&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:2048,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mbbitrate&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:10240,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msbitrate&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:2048,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lbbitrate&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:10240,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lsbitrate&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:2048,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;default_user&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A1000030EBAA94&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_neeed_update&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:0,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edog_model&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edog_version&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edog_status&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:2,\&quot;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cid&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;:\&quot;&lt;/span&gt;\&lt;span class=&quot;s2&quot;&gt;&quot;}&quot;&lt;/span&gt;}
+
+&lt;span class=&quot;n&quot;&gt;GET&lt;/span&gt; /&lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Accept&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Encoding&lt;/span&gt;: 
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Agent&lt;/span&gt;: ****************************************
+&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;193&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;168&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OK&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Server&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;VYOU_HTTP_SERVER&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CAM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WEB&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;plain&lt;/span&gt;; &lt;span class=&quot;n&quot;&gt;charset&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;UTF&lt;/span&gt;-&lt;span class=&quot;m&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Last&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Modified&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cache&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Control&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;,&lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;4329&lt;/span&gt;
+
+{&lt;span class=&quot;s2&quot;&gt;&quot;nickname&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;vYou_DDPai_MINI&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;1234567890&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;ordernum&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;DDPaiMin&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;model&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;v4.7.0.22&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;uuid&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;***********************&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;sn&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;macaddr&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;**:**:**:**:**:**&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;chipsn&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;legalret&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;btnver&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;totalruntime&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;7471&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;sdcapacity&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;31158784&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;sdspare&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;24202912&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;sdbrand&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;hbbitrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;10240&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;hsbitrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;2048&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;mbbitrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;10240&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;msbitrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;2048&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;lbbitrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;10240&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;lsbitrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;2048&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;default_user&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;A1000030EBAA94&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;is_neeed_update&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;edog_model&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;edog_version&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;edog_status&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;cid&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;}
+....
+
+&lt;span class=&quot;n&quot;&gt;POST&lt;/span&gt; /&lt;span class=&quot;n&quot;&gt;vcam&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;cgi&lt;/span&gt;?&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;APP_AvCapSet&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Accept&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Encoding&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;gzip&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sessionid&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cookie&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;SessionID&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;application&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;form&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;urlencoded&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Agent&lt;/span&gt;: ****************************************
+&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;193&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;168&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;
+
+{&lt;span class=&quot;s2&quot;&gt;&quot;stream_type&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;frmrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;}
+
+&lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OK&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Server&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;VYOU_HTTP_SERVER&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CAM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WEB&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;plain&lt;/span&gt;; &lt;span class=&quot;n&quot;&gt;charset&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;UTF&lt;/span&gt;-&lt;span class=&quot;m&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Last&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Modified&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cache&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Control&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;,&lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;23&lt;/span&gt;
+
+{&lt;span class=&quot;s2&quot;&gt;&quot;errcode&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;data&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Some default user names, password, etc… It seems &lt;code class=&quot;highlighter-rouge&quot;&gt;POST /vcam/cmd.cgi?cmd=APP_AvCapSet&lt;/code&gt; sets stream channel and fps.&lt;/p&gt;
+
+&lt;div class=&quot;language-config highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;POST&lt;/span&gt; /&lt;span class=&quot;n&quot;&gt;vcam&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;cgi&lt;/span&gt;?&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;API_RequestCertificate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Accept&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Encoding&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;gzip&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sessionid&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cookie&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;SessionID&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;application&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;form&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;urlencoded&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Agent&lt;/span&gt;: ****************************************
+&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;193&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;168&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;70&lt;/span&gt;
+
+{&lt;span class=&quot;s2&quot;&gt;&quot;user&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;admin&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;admin&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;level&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;uid&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;*************&quot;&lt;/span&gt;}
+
+&lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OK&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Server&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;VYOU_HTTP_SERVER&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CAM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WEB&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;plain&lt;/span&gt;; &lt;span class=&quot;n&quot;&gt;charset&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;UTF&lt;/span&gt;-&lt;span class=&quot;m&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Last&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Modified&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cache&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Control&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;,&lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;23&lt;/span&gt;
+
+{&lt;span class=&quot;s2&quot;&gt;&quot;errcode&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;data&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;}
+
+&lt;span class=&quot;n&quot;&gt;POST&lt;/span&gt; /&lt;span class=&quot;n&quot;&gt;vcam&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;cgi&lt;/span&gt;?&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;APP_AvCapReq&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Accept&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Encoding&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;gzip&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sessionid&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cookie&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;SessionID&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;application&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;form&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;urlencoded&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Agent&lt;/span&gt;: ****************************************
+&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;193&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;168&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OK&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Server&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;VYOU_HTTP_SERVER&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CAM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WEB&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;plain&lt;/span&gt;; &lt;span class=&quot;n&quot;&gt;charset&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;UTF&lt;/span&gt;-&lt;span class=&quot;m&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Last&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Modified&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Wed&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Oct&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2019&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;54&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;41&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GMT&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cache&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Control&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;,&lt;span class=&quot;n&quot;&gt;no&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;173&lt;/span&gt;
+
+{&lt;span class=&quot;s2&quot;&gt;&quot;errcode&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;data&quot;&lt;/span&gt;:{&lt;span class=&quot;s2&quot;&gt;&quot;bs_pixel&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;1920x1080&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;bs_bitrat&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;10240&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;bs_frmrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;ss_pixel&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;854x480&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;ss_bitrat&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;1536&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;ss_frmrate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;aud_samplerate&quot;&lt;/span&gt;:&lt;span class=&quot;m&quot;&gt;16000&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;aud_pt&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;AACLC&quot;&lt;/span&gt;}}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;POST /vcam/cmd.cgi?cmd=APP_AvCapReq&lt;/code&gt; This request put some light into the video stream details.&lt;/p&gt;
+
+&lt;div class=&quot;language-config highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;POST&lt;/span&gt; /&lt;span class=&quot;n&quot;&gt;vcam&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;cgi&lt;/span&gt;?&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;APP_PlaybackLiveSwitch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;/&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Accept&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Encoding&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;gzip&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sessionid&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Cookie&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;SessionID&lt;/span&gt;=&lt;span class=&quot;n&quot;&gt;sjqPqaCL9GPT8WanzOn1THq4T1iSKLm&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;application&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;form&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;urlencoded&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Agent&lt;/span&gt;: ****************************************
+&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;193&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;168&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt;: &lt;span class=&quot;n&quot;&gt;Keep&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Alive&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Content&lt;/span&gt;-&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;31&lt;/span&gt;
+
+{&lt;span class=&quot;s2&quot;&gt;&quot;switch&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;live&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;playtime&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This seems to be the one that triggers the live streams. Just after this request I could see a new TCP connection got established on port 6200.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/stream_tcp.jpg&quot; alt=&quot;stream tcp&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This might be the port for streaming video. I could see a lot of traffic on this connection just after this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/video_stream.jpg&quot; alt=&quot;stream tcp&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s see which all ports are opened in the cam. A quick scan using nmap shows following ports.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/nmap.jpg&quot; alt=&quot;stream tcp&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Port 443 is opened. But it is not a web/REST server like port 80. Sending &lt;code class=&quot;highlighter-rouge&quot;&gt;curl http://193.168.0.1:443&lt;/code&gt; doesn’t return anything. No respone from server. &lt;code class=&quot;highlighter-rouge&quot;&gt;telnet 193.168.0.1 443&lt;/code&gt; also had no luck. Might be running some other service. May be for flashing firmware.&lt;/p&gt;
+
+&lt;p&gt;Port 553 is running an rtsp service. This looks promising. Rtsp is for streaming video. Tried several common rtsp urls using VLC. All are returning BAD_REQUEST. No luck there. Port 6100 looks promissing. Let’s try opening this using VLC.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &quot;http://193.168.0.1:6200&quot; -qO- | cvlc -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Vlc is unable to show any streams. Let’s try to specify the stream details. May be Vlc was unable to figure out proper streaming details.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &quot;http://193.168.0.1:6200&quot; -qO- | cvlc - :demux=h264 --h264-fps=30 :clock-jitter=0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;video autoplay=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; controls=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/res/stream_vlc2.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+
+&lt;p&gt;Finally!!! Vlc is able to get the stream with no issues. Smile… :-)&lt;/p&gt;
+
+&lt;p&gt;Now this is done let’s see whether I can access this from python &amp;amp; opencv.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;cv2&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;cap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VideoCapture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'tcp://193.168.0.1:6200/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Capture frame-by-frame
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;frame&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Our operations on the frame come here
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Display the resulting frame
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imshow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'frame'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;frame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;waitKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xFF&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'q'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# When everything done, release the capture
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;release&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destroyAllWindows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;video autoplay=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; controls=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/res/python_stream.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+&lt;/video&gt;
+
+&lt;p&gt;Perfect. I was able to get the stream from python. Mission accomplished. But let’s look further.&lt;/p&gt;
+
+&lt;p&gt;I ran nmap one more time covering all the ports. It’s extensive and took some time. It showed one more port 6100. Later found to be audio stream from the camera.&lt;/p&gt;
+
+&lt;p&gt;Let’s check whether we can have a look into the firmware. I could not find any links online to download firmware. When I first started the companion app, it asked for firmware update. So there should be some way to get it. Let’s look into the companion app traffic.&lt;/p&gt;
+
+&lt;p&gt;Download some packet capture software for Android like ‘Packet Capture’. It’s similar to wireshark, but for Android. It seems comapnion app is communicating with server in plain http. No SSL certificate for the server. That’s not good. They are sending some personal details back to the server which is not good. Let’s look into the firmware update details.&lt;/p&gt;
+
+&lt;p&gt;Clicking on check firmware option triggers this request.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/companion_app.png&quot; alt=&quot;stream tcp&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It seems they are sending both version details of firmware and companion app. Server seems to only respond with companion app details. This might probably because I am having latest firmware. Lets modify this request so that server think I am having a previous version.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Content-Type: application/json'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST http://apphw.ddpai.com/d/api/v1/version/check &lt;span class=&quot;nt&quot;&gt;--data&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{
+  &quot;data&quot;: [
+    {
+      &quot;model&quot;: &quot;camera_app_android_overseas&quot;,
+      &quot;version&quot;: &quot;v5.7.12.0926&quot;
+    },
+    {
+      &quot;model&quot;: &quot;DDPai miniONE_LITE_Overseas&quot;,
+      &quot;version&quot;: &quot;v4.6.0.22&quot;
+    }
+  ]
+}'&lt;/span&gt;
+Note: Unnecessary use of &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; or &lt;span class=&quot;nt&quot;&gt;--request&lt;/span&gt;, POST is already inferred.
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   Trying 47.89.133.142...
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; TCP_NODELAY &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Connected to apphw.ddpai.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;47.89.133.142&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; port 80 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#0)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; POST /d/api/v1/version/check HTTP/1.1
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Host: apphw.ddpai.com
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; User-Agent: curl/7.58.0
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Accept: &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Content-Type: application/json
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Content-Length: 197
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; upload completely sent off: 197 out of 197 bytes
+&amp;lt; HTTP/1.1 200 OK
+&amp;lt; Date: Thu, 10 Oct 2019 17:33:54 GMT
+&amp;lt; Content-Type: application/json&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;charset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;UTF-8
+&amp;lt; Content-Length: 1457
+&amp;lt; Connection: keep-alive
+&amp;lt; 
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;data&quot;&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigMd5&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;63D8900C41169ED76A107140F3119433&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigPath&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;http://httpsdatacdn.ddpai.com/update/camera_app_android_overseas/20180620/C05_ddpai_v5.7.9.0613_release_0613-1439_zip.apk&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigSize&quot;&lt;/span&gt;: 42322062,
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigSmallSplit&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigTime&quot;&lt;/span&gt;: 0,
+            &lt;span class=&quot;s2&quot;&gt;&quot;commitDate&quot;&lt;/span&gt;: 1529486660540,
+            &lt;span class=&quot;s2&quot;&gt;&quot;desc&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;1、适配mix3机型；&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;2、使用新的视觉风格；&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;3、修复已知问题；&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descCn&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;1、适配mix3机型；&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;2、使用新的视觉风格；&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;3、修复已知问题；&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descDe&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descEn&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;1、Adopted to mix3;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;2、Adopted a new VI style；&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;3、Fixed bugs;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descEs&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descFr&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descIt&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descPt&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descRu&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descTw&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;hasDel&quot;&lt;/span&gt;: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;: 64,
+            &lt;span class=&quot;s2&quot;&gt;&quot;model&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;camera_app_android_overseas&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;camera_app_android_overseas&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallMd5&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallPath&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallSize&quot;&lt;/span&gt;: 0,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallTime&quot;&lt;/span&gt;: 0,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallVersion&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;v5.7.9.0613&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;versionType&quot;&lt;/span&gt;: 1
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigMd5&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;768A1E03AF163ACC53C0841AE5F5EF8B&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigPath&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;http://httpsdatacdn.ddpai.com/update/DDPaiminiONE_LITE_Overseas/20190614/update_nolog.tar.gz&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigSize&quot;&lt;/span&gt;: 5365231,
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigSmallSplit&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;bigTime&quot;&lt;/span&gt;: 60,
+            &lt;span class=&quot;s2&quot;&gt;&quot;commitDate&quot;&lt;/span&gt;: 1560481333328,
+            &lt;span class=&quot;s2&quot;&gt;&quot;desc&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;修复已知问题；&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descCn&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;修复已知问题；&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descDe&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descEn&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;Fixed bugs;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descEs&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descFr&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descIt&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descPt&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descRu&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;descTw&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;hasDel&quot;&lt;/span&gt;: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;: 74,
+            &lt;span class=&quot;s2&quot;&gt;&quot;model&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;DDPai miniONE_LITE_Overseas&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;DDPai miniONE_LITE_Overseas&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallMd5&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallPath&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallSize&quot;&lt;/span&gt;: 0,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallTime&quot;&lt;/span&gt;: 0,
+            &lt;span class=&quot;s2&quot;&gt;&quot;smallVersion&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;v4.7.0.22&quot;&lt;/span&gt;,
+            &lt;span class=&quot;s2&quot;&gt;&quot;versionType&quot;&lt;/span&gt;: 1
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;error_code&quot;&lt;/span&gt;: 0
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ta daa!!! Our new firmware ready to be downloaded here &lt;code class=&quot;highlighter-rouge&quot;&gt;http://httpsdatacdn.ddpai.com/update/DDPaiminiONE_LITE_Overseas/20190614/update_nolog.tar.gz&lt;/code&gt;. This is good. Let’s try to analyze the firmware.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/bin_walk.jpg&quot; alt=&quot;bin walk&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Eventhough it’s ramed as .gz, it doesn’t look a gzip compression. Running binwalk reveals that they use zlib compression. Let’s try to extract each part.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/bin_walk_extract.jpg&quot; alt=&quot;bin_walk_extract&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s see what each part is.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/bin_walk_bin.jpg&quot; alt=&quot;bin_walk_bin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We have two JFFS2 file system. Let’s see what’s inside. To extract JFFS2 file system you need to install jefferson.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/jefferson.jpg&quot; alt=&quot;jefferson&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/sviehb/jefferson.git
+Cloning into &lt;span class=&quot;s1&quot;&gt;'jefferson'&lt;/span&gt;...
+remote: Enumerating objects: 74, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+remote: Total 74 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, reused 0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, pack-reused 74
+Unpacking objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;74/74&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;1CD  1CD.zlib  21458  21458.zlib  35DE85  35DE85.zlib  50AB7A  50AB7A.zlib  56  56.zlib  E3  E3.zlib  jefferson
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;jefferson/
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;LICENSE  README.md  setup.py  src
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python setup.py &lt;span class=&quot;nb&quot;&gt;install
+&lt;/span&gt;running &lt;span class=&quot;nb&quot;&gt;install
+&lt;/span&gt;running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/jefferson
+copying src/jefferson/rtime.py -&amp;gt; build/lib.linux-x86_64-2.7/jefferson
+copying src/jefferson/jffs2_lzma.py -&amp;gt; build/lib.linux-x86_64-2.7/jefferson
+copying src/jefferson/__init__.py -&amp;gt; build/lib.linux-x86_64-2.7/jefferson
+running build_scripts
+creating build/scripts-2.7
+copying and adjusting src/scripts/jefferson -&amp;gt; build/scripts-2.7
+changing mode of build/scripts-2.7/jefferson from 644 to 755
+running install_lib
+creating /usr/local/lib/python2.7/dist-packages/jefferson
+copying build/lib.linux-x86_64-2.7/jefferson/rtime.py -&amp;gt; /usr/local/lib/python2.7/dist-packages/jefferson
+copying build/lib.linux-x86_64-2.7/jefferson/jffs2_lzma.py -&amp;gt; /usr/local/lib/python2.7/dist-packages/jefferson
+copying build/lib.linux-x86_64-2.7/jefferson/__init__.py -&amp;gt; /usr/local/lib/python2.7/dist-packages/jefferson
+byte-compiling /usr/local/lib/python2.7/dist-packages/jefferson/rtime.py to rtime.pyc
+byte-compiling /usr/local/lib/python2.7/dist-packages/jefferson/jffs2_lzma.py to jffs2_lzma.pyc
+byte-compiling /usr/local/lib/python2.7/dist-packages/jefferson/__init__.py to __init__.pyc
+running install_scripts
+copying build/scripts-2.7/jefferson -&amp;gt; /usr/local/bin
+changing mode of /usr/local/bin/jefferson to 755
+running install_egg_info
+Writing /usr/local/lib/python2.7/dist-packages/jefferson-0.2.egg-info
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;1CD  1CD.zlib  21458  21458.zlib  35DE85  35DE85.zlib  50AB7A  50AB7A.zlib  56  56.zlib  E3  E3.zlib  jefferson
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;binwalk &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; 35DE85
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+0             0x0             JFFS2 filesystem, little endian
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Let’s look into the file system.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/tree_1.jpg&quot; alt=&quot;tree_1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Under aud_res there are several raw audio files are present. These are the notofication sounds, produced by the dashcam. Replacing these with custom sounds and reflashing the firmware will be cool.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/audacity.jpg&quot; alt=&quot;audacity&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There is some &lt;code class=&quot;highlighter-rouge&quot;&gt;libaiengine-80-liteos-2.9.4-20180402220227.so&lt;/code&gt; file. The filename liteos confirms it is running Huawei LiteOS.&lt;/p&gt;
+
+&lt;p&gt;There is one bin file called paramdef.bin located in paramdef. Seems to be binary file. Let’s see the strings in it.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;strings paramdef.bin 
+arap
+12.0
+720P30
+1080P30
+1080P60
+1440P30
+1520P30
+/app/sd/DCIM
+/usrcfg/lastfilename.txt
+/app/sd
+/dev/mmcblk0p0
+3.18.y
+v4.7.0.22
+DDPai miniONE_LITE
+vYou_DDPai_MINI
+1234567890
+000000000000000
+000000000000000
+admin
+admin
+yyyy-MM-dd HH:mm:ss
+zh_CN
+DDPaiMin
+v4.5.0.0
+DDPai miniONE
+2018-01-01
+mrap
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You could see WiFi SSID and default password, Firmware version, etc&lt;/p&gt;
+
+&lt;p&gt;Let’s see the other file system.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/tree2.jpg&quot; alt=&quot;tree_2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This seems mostly configuration files. &lt;code class=&quot;highlighter-rouge&quot;&gt;config_product_devmng.ini&lt;/code&gt; have details regarding WiFi SSID &amp;amp; passwords.&lt;/p&gt;
+
+&lt;div class=&quot;language-ini highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[devinfo]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;system_version&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;3.18.y&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;software_version&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;v4.7.0.22&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;model&lt;/span&gt;              &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;DDPai miniONE_LITE&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;[wifi]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;ssid&lt;/span&gt;               &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;vYou_DDPai_MINI&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;password&lt;/span&gt;           &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1234567890&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;channel&lt;/span&gt;            &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;11&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;enable&lt;/span&gt;             &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1:true 0:false&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;stawifissid&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;stawifipwd&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;stawifiauth&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;4&quot;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;; 0:OPEN 1:WEP 2:WPAPSK 3:WPA2PSK 4:WPAPSK_WPA2PSK_MIX
+&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;[autooff]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;enable&lt;/span&gt;             &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;time&lt;/span&gt;               &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;300&quot;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;; unit s
+&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;[dormant]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;enable&lt;/span&gt;             &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;time&lt;/span&gt;               &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;60&quot;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;; unit s
+&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;[clock]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;enable&lt;/span&gt;             &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;[onoff]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;auto_poweron_en&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;; 0:disable, 1:enable
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;auto_poweron_time  = &quot;600&quot;; seconds&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;sd_card_cid&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0000000000000000&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;sd_card_csd&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0000000000000000&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;abnormal_poweroff&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;; 
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;onoff_key_press_time = &quot;2000&quot;; 200ms~2000ms&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;[sound]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;keysound&lt;/span&gt;           &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;bootmusic&lt;/span&gt;          &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;; 0: open bootmusic 1: close bootmusic
+&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;[gsensor]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;gsensorrange&lt;/span&gt;       &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;[banma]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;verification&lt;/span&gt;	   &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;There is some stawifissid params. May be enabling this will make Dashcam connect to a particular WiFi than creating an AP. Could see some reference for mounting at /app/sd/DCIM. Some of the config files have the details required for the live stream.&lt;/p&gt;
+
+&lt;p&gt;There is one more to extract.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/bin_walk_last.jpg&quot; alt=&quot;bin_walk_last&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This seems to be the main binary file resposible for the REST interface. Running strings list a lot of useful details. It seems to be written in c since I could see some reference here and there.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/bin_walk_c.jpg&quot; alt=&quot;bin_walk_c&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By just looking into strings, you will get a lot of information. I could able to extract the list of all APIs supported by the REST service.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;API_RequestSessionID&lt;/li&gt;
+  &lt;li&gt;API_RequestCertificate&lt;/li&gt;
+  &lt;li&gt;API_SyncDate&lt;/li&gt;
+  &lt;li&gt;API_GetBaseInfo&lt;/li&gt;
+  &lt;li&gt;APP_AvCapReq&lt;/li&gt;
+  &lt;li&gt;APP_AvCapSet&lt;/li&gt;
+  &lt;li&gt;APP_PlaybackLiveSwitch&lt;/li&gt;
+  &lt;li&gt;API_GetMailboxData&lt;/li&gt;
+  &lt;li&gt;API_Logout&lt;/li&gt;
+  &lt;li&gt;API_TestGsensor&lt;/li&gt;
+  &lt;li&gt;API_TestSerial&lt;/li&gt;
+  &lt;li&gt;API_TestIndicator&lt;/li&gt;
+  &lt;li&gt;APP_PlaybackListReq&lt;/li&gt;
+  &lt;li&gt;APP_PlaybackPageListReq&lt;/li&gt;
+  &lt;li&gt;API_GeneralSave&lt;/li&gt;
+  &lt;li&gt;API_GeneralQuery&lt;/li&gt;
+  &lt;li&gt;APP_DeleteEvent&lt;/li&gt;
+  &lt;li&gt;API_CameraCapture&lt;/li&gt;
+  &lt;li&gt;API_AuthModify&lt;/li&gt;
+  &lt;li&gt;API_GetStorageInfo&lt;/li&gt;
+  &lt;li&gt;API_MmcFormat&lt;/li&gt;
+  &lt;li&gt;API_GetModuleState&lt;/li&gt;
+  &lt;li&gt;API_SetTimeForUpdateOrderNum&lt;/li&gt;
+  &lt;li&gt;API_ClearModuleFlags&lt;/li&gt;
+  &lt;li&gt;APP_AvInit&lt;/li&gt;
+  &lt;li&gt;APP_EventListReq&lt;/li&gt;
+  &lt;li&gt;APP_TimeLapseVideoListReq&lt;/li&gt;
+  &lt;li&gt;API_PlayModeQuery&lt;/li&gt;
+  &lt;li&gt;API_AuthQuery&lt;/li&gt;
+  &lt;li&gt;API_Reboot&lt;/li&gt;
+  &lt;li&gt;API_RestartWifi&lt;/li&gt;
+  &lt;li&gt;API_UpdFileMd5&lt;/li&gt;
+  &lt;li&gt;API_SetLogonInfo&lt;/li&gt;
+  &lt;li&gt;API_GetLogonRecord&lt;/li&gt;
+  &lt;li&gt;APP_ParkingEventListReq&lt;/li&gt;
+  &lt;li&gt;APP_ParkingEventListClear&lt;/li&gt;
+  &lt;li&gt;API_SuperDownload&lt;/li&gt;
+  &lt;li&gt;API_ButtonMatch&lt;/li&gt;
+  &lt;li&gt;API_WpsConnect&lt;/li&gt;
+  &lt;li&gt;API_GetResolution&lt;/li&gt;
+  &lt;li&gt;API_SetLockFile&lt;/li&gt;
+  &lt;li&gt;APP_StopDownload&lt;/li&gt;
+  &lt;li&gt;API_SetRouterAuth&lt;/li&gt;
+  &lt;li&gt;API_GetRouterStatus&lt;/li&gt;
+  &lt;li&gt;API_UpdateCamera&lt;/li&gt;
+  &lt;li&gt;API_GetLegalInfo&lt;/li&gt;
+  &lt;li&gt;API_GetSdBadClus&lt;/li&gt;
+  &lt;li&gt;API_SetDefaultCfg&lt;/li&gt;
+  &lt;li&gt;API_SetUuid&lt;/li&gt;
+  &lt;li&gt;API_SetSn&lt;/li&gt;
+  &lt;li&gt;API_GetEachFileSize&lt;/li&gt;
+  &lt;li&gt;API_BanMaUnbind&lt;/li&gt;
+  &lt;li&gt;API_BanMaSync&lt;/li&gt;
+  &lt;li&gt;API_SetApMode&lt;/li&gt;
+  &lt;li&gt;APP_EquipTestReady&lt;/li&gt;
+  &lt;li&gt;API_HwinfoQuery&lt;/li&gt;
+  &lt;li&gt;API_EquipAudioLoop&lt;/li&gt;
+  &lt;li&gt;API_EquipGetTime&lt;/li&gt;
+  &lt;li&gt;API_EquipLED&lt;/li&gt;
+  &lt;li&gt;API_EquipButtonMatch&lt;/li&gt;
+  &lt;li&gt;API_SetTestResult&lt;/li&gt;
+  &lt;li&gt;API_EquipGSensor&lt;/li&gt;
+  &lt;li&gt;API_EquipSpeaker&lt;/li&gt;
+  &lt;li&gt;API_EquipResetBtn&lt;/li&gt;
+  &lt;li&gt;API_EquipPhotoBtn&lt;/li&gt;
+  &lt;li&gt;API_EquipMuteBtn&lt;/li&gt;
+  &lt;li&gt;API_EquipMuteBtn&lt;/li&gt;
+  &lt;li&gt;API_EquipResetCfg&lt;/li&gt;
+  &lt;li&gt;API_EquipLegalSet&lt;/li&gt;
+  &lt;li&gt;API_EquipGetSensorVer&lt;/li&gt;
+  &lt;li&gt;API_EquipOpenRtsp&lt;/li&gt;
+  &lt;li&gt;API_RecordOpt&lt;/li&gt;
+  &lt;li&gt;API_GetGsensorState&lt;/li&gt;
+  &lt;li&gt;API_EquipACCState&lt;/li&gt;
+  &lt;li&gt;API_EquipGetTempetureAndHumidity&lt;/li&gt;
+  &lt;li&gt;API_EquipGetWiFiStatus&lt;/li&gt;
+  &lt;li&gt;API_EquipDeleteFacUsbFile&lt;/li&gt;
+  &lt;li&gt;API_EquipODBTest&lt;/li&gt;
+  &lt;li&gt;API_SetGsensorValue&lt;/li&gt;
+  &lt;li&gt;API_SetAudioCapGain&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate1&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate2&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate3&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate4&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate5&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate6&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate7&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate8&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate9&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate10&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate11&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate12&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate13&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate14&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate15&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate16&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate17&lt;/li&gt;
+  &lt;li&gt;API_SetBitRate18&lt;/li&gt;
+  &lt;li&gt;API_GetAispeechState&lt;/li&gt;
+  &lt;li&gt;API_SetSpeakRange&lt;/li&gt;
+  &lt;li&gt;API_SetEmmcMeasure&lt;/li&gt;
+  &lt;li&gt;API_GetEmmcMeasure&lt;/li&gt;
+  &lt;li&gt;API_Get_ConnectAccStatus&lt;/li&gt;
+  &lt;li&gt;API_Get_PageFileListStatus&lt;/li&gt;
+  &lt;li&gt;API_SetTarCamlog&lt;/li&gt;
+  &lt;li&gt;API_GetCarCustomVersion&lt;/li&gt;
+  &lt;li&gt;API_SetPowerOff&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is fun… !!!&lt;/p&gt;</content><author><name></name></author><category term="Reverse Engineering" /><summary type="html">I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon Link (Official site Link), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible.</summary></entry><entry><title type="html">Smart Home Display IOT</title><link href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html" rel="alternate" type="text/html" title="Smart Home Display IOT" /><published>2019-06-29T00:00:00+05:30</published><updated>2019-06-29T00:00:00+05:30</updated><id>/2019/06/29/smart-home-display-iot--diy-google-home-hub</id><content type="html" xml:base="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">&lt;p&gt;This is a DIY smart display that you can embed in to your wall. You can control your smart appliance, set timer to control it, get weather info, and act as a cool clock. Let’s get straight into how I made it.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/thumbnail_smart_room.jpeg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
 
@@ -1271,16 +1868,4 @@ catkin_create_pkg three_axis_robot roscpp rospy urdf
   &lt;li&gt;Pressing for a long time will enable a hotspot&lt;/li&gt;
   &lt;li&gt;Option to change the tone by writing it to EEPROM on the go (ESP8266 has 512 bytes of EEPROM).&lt;/li&gt;
   &lt;li&gt;Option to play PCM encoded 8 bit WAV file.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html">Have recently bought a small batman key chain from amazon. It has a small button when pressed lights the batman eye with white light and sounds a pathetic sound (:(). So I thought of opening it.</summary></entry><entry><title type="html">MAV with two propeller</title><link href="/2016/11/13/mav-with-two-propeller.html" rel="alternate" type="text/html" title="MAV with two propeller" /><published>2016-11-13T14:44:00+05:30</published><updated>2016-11-13T14:44:00+05:30</updated><id>/2016/11/13/mav-with-two-propeller</id><content type="html" xml:base="/2016/11/13/mav-with-two-propeller.html">&lt;p&gt;In order to counter the rotating torque from the previous single rotor version, one more propeller is added. The second propeller rotates counter clockwise and both torques will cancel each other (Only if both propellers are rotating at same speed).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://2.bp.blogspot.com/-Rbxph_4Cs3g/WCglyr-q_fI/AAAAAAAABWM/n-cbj9obeXAnHzpTZjPN2BrAZGTJAhAFACLcB/s1600/IMG_20161107_010610759_HDR.jpg&quot; alt=&quot;preview&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This the video of it flying with restriction. I have attached a a small weight to its bottom. Even though the counter torque is cancelled, it can’t be controlled. Very small variation in alignment will drive the MAV crazy.&lt;/p&gt;
-
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/hwU4HWginwk&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;This is an attempt to control the drone remotely with a joystick. Had changed the body from plastic (from plastic IC tube) to general purpose PCB board. The individual propellers are controlled from a joystick (logitech f710). The controller is an esp8266 es-11 WiFi chip. The telemetry data are send using a python program that run on my computer. Both the WiFi chip and my computer are on the same network.&lt;/p&gt;
-
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/-8L_U88z5k4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;iframe width=&quot;320&quot; height=&quot;266&quot; src=&quot;https://www.youtube.com/embed/y9F4RaIn9os&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Drones" /><summary type="html">In order to counter the rotating torque from the previous single rotor version, one more propeller is added. The second propeller rotates counter clockwise and both torques will cancel each other (Only if both propellers are rotating at same speed).</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html">Have recently bought a small batman key chain from amazon. It has a small button when pressed lights the batman eye with white light and sounds a pathetic sound (:(). So I thought of opening it.</summary></entry></feed>
