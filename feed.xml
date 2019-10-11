@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-10-11T01:26:57+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Reverse Engineer DDPAI Dash Cam Firmware</title><link href="/2019/10/10/reverse-engineer-ddpai-firmware.html" rel="alternate" type="text/html" title="Reverse Engineer DDPAI Dash Cam Firmware" /><published>2019-10-10T00:00:00+05:30</published><updated>2019-10-10T00:00:00+05:30</updated><id>/2019/10/10/reverse-engineer-ddpai-firmware</id><content type="html" xml:base="/2019/10/10/reverse-engineer-ddpai-firmware.html">&lt;p&gt;I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon &lt;a href=&quot;https://www.amazon.in/gp/product/B07L6JVT92/&quot;&gt;Link&lt;/a&gt; (Official site &lt;a href=&quot;http://en.ddpai.com/product/mini/4.html&quot;&gt;Link&lt;/a&gt;), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-10-12T01:56:52+05:30</updated><id>/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Reverse Engineer DDPAI Dash Cam Firmware</title><link href="/2019/10/10/reverse-engineer-ddpai-firmware.html" rel="alternate" type="text/html" title="Reverse Engineer DDPAI Dash Cam Firmware" /><published>2019-10-10T00:00:00+05:30</published><updated>2019-10-10T00:00:00+05:30</updated><id>/2019/10/10/reverse-engineer-ddpai-firmware</id><content type="html" xml:base="/2019/10/10/reverse-engineer-ddpai-firmware.html">&lt;p&gt;I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon &lt;a href=&quot;https://www.amazon.in/gp/product/B07L6JVT92/&quot;&gt;Link&lt;/a&gt; (Official site &lt;a href=&quot;http://en.ddpai.com/product/mini/4.html&quot;&gt;Link&lt;/a&gt;), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/ddpai.png&quot; alt=&quot;DDPAI&quot; /&gt;&lt;/p&gt;
 
@@ -169,7 +169,7 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &quot;http://193.168.0.1:6200&quot; -qO- | cvlc - :demux=h264 --h264-fps=30 :clock-jitter=0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;video autoplay=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; controls=&quot;&quot;&gt;
+&lt;video autoplay=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; preload=&quot;none&quot;&gt;
   &lt;source src=&quot;/assets/res/stream_vlc2.mp4&quot; type=&quot;video/mp4&quot; /&gt;
 &lt;/video&gt;
 
@@ -200,7 +200,7 @@
 &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destroyAllWindows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;video autoplay=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; controls=&quot;&quot;&gt;
+&lt;video autoplay=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; preload=&quot;none&quot;&gt;
   &lt;source src=&quot;/assets/res/python_stream.mp4&quot; type=&quot;video/mp4&quot; /&gt;
 &lt;/video&gt;
 
@@ -601,7 +601,7 @@ mrap
 
 &lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
 
-&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot;&gt;
+&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; preload=&quot;none&quot;&gt;
   &lt;source src=&quot;/assets/res/exploded_view.mp4&quot; type=&quot;video/mp4&quot; /&gt;
 &lt;/video&gt;
 
@@ -740,7 +740,7 @@ mrap
 
 &lt;p&gt;These shows the features that are supported.&lt;/p&gt;
 
-&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot;&gt;
+&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; preload=&quot;none&quot;&gt;
   &lt;source src=&quot;/assets/res/smart_home_soft_preview.mp4&quot; type=&quot;video/mp4&quot; /&gt;
 &lt;/video&gt;
 
@@ -748,7 +748,7 @@ mrap
 
 &lt;p&gt;I have used fusion 360 to model the parts.&lt;/p&gt;
 
-&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot;&gt;
+&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;600px&quot; preload=&quot;none&quot;&gt;
   &lt;source src=&quot;/assets/res/cad_design_overlay.mp4&quot; type=&quot;video/mp4&quot; /&gt;
 &lt;/video&gt;
 
