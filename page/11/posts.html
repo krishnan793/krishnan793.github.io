@@ -610,7 +610,8 @@
               <li>  
                 <label for="l1i1">October</label>
                 <input id="l1i1" type="checkbox">
-                <ul><li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
+                <ul><li><a href="/2019/10/29/iron-man-plymouth-theme.html">Iron Man Plymouth Theme</a></li>        
+                  <li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
                   
                 </ul>
               </li>
@@ -1014,6 +1015,19 @@
 
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2014/07/22/linux-command-awk.html">Linux command awk extract anything</a></h2></div>
+	  	<div class="post-date">22 Jul 2014</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Awk is pretty use full when you are writing automatic scripts to do your jobs. Some simple examples of how we can use awk are given below<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1}'</span><br /><br />It will print first column of ps command. &nbsp;If you want to print second column also write<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 $2}'</span><br /><br />Output seems to be pretty crowded? Add a simple space by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 " " $2}'</span><br /><br />Want to limit it display only second line?<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk ' NR==2{print $1 " " $2}'</span><br /><br />Want to exclede first row? You can do it by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR !=1{print &nbsp;$1 " " $2}'</span><br /><br />Similarly you can print rows greater than a value by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR &gt;1{print &nbsp;$1 " " $2}'</span><br /><br />You can extract virtually anything using awk... Feel free to explore every options. Type man awk or awk --help to explore other options. Feel free to comment also... :)<br /><br />This <a href="https://www.ibm.com/developerworks/library/l-awk1/" target="_blank">site</a> has some good examlpes.<br /><br /><br /></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></h2></div>
 	  	<div class="post-date">22 Jul 2014</div>
       <div class="post-inner">
@@ -1060,19 +1074,6 @@
       	
       	</div>
   	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Type this netstat command in terminal.<br /><br /><span style="background-color: #eeeeee; color: #111111; font-family: Consolas, 'Andale Mono', Monaco, Courier, 'Courier New', Verdana, sans-serif; font-size: 12px; line-height: 17.996999740600586px;">netstat -tulpn</span><br /><span style="background-color: #eeeeee; color: #111111; font-family: Consolas, 'Andale Mono', Monaco, Courier, 'Courier New', Verdana, sans-serif; font-size: 12px; line-height: 17.996999740600586px;"><br /></span>Or you can use this one.<br /><br /><span style="background-color: #eeeeee; color: #111111; font-family: Consolas, 'Andale Mono', Monaco, Courier, 'Courier New', Verdana, sans-serif; font-size: 12px; line-height: 17.996999740600586px;">netstat -l</span><br /><br />Try netstat --help to go through other options also...</div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/07/15/testing-nat-port-forwarding-and.html">Testing NAT Port Forwarding and reverese NAT</a></h2></div>
-	  	<div class="post-date">15 Jul 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">For a long time I have been trying to configure port forwarding using NAT. But every attempt was futile... &nbsp;Finally I found that my port forwarding works just fine. But it just appears to be not working because my router doesn't support reverse NAT. In this post I will show you guys how to test whether you configure your NAT correctly or not. (Read a detailed write up by shane. <a href="https://www.pcwintech.com/test-for-reverse-nat" target="_blank">Link</a>)<br /><br />First make a port forwarding rule in your router say 1600. Download this little tool called simple internet tools. Install it and open port listener and select your internal IP(192.168.x.x). Then type your port number and press start listening.<br /><br />Go to this <a href="https://www.pcwintech.com/port_test.php?result=online&amp;port=1979" target="_blank">site</a>&nbsp;and check whether it says port is opened. If your connection is successful you will notice it in the port listener application.<br /><br />Then go to your browser and type your internet ip address. (You can find it from www.whatismyip.com) . Tnen type your port number after a colon. (116.211.22.12:1600). Your browser shows a webpage not available window. Check your port listener. If you find a connection successful message it means your router supports reverse NAT. Otherwise reverse NAT is not available.<br /><br />You can also check it by an nc command like this.<br /><br />nc 116.211.22.12 1600<br /><br />If you didn't want to test the connection using the above site you can do it by nc from a remote ssh account. Login to your ssh account and try to connect it with nc.<br /><br /></div> </div>
       </div>
 	</div>
 </div>

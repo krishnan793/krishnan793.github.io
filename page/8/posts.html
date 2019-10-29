@@ -610,7 +610,8 @@
               <li>  
                 <label for="l1i1">October</label>
                 <input id="l1i1" type="checkbox">
-                <ul><li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
+                <ul><li><a href="/2019/10/29/iron-man-plymouth-theme.html">Iron Man Plymouth Theme</a></li>        
+                  <li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
                   
                 </ul>
               </li>
@@ -1014,6 +1015,19 @@
 
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2015/02/27/getting-started-with-gpio-testing-gpio.html">Getting started with GPIO (Testing GPIO with a multimeter)</a></h2></div>
+	  	<div class="post-date">27 Feb 2015</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">There are 65 possible GPIO pins that you can control. Some of the GPIO pins are normally configured to different functions. Let's play with one of them.<br /><br />Go to the <a href="https://beagleboard.org/support/bone101" target="_blank">beaglebone website</a> and figure out the header pin corresponding to gpio23.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://beagleboard.org/static/images/cape-headers-digital.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://beagleboard.org/static/images/cape-headers-digital.png" height="240" width="320" /></a></div><br />The gpio23 is mapped to the 13th header pin. In this tutorial we are testing the gpio23 output using a multimeter (Do not connect an LED directly to BBB IO pin).<br /><br />First go to following directory<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd /sys/class/gpio</span>/<br /><br />Then make gpio23 available<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 23 &gt; export</span><br /><br />A new directory will be created. Open gpio directory.<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd gpio23</span><br /><br />The direction of IO will be normally set as in (input).&nbsp; To make it as output,<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo out &gt; direction</span><br /><br />Then set the pin to high using<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 1 &gt; value</span><br /><br />Measure the voltage at pin 13 of P8 header. If its 3.3 V then you are on the right track. Pin 1 and 2 will be ground. You can connect the negative terminal of multimeter to pin 1 or 2. <br /><br />To set output as zero,<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 0 &gt; value</span><br /><br />After finished with the tutorial unexport the gpio23 pin.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd ..</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 23 &gt; unexport</span><br /><br />To get a better idea refer this <a href="https://kilobaser.com/blog/2014-07-15-beaglebone-black-gpios" target="_blank">site</a>.</div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2015/02/22/beagleboneblack-apt-get-upgrade-error.html">BeagleBoneBlack apt-get upgrade error due to led-aging.sh</a></h2></div>
 	  	<div class="post-date">22 Feb 2015</div>
       <div class="post-inner">
@@ -1062,19 +1076,6 @@
       	
       	</div>
   	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">If you are familiar with linux, you may know that everything in linux is a file. You can talk to a hardware as if you are writing to a file.<br />There are 4 on board LEDs in BBB. You can play with that LED. <br /><br />Go to /sys/class/leds/beaglebone:green:usr3/<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd /sys/class/leds/beaglebone:green:usr3/</span><br /><br />If you write a '1' to the file corresponding to LED3, then it will light that LED. Writing '0' will switch off the LED.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 1 &gt; brightness</span><br /><br />It will switch on the LED forever. :-) If you want to switch off it again type<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 0 &gt; brightness</span><br /><br />Let's do it in c. <br /><br />First ssh into your BBB (refer <a href="https://eionix.blogspot.in/2015/02/getting-started-with-beaglebone-black.html" target="_blank">here</a>). Then create a directory to work with.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">mkdir helloworld<br />cd helloworld</span><br /><br />Open your favourite texteditor.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">nano LEDBlink.c</span><br /><br />Then type this program.<br /><br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">#include&lt;stdio.h&gt;<br /><br />int main()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FILE *LEDHandler=NULL;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char *LEDPath="/sys/class/leds/beaglebone:green:usr3/brightness";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(LEDHandler=fopen(LEDPath,"r+")){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fwrite("1", 1, 1,LEDHandler);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fclose(LEDHandler);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sleep(3);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(LEDHandler=fopen(LEDPath,"r+")){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fwrite("0", 1, 1,LEDHandler);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fclose(LEDHandler);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br />}</span><br />Save the program using Cntrl+O and close it using Cntrl+X.<br />Then compile the program using<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">gcc LEDBlink.c</span><br /><br />Then run your first program.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">./a.out</span><br /><br />The program will switch on the LED for 3s and then switch off.</div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2015/02/21/getting-started-with-beaglebone-black.html">Getting started with BeagleBone Black (Remote login via SSH with Linux / Windows)</a></h2></div>
-	  	<div class="post-date">21 Feb 2015</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Just started working with beaglebone black Rev C. As I move on with beaglebone black I will keep my blog posted. It may be helpful for newbies like me... :-)<br /><br />Connect your BBB (BeagleBone Black) with your PC. Open up your terminal and type<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ifconfig</span><br /><br />to check whether it's connected. You will see an eth1 (ethx) connection with an IP assigned as 192.168.7.1<br /><br />When you connect your BBB, you will see a drive mounted up (if not mount the disk). Open the drive and open start.htm. You will see documentation of the device there. You can install drivers from there. (Driver installation isn't required, but you might find a few udev rules helpful.) Just download the mkudevrule.sh file. Go to the folder where you download the file. Then give permission to execute the file.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cd ~/Downloads/</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">chmod +x mkudevrule.sh</span><br /><br />Then run it by,<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo ./mkudevrule.sh</span><br /><br />In orded to remotly login to your BBB using ssh type<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ssh root@192.168.7.2</span><br /><br />There won't be any root password set yet. For windows users download any terminal software like putty. Then try to connect with 192.168.7.2 on port 22. </div> </div>
       </div>
 	</div>
 </div>

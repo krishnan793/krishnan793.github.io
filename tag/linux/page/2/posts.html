@@ -610,7 +610,8 @@
               <li>  
                 <label for="l1i1">October</label>
                 <input id="l1i1" type="checkbox">
-                <ul><li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
+                <ul><li><a href="/2019/10/29/iron-man-plymouth-theme.html">Iron Man Plymouth Theme</a></li>        
+                  <li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
                   
                 </ul>
               </li>
@@ -1012,6 +1013,23 @@
           
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2016/01/27/esp8266-wifi-iot-chip-programing.html">ESP8266 WiFi IOT chip | Programing the Firmware</a></h2></div>
+	  	<div class="post-date">27 Jan 2016</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+        	<p><img src="https://2.bp.blogspot.com/-oZ7hNjwwBUw/VqYJzjmvMFI/AAAAAAAABIQ/pGR7GuWZ52c/s1600/esp8266-pinout_etch_copper_top.png" style="max-width: 300px;" /></p>
+      	
+      	</div>
+  	  	<div class="post-desc"> <p>ESP8266 is a cheap WiFi chip you can use in your embedded projects. You can communicate the chip using AT commands through UART. You can setup a WiFi hotspot, connect to an existing WiFi network, act as a web server, send data (TCP/UDP). The real fun is that you can reprogram the whole chip and you don’t need an other micro controller to control it. The ESP8266 ES1 come with 2 GPIO pins. There are other variants of this chip with more GPIO. This ESP 01 cost around Rs. 250 which is so cheap while comparing with other WiFi modules.</p>
+
+ </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2015/03/01/display-text-in-color-linux-terminal.html">Display text in color - Linux terminal</a></h2></div>
 	  	<div class="post-date">01 Mar 2015</div>
       <div class="post-inner">
@@ -1058,19 +1076,6 @@
       	
       	</div>
   	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Awk is pretty use full when you are writing automatic scripts to do your jobs. Some simple examples of how we can use awk are given below<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1}'</span><br /><br />It will print first column of ps command. &nbsp;If you want to print second column also write<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 $2}'</span><br /><br />Output seems to be pretty crowded? Add a simple space by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk '{print $1 " " $2}'</span><br /><br />Want to limit it display only second line?<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps | awk ' NR==2{print $1 " " $2}'</span><br /><br />Want to exclede first row? You can do it by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR !=1{print &nbsp;$1 " " $2}'</span><br /><br />Similarly you can print rows greater than a value by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ps |awk 'NR &gt;1{print &nbsp;$1 " " $2}'</span><br /><br />You can extract virtually anything using awk... Feel free to explore every options. Type man awk or awk --help to explore other options. Feel free to comment also... :)<br /><br />This <a href="https://www.ibm.com/developerworks/library/l-awk1/" target="_blank">site</a> has some good examlpes.<br /><br /><br /></div> </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></h2></div>
-	  	<div class="post-date">22 Jul 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">Well Linux is famous for combining things in power full ways in which anything is possible from a command line. The real fun of Linux came when you start focusing on terminal to do everything...<br /><br />It's possible to pipeline commands in terminal. Also it's possible to pass output of something as an argument of other.<br /><br />For example you can ping to your own external ip by<br /><br /><span style="font-family: Courier New, Courier, monospace;">ping $(curl -s &nbsp;curlmyip.com)</span><br /><br />curl curlmyip.com returns you ip address. This address is passed to &nbsp;the telnet as an argument. Whatever you put between $( and ) will execute as if it is a bash command.<br /><br /><br /></div> </div>
       </div>
 	</div>
 </div>
