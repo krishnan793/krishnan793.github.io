@@ -493,7 +493,7 @@
 			"file": "_site/posts.html",
 			"settings":
 			{
-				"buffer_size": 42450,
+				"buffer_size": 42585,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -548,16 +548,34 @@
 			"file": "_site/feed.xml",
 			"settings":
 			{
-				"buffer_size": 203571,
+				"buffer_size": 202743,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "index.html",
+			"file": "_posts/2019-10-29-iron-man-plymouth-theme.markdown",
 			"settings":
 			{
-				"buffer_size": 820,
+				"buffer_size": 702,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_config.yml",
+			"settings":
+			{
+				"buffer_size": 2205,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_site/Gemfile.lock",
+			"settings":
+			{
+				"buffer_size": 1756,
 				"line_ending": "Unix"
 			}
 		},
@@ -805,6 +823,7 @@
 	],
 	"file_history":
 	[
+		"/home/angel/Documents/MyWorks/blog/_posts/2019-10-29-iron-man-plymouth-theme.markdown",
 		"/home/angel/Documents/MyWorks/blog/_layouts/default.html",
 		"/home/angel/test",
 		"/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_21458.extracted/_media_app.bin.extracted/_30F8D5.crt.extracted/_394C37.extracted/0",
@@ -931,8 +950,7 @@
 		"/home/angel/Documents/MyWorks/blog/_posts/2016-10-21-self-balancing-robot.md",
 		"/home/angel/Documents/MyWorks/blog/_posts/2016-09-21-controlling-parrot-bebop-using-ros.md",
 		"/home/angel/Documents/MyWorks/blog/.gitignore",
-		"/home/angel/Documents/MyWorks/blog/blog.sublime-project",
-		"/home/angel/Documents/MyWorks/blog/tags.html"
+		"/home/angel/Documents/MyWorks/blog/blog.sublime-project"
 	],
 	"find":
 	{
@@ -1063,14 +1081,14 @@
 						"selection":
 						[
 							[
-								9142,
-								9142
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.6,
+							"markdonw_live_preview_last_run": 1572354267.04,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
@@ -1078,10 +1096,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 51.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1104,7 +1122,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.63,
+							"markdonw_live_preview_last_run": 1572354267.04,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
@@ -1115,7 +1133,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -1124,7 +1142,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 42450,
+						"buffer_size": 42585,
 						"regions":
 						{
 						},
@@ -1138,7 +1156,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.04,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
@@ -1149,7 +1167,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -1172,7 +1190,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.63,
+							"markdonw_live_preview_last_run": 1572354267.04,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
@@ -1183,7 +1201,7 @@
 						"translation.y": 400.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -1236,7 +1254,7 @@
 							"detect_indentation": false,
 							"incomplete_sync": null,
 							"line_numbers": false,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.04,
 							"output_tag": 1,
 							"remote_loading": false,
 							"result_base_dir": "",
@@ -1250,7 +1268,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -1273,7 +1291,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.05,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
@@ -1283,7 +1301,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1306,7 +1324,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.04,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
@@ -1315,7 +1333,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1331,14 +1349,14 @@
 						"selection":
 						[
 							[
-								181,
-								181
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.04,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
@@ -1347,7 +1365,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1356,7 +1374,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 203571,
+						"buffer_size": 202743,
 						"regions":
 						{
 						},
@@ -1370,7 +1388,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270811.74,
+							"markdonw_live_preview_last_run": 1572354267.05,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/XML/XML.sublime-syntax"
@@ -1379,35 +1397,33 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 9,
-					"file": "index.html",
-					"semi_transient": true,
+					"file": "_posts/2019-10-29-iron-man-plymouth-theme.markdown",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 820,
+						"buffer_size": 702,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								100,
+								100
 							]
 						],
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270938.34,
+							"markdonw_live_preview_last_run": 1572354813.02,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1418,6 +1434,74 @@
 				},
 				{
 					"buffer": 10,
+					"file": "_config.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2205,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								576,
+								576
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"markdonw_live_preview_last_run": 1572356132.95,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "_site/Gemfile.lock",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1756,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"markdonw_live_preview_last_run": 1572356626.16,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_21458.extracted/strings.txt",
 					"semi_transient": false,
 					"settings":
@@ -1436,7 +1520,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.18,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage",
@@ -1447,11 +1531,11 @@
 						"translation.y": 499101.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 13,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_21458.extracted/_media_app.bin.extracted/_6A5B1F.tar.extracted/test.txt",
 					"semi_transient": false,
 					"settings":
@@ -1470,7 +1554,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.05,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1479,11 +1563,11 @@
 						"translation.y": 140815.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 14,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1509,7 +1593,7 @@
 							"hex_viewer_starting_address": 0,
 							"hex_viewer_temp_file": "/tmp/tmp1lhnks.hex",
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.92,
+							"markdonw_live_preview_last_run": 1572354267.4,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/HexViewer/Hex.sublime-syntax"
@@ -1518,11 +1602,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 15,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_devmng.ini",
 					"semi_transient": false,
 					"settings":
@@ -1541,7 +1625,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.12,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1550,11 +1634,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 16,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_filemng.ini",
 					"semi_transient": false,
 					"settings":
@@ -1573,7 +1657,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.12,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1582,11 +1666,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 17,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_media_720p30.ini",
 					"semi_transient": false,
 					"settings":
@@ -1605,7 +1689,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.13,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1614,11 +1698,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 18,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_media_1080p30.ini",
 					"semi_transient": false,
 					"settings":
@@ -1637,7 +1721,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.13,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1646,11 +1730,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 19,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_media_common.ini",
 					"semi_transient": false,
 					"settings":
@@ -1669,7 +1753,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.64,
+							"markdonw_live_preview_last_run": 1572354267.22,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1678,11 +1762,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 20,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_record.ini",
 					"semi_transient": false,
 					"settings":
@@ -1701,7 +1785,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.65,
+							"markdonw_live_preview_last_run": 1572354267.21,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1710,11 +1794,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 21,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_sceneauto_1080p30.ini",
 					"semi_transient": false,
 					"settings":
@@ -1733,7 +1817,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.65,
+							"markdonw_live_preview_last_run": 1572354267.23,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1742,11 +1826,11 @@
 						"translation.y": 6194.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 22,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_sceneauto_1080p60.ini",
 					"semi_transient": false,
 					"settings":
@@ -1765,7 +1849,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.65,
+							"markdonw_live_preview_last_run": 1572354267.23,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1774,11 +1858,11 @@
 						"translation.y": 6107.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 23,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_storage.ini",
 					"semi_transient": false,
 					"settings":
@@ -1797,7 +1881,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.67,
+							"markdonw_live_preview_last_run": 1572354267.23,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1806,11 +1890,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 24,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_workmode.ini",
 					"semi_transient": false,
 					"settings":
@@ -1829,7 +1913,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.67,
+							"markdonw_live_preview_last_run": 1572354267.24,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1838,11 +1922,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
-					"buffer": 23,
+					"buffer": 25,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_50AB7A.extracted/jffs2-root/fs_1/param/config_product_workmode_valueset.ini",
 					"semi_transient": false,
 					"settings":
@@ -1861,7 +1945,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.68,
+							"markdonw_live_preview_last_run": 1572354267.24,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1870,11 +1954,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 24,
+					"buffer": 26,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1900,7 +1984,7 @@
 							"hex_viewer_starting_address": 0,
 							"hex_viewer_temp_file": "/tmp/tmpbng0pl.hex",
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.7,
+							"markdonw_live_preview_last_run": 1572354267.26,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/HexViewer/Hex.sublime-syntax"
@@ -1909,11 +1993,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 25,
+					"buffer": 27,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1939,7 +2023,7 @@
 							"hex_viewer_starting_address": 0,
 							"hex_viewer_temp_file": "/tmp/tmp8d4j_s.hex",
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.71,
+							"markdonw_live_preview_last_run": 1572354267.27,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/HexViewer/Hex.sublime-syntax"
@@ -1948,11 +2032,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 27,
 					"type": "text"
 				},
 				{
-					"buffer": 26,
+					"buffer": 28,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_35DE85.extracted/jffs2-root/fs_1/resource/aispeech_res/aiengine-2.9.4-1516623014458388.provision",
 					"semi_transient": false,
 					"settings":
@@ -1971,7 +2055,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.72,
+							"markdonw_live_preview_last_run": 1572354267.25,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -1980,11 +2064,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 27,
+					"stack_index": 29,
 					"type": "text"
 				},
 				{
-					"buffer": 27,
+					"buffer": 29,
 					"file": "/home/angel/Documents/MyWorks/Dashcam/firmware/test/_update_nolog.tar.gz.extracted/_35DE85.extracted/jffs2-root/fs_1/resource/aispeech_res/aispeech_factory",
 					"semi_transient": false,
 					"settings":
@@ -2003,7 +2087,7 @@
 						"settings":
 						{
 							"incomplete_sync": null,
-							"markdonw_live_preview_last_run": 1572270800.72,
+							"markdonw_live_preview_last_run": 1572354267.27,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -2012,7 +2096,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 28,
 					"type": "text"
 				}
 			]
@@ -2024,7 +2108,7 @@
 	},
 	"input":
 	{
-		"height": 39.0
+		"height": 40.0
 	},
 	"layout":
 	{

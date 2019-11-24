@@ -1013,8 +1013,59 @@
           02 Apr 2014
           <div dir="ltr" style="text-align: left;" trbidi="on">For details about AT commands refer this <a href="https://eionix.blogspot.in/2014/04/at-commands.html" target="_blank">link</a>.<br /><br />If you are using windows you can use hyperterminal to communicate with any modem. In this case the GSM modem. Find a method to connect your GSM modem to the PC &nbsp;(Refer this <a href="https://eionix.blogspot.in/2013/10/serial-port-communication-using-avr.html" target="_blank">Link</a>&nbsp;). You can use a USB2TTL converter to directly interface your GSM modem to PC. After interfacing the modem go to device manager and find the com port no: assigned to your GSM modem.<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-qt45a0rOd8E/UzxDefZQDAI/AAAAAAAAAXs/PkucUpT32iA/s1600/04-02-2014CropperCapture%5B1%5D.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://2.bp.blogspot.com/-qt45a0rOd8E/UzxDefZQDAI/AAAAAAAAAXs/PkucUpT32iA/s1600/04-02-2014CropperCapture%5B1%5D.jpg" /></a></div><div class="separator" style="clear: both; text-align: left;">After identifying the port number open hyperterminal. You need to download Hyperterminal or copy the files from windows XP. You can also use putty for this purpose.&nbsp;</div><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-KEZt4D6U9wQ/UzxEiiaRPSI/AAAAAAAAAX4/35Ws6DOcsyc/s1600/04-02-2014CropperCapture%5B2%5D.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://1.bp.blogspot.com/-KEZt4D6U9wQ/UzxEiiaRPSI/AAAAAAAAAX4/35Ws6DOcsyc/s1600/04-02-2014CropperCapture%5B2%5D.jpg" height="285" width="320" /></a></div><div class="separator" style="clear: both; text-align: left;">Type a name and click OK. Then select the com port you are using and press ok.</div><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-zGFVmpRg2hs/UzxE3UHus1I/AAAAAAAAAYA/2rID0FzpGeM/s1600/04-02-2014CropperCapture%5B3%5D.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://2.bp.blogspot.com/-zGFVmpRg2hs/UzxE3UHus1I/AAAAAAAAAYA/2rID0FzpGeM/s1600/04-02-2014CropperCapture%5B3%5D.jpg" height="285" width="320" /></a></div><div class="separator" style="clear: both; text-align: left;">Change the boadrate to 9600(you can choose other also. Higher boadrates may not work with some GSM modem) and let other options remain unchanged.</div><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: left;">After that type AT and press Enter. If you get a response showing OK. Then everything is fine. As a default typed character are not shown in the terminal. You can enable this by going to File=&gt; Properties=&gt; Settings=&gt;ASCII Setup and check Echo typed characters locally.</div><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: left;">You can follow the same procedures in putty also. This is a screenshot of putty.</div><div class="separator" style="clear: both; text-align: center;"><a href="https://3.bp.blogspot.com/-b62WinMafW4/UzxGka1IIpI/AAAAAAAAAYM/ngjorc3gc1w/s1600/04-02-2014CropperCapture%5B5%5D.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://3.bp.blogspot.com/-b62WinMafW4/UzxGka1IIpI/AAAAAAAAAYM/ngjorc3gc1w/s1600/04-02-2014CropperCapture%5B5%5D.jpg" height="306" width="320" /></a></div><div class="separator" style="clear: both; text-align: left;">You can do the same in Linux also. Use minicom or any other terminal softwares for communicating with you GSM modem in Linux. This link describes how to use minicom.</div><div class="separator" style="clear: both; text-align: left;"><a href="https://eionix.blogspot.in/2014/03/serial-port-communication-in-linux.html" target="_blank">Link</a></div><div class="separator" style="clear: both; text-align: left;">And this link describes how to identify the name of your modem.</div><div class="separator" style="clear: both; text-align: left;"><a href="https://eionix.blogspot.in/2014/03/linux-how-to-find-your-serial-any.html" target="_blank">Link</a></div><div class="separator" style="clear: both; text-align: left;"><br /></div><br /></div>
         </div>
+        
+          <br><br>
+<hr>
+<h4>Comments</h4>
+<div id="remark42"></div>
+<script>
+  var remark_config = {
+    host: "http://sec.eionix.co.in", // hostname of remark server, same as REMARK_URL in backend config, e.g. "https://demo.remark42.com"
+    site_id: 'eionix.co.in',
+    components: ['embed'], // optional param; which components to load. default to ["embed"]
+                           // to load all components define components as ['embed', 'last-comments', 'counter']
+                           // available component are:
+                           //     - 'embed': basic comments widget
+                           //     - 'last-comments': last comments widget, see `Last Comments` section below
+                           //     - 'counter': counter widget, see `Counter` section below
+    // url: 'PAGE_URL', // optional param; if it isn't defined
+                     // `window.location.origin + window.location.pathname` will be used,
+                     //
+                     // Note that if you use query parameters as significant part of url
+                     // (the one that actually changes content on page)
+                     // you will have to configure url manually to keep query params, as
+                     // `window.location.origin + window.location.pathname` doesn't contain query params and
+                     // hash. For example default url for `https://example/com/example-post?id=1#hash`
+                     // would be `https://example/com/example-post`.
+                     //
+                     // The problem with query params is that they often contain useless params added by
+                     // various trackers (utm params) and doesn't have defined order, so Remark treats differently
+                     // all this examples:
+                     // https://example.com/?postid=1&date=2007-02-11
+                     // https://example.com/?date=2007-02-11&postid=1
+                     // https://example.com/?date=2007-02-11&postid=1&utm_source=google
+                     //
+                     // If you deal with query parameters make sure you pass only significant part of it
+                     // in well defined order
+    max_shown_comments: 10, // optional param; if it isn't defined default value (15) will be used
+    theme: 'light', // optional param; if it isn't defined default value ('light') will be used
+    page_title: 'Comment' // optional param; if it isn't defined `document.title` will be used
+  };
+
+  (function(c) {
+    for(var i = 0; i < c.length; i++){
+      var d = document, s = d.createElement('script');
+      s.src = remark_config.host + '/web/' +c[i] +'.js';
+      s.defer = true;
+      (d.head || d.body).appendChild(s);
+    }
+  })(remark_config.components || ['embed']);
+</script>
+        
+
       </main>
       <!-- Main post content end -->
+
     </div>
     
     <footer class="site-footer">
