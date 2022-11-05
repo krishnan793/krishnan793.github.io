@@ -13,9 +13,9 @@
     
     <meta charset="UTF-8">
 
-    <!-- Begin Jekyll SEO tag v2.6.0 -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Raspberry pi Tips and Tricks | Ananth’s Blog</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="Raspberry pi Tips and Tricks" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop." />
@@ -25,8 +25,10 @@
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-06-04T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Raspberry pi Tips and Tricks" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.eionix.co.in/2019/06/04/raspberry-pi-tips-and-tricks.html"},"@type":"BlogPosting","url":"https://www.eionix.co.in/2019/06/04/raspberry-pi-tips-and-tricks.html","headline":"Raspberry pi Tips and Tricks","dateModified":"2019-06-04T00:00:00+05:30","datePublished":"2019-06-04T00:00:00+05:30","description":"If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2019-06-04T00:00:00+05:30","datePublished":"2019-06-04T00:00:00+05:30","description":"If you ever worked with raspberry pi, you know how many times you need google around to find a particular sulution. From enabling ssh first time to enabling uart speed, you need to google around and find the soulution that really works. This is a list of frequent things you may need to configure in raspberry pi. This assumes you are running Raspbian Stretch with desktop.","headline":"Raspberry pi Tips and Tricks","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.eionix.co.in/2019/06/04/raspberry-pi-tips-and-tricks.html"},"url":"https://www.eionix.co.in/2019/06/04/raspberry-pi-tips-and-tricks.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +36,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="/assets/css/style.css?v=">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-    <script data-ad-client="ca-pub-3090125590609746" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type="text/javascript" src="/assets/o3dv/o3dv.min.js"></script>
+
+    <!-- <script data-ad-client="ca-pub-3090125590609746" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
   </head>
 
   <body style="">
@@ -50,6 +54,16 @@
           width: 100vw;
           z-index: 0;
         }
+        /* .project-tagline{
+          color: aliceblue;
+          margin-bottom: 2rem;
+          font-weight: normal;
+          opacity: 0.7;
+          text-align: center;
+          font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: large;
+          margin-top: 35px;
+        } */
       </style>
       <script type="text/javascript">
         /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
@@ -120,6 +134,7 @@
   animation-name: change;
   animation-duration: 10s;
   animation-iteration-count: infinite;
+  /* margin-left: 0; */
 }
 .content__container__list__item {
   line-height: 40px;
@@ -533,6 +548,8 @@
         </div>
         <ul class="tags">
           
+          <li><a href="/tag/3d printing/posts.html" class="tag"> 3D printing </a></li>
+          
           <li><a href="/tag/reverse engineering/posts.html" class="tag"> Reverse Engineering </a></li>
           
           <li><a href="/tag/blogging/posts.html" class="tag"> Blogging </a></li>
@@ -603,13 +620,27 @@
         <div class="tag-heading">
         Archive
         </div>
-        <ul class="tree-list"><li><label for="l1"> 2019 </label><input id="l1" name="iddd" type="checkbox">
+        <ul class="tree-list"><li><label for="l1"> 2022 </label><input id="l1" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l1i1">October</label>
+                <label for="l1i1">August</label>
                 <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2022/08/27/3d-printing.html">3D printing</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l2"> 2019 </label><input id="l2" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l2i1">October</label>
+                <input id="l2i1" type="checkbox">
                 <ul><li><a href="/2019/10/29/iron-man-plymouth-theme.html">Iron Man Plymouth Theme</a></li>        
                   <li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
                   
@@ -618,8 +649,8 @@
               
               
               <li>  
-                <label for="l1i2">June</label>
-                <input id="l1i2" type="checkbox">
+                <label for="l2i2">June</label>
+                <input id="l2i2" type="checkbox">
                 <ul><li><a href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">Smart Home Display IOT</a></li>        
                   <li><a href="/2019/06/04/raspberry-pi-tips-and-tricks.html">Raspberry pi Tips and Tricks</a></li>        
                   
@@ -628,8 +659,8 @@
               
               
               <li>  
-                <label for="l1i3">April</label>
-                <input id="l1i3" type="checkbox">
+                <label for="l2i3">April</label>
+                <input id="l2i3" type="checkbox">
                 <ul><li><a href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">Blog using Jekyll | Github Pages with custom domain</a></li>        
                   
                 </ul>
@@ -637,8 +668,8 @@
               
               
               <li>  
-                <label for="l1i4">January</label>
-                <input id="l1i4" type="checkbox">
+                <label for="l2i4">January</label>
+                <input id="l2i4" type="checkbox">
                 <ul><li><a href="/2019/01/09/product-design-of-4-wheel-differential.html">Product Design of a 4 wheel differential drive robot</a></li>        
                   
                 </ul>
@@ -646,13 +677,13 @@
               
             </ul>
           </li>
-          <li><label for="l2"> 2018 </label><input id="l2" name="iddd" type="checkbox">
+          <li><label for="l3"> 2018 </label><input id="l3" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l2i1">October</label>
-                <input id="l2i1" type="checkbox">
+                <label for="l3i1">October</label>
+                <input id="l3i1" type="checkbox">
                 <ul><li><a href="/2018/10/06/inventory-app-for-hobbyists.html">Inventory App for hobbyists</a></li>        
                   
                 </ul>
@@ -660,8 +691,8 @@
               
               
               <li>  
-                <label for="l2i2">March</label>
-                <input id="l2i2" type="checkbox">
+                <label for="l3i2">March</label>
+                <input id="l3i2" type="checkbox">
                 <ul><li><a href="/2018/03/11/raspberry-pi-based-car-infotainment.html">Raspberry pi based Car Infotainment system</a></li>        
                   
                 </ul>
@@ -669,13 +700,13 @@
               
             </ul>
           </li>
-          <li><label for="l3"> 2017 </label><input id="l3" name="iddd" type="checkbox">
+          <li><label for="l4"> 2017 </label><input id="l4" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l3i1">August</label>
-                <input id="l3i1" type="checkbox">
+                <label for="l4i1">August</label>
+                <input id="l4i1" type="checkbox">
                 <ul><li><a href="/2017/08/03/creating-wireless-remote-for-nikon.html">Creating a Wireless remote for Nikon Camera using Esp8266</a></li>        
                   
                 </ul>
@@ -683,8 +714,8 @@
               
               
               <li>  
-                <label for="l3i2">April</label>
-                <input id="l3i2" type="checkbox">
+                <label for="l4i2">April</label>
+                <input id="l4i2" type="checkbox">
                 <ul><li><a href="/2017/04/22/ros-simulating-3-axis-robot-in-rviz.html">ROS simulating a 3 axis robot in Rviz</a></li>        
                   
                 </ul>
@@ -692,8 +723,8 @@
               
               
               <li>  
-                <label for="l3i3">January</label>
-                <input id="l3i3" type="checkbox">
+                <label for="l4i3">January</label>
+                <input id="l4i3" type="checkbox">
                 <ul><li><a href="/2017/01/01/batman-key-chain-with-esp8266.html">Batman Key chain with ESP8266</a></li>        
                   
                 </ul>
@@ -701,13 +732,13 @@
               
             </ul>
           </li>
-          <li><label for="l4"> 2016 </label><input id="l4" name="iddd" type="checkbox">
+          <li><label for="l5"> 2016 </label><input id="l5" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l4i1">November</label>
-                <input id="l4i1" type="checkbox">
+                <label for="l5i1">November</label>
+                <input id="l5i1" type="checkbox">
                 <ul><li><a href="/2016/11/13/mav-with-two-propeller.html">MAV with two propeller</a></li>        
                   <li><a href="/2016/11/06/my-single-rotor-mav.html">My single rotor MAV :)</a></li>        
                   <li><a href="/2016/11/02/this-is-another-theme-i-created-for.html">PlymouthTheme-TheRun</a></li>        
@@ -717,8 +748,8 @@
               
               
               <li>  
-                <label for="l4i2">October</label>
-                <input id="l4i2" type="checkbox">
+                <label for="l5i2">October</label>
+                <input id="l5i2" type="checkbox">
                 <ul><li><a href="/2016/10/30/plymouth-theme-for-ubuntu.html">Plymouth theme for Ubuntu</a></li>        
                   <li><a href="/2016/10/21/self-balancing-robot.html">Self Balancing Robot</a></li>        
                   <li><a href="/2016/10/21/warehouse-management-system-using-drones.html">Warehouse Management System using Drones</a></li>        
@@ -728,8 +759,8 @@
               
               
               <li>  
-                <label for="l4i3">September</label>
-                <input id="l4i3" type="checkbox">
+                <label for="l5i3">September</label>
+                <input id="l5i3" type="checkbox">
                 <ul><li><a href="/2016/09/21/controlling-parrot-bebop-using-ros.html">Controlling Parrot Bebop using ROS Kinetic</a></li>        
                   
                 </ul>
@@ -737,8 +768,8 @@
               
               
               <li>  
-                <label for="l4i4">January</label>
-                <input id="l4i4" type="checkbox">
+                <label for="l5i4">January</label>
+                <input id="l5i4" type="checkbox">
                 <ul><li><a href="/2016/01/27/smart-room-wireless-controlled.html">Smart Room :-) | Wireless controlled appliances</a></li>        
                   <li><a href="/2016/01/27/esp8266-wifi-iot-chip-programing.html">ESP8266 WiFi IOT chip | Programing the Firmware</a></li>        
                   
@@ -747,13 +778,13 @@
               
             </ul>
           </li>
-          <li><label for="l5"> 2015 </label><input id="l5" name="iddd" type="checkbox">
+          <li><label for="l6"> 2015 </label><input id="l6" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l5i1">November</label>
-                <input id="l5i1" type="checkbox">
+                <label for="l6i1">November</label>
+                <input id="l6i1" type="checkbox">
                 <ul><li><a href="/2015/11/14/searching-and-precision-landing-of-ar.html">Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS </a></li>        
                   <li><a href="/2015/11/13/simulating-controlling-ar-drone-20.html">Simulation & Controlling AR Drone 2.0 using Gamepad | Gazebo | ROS</a></li>        
                   
@@ -762,8 +793,8 @@
               
               
               <li>  
-                <label for="l5i2">October</label>
-                <input id="l5i2" type="checkbox">
+                <label for="l6i2">October</label>
+                <input id="l6i2" type="checkbox">
                 <ul><li><a href="/2015/10/21/a-multilayer-neural-network-based.html">A Multilayer Neural Network Based Obstacle Avoiding Robot | ROS | Simulation</a></li>        
                   
                 </ul>
@@ -771,8 +802,8 @@
               
               
               <li>  
-                <label for="l5i3">August</label>
-                <input id="l5i3" type="checkbox">
+                <label for="l6i3">August</label>
+                <input id="l6i3" type="checkbox">
                 <ul><li><a href="/2015/08/30/controlling-turtlesim-using-gamepad-ros.html">Controlling turtlesim using a Gamepad | ROS</a></li>        
                   
                 </ul>
@@ -780,8 +811,8 @@
               
               
               <li>  
-                <label for="l5i4">July</label>
-                <input id="l5i4" type="checkbox">
+                <label for="l6i4">July</label>
+                <input id="l6i4" type="checkbox">
                 <ul><li><a href="/2015/07/30/clap-switch.html">Clap Switch</a></li>        
                   
                 </ul>
@@ -789,8 +820,8 @@
               
               
               <li>  
-                <label for="l5i5">May</label>
-                <input id="l5i5" type="checkbox">
+                <label for="l6i5">May</label>
+                <input id="l6i5" type="checkbox">
                 <ul><li><a href="/2015/05/12/vision-based-line-follower-using-opencv.html">Vision Based Line Follower using opencv</a></li>        
                   
                 </ul>
@@ -798,8 +829,8 @@
               
               
               <li>  
-                <label for="l5i6">April</label>
-                <input id="l5i6" type="checkbox">
+                <label for="l6i6">April</label>
+                <input id="l6i6" type="checkbox">
                 <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
                   <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
                   <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
@@ -809,8 +840,8 @@
               
               
               <li>  
-                <label for="l5i7">March</label>
-                <input id="l5i7" type="checkbox">
+                <label for="l6i7">March</label>
+                <input id="l6i7" type="checkbox">
                 <ul><li><a href="/2015/03/01/display-text-in-color-linux-terminal.html">Display text in color - Linux terminal</a></li>        
                   <li><a href="/2015/03/01/beagleboneblack-adc.html">BeagleBoneBlack ADC</a></li>        
                   
@@ -819,8 +850,8 @@
               
               
               <li>  
-                <label for="l5i8">February</label>
-                <input id="l5i8" type="checkbox">
+                <label for="l6i8">February</label>
+                <input id="l6i8" type="checkbox">
                 <ul><li><a href="/2015/02/27/beagleboneblack-gpio-push-button-led.html">BeagleBoneBlack GPIO Push Button + LED</a></li>        
                   <li><a href="/2015/02/27/led-cube-using-atmega328p.html">LED Cube using Atmega328P</a></li>        
                   <li><a href="/2015/02/27/gpio-blink-led-using-c-beagleboneblack.html">GPIO Blink an LED using C - BeagleBoneBlack</a></li>        
@@ -837,13 +868,13 @@
               
             </ul>
           </li>
-          <li><label for="l6"> 2014 </label><input id="l6" name="iddd" type="checkbox">
+          <li><label for="l7"> 2014 </label><input id="l7" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l6i1">December</label>
-                <input id="l6i1" type="checkbox">
+                <label for="l7i1">December</label>
+                <input id="l7i1" type="checkbox">
                 <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
                   <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
                   <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
@@ -856,8 +887,8 @@
               
               
               <li>  
-                <label for="l6i2">September</label>
-                <input id="l6i2" type="checkbox">
+                <label for="l7i2">September</label>
+                <input id="l7i2" type="checkbox">
                 <ul><li><a href="/2014/09/22/simple-dip-threshold-animation-using.html">Simple DIP threshold animation using Matlab</a></li>        
                   <li><a href="/2014/09/15/automating-scripts-using-expect.html">Automating scripts using expect</a></li>        
                   
@@ -866,8 +897,8 @@
               
               
               <li>  
-                <label for="l6i3">July</label>
-                <input id="l6i3" type="checkbox">
+                <label for="l7i3">July</label>
+                <input id="l7i3" type="checkbox">
                 <ul><li><a href="/2014/07/22/how-to-use-variable-from-bash-to-use-in.html">How to use variable from bash to use in awk?</a></li>        
                   <li><a href="/2014/07/22/linux-command-awk.html">Linux command awk extract anything</a></li>        
                   <li><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></li>        
@@ -882,8 +913,8 @@
               
               
               <li>  
-                <label for="l6i4">May</label>
-                <input id="l6i4" type="checkbox">
+                <label for="l7i4">May</label>
+                <input id="l7i4" type="checkbox">
                 <ul><li><a href="/2014/05/14/ultrasonic-hover-input-device.html">Ultrasonic Hover Input Device</a></li>        
                   
                 </ul>
@@ -891,8 +922,8 @@
               
               
               <li>  
-                <label for="l6i5">April</label>
-                <input id="l6i5" type="checkbox">
+                <label for="l7i5">April</label>
+                <input id="l7i5" type="checkbox">
                 <ul><li><a href="/2014/04/02/how-to-send-at-commands.html">How to send AT commands?</a></li>        
                   <li><a href="/2014/04/02/at-commands.html">AT Commands</a></li>        
                   
@@ -901,8 +932,8 @@
               
               
               <li>  
-                <label for="l6i6">March</label>
-                <input id="l6i6" type="checkbox">
+                <label for="l7i6">March</label>
+                <input id="l7i6" type="checkbox">
                 <ul><li><a href="/2014/03/31/how-to-hide-and-unhide-files-in-linux.html">How to hide and unhide files in Linux?</a></li>        
                   <li><a href="/2014/03/31/linux-how-to-find-your-serial-any.html">Linux: How to find your serial (any connected) device?</a></li>        
                   <li><a href="/2014/03/30/serial-port-communication-in-linux.html">Serial Port Communication in Linux using Minicom</a></li>        
@@ -912,13 +943,13 @@
               
             </ul>
           </li>
-          <li><label for="l7"> 2013 </label><input id="l7" name="iddd" type="checkbox">
+          <li><label for="l8"> 2013 </label><input id="l8" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l7i1">October</label>
-                <input id="l7i1" type="checkbox">
+                <label for="l8i1">October</label>
+                <input id="l8i1" type="checkbox">
                 <ul><li><a href="/2013/10/29/wwwieeegecskpin.html">www.ieeegecskp.in</a></li>        
                   <li><a href="/2013/10/29/use-matlab-to-read-serial-data.html">Use Matlab to read serial data</a></li>        
                   <li><a href="/2013/10/29/creative-destruction-batch-hacks.html">Creative Destruction | Batch Hacks</a></li>        
@@ -931,8 +962,8 @@
               
               
               <li>  
-                <label for="l7i2">January</label>
-                <input id="l7i2" type="checkbox">
+                <label for="l8i2">January</label>
+                <input id="l8i2" type="checkbox">
                 <ul><li><a href="/2013/01/21/driving-2-led-in-fasion.html">Driving 2 LED in a Fasion</a></li>        
                   <li><a href="/2013/01/21/blinking-led-with-microcontroller.html">Blinking an LED with Microcontroller</a></li>        
                   <li><a href="/2013/01/21/lighting-led-with-microcontroller.html">Lighting an LED with Microcontroller | Atmega328p</a></li>        
@@ -1021,13 +1052,13 @@
 <h2 id="enable-ssh">Enable ssh</h2>
 
 <p>create an empty file in
-<code class="highlighter-rouge">/boot/ssh</code></p>
+<code class="language-plaintext highlighter-rouge">/boot/ssh</code></p>
 
 <h2 id="connect-to-wifi-on-boot">Connect to WiFi on boot</h2>
 
-<p><code class="highlighter-rouge">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=GB
 
@@ -1043,68 +1074,68 @@ network={
 
 <h2 id="disable-rainbow-screen">Disable rainbow screen</h2>
 
-<p><code class="highlighter-rouge">sudo nano /boot/config.txt</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /boot/config.txt</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>disable_splash=1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>disable_splash=1
 </code></pre></div></div>
 
 <h2 id="disable-boot-logs">Disable boot logs</h2>
 
-<p><code class="highlighter-rouge">sudo nano /boot/cmdline.txt</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /boot/cmdline.txt</code></p>
 
 <p>Change the console from tty1 to</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>console=tty3 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>console=tty3 
 </code></pre></div></div>
 
-<p>Add this to the end of the line. <code class="highlighter-rouge">'loglevel=0'</code> removes most of the messages from the boot. You can also use <code class="highlighter-rouge">'loglevel=3'</code>, but some boot messages may re-appear.</p>
+<p>Add this to the end of the line. <code class="language-plaintext highlighter-rouge">'loglevel=0'</code> removes most of the messages from the boot. You can also use <code class="language-plaintext highlighter-rouge">'loglevel=3'</code>, but some boot messages may re-appear.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0
 </code></pre></div></div>
 
 <p>If you are going to use Plymouth add this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plymouth.ignore-serial-consoles 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plymouth.ignore-serial-consoles 
 </code></pre></div></div>
 
 <h2 id="change-boot-animation">Change boot animation</h2>
 <p>Change raspbian plymouth theme</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /usr/share/plymouth/themes/
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /usr/share/plymouth/themes/
 </code></pre></div></div>
 
 <p>Clone this repository.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo git clone https://github.com/krishnan793/PlymouthTheme-TheRun.git
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo git clone https://github.com/krishnan793/PlymouthTheme-TheRun.git
 </code></pre></div></div>
 
 <p>Install the theme.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/PlymouthTheme-TheRun/PlymouthTheme-TheRun.plymouth 100
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/PlymouthTheme-TheRun/PlymouthTheme-TheRun.plymouth 100
 </code></pre></div></div>
 
 <p>Select the default theme.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-alternatives --config default.plymouth
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-alternatives --config default.plymouth
 </code></pre></div></div>
 
 <p>Update the initramfs image.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-initramfs -u
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-initramfs -u
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">sudo nano /etc/plymouth/plymouthd.conf</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /etc/plymouth/plymouthd.conf</code></p>
 
 <p>Theme=pix to</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Theme=PlymouthTheme-TheRun
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Theme=PlymouthTheme-TheRun
 </code></pre></div></div>
 
 <h2 id="waveshare-7-inch-display">Waveshare 7 inch display</h2>
 
-<p><code class="highlighter-rouge">sudo nano /boot/config.txt</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /boot/config.txt</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hdmi_force_hotplug=1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hdmi_force_hotplug=1
 config_hdmi_boost=0
 overscan_left=0
 overscan_right=0
@@ -1121,13 +1152,13 @@ hdmi_mode=87
 
 <h2 id="rotate-display">Rotate display</h2>
 
-<p><code class="highlighter-rouge">sudo nano /boot/config.txt</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /boot/config.txt</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lcd_rotate=2 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lcd_rotate=2 
 </code></pre></div></div>
 <p>or</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>display_rotate=0 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>display_rotate=0 
 </code></pre></div></div>
 
 <ul>
@@ -1138,43 +1169,43 @@ hdmi_mode=87
 
 <h2 id="set-display-brightness">Set display brightness</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 50 &gt; /sys/class/backlight/rpi_backlight/brightness
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 50 &gt; /sys/class/backlight/rpi_backlight/brightness
 </code></pre></div></div>
 
-<p>To make it persistent add the above statement in <code class="highlighter-rouge">/etc/rc.local</code> (before exit 0)</p>
+<p>To make it persistent add the above statement in <code class="language-plaintext highlighter-rouge">/etc/rc.local</code> (before exit 0)</p>
 
 <h2 id="switch-off-display">Switch off display</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 1 &gt; /sys/class/backlight/rpi_backlight/b1_power
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 1 &gt; /sys/class/backlight/rpi_backlight/b1_power
 </code></pre></div></div>
 
 <h2 id="switch-on-display">Switch on display</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 0 &gt; /sys/class/backlight/rpi_backlight/b1_power
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo echo 0 &gt; /sys/class/backlight/rpi_backlight/b1_power
 </code></pre></div></div>
 
 <h2 id="to-remove-low-power-indication-lightning-icon">To remove low power indication (lightning icon)</h2>
 
-<p><code class="highlighter-rouge">sudo nano /boot/config.txt</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /boot/config.txt</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>avoid_warnings=1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>avoid_warnings=1
 </code></pre></div></div>
 
 <h2 id="hide-cursor">Hide cursor</h2>
 
-<p>sudo nano <code class="highlighter-rouge">/etc/lightdm/lightdm.conf</code></p>
+<p>sudo nano <code class="language-plaintext highlighter-rouge">/etc/lightdm/lightdm.conf</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Seat:*]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Seat:*]
 xserver-command=X -nocursor 
 </code></pre></div></div>
 
 <h2 id="start-app-in-fullscreen-with-desktop-on-boot">Start app in fullscreen with desktop on boot</h2>
 
-<p>Make sure you enable auto login using <code class="highlighter-rouge">sudo raspi-config</code></p>
+<p>Make sure you enable auto login using <code class="language-plaintext highlighter-rouge">sudo raspi-config</code></p>
 
-<p>sudo nano <code class="highlighter-rouge">/etc/xdg/autostart/smart_room.desktop</code></p>
+<p>sudo nano <code class="language-plaintext highlighter-rouge">/etc/xdg/autostart/smart_room.desktop</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
 Type=Application
 Name=smart_room
 Comment=Kivy RPI Infoscreen
@@ -1185,17 +1216,17 @@ NotShowIn=GNOME;KDE;XFCE;
 
 <h2 id="start-app-in-fullscreen-without-desktop-on-boot">Start app in fullscreen without desktop on boot</h2>
 
-<p>Make sure you enable auto login using <code class="highlighter-rouge">sudo raspi-config</code></p>
+<p>Make sure you enable auto login using <code class="language-plaintext highlighter-rouge">sudo raspi-config</code></p>
 
-<p><code class="highlighter-rouge">sudo nano /etc/lightdm/lightdm.conf</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /etc/lightdm/lightdm.conf</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Seat:*]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Seat:*]
 user-session=myxclient
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">sudo nano /usr/share/xsessions/myxclient.desktop</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /usr/share/xsessions/myxclient.desktop</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
 Type=Application
 Name=smart_room
 Comment=Kivy RPI Infoscreen
@@ -1204,10 +1235,10 @@ Exec=/home/pi/start.sh
 NotShowIn=GNOME;KDE;XFCE;
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">sudo nano /home/pi/start.sh</code></p>
+<p><code class="language-plaintext highlighter-rouge">sudo nano /home/pi/start.sh</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-/usr/bin/chromium-browser <span class="nt">--kiosk</span> <span class="nt">--app</span><span class="o">=</span>https://www.google.com <span class="nt">--start-fullscreen</span> <span class="nt">--window-size</span><span class="o">=</span>1024,600 <span class="nt">--window-position</span><span class="o">=</span>0,0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
+/usr/bin/chromium-browser --kiosk --app=https://www.google.com --start-fullscreen --window-size=1024,600 --window-position=0,0
 </code></pre></div></div>
 
 <h2 id="uart">UART</h2>
@@ -1226,8 +1257,8 @@ NotShowIn=GNOME;KDE;XFCE;
 <p>Steps to enable mini UART</p>
 
 <ol>
-  <li>add <code class="highlighter-rouge">enable_uart=1</code> in <code class="highlighter-rouge">/boot/config.txt</code></li>
-  <li>remove <code class="highlighter-rouge">console=serial0</code> from <code class="highlighter-rouge">/boot/cmdline.txt</code></li>
+  <li>add <code class="language-plaintext highlighter-rouge">enable_uart=1</code> in <code class="language-plaintext highlighter-rouge">/boot/config.txt</code></li>
+  <li>remove <code class="language-plaintext highlighter-rouge">console=serial0</code> from <code class="language-plaintext highlighter-rouge">/boot/cmdline.txt</code></li>
 </ol>
 
 <p>default baud rate is: 115200</p>
@@ -1272,14 +1303,14 @@ NotShowIn=GNOME;KDE;XFCE;
     page_title: 'Comment' // optional param; if it isn't defined `document.title` will be used
   };
 
-  (function(c) {
-    for(var i = 0; i < c.length; i++){
-      var d = document, s = d.createElement('script');
-      s.src = remark_config.host + '/web/' +c[i] +'.js';
-      s.defer = true;
-      (d.head || d.body).appendChild(s);
-    }
-  })(remark_config.components || ['embed']);
+  // (function(c) {
+  //   for(var i = 0; i < c.length; i++){
+  //     var d = document, s = d.createElement('script');
+  //     s.src = remark_config.host + '/web/' +c[i] +'.js';
+  //     s.defer = true;
+  //     (d.head || d.body).appendChild(s);
+  //   }
+  // })(remark_config.components || ['embed']);
 </script>
         
 

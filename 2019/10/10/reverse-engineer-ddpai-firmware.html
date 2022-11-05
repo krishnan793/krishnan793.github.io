@@ -13,9 +13,9 @@
     
     <meta charset="UTF-8">
 
-    <!-- Begin Jekyll SEO tag v2.6.0 -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Reverse Engineer DDPAI Dash Cam Firmware | Ananth’s Blog</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="Reverse Engineer DDPAI Dash Cam Firmware" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon Link (Official site Link), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible." />
@@ -25,8 +25,10 @@
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-10-10T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Reverse Engineer DDPAI Dash Cam Firmware" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.eionix.co.in/2019/10/10/reverse-engineer-ddpai-firmware.html"},"@type":"BlogPosting","url":"https://www.eionix.co.in/2019/10/10/reverse-engineer-ddpai-firmware.html","headline":"Reverse Engineer DDPAI Dash Cam Firmware","dateModified":"2019-10-10T00:00:00+05:30","datePublished":"2019-10-10T00:00:00+05:30","description":"I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon Link (Official site Link), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible.","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2019-10-10T00:00:00+05:30","datePublished":"2019-10-10T00:00:00+05:30","description":"I have been looking for a good mid range Dash cam for my car. I was thinking to integrate this to my custom build infotainment system. For this, there need to be some option to get live stream. I bought this DDPAI Mini Car Dash Camera from Amazon Link (Official site Link), but I was not sure whether I can access the live stream or not. The product looks good, companion app works smooth also, and there is live stream in the app. My goal was to figure out a way to get live stream so that I can use it in my program. May be have a look at it’s firmware and do some little hack if possible.","headline":"Reverse Engineer DDPAI Dash Cam Firmware","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.eionix.co.in/2019/10/10/reverse-engineer-ddpai-firmware.html"},"url":"https://www.eionix.co.in/2019/10/10/reverse-engineer-ddpai-firmware.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +36,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="/assets/css/style.css?v=">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-    <script data-ad-client="ca-pub-3090125590609746" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type="text/javascript" src="/assets/o3dv/o3dv.min.js"></script>
+
+    <!-- <script data-ad-client="ca-pub-3090125590609746" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
   </head>
 
   <body style="">
@@ -50,6 +54,16 @@
           width: 100vw;
           z-index: 0;
         }
+        /* .project-tagline{
+          color: aliceblue;
+          margin-bottom: 2rem;
+          font-weight: normal;
+          opacity: 0.7;
+          text-align: center;
+          font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: large;
+          margin-top: 35px;
+        } */
       </style>
       <script type="text/javascript">
         /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
@@ -120,6 +134,7 @@
   animation-name: change;
   animation-duration: 10s;
   animation-iteration-count: infinite;
+  /* margin-left: 0; */
 }
 .content__container__list__item {
   line-height: 40px;
@@ -533,6 +548,8 @@
         </div>
         <ul class="tags">
           
+          <li><a href="/tag/3d printing/posts.html" class="tag"> 3D printing </a></li>
+          
           <li><a href="/tag/reverse engineering/posts.html" class="tag"> Reverse Engineering </a></li>
           
           <li><a href="/tag/blogging/posts.html" class="tag"> Blogging </a></li>
@@ -603,13 +620,27 @@
         <div class="tag-heading">
         Archive
         </div>
-        <ul class="tree-list"><li><label for="l1"> 2019 </label><input id="l1" name="iddd" type="checkbox">
+        <ul class="tree-list"><li><label for="l1"> 2022 </label><input id="l1" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l1i1">October</label>
+                <label for="l1i1">August</label>
                 <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2022/08/27/3d-printing.html">3D printing</a></li>        
+                  
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <li><label for="l2"> 2019 </label><input id="l2" name="iddd" type="checkbox">
+            <ul>
+              
+              
+              <li>  
+                <label for="l2i1">October</label>
+                <input id="l2i1" type="checkbox">
                 <ul><li><a href="/2019/10/29/iron-man-plymouth-theme.html">Iron Man Plymouth Theme</a></li>        
                   <li><a href="/2019/10/10/reverse-engineer-ddpai-firmware.html">Reverse Engineer DDPAI Dash Cam Firmware</a></li>        
                   
@@ -618,8 +649,8 @@
               
               
               <li>  
-                <label for="l1i2">June</label>
-                <input id="l1i2" type="checkbox">
+                <label for="l2i2">June</label>
+                <input id="l2i2" type="checkbox">
                 <ul><li><a href="/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">Smart Home Display IOT</a></li>        
                   <li><a href="/2019/06/04/raspberry-pi-tips-and-tricks.html">Raspberry pi Tips and Tricks</a></li>        
                   
@@ -628,8 +659,8 @@
               
               
               <li>  
-                <label for="l1i3">April</label>
-                <input id="l1i3" type="checkbox">
+                <label for="l2i3">April</label>
+                <input id="l2i3" type="checkbox">
                 <ul><li><a href="/2019/04/14/create-a-blog-with-custom-domain-and-host-using-github.html">Blog using Jekyll | Github Pages with custom domain</a></li>        
                   
                 </ul>
@@ -637,8 +668,8 @@
               
               
               <li>  
-                <label for="l1i4">January</label>
-                <input id="l1i4" type="checkbox">
+                <label for="l2i4">January</label>
+                <input id="l2i4" type="checkbox">
                 <ul><li><a href="/2019/01/09/product-design-of-4-wheel-differential.html">Product Design of a 4 wheel differential drive robot</a></li>        
                   
                 </ul>
@@ -646,13 +677,13 @@
               
             </ul>
           </li>
-          <li><label for="l2"> 2018 </label><input id="l2" name="iddd" type="checkbox">
+          <li><label for="l3"> 2018 </label><input id="l3" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l2i1">October</label>
-                <input id="l2i1" type="checkbox">
+                <label for="l3i1">October</label>
+                <input id="l3i1" type="checkbox">
                 <ul><li><a href="/2018/10/06/inventory-app-for-hobbyists.html">Inventory App for hobbyists</a></li>        
                   
                 </ul>
@@ -660,8 +691,8 @@
               
               
               <li>  
-                <label for="l2i2">March</label>
-                <input id="l2i2" type="checkbox">
+                <label for="l3i2">March</label>
+                <input id="l3i2" type="checkbox">
                 <ul><li><a href="/2018/03/11/raspberry-pi-based-car-infotainment.html">Raspberry pi based Car Infotainment system</a></li>        
                   
                 </ul>
@@ -669,13 +700,13 @@
               
             </ul>
           </li>
-          <li><label for="l3"> 2017 </label><input id="l3" name="iddd" type="checkbox">
+          <li><label for="l4"> 2017 </label><input id="l4" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l3i1">August</label>
-                <input id="l3i1" type="checkbox">
+                <label for="l4i1">August</label>
+                <input id="l4i1" type="checkbox">
                 <ul><li><a href="/2017/08/03/creating-wireless-remote-for-nikon.html">Creating a Wireless remote for Nikon Camera using Esp8266</a></li>        
                   
                 </ul>
@@ -683,8 +714,8 @@
               
               
               <li>  
-                <label for="l3i2">April</label>
-                <input id="l3i2" type="checkbox">
+                <label for="l4i2">April</label>
+                <input id="l4i2" type="checkbox">
                 <ul><li><a href="/2017/04/22/ros-simulating-3-axis-robot-in-rviz.html">ROS simulating a 3 axis robot in Rviz</a></li>        
                   
                 </ul>
@@ -692,8 +723,8 @@
               
               
               <li>  
-                <label for="l3i3">January</label>
-                <input id="l3i3" type="checkbox">
+                <label for="l4i3">January</label>
+                <input id="l4i3" type="checkbox">
                 <ul><li><a href="/2017/01/01/batman-key-chain-with-esp8266.html">Batman Key chain with ESP8266</a></li>        
                   
                 </ul>
@@ -701,13 +732,13 @@
               
             </ul>
           </li>
-          <li><label for="l4"> 2016 </label><input id="l4" name="iddd" type="checkbox">
+          <li><label for="l5"> 2016 </label><input id="l5" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l4i1">November</label>
-                <input id="l4i1" type="checkbox">
+                <label for="l5i1">November</label>
+                <input id="l5i1" type="checkbox">
                 <ul><li><a href="/2016/11/13/mav-with-two-propeller.html">MAV with two propeller</a></li>        
                   <li><a href="/2016/11/06/my-single-rotor-mav.html">My single rotor MAV :)</a></li>        
                   <li><a href="/2016/11/02/this-is-another-theme-i-created-for.html">PlymouthTheme-TheRun</a></li>        
@@ -717,8 +748,8 @@
               
               
               <li>  
-                <label for="l4i2">October</label>
-                <input id="l4i2" type="checkbox">
+                <label for="l5i2">October</label>
+                <input id="l5i2" type="checkbox">
                 <ul><li><a href="/2016/10/30/plymouth-theme-for-ubuntu.html">Plymouth theme for Ubuntu</a></li>        
                   <li><a href="/2016/10/21/self-balancing-robot.html">Self Balancing Robot</a></li>        
                   <li><a href="/2016/10/21/warehouse-management-system-using-drones.html">Warehouse Management System using Drones</a></li>        
@@ -728,8 +759,8 @@
               
               
               <li>  
-                <label for="l4i3">September</label>
-                <input id="l4i3" type="checkbox">
+                <label for="l5i3">September</label>
+                <input id="l5i3" type="checkbox">
                 <ul><li><a href="/2016/09/21/controlling-parrot-bebop-using-ros.html">Controlling Parrot Bebop using ROS Kinetic</a></li>        
                   
                 </ul>
@@ -737,8 +768,8 @@
               
               
               <li>  
-                <label for="l4i4">January</label>
-                <input id="l4i4" type="checkbox">
+                <label for="l5i4">January</label>
+                <input id="l5i4" type="checkbox">
                 <ul><li><a href="/2016/01/27/smart-room-wireless-controlled.html">Smart Room :-) | Wireless controlled appliances</a></li>        
                   <li><a href="/2016/01/27/esp8266-wifi-iot-chip-programing.html">ESP8266 WiFi IOT chip | Programing the Firmware</a></li>        
                   
@@ -747,13 +778,13 @@
               
             </ul>
           </li>
-          <li><label for="l5"> 2015 </label><input id="l5" name="iddd" type="checkbox">
+          <li><label for="l6"> 2015 </label><input id="l6" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l5i1">November</label>
-                <input id="l5i1" type="checkbox">
+                <label for="l6i1">November</label>
+                <input id="l6i1" type="checkbox">
                 <ul><li><a href="/2015/11/14/searching-and-precision-landing-of-ar.html">Searching and Precision Landing of AR Drone 2.0 using Neural Network | Gazebo | ROS </a></li>        
                   <li><a href="/2015/11/13/simulating-controlling-ar-drone-20.html">Simulation & Controlling AR Drone 2.0 using Gamepad | Gazebo | ROS</a></li>        
                   
@@ -762,8 +793,8 @@
               
               
               <li>  
-                <label for="l5i2">October</label>
-                <input id="l5i2" type="checkbox">
+                <label for="l6i2">October</label>
+                <input id="l6i2" type="checkbox">
                 <ul><li><a href="/2015/10/21/a-multilayer-neural-network-based.html">A Multilayer Neural Network Based Obstacle Avoiding Robot | ROS | Simulation</a></li>        
                   
                 </ul>
@@ -771,8 +802,8 @@
               
               
               <li>  
-                <label for="l5i3">August</label>
-                <input id="l5i3" type="checkbox">
+                <label for="l6i3">August</label>
+                <input id="l6i3" type="checkbox">
                 <ul><li><a href="/2015/08/30/controlling-turtlesim-using-gamepad-ros.html">Controlling turtlesim using a Gamepad | ROS</a></li>        
                   
                 </ul>
@@ -780,8 +811,8 @@
               
               
               <li>  
-                <label for="l5i4">July</label>
-                <input id="l5i4" type="checkbox">
+                <label for="l6i4">July</label>
+                <input id="l6i4" type="checkbox">
                 <ul><li><a href="/2015/07/30/clap-switch.html">Clap Switch</a></li>        
                   
                 </ul>
@@ -789,8 +820,8 @@
               
               
               <li>  
-                <label for="l5i5">May</label>
-                <input id="l5i5" type="checkbox">
+                <label for="l6i5">May</label>
+                <input id="l6i5" type="checkbox">
                 <ul><li><a href="/2015/05/12/vision-based-line-follower-using-opencv.html">Vision Based Line Follower using opencv</a></li>        
                   
                 </ul>
@@ -798,8 +829,8 @@
               
               
               <li>  
-                <label for="l5i6">April</label>
-                <input id="l5i6" type="checkbox">
+                <label for="l6i6">April</label>
+                <input id="l6i6" type="checkbox">
                 <ul><li><a href="/2015/04/30/best-tutorial-for-beagleboneblack.html">Best tutorial for BeagleBoneBlack</a></li>        
                   <li><a href="/2015/04/30/reading-and-showing-images-using-opencv.html">Reading and showing images using opencv</a></li>        
                   <li><a href="/2015/04/18/mobile-robot-controlling-using.html">A Differential Drive Mobile Robot using BeagleBone Black</a></li>        
@@ -809,8 +840,8 @@
               
               
               <li>  
-                <label for="l5i7">March</label>
-                <input id="l5i7" type="checkbox">
+                <label for="l6i7">March</label>
+                <input id="l6i7" type="checkbox">
                 <ul><li><a href="/2015/03/01/display-text-in-color-linux-terminal.html">Display text in color - Linux terminal</a></li>        
                   <li><a href="/2015/03/01/beagleboneblack-adc.html">BeagleBoneBlack ADC</a></li>        
                   
@@ -819,8 +850,8 @@
               
               
               <li>  
-                <label for="l5i8">February</label>
-                <input id="l5i8" type="checkbox">
+                <label for="l6i8">February</label>
+                <input id="l6i8" type="checkbox">
                 <ul><li><a href="/2015/02/27/beagleboneblack-gpio-push-button-led.html">BeagleBoneBlack GPIO Push Button + LED</a></li>        
                   <li><a href="/2015/02/27/led-cube-using-atmega328p.html">LED Cube using Atmega328P</a></li>        
                   <li><a href="/2015/02/27/gpio-blink-led-using-c-beagleboneblack.html">GPIO Blink an LED using C - BeagleBoneBlack</a></li>        
@@ -837,13 +868,13 @@
               
             </ul>
           </li>
-          <li><label for="l6"> 2014 </label><input id="l6" name="iddd" type="checkbox">
+          <li><label for="l7"> 2014 </label><input id="l7" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l6i1">December</label>
-                <input id="l6i1" type="checkbox">
+                <label for="l7i1">December</label>
+                <input id="l7i1" type="checkbox">
                 <ul><li><a href="/2014/12/26/c-socket-programming-extract-ip-address.html">Extract public IP address using C</a></li>        
                   <li><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></li>        
                   <li><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></li>        
@@ -856,8 +887,8 @@
               
               
               <li>  
-                <label for="l6i2">September</label>
-                <input id="l6i2" type="checkbox">
+                <label for="l7i2">September</label>
+                <input id="l7i2" type="checkbox">
                 <ul><li><a href="/2014/09/22/simple-dip-threshold-animation-using.html">Simple DIP threshold animation using Matlab</a></li>        
                   <li><a href="/2014/09/15/automating-scripts-using-expect.html">Automating scripts using expect</a></li>        
                   
@@ -866,8 +897,8 @@
               
               
               <li>  
-                <label for="l6i3">July</label>
-                <input id="l6i3" type="checkbox">
+                <label for="l7i3">July</label>
+                <input id="l7i3" type="checkbox">
                 <ul><li><a href="/2014/07/22/how-to-use-variable-from-bash-to-use-in.html">How to use variable from bash to use in awk?</a></li>        
                   <li><a href="/2014/07/22/linux-command-awk.html">Linux command awk extract anything</a></li>        
                   <li><a href="/2014/07/22/pass-output-of-one-command-to-argument.html">Pass output of one command to argument of other</a></li>        
@@ -882,8 +913,8 @@
               
               
               <li>  
-                <label for="l6i4">May</label>
-                <input id="l6i4" type="checkbox">
+                <label for="l7i4">May</label>
+                <input id="l7i4" type="checkbox">
                 <ul><li><a href="/2014/05/14/ultrasonic-hover-input-device.html">Ultrasonic Hover Input Device</a></li>        
                   
                 </ul>
@@ -891,8 +922,8 @@
               
               
               <li>  
-                <label for="l6i5">April</label>
-                <input id="l6i5" type="checkbox">
+                <label for="l7i5">April</label>
+                <input id="l7i5" type="checkbox">
                 <ul><li><a href="/2014/04/02/how-to-send-at-commands.html">How to send AT commands?</a></li>        
                   <li><a href="/2014/04/02/at-commands.html">AT Commands</a></li>        
                   
@@ -901,8 +932,8 @@
               
               
               <li>  
-                <label for="l6i6">March</label>
-                <input id="l6i6" type="checkbox">
+                <label for="l7i6">March</label>
+                <input id="l7i6" type="checkbox">
                 <ul><li><a href="/2014/03/31/how-to-hide-and-unhide-files-in-linux.html">How to hide and unhide files in Linux?</a></li>        
                   <li><a href="/2014/03/31/linux-how-to-find-your-serial-any.html">Linux: How to find your serial (any connected) device?</a></li>        
                   <li><a href="/2014/03/30/serial-port-communication-in-linux.html">Serial Port Communication in Linux using Minicom</a></li>        
@@ -912,13 +943,13 @@
               
             </ul>
           </li>
-          <li><label for="l7"> 2013 </label><input id="l7" name="iddd" type="checkbox">
+          <li><label for="l8"> 2013 </label><input id="l8" name="iddd" type="checkbox">
             <ul>
               
               
               <li>  
-                <label for="l7i1">October</label>
-                <input id="l7i1" type="checkbox">
+                <label for="l8i1">October</label>
+                <input id="l8i1" type="checkbox">
                 <ul><li><a href="/2013/10/29/wwwieeegecskpin.html">www.ieeegecskp.in</a></li>        
                   <li><a href="/2013/10/29/use-matlab-to-read-serial-data.html">Use Matlab to read serial data</a></li>        
                   <li><a href="/2013/10/29/creative-destruction-batch-hacks.html">Creative Destruction | Batch Hacks</a></li>        
@@ -931,8 +962,8 @@
               
               
               <li>  
-                <label for="l7i2">January</label>
-                <input id="l7i2" type="checkbox">
+                <label for="l8i2">January</label>
+                <input id="l8i2" type="checkbox">
                 <ul><li><a href="/2013/01/21/driving-2-led-in-fasion.html">Driving 2 LED in a Fasion</a></li>        
                   <li><a href="/2013/01/21/blinking-led-with-microcontroller.html">Blinking an LED with Microcontroller</a></li>        
                   <li><a href="/2013/01/21/lighting-led-with-microcontroller.html">Lighting an LED with Microcontroller | Atmega328p</a></li>        
@@ -1037,7 +1068,7 @@
 
 <p><img src="/assets/img/flow.jpg" alt="Flow" /></p>
 
-<p>To get a sessionid they are calling <code class="highlighter-rouge">POST /vcam/cmd.cgi?cmd=API_RequestSessionID</code>. This set a Cookie and they are reusing it for further communication. Then they are synching the time. Why do they need imei number for that? Strange. let’s look the subsequent requests.</p>
+<p>To get a sessionid they are calling <code class="language-plaintext highlighter-rouge">POST /vcam/cmd.cgi?cmd=API_RequestSessionID</code>. This set a Cookie and they are reusing it for further communication. Then they are synching the time. Why do they need imei number for that? Strange. let’s look the subsequent requests.</p>
 
 <div class="language-config highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">POST</span> /<span class="n">vcam</span>/<span class="n">cmd</span>.<span class="n">cgi</span>?<span class="n">cmd</span>=<span class="n">API_GetBaseInfo</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
 <span class="n">Accept</span>-<span class="n">Encoding</span>: <span class="n">gzip</span>
@@ -1101,7 +1132,7 @@
 
 {<span class="s2">"errcode"</span>:<span class="m">0</span>,<span class="s2">"data"</span>:<span class="s2">""</span>}
 </code></pre></div></div>
-<p>Some default user names, password, etc… It seems <code class="highlighter-rouge">POST /vcam/cmd.cgi?cmd=APP_AvCapSet</code> sets stream channel and fps.</p>
+<p>Some default user names, password, etc… It seems <code class="language-plaintext highlighter-rouge">POST /vcam/cmd.cgi?cmd=APP_AvCapSet</code> sets stream channel and fps.</p>
 
 <div class="language-config highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">POST</span> /<span class="n">vcam</span>/<span class="n">cmd</span>.<span class="n">cgi</span>?<span class="n">cmd</span>=<span class="n">API_RequestCertificate</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
 <span class="n">Accept</span>-<span class="n">Encoding</span>: <span class="n">gzip</span>
@@ -1148,7 +1179,7 @@
 {<span class="s2">"errcode"</span>:<span class="m">0</span>,<span class="s2">"data"</span>:{<span class="s2">"bs_pixel"</span>:<span class="s2">"1920x1080"</span>,<span class="s2">"bs_bitrat"</span>:<span class="m">10240</span>,<span class="s2">"bs_frmrate"</span>:<span class="m">30</span>,<span class="s2">"ss_pixel"</span>:<span class="s2">"854x480"</span>,<span class="s2">"ss_bitrat"</span>:<span class="m">1536</span>,<span class="s2">"ss_frmrate"</span>:<span class="m">30</span>,<span class="s2">"aud_samplerate"</span>:<span class="m">16000</span>,<span class="s2">"aud_pt"</span>:<span class="s2">"AACLC"</span>}}
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">POST /vcam/cmd.cgi?cmd=APP_AvCapReq</code> This request put some light into the video stream details.</p>
+<p><code class="language-plaintext highlighter-rouge">POST /vcam/cmd.cgi?cmd=APP_AvCapReq</code> This request put some light into the video stream details.</p>
 
 <div class="language-config highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">POST</span> /<span class="n">vcam</span>/<span class="n">cmd</span>.<span class="n">cgi</span>?<span class="n">cmd</span>=<span class="n">APP_PlaybackLiveSwitch</span> <span class="n">HTTP</span>/<span class="m">1</span>.<span class="m">1</span>
 <span class="n">Accept</span>-<span class="n">Encoding</span>: <span class="n">gzip</span>
@@ -1175,16 +1206,16 @@
 
 <p><img src="/assets/img/nmap.jpg" alt="stream tcp" /></p>
 
-<p>Port 443 is opened. But it is not a web/REST server like port 80. Sending <code class="highlighter-rouge">curl http://193.168.0.1:443</code> doesn’t return anything. No respone from server. <code class="highlighter-rouge">telnet 193.168.0.1 443</code> also had no luck. Might be running some other service. May be for flashing firmware.</p>
+<p>Port 443 is opened. But it is not a web/REST server like port 80. Sending <code class="language-plaintext highlighter-rouge">curl http://193.168.0.1:443</code> doesn’t return anything. No respone from server. <code class="language-plaintext highlighter-rouge">telnet 193.168.0.1 443</code> also had no luck. Might be running some other service. May be for flashing firmware.</p>
 
 <p>Port 553 is running an rtsp service. This looks promising. Rtsp is for streaming video. Tried several common rtsp urls using VLC. All are returning BAD_REQUEST. No luck there. Port 6100 looks promissing. Let’s try opening this using VLC.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget "http://193.168.0.1:6200" -qO- | cvlc -
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget "http://193.168.0.1:6200" -qO- | cvlc -
 </code></pre></div></div>
 
 <p>Vlc is unable to show any streams. Let’s try to specify the stream details. May be Vlc was unable to figure out proper streaming details.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget "http://193.168.0.1:6200" -qO- | cvlc - :demux=h264 --h264-fps=30 :clock-jitter=0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget "http://193.168.0.1:6200" -qO- | cvlc - :demux=h264 --h264-fps=30 :clock-jitter=0
 </code></pre></div></div>
 
 <video autoplay="" muted="" playsinline="" width="600px" preload="none">
@@ -1198,24 +1229,24 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 
-<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="s">'tcp://193.168.0.1:6200/'</span><span class="p">)</span>
-<span class="n">cap</span><span class="o">.</span><span class="nb">set</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="s">'tcp://193.168.0.1:6200/'</span><span class="p">)</span>
+<span class="n">cap</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 
 <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
     <span class="c1"># Capture frame-by-frame
-</span>    <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span>    <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
 
     <span class="c1"># Our operations on the frame come here
 </span>    <span class="c1">#gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 </span>
     <span class="c1"># Display the resulting frame
-</span>    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'frame'</span><span class="p">,</span><span class="n">frame</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'q'</span><span class="p">):</span>
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'frame'</span><span class="p">,</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'q'</span><span class="p">):</span>
         <span class="k">break</span>
 
 <span class="c1"># When everything done, release the capture
-</span><span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
-<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</span><span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
 </code></pre></div></div>
 
 <video autoplay="" muted="" playsinline="" width="600px" preload="none">
@@ -1332,7 +1363,7 @@ Note: Unnecessary use of <span class="nt">-X</span> or <span class="nt">--reques
 <span class="o">&gt;</span>
 </code></pre></div></div>
 
-<p>Ta daa!!! Our new firmware ready to be downloaded here <code class="highlighter-rouge">http://httpsdatacdn.ddpai.com/update/DDPaiminiONE_LITE_Overseas/20190614/update_nolog.tar.gz</code>. This is good. Let’s try to analyze the firmware.</p>
+<p>Ta daa!!! Our new firmware ready to be downloaded here <code class="language-plaintext highlighter-rouge">http://httpsdatacdn.ddpai.com/update/DDPaiminiONE_LITE_Overseas/20190614/update_nolog.tar.gz</code>. This is good. Let’s try to analyze the firmware.</p>
 
 <p><img src="/assets/img/bin_walk.jpg" alt="bin walk" /></p>
 
@@ -1406,7 +1437,7 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 
 <p><img src="/assets/img/audacity.jpg" alt="audacity" /></p>
 
-<p>There is some <code class="highlighter-rouge">libaiengine-80-liteos-2.9.4-20180402220227.so</code> file. The filename liteos confirms it is running Huawei LiteOS.</p>
+<p>There is some <code class="language-plaintext highlighter-rouge">libaiengine-80-liteos-2.9.4-20180402220227.so</code> file. The filename liteos confirms it is running Huawei LiteOS.</p>
 
 <p>There is one bin file called paramdef.bin located in paramdef. Seems to be binary file. Let’s see the strings in it.</p>
 
@@ -1446,7 +1477,7 @@ mrap
 
 <p><img src="/assets/img/tree2.jpg" alt="tree_2" /></p>
 
-<p>This seems mostly configuration files. <code class="highlighter-rouge">config_product_devmng.ini</code> have details regarding WiFi SSID &amp; passwords.</p>
+<p>This seems mostly configuration files. <code class="language-plaintext highlighter-rouge">config_product_devmng.ini</code> have details regarding WiFi SSID &amp; passwords.</p>
 
 <div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[devinfo]</span>
 <span class="py">system_version</span>     <span class="p">=</span> <span class="s">"3.18.y"</span>
@@ -1655,14 +1686,14 @@ mrap
     page_title: 'Comment' // optional param; if it isn't defined `document.title` will be used
   };
 
-  (function(c) {
-    for(var i = 0; i < c.length; i++){
-      var d = document, s = d.createElement('script');
-      s.src = remark_config.host + '/web/' +c[i] +'.js';
-      s.defer = true;
-      (d.head || d.body).appendChild(s);
-    }
-  })(remark_config.components || ['embed']);
+  // (function(c) {
+  //   for(var i = 0; i < c.length; i++){
+  //     var d = document, s = d.createElement('script');
+  //     s.src = remark_config.host + '/web/' +c[i] +'.js';
+  //     s.defer = true;
+  //     (d.head || d.body).appendChild(s);
+  //   }
+  // })(remark_config.components || ['embed']);
 </script>
         
 
