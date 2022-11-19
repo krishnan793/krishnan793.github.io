@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Page 8 of 17 for Ananth’s Blog - page 8 | Ananth’s Blog</title>
+<title>Page 8 of 18 for Ananth’s Blog - page 8 | Ananth’s Blog</title>
 <meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="Ananth’s Blog - page 8" />
 <meta property="og:locale" content="en_US" />
@@ -626,8 +626,17 @@
               
               
               <li>  
-                <label for="l1i1">August</label>
+                <label for="l1i1">November</label>
                 <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2022/11/19/pen-holder.html">Designing a custom Pen Holder</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i2">August</label>
+                <input id="l1i2" type="checkbox">
                 <ul><li><a href="/2022/08/27/3d-printing.html">3D printing</a></li>        
                   
                 </ul>
@@ -1053,6 +1062,19 @@
 
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2015/02/27/gpio-blink-led-using-c-beagleboneblack.html">GPIO Blink an LED using C - BeagleBoneBlack</a></h2></div>
+	  	<div class="post-date">27 Feb 2015</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on">First enable gpio23 and set it as output.<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 23 &gt; /sys/class/gpio/export</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo out &gt; /sys/class/gpio/gpio23/direction</span><br /><br />(Refer <a href="https://eionix.blogspot.in/2015/02/gpio-blinking-led-using-bash-script.html" target="_blank">this</a> page for circuit info.) Then compile this code and run it. There are two arguments to this code. One is the number of times the LED blinks and the other one is the delay in us.<br /><br /><br /><script src="https://gist.github.com/krishnan793/b8b071e02ca83b24995a.js"></script></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2015/02/27/gpio-blinking-led-using-bash-script.html">GPIO Blinking an LED using bash script</a></h2></div>
 	  	<div class="post-date">27 Feb 2015</div>
       <div class="post-inner">
@@ -1105,21 +1127,6 @@
 	</div>
 </div>
 
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2015/02/22/remote-access-your-beaglebone-black.html">Remote access your BeagleBone Black using vnc</a></h2></div>
-	  	<div class="post-date">22 Feb 2015</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://1.bp.blogspot.com/-p4bKcxTZjDE/VOmHeRPwSyI/AAAAAAAAAnw/P2GLJEL0r3Y/s72-c/Screenshot%2Bfrom%2B2015-02-22%2B13%3A05%3A55.png" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">Before going into how to share desktop with your BBB I assume you have a proper ssh access to your BBB. (through USB) (if not read <a href="https://eionix.blogspot.in/2015/02/getting-started-with-beaglebone-black.html" target="_blank">this</a>) Also this tutorial is for BBB with Debian installed (type <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cat /etc/*-release</span> to know which distro you are currently using. Or refer <a href="https://www.cyberciti.biz/faq/find-linux-distribution-name-version-number/" target="_blank">here</a>)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">First install the vnc server in BBB.(After logging into BBB)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ssh root@192.168.7.2</span></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">apt-get install x11vnc</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Then go to your local computer and open a terminal window. Install a vnc viewer like vinagre.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo apt-get install vinagre</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Now its time to start vnc server in BBB.</div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">x11vnc -auth /var/run/lightdm/root/:0 -forever</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">This will start a vnc server at port 5900. Note this server setup is temporary. If you want to remotely connect to your BBB after a reboot type the above command again.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Go to your local computer and type&nbsp;</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vinagre 192.168.7.2::5900 </span></div><div style="text-align: justify;"><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-p4bKcxTZjDE/VOmHeRPwSyI/AAAAAAAAAnw/P2GLJEL0r3Y/s1600/Screenshot%2Bfrom%2B2015-02-22%2B13%3A05%3A55.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://1.bp.blogspot.com/-p4bKcxTZjDE/VOmHeRPwSyI/AAAAAAAAAnw/P2GLJEL0r3Y/s1600/Screenshot%2Bfrom%2B2015-02-22%2B13%3A05%3A55.png" height="257" width="400" /></a></div><br /><br /></div><div style="text-align: justify;">A remote desktop will be shown if all goes well. Try exploring other options in x11vnc using (in BBB)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">man x11vnc</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">The server that's currently running will not have any password set. So if you want to set a password or want to know more about x11vnc refer <a href="https://wiki.archlinux.org/index.php/X11vnc" target="_blank">here</a>.<br /><br />Note: These descriptions are for getting started with BBB. Do not run a vnc server without any password if you are planning to deploy it directly to internet. </div></div> </div>
-      </div>
-	</div>
-</div>
-
 
 
 <!-- Pagination links -->
@@ -1127,7 +1134,7 @@
   
     <a href="/page/7/posts.html" class="previous">Previous</a>
   
-  <span class="page_number ">Page: 8 of 17</span>
+  <span class="page_number ">Page: 8 of 18</span>
   
     <a href="/page/9/posts.html" class="next">Next</a>
   

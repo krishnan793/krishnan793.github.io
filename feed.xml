@@ -1,9 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-11-05T23:37:58+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">3D printing</title><link href="https://www.eionix.co.in/2022/08/27/3d-printing.html" rel="alternate" type="text/html" title="3D printing" /><published>2022-08-27T00:00:00+05:30</published><updated>2022-08-27T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/08/27/3d-printing</id><content type="html" xml:base="https://www.eionix.co.in/2022/08/27/3d-printing.html"><![CDATA[<script>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-11-19T19:32:39+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Designing a custom Pen Holder</title><link href="https://www.eionix.co.in/2022/11/19/pen-holder.html" rel="alternate" type="text/html" title="Designing a custom Pen Holder" /><published>2022-11-19T00:00:00+05:30</published><updated>2022-11-19T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/11/19/pen-holder</id><content type="html" xml:base="https://www.eionix.co.in/2022/11/19/pen-holder.html"><![CDATA[<p>A custom pen holder with embossed name designed using blender. The same is printed using a resin printer and painted to get the final product.</p>
+
+<script>
+        OV.SetExternalLibLocation ('/assets/o3dv/libs'); // tell the engine where to find the libs folder
+        OV.Init3DViewerElements(); // init all viewers on the page
+</script>
+
+<div class="online_3d_viewer" style="width: 300px; height: 300px;" model="/assets/res/penholder_v2.2.stl">
+</div>
+
+<h2 id="idea">Idea</h2>
+
+<p>It’s always good to start with a rough sketch first.</p>
+
+<p><img src="/assets/img/penholder_drawing.jpeg" alt="image" /></p>
+
+<p>Once settled with the initial design, I have start modelling with blender.</p>
+
+<h2 id="modelling">Modelling</h2>
+
+<p>Removed the initial cube and then set the scales correctly.</p>
+
+<video autoplay="" muted="" playsinline="" width="600px" preload="none">
+  <source src="/assets/res/set_units.webm" type="video/mp4" />
+</video>
+
+<p>Started with a basic mesh Cyclinder and modelled to get a basic shape.</p>
+
+<video autoplay="" muted="" playsinline="" width="600px" preload="none">
+  <source src="/assets/res/edit_cylinder.webm" type="video/mp4" />
+</video>
+
+<p>Once done created a subdivision modifier and then a solidfy. Then added wireframe modifier to get the desired mesh look.</p>
+
+<video autoplay="" muted="" playsinline="" width="600px" preload="none">
+  <source src="/assets/res/create_top.webm" type="video/mp4" />
+</video>
+
+<p>Added text and a solid cube to hold it firmly.</p>
+
+<video autoplay="" muted="" playsinline="" width="600px" preload="none">
+  <source src="/assets/res/add_text.webm" type="video/mp4" />
+</video>
+
+<p>After some fine tuning and placing the text on the pen holder.</p>
+
+<div class="online_3d_viewer" style="width: 300px; height: 300px;" model="/assets/res/penholder_v2.2.stl">
+</div>
+
+<p>Once done, generated a final render to see how it’s look.</p>
+
+<p><img src="/assets/img/pen_holder_render.png" alt="image" /></p>
+
+<h2 id="3d-printing">3D printing</h2>
+
+<p>Sliced the model using chitubox and printed using the Anycubic Mono 4k.</p>
+
+<p><img src="/assets/img/chitubox.png" alt="image" /></p>
+
+<h2 id="final-result">Final result</h2>
+
+<p>After cleaned, the print is healed under UV light. Painted the name with black. Final result looks awsome… :-)</p>
+
+<p><img src="/assets/img/pen_holder_render_origin.png" alt="image" /></p>]]></content><author><name></name></author><category term="3D printing" /><summary type="html"><![CDATA[A custom pen holder with embossed name designed using blender. The same is printed using a resin printer and painted to get the final product.]]></summary></entry><entry><title type="html">3D printing</title><link href="https://www.eionix.co.in/2022/08/27/3d-printing.html" rel="alternate" type="text/html" title="3D printing" /><published>2022-08-27T00:00:00+05:30</published><updated>2022-08-27T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/08/27/3d-printing</id><content type="html" xml:base="https://www.eionix.co.in/2022/08/27/3d-printing.html"><![CDATA[<script>
         OV.SetExternalLibLocation ('/assets/o3dv/libs'); // tell the engine where to find the libs folder
         OV.Init3DViewerElements (); // init all viewers on the page
 </script>
 
-<p>3D printing, also known as additive manufacturing, is a method of creating a three dimensional object layer-by-layer using a computer created design. Whether you are a product designer or a DIY enthusiast, this is an invaluable tool to your tool arsenal. I have been thinking for a long time to write a short blog about this. There are a ton of detailied blog/videos already exist, but still there is a lot of things you need to figure out through tial and error. This includes tuning your 3D printer for the best results, slicing softwares, custom addons for your printer, post processing tools (locally available products) &amp; methods, 3D cad tools, paints etc… This blog try to cover what I have gone while tinkering with the 3D printing.</p>
+<p>3D printing, also known as additive manufacturing, is a method of creating a three dimensional object layer-by-layer using a computer created design. Whether you are a product designer or a DIY enthusiast, this is an invaluable tool to your tool arsenal.</p>
+
+<p>I have been thinking for a long time to write a short blog about this. There are a ton of detailied blog/videos already exist, but still there is a lot of things you need to figure out through tial and error. This includes tuning your 3D printer for the best results, slicing softwares, custom addons for your printer, post processing tools (locally available products) &amp; methods, 3D cad tools, paints etc… This blog try to cover what I have gone while tinkering with the 3D printing.</p>
 
 <p>Fun things apart, this is a great tool if you are a product designer (even by profession or as a hobby). If you like to design things on your own then this saves you a lot of time in dealing with prototypes. I own a Creality Ender 3 Pro (Bought it 2 years back). It’s a pretty decent FDM (Fused Deposition Modeling) printer you can buy. I also own an AnyCubic resin printer which is a good addon if you are interested in minis or prints that require minute details. It’s a little messy to handle though and require proper care in handling.</p>
 
@@ -68,7 +133,7 @@
   <li><a href="https://www.blender.org/download/">Blender</a></li>
 </ul>
 
-<p><img src="/assets/img/mushroom_v3.png" alt="One of my design" /></p>]]></content><author><name></name></author><category term="3D printing" /><summary type="html"><![CDATA[3D printing, also known as additive manufacturing, is a method of creating a three dimensional object layer-by-layer using a computer created design. Whether you are a product designer or a DIY enthusiast, this is an invaluable tool to your tool arsenal. I have been thinking for a long time to write a short blog about this. There are a ton of detailied blog/videos already exist, but still there is a lot of things you need to figure out through tial and error. This includes tuning your 3D printer for the best results, slicing softwares, custom addons for your printer, post processing tools (locally available products) &amp; methods, 3D cad tools, paints etc… This blog try to cover what I have gone while tinkering with the 3D printing.]]></summary></entry><entry><title type="html">Iron Man Plymouth Theme</title><link href="https://www.eionix.co.in/2019/10/29/iron-man-plymouth-theme.html" rel="alternate" type="text/html" title="Iron Man Plymouth Theme" /><published>2019-10-29T00:00:00+05:30</published><updated>2019-10-29T00:00:00+05:30</updated><id>https://www.eionix.co.in/2019/10/29/iron-man-plymouth-theme</id><content type="html" xml:base="https://www.eionix.co.in/2019/10/29/iron-man-plymouth-theme.html"><![CDATA[<p>This is an Iron Man theme I created by slicing some cool gif files I found online. You can download the theme and find the installation steps on my github account. <a href="https://github.com/krishnan793/plymouth-iron-man-eionix">Link</a></p>
+<p><img src="/assets/img/mushroom_v3.png" alt="One of my design" /></p>]]></content><author><name></name></author><category term="3D printing" /><summary type="html"><![CDATA[3D printing, also known as additive manufacturing, is a method of creating a three dimensional object layer-by-layer using a computer created design. Whether you are a product designer or a DIY enthusiast, this is an invaluable tool to your tool arsenal.]]></summary></entry><entry><title type="html">Iron Man Plymouth Theme</title><link href="https://www.eionix.co.in/2019/10/29/iron-man-plymouth-theme.html" rel="alternate" type="text/html" title="Iron Man Plymouth Theme" /><published>2019-10-29T00:00:00+05:30</published><updated>2019-10-29T00:00:00+05:30</updated><id>https://www.eionix.co.in/2019/10/29/iron-man-plymouth-theme</id><content type="html" xml:base="https://www.eionix.co.in/2019/10/29/iron-man-plymouth-theme.html"><![CDATA[<p>This is an Iron Man theme I created by slicing some cool gif files I found online. You can download the theme and find the installation steps on my github account. <a href="https://github.com/krishnan793/plymouth-iron-man-eionix">Link</a></p>
 
 <p><img src="/assets/img/preview.gif" alt="preview" /></p>
 
@@ -1531,128 +1596,4 @@ Installation steps: <a href="Ubuntu_Xenial">Link</a></p>
 
 <p>This video will show the whole system working in the actual hardware.</p>
 
-<iframe width="320" height="266" src="https://www.youtube.com/embed/H9mrCXnhUEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><category term="Electronics" /><category term="Product Design" /><category term="Pi" /><summary type="html"><![CDATA[Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.]]></summary></entry><entry><title type="html">Creating a Wireless remote for Nikon Camera using Esp8266</title><link href="https://www.eionix.co.in/2017/08/03/creating-wireless-remote-for-nikon.html" rel="alternate" type="text/html" title="Creating a Wireless remote for Nikon Camera using Esp8266" /><published>2017-08-03T20:56:00+05:30</published><updated>2017-08-03T20:56:00+05:30</updated><id>https://www.eionix.co.in/2017/08/03/creating-wireless-remote-for-nikon</id><content type="html" xml:base="https://www.eionix.co.in/2017/08/03/creating-wireless-remote-for-nikon.html"><![CDATA[<p>The Nikon DSLR camera I own does have a Bluetooth connection, but unfortunately it is of no use. You cannot trigger shots from Bluetooth. Also u can only share photos of low resolution across Bluetooth. What a shame!!! I also want a time lapse option which is absent in the camera.
-There is a WiFi option, but have to invest a lot more money to buy the WiFi adaptor. Fortunately it has an IR interface. So I thought of creating my own triggering device (like the ML-L3) which works over WiFi so that I can remotely trigger the shutter and also take time lapse pics.</p>
-
-<iframe width="320" height="266" src="https://www.youtube.com/embed/7SlLCa77NC4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-
-<p>I can control ESP over phone and ESP will in turn control the camera using IR. (It can also behave as a normal ML-L3 Wireless remote). I got the command sequence for taking shots from here <a href="https://www.bigmike.it/ircontrol/">https://www.bigmike.it/ircontrol/</a>. This is the code I wrote for controlling my DSLR.</p>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ESP8266WiFi.h&gt;</span><span class="cp">
-</span>
-<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ssid</span> <span class="o">=</span> <span class="s">"Nikon"</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"password"</span><span class="p">;</span>
-
-<span class="n">WiFiServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
-
-<span class="kt">int</span> <span class="n">OutputPIN</span> <span class="o">=</span> <span class="n">D0</span><span class="p">;</span>
-<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">seq</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2000</span><span class="p">,</span><span class="mi">27830</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">1580</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">3580</span><span class="p">,</span><span class="mi">400</span><span class="p">};</span>
-
-<span class="kt">void</span> <span class="nf">setupWiFi</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">ESP</span><span class="p">.</span><span class="n">eraseConfig</span><span class="p">();</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Configuring access point..."</span><span class="p">);</span>
-  <span class="cm">/* You can remove the password parameter if you want the AP to be open. */</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAP</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
-
-  <span class="n">IPAddress</span> <span class="n">myIP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"AP IP address: "</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">myIP</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Server started"</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> 
-<span class="p">{</span>
-  <span class="c1">// put your setup code here, to run once:</span>
-  <span class="n">pinMode</span><span class="p">(</span><span class="n">OutputPIN</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>
-  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">OutputPIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
-  <span class="n">setupWiFi</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">sendSignal</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">milliSec</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">noofRepetition</span> <span class="o">=</span> <span class="n">milliSec</span><span class="o">/</span><span class="p">(</span><span class="mi">15</span><span class="o">+</span><span class="mi">9</span><span class="p">);</span>
-
-  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">noofRepetition</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">OutputPIN</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
-    <span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">OutputPIN</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
-    <span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">wait</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">milliSec</span><span class="p">){</span>
-  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">microSec</span> <span class="o">=</span> <span class="n">milliSec</span><span class="o">%</span><span class="mi">1000</span><span class="p">;</span>
-  <span class="n">delay</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">milliSec</span><span class="o">/</span><span class="mi">1000</span><span class="p">);</span>
-  <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">milliSec</span><span class="o">%</span><span class="mi">1000</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">sendCommand</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> 
-  <span class="p">{</span>
-    <span class="cm">/*Even places are 1 and odd places are 0*/</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
-      <span class="n">sendSignal</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="k">else</span>
-      <span class="n">wait</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>    
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">takeSnap</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">sendCommand</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">timeSnap</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">shots</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">delayMilli</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">shots</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">shots</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">takeSnap</span><span class="p">();</span>
-    <span class="n">delay</span><span class="p">(</span><span class="n">delayMilli</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> 
-<span class="p">{</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">shots</span><span class="p">,</span><span class="n">delayMilli</span><span class="p">;</span>
-  <span class="c1">// Check if a client has connected</span>
-  <span class="n">WiFiClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="n">available</span><span class="p">();</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span>
-  
-  <span class="c1">// Wait until the client sends some data</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"new client"</span><span class="p">);</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">setNoDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
-  
-  <span class="n">String</span> <span class="n">req</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">','</span><span class="p">);</span>
-  <span class="n">shots</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">)</span><span class="n">req</span><span class="p">.</span><span class="n">toInt</span><span class="p">();</span>
- 
-  <span class="n">req</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">'\r'</span><span class="p">);</span>
-  <span class="n">delayMilli</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">)(</span><span class="n">req</span><span class="p">.</span><span class="n">toInt</span><span class="p">()</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">shots</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">delayMilli</span><span class="p">);</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
-  <span class="n">timeSnap</span><span class="p">(</span><span class="n">shots</span><span class="p">,</span><span class="n">delayMilli</span><span class="p">);</span>
-  
-<span class="p">}</span>
-</code></pre></div></div>
-<p><img src="https://1.bp.blogspot.com/-aDO20c05bzI/WYM_VYpGyhI/AAAAAAAABac/AJEhTPhKizUnoku-zU5qV1K_o_xtkgmtACK4BGAYYCw/s1600/IMG_20170803_204119.jpg" alt="snapshot" /></p>
-
-<p>I am able to</p>
-
-<ul>
-  <li>remotely trigger the shutter from WiFi.</li>
-  <li>remotely trigger the shutter from remote.</li>
-  <li>configure to take time lapse pics from WiFi. (Will automatically take pics according to the number of shots and interval)</li>
-</ul>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html"><![CDATA[The Nikon DSLR camera I own does have a Bluetooth connection, but unfortunately it is of no use. You cannot trigger shots from Bluetooth. Also u can only share photos of low resolution across Bluetooth. What a shame!!! I also want a time lapse option which is absent in the camera. There is a WiFi option, but have to invest a lot more money to buy the WiFi adaptor. Fortunately it has an IR interface. So I thought of creating my own triggering device (like the ML-L3) which works over WiFi so that I can remotely trigger the shutter and also take time lapse pics.]]></summary></entry></feed>
+<iframe width="320" height="266" src="https://www.youtube.com/embed/H9mrCXnhUEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><category term="Electronics" /><category term="Product Design" /><category term="Pi" /><summary type="html"><![CDATA[Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.]]></summary></entry></feed>

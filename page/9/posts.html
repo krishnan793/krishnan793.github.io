@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Page 9 of 17 for Ananth’s Blog - page 9 | Ananth’s Blog</title>
+<title>Page 9 of 18 for Ananth’s Blog - page 9 | Ananth’s Blog</title>
 <meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="Ananth’s Blog - page 9" />
 <meta property="og:locale" content="en_US" />
@@ -626,8 +626,17 @@
               
               
               <li>  
-                <label for="l1i1">August</label>
+                <label for="l1i1">November</label>
                 <input id="l1i1" type="checkbox">
+                <ul><li><a href="/2022/11/19/pen-holder.html">Designing a custom Pen Holder</a></li>        
+                  
+                </ul>
+              </li>
+              
+              
+              <li>  
+                <label for="l1i2">August</label>
+                <input id="l1i2" type="checkbox">
                 <ul><li><a href="/2022/08/27/3d-printing.html">3D printing</a></li>        
                   
                 </ul>
@@ -1053,6 +1062,21 @@
 
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2015/02/22/remote-access-your-beaglebone-black.html">Remote access your BeagleBone Black using vnc</a></h2></div>
+	  	<div class="post-date">22 Feb 2015</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+        	<p><img src="https://1.bp.blogspot.com/-p4bKcxTZjDE/VOmHeRPwSyI/AAAAAAAAAnw/P2GLJEL0r3Y/s72-c/Screenshot%2Bfrom%2B2015-02-22%2B13%3A05%3A55.png" style="max-width: 300px;" /></p>
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">Before going into how to share desktop with your BBB I assume you have a proper ssh access to your BBB. (through USB) (if not read <a href="https://eionix.blogspot.in/2015/02/getting-started-with-beaglebone-black.html" target="_blank">this</a>) Also this tutorial is for BBB with Debian installed (type <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">cat /etc/*-release</span> to know which distro you are currently using. Or refer <a href="https://www.cyberciti.biz/faq/find-linux-distribution-name-version-number/" target="_blank">here</a>)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">First install the vnc server in BBB.(After logging into BBB)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ssh root@192.168.7.2</span></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">apt-get install x11vnc</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Then go to your local computer and open a terminal window. Install a vnc viewer like vinagre.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo apt-get install vinagre</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Now its time to start vnc server in BBB.</div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br /></span></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">x11vnc -auth /var/run/lightdm/root/:0 -forever</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">This will start a vnc server at port 5900. Note this server setup is temporary. If you want to remotely connect to your BBB after a reboot type the above command again.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Go to your local computer and type&nbsp;</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vinagre 192.168.7.2::5900 </span></div><div style="text-align: justify;"><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-p4bKcxTZjDE/VOmHeRPwSyI/AAAAAAAAAnw/P2GLJEL0r3Y/s1600/Screenshot%2Bfrom%2B2015-02-22%2B13%3A05%3A55.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://1.bp.blogspot.com/-p4bKcxTZjDE/VOmHeRPwSyI/AAAAAAAAAnw/P2GLJEL0r3Y/s1600/Screenshot%2Bfrom%2B2015-02-22%2B13%3A05%3A55.png" height="257" width="400" /></a></div><br /><br /></div><div style="text-align: justify;">A remote desktop will be shown if all goes well. Try exploring other options in x11vnc using (in BBB)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">man x11vnc</span></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">The server that's currently running will not have any password set. So if you want to set a password or want to know more about x11vnc refer <a href="https://wiki.archlinux.org/index.php/X11vnc" target="_blank">here</a>.<br /><br />Note: These descriptions are for getting started with BBB. Do not run a vnc server without any password if you are planning to deploy it directly to internet. </div></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2015/02/21/program-bbb-using-c-blink-onboard-led.html">Program BBB using C (Blink onboard LED)</a></h2></div>
 	  	<div class="post-date">21 Feb 2015</div>
       <div class="post-inner">
@@ -1107,22 +1131,6 @@
 	</div>
 </div>
 
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/12/20/socket-programming-in-c.html">Socket Programming in C</a></h2></div>
-	  	<div class="post-date">20 Dec 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://2.bp.blogspot.com/-xTu02LZtzCw/VJVfCocs9EI/AAAAAAAAAlg/KZHuCOzCXG4/s1600/CropperCapture[3].jpg" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).</p>
- </div>
-      </div>
-	</div>
-</div>
-
 
 
 <!-- Pagination links -->
@@ -1130,7 +1138,7 @@
   
     <a href="/page/8/posts.html" class="previous">Previous</a>
   
-  <span class="page_number ">Page: 9 of 17</span>
+  <span class="page_number ">Page: 9 of 18</span>
   
     <a href="/page/10/posts.html" class="next">Next</a>
   
