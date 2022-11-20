@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-11-20T19:10:24+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Designing a Fish bowl using blender</title><link href="https://www.eionix.co.in/2022/11/20/fish-bowl.html" rel="alternate" type="text/html" title="Designing a Fish bowl using blender" /><published>2022-11-20T00:00:00+05:30</published><updated>2022-11-20T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/11/20/fish-bowl</id><content type="html" xml:base="https://www.eionix.co.in/2022/11/20/fish-bowl.html"><![CDATA[<p>This is a fish bowl I designed using blender. Blender is famous for it’s steep learning curve. But once learned, it’s a very handy tool in your arsenel.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-11-20T19:24:05+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Designing a Fish bowl using blender</title><link href="https://www.eionix.co.in/2022/11/20/fish-bowl.html" rel="alternate" type="text/html" title="Designing a Fish bowl using blender" /><published>2022-11-20T00:00:00+05:30</published><updated>2022-11-20T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/11/20/fish-bowl</id><content type="html" xml:base="https://www.eionix.co.in/2022/11/20/fish-bowl.html"><![CDATA[<p>This is a fish bowl I designed using blender. Blender is famous for it’s steep learning curve. But once learned, it’s a very handy tool in your arsenel.</p>
 
 <script>
         OV.SetExternalLibLocation ('/assets/o3dv/libs'); // tell the engine where to find the libs folder
@@ -9,7 +9,7 @@
   <source src="/assets/res/fish_bowl.mp4" type="video/mp4" />
 </video>
 
-<div class="online_3d_viewer" style="width: 300px; height: 300px;" model="/assets/res/fish_bowl1.stl">
+<div class="online_3d_viewer" style="width: 300px; height: 300px;" model="/assets/res/fish_bowl.glb">
 </div>
 
 <p>These are some of the variations which I have rendered using blender.</p>
