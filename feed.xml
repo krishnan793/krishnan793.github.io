@@ -1,4 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-11-19T20:13:53+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Designing a custom Pen Holder</title><link href="https://www.eionix.co.in/2022/11/19/pen-holder.html" rel="alternate" type="text/html" title="Designing a custom Pen Holder" /><published>2022-11-19T00:00:00+05:30</published><updated>2022-11-19T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/11/19/pen-holder</id><content type="html" xml:base="https://www.eionix.co.in/2022/11/19/pen-holder.html"><![CDATA[<p>A custom pen holder with embossed name designed using blender. The same is printed using a resin printer and painted to get the final product.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-11-20T19:10:24+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Designing a Fish bowl using blender</title><link href="https://www.eionix.co.in/2022/11/20/fish-bowl.html" rel="alternate" type="text/html" title="Designing a Fish bowl using blender" /><published>2022-11-20T00:00:00+05:30</published><updated>2022-11-20T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/11/20/fish-bowl</id><content type="html" xml:base="https://www.eionix.co.in/2022/11/20/fish-bowl.html"><![CDATA[<p>This is a fish bowl I designed using blender. Blender is famous for it’s steep learning curve. But once learned, it’s a very handy tool in your arsenel.</p>
+
+<script>
+        OV.SetExternalLibLocation ('/assets/o3dv/libs'); // tell the engine where to find the libs folder
+        OV.Init3DViewerElements(); // init all viewers on the page
+</script>
+
+<video autoplay="" loop="" muted="" playsinline="" width="600px" preload="none">
+  <source src="/assets/res/fish_bowl.mp4" type="video/mp4" />
+</video>
+
+<div class="online_3d_viewer" style="width: 300px; height: 300px;" model="/assets/res/fish_bowl1.stl">
+</div>
+
+<p>These are some of the variations which I have rendered using blender.</p>
+
+<p><img src="/assets/img/fish_bowl_render1.png" alt="image" />
+<img src="/assets/img/fish_bowl_render2.png" alt="image" />
+<img src="/assets/img/fish_bowl_render3.png" alt="image" />
+<img src="/assets/img/fish_bowl_render4.jpg" alt="image" />
+<img src="/assets/img/fish_bowl_render7.jpg" alt="image" />
+<img src="/assets/img/fish_bowl_wireframe.png" alt="image" />
+<img src="/assets/img/fish_bowl_printed.jpeg" alt="image" />
+<img src="/assets/img/fish_bowl_final_water.jpeg" alt="image" />
+<img src="/assets/img/fish_bowl_render8.png" alt="image" />
+<img src="/assets/img/fish_bowl_render9.png" alt="image" /></p>]]></content><author><name></name></author><category term="3D printing" /><summary type="html"><![CDATA[This is a fish bowl I designed using blender. Blender is famous for it’s steep learning curve. But once learned, it’s a very handy tool in your arsenel.]]></summary></entry><entry><title type="html">Designing a custom Pen Holder</title><link href="https://www.eionix.co.in/2022/11/19/pen-holder.html" rel="alternate" type="text/html" title="Designing a custom Pen Holder" /><published>2022-11-19T00:00:00+05:30</published><updated>2022-11-19T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/11/19/pen-holder</id><content type="html" xml:base="https://www.eionix.co.in/2022/11/19/pen-holder.html"><![CDATA[<p>A custom pen holder with embossed name designed using blender. The same is printed using a resin printer and painted to get the final product.</p>
 
 <script>
         OV.SetExternalLibLocation ('/assets/o3dv/libs'); // tell the engine where to find the libs folder
@@ -1563,37 +1588,4 @@ Installation steps: <a href="Ubuntu_Xenial">Link</a></p>
 
 <h2 id="delete-entry">Delete entry</h2>
 
-<p><img src="https://3.bp.blogspot.com/-AN3R868aGhU/W7iW75cVgpI/AAAAAAAABiM/fhFjztMe-h0iWSHJjKG6zEa7YifScPeIwCK4BGAYYCw/s320/delete.gif" alt="Deleting" /></p>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html"><![CDATA[I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.]]></summary></entry><entry><title type="html">Raspberry pi based Car Infotainment system</title><link href="https://www.eionix.co.in/2018/03/11/raspberry-pi-based-car-infotainment.html" rel="alternate" type="text/html" title="Raspberry pi based Car Infotainment system" /><published>2018-03-11T22:28:00+05:30</published><updated>2018-03-11T22:28:00+05:30</updated><id>https://www.eionix.co.in/2018/03/11/raspberry-pi-based-car-infotainment</id><content type="html" xml:base="https://www.eionix.co.in/2018/03/11/raspberry-pi-based-car-infotainment.html"><![CDATA[<p>Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.</p>
-
-<p>At heart, it is a raspberry pi 3 Model B single board computer. For those who don’t know about raspberry pi, it is a single board compute with a Quad Core 1.2GHz Broadcom BCM2837 64bit CPU with on board WiFi and Bluetooth. See this for a complete spec. It is connected with a 7 inch multi touch display running Ubuntu Mate (a Linux variant). Os is modified so that it is only running the bare minimum services to run the system. It will save the boot up time and improve performance a little bit. It is connected to a GPS module via UART to get current location. It is used in the navigation section. It is also used to get time, when the device is not connected to internet. It uses google map API for navigation.</p>
-
-<p>The complete infotainment system is build using nwjs (see link for a full description). It is an html + js + css + nodejs framework in which you can create cool independent apps using web technologies. There are famous apps that are built using these framework like atom editor, github-desktop (using electronjs but similar framework).</p>
-
-<h3 id="hardware-info">Hardware Info:</h3>
-
-<ul>
-  <li>Quad Core 1.2GHz Broadcom BCM2837 64bit CPU</li>
-  <li>ublox neo-6m GPS module</li>
-  <li>7 inch Multi Touch Display</li>
-  <li>JBL mini speaker</li>
-</ul>
-
-<h3 id="software-features">Software features</h3>
-
-<ul>
-  <li>Real time Navigation system with GPS</li>
-  <li>Mean Sea Level Altitude info</li>
-  <li>Music player</li>
-  <li>YouTube player</li>
-  <li>Google Map Location sharing to see friends/family in real time in the map</li>
-  <li>Intuitive on screen keyboard</li>
-  <li>Fast boot time (15 s)</li>
-</ul>
-
-<p>This video will show you the complete UI. It is a simulated setup to show all the options.</p>
-
-<iframe width="320" height="266" src="https://www.youtube.com/embed/K3-xnHHL5cs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-
-<p>This video will show the whole system working in the actual hardware.</p>
-
-<iframe width="320" height="266" src="https://www.youtube.com/embed/H9mrCXnhUEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Linux" /><category term="Electronics" /><category term="Product Design" /><category term="Pi" /><summary type="html"><![CDATA[Out in the market, there are a handful of car infotainment systems that you can buy for 10 to 30k INR. But nothing beats the thrill of making one from scratch and put it on your own car. So this is my effort to make one from the scratch.]]></summary></entry></feed>
+<p><img src="https://3.bp.blogspot.com/-AN3R868aGhU/W7iW75cVgpI/AAAAAAAABiM/fhFjztMe-h0iWSHJjKG6zEa7YifScPeIwCK4BGAYYCw/s320/delete.gif" alt="Deleting" /></p>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html"><![CDATA[I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.]]></summary></entry></feed>

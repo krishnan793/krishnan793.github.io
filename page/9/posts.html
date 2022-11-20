@@ -627,7 +627,8 @@
               <li>  
                 <label for="l1i1">November</label>
                 <input id="l1i1" type="checkbox">
-                <ul><li><a href="/2022/11/19/pen-holder.html">Designing a custom Pen Holder</a></li>        
+                <ul><li><a href="/2022/11/20/fish-bowl.html">Designing a Fish bowl using blender</a></li>        
+                  <li><a href="/2022/11/19/pen-holder.html">Designing a custom Pen Holder</a></li>        
                   
                 </ul>
               </li>
@@ -1061,6 +1062,19 @@
 
 <div class="post-outer">
 	<div class="post-content">
+	  	<div class="post-title"> <h2><a href="/2015/02/22/getting-internet-on-bbb-via-usb-share.html">Getting internet on BBB via usb (Share internet from your linux machine)</a></h2></div>
+	  	<div class="post-date">22 Feb 2015</div>
+      <div class="post-inner">
+      	<div class="post-thumbnail">
+      	
+      	</div>
+  	  	<div class="post-desc"> <div dir="ltr" style="text-align: left;" trbidi="on"><br /><div style="text-align: justify;"><br />Login to your BBB and type<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">route add default gw 192.168.7.1</span><br /><br />Then type the follwing in your linux machine to route the network.<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"></span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo su</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">iptables --table nat --append POSTROUTING --out-interface eth0 -j MASQUERADE</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">iptables --append FORWARD --in-interface eth1 -j ACCEPT&nbsp;</span><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">echo 1 &gt; /proc/sys/net/ipv4/ip_forw</span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">ard </span><br /><br /><br />Note: eth0 is LAN interface which has internet connectivity. eth1 is the usb network connection with BBB. 192.168.7.1 is the ip address that assigned to your PC.<br /><br />Following part is not needed if internet is working properly.<br /><br />If you are using network that doesn't allow third party dns server (like google dns 8.8.8.8 or 8.8.4.4), you had to configure /etc/resolv.conf.<br /><br />First find out what dns server address your internet provider (your college) gives you. If you have a working network type <br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">nm-tool</span><br /><br />to find out the dnsaddress. Then delete all the entries in /etc/resolve.conf and replace it with<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">nameserver &lt;dnsaddr&gt;</span><br /><br />eg: nameserver 192.168.0.5</div></div> </div>
+      </div>
+	</div>
+</div>
+
+<div class="post-outer">
+	<div class="post-content">
 	  	<div class="post-title"> <h2><a href="/2015/02/22/remote-access-your-beaglebone-black.html">Remote access your BeagleBone Black using vnc</a></h2></div>
 	  	<div class="post-date">22 Feb 2015</div>
       <div class="post-inner">
@@ -1109,22 +1123,6 @@
       	
       	</div>
   	  	<div class="post-desc"> <p>This program let you know your external ip address. This program extract the response of www.curlmyip.com. It will print the entire response of the server (which includes the header).</p>
- </div>
-      </div>
-	</div>
-</div>
-
-<div class="post-outer">
-	<div class="post-content">
-	  	<div class="post-title"> <h2><a href="/2014/12/20/chatmessenger-program-using-c.html">Chat/Messenger program using c</a></h2></div>
-	  	<div class="post-date">20 Dec 2014</div>
-      <div class="post-inner">
-      	<div class="post-thumbnail">
-      	
-        	<p><img src="https://4.bp.blogspot.com/-N77JQz2ZrQM/VJWHNqt8bAI/AAAAAAAAAlw/8zm8y22vQ0E/s1600/CropperCapture[4].jpg" style="max-width: 300px;" /></p>
-      	
-      	</div>
-  	  	<div class="post-desc"> <p>Messages send through server program will be displayed in the client side. Port used is 10000. You can change the ip address of server in the client side program. Will update the program to include more features. The program is intended to use in Linux platform. (Compiler  used is gcc).</p>
  </div>
       </div>
 	</div>
