@@ -1,4 +1,290 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-11-20T19:24:05+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Designing a Fish bowl using blender</title><link href="https://www.eionix.co.in/2022/11/20/fish-bowl.html" rel="alternate" type="text/html" title="Designing a Fish bowl using blender" /><published>2022-11-20T00:00:00+05:30</published><updated>2022-11-20T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/11/20/fish-bowl</id><content type="html" xml:base="https://www.eionix.co.in/2022/11/20/fish-bowl.html"><![CDATA[<p>This is a fish bowl I designed using blender. Blender is famous for it’s steep learning curve. But once learned, it’s a very handy tool in your arsenel.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-12-09T22:45:20+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Forward &amp;amp; Backward Propagation</title><link href="https://www.eionix.co.in/2022/12/09/nerual-network-derrivation.html" rel="alternate" type="text/html" title="Forward &amp;amp; Backward Propagation" /><published>2022-12-09T00:00:00+05:30</published><updated>2022-12-09T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/12/09/nerual-network-derrivation</id><content type="html" xml:base="https://www.eionix.co.in/2022/12/09/nerual-network-derrivation.html"><![CDATA[<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous" />
+
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+<p><img src="/assets/img/nn.png" alt="image" /></p>
+
+<p><img src="/assets/img/nn_flow.png" alt="NN_Flow" /></p>
+
+<h2 id="forward-propagation">Forward Propagation</h2>
+
+\[Z = WX + b\]
+
+\[Z = 
+\begin{bmatrix*}
+z_{1}\\
+z_{2}
+\end{bmatrix*}
+=
+\begin{bmatrix*}
+w_{11} &amp; w_{12} &amp; w_{13}\\
+w_{21} &amp; w_{22} &amp; w_{23}
+\end{bmatrix*}
+\begin{bmatrix*}
+x_1\\
+x_2\\
+x_3
+\end{bmatrix*}
++
+\begin{bmatrix*}
+b_0\\
+b_0
+\end{bmatrix*}\]
+
+\[A = g(Z)\]
+
+<p>For sigmoid,</p>
+
+\[A = \frac{1}{(1+ e^{-z^{[2]}})}\]
+
+<h3 id="vectorized-form-with-m-training-set">Vectorized Form with m training set</h3>
+
+\[Z = WX + b\]
+
+\[Z = 
+\begin{bmatrix*}
+z_{11} &amp;&amp; ... &amp;&amp; z_{1m}\\
+z_{21} &amp;&amp; ... &amp;&amp; z_{2m}\\
+\end{bmatrix*}
+=
+\begin{bmatrix*}
+w_{11} &amp; w_{12} &amp; w_{13}\\
+w_{21} &amp; w_{22} &amp; w_{23}
+\end{bmatrix*}
+\begin{bmatrix*}
+x_{11} &amp; x_{12} &amp; ... &amp; x_{1m}\\
+x_{21} &amp; x_{22} &amp; ... &amp; x_{2m}\\
+x_{31} &amp; x_{32} &amp; ... &amp; x_{3m}
+\end{bmatrix*}
++
+\begin{bmatrix*}
+b_0\\
+b_0
+\end{bmatrix*}\]
+
+\[A = g(Z)\]
+
+<h2 id="backward-propagation">Backward Propagation</h2>
+
+<p>Loss function is given by</p>
+
+\[\begin{equation}
+    L(A,Y)=-(Ylog(A) + (1-Y)log(1-A))
+\end{equation}\]
+
+<p>where final cost,</p>
+
+\[J(W,b) = (1/m)\sum_{i=1}^{m}{L(A, Y)}\]
+
+<p>For backward propagation, we need to calculate \(\frac{\partial L}{\partial W^{[2]}}\), \(\frac{\partial L}{\partial b^{[2]}}\), \(\frac{\partial L}{\partial W^{[1]}}\) and \(\frac{\partial L}{\partial b^{[1]}}\) where we update</p>
+
+\[\begin{equation}
+    W^{[2]} = W^{[2]} - \alpha \frac{\partial L}{\partial W^{[2]}}
+\end{equation}\]
+
+\[\begin{equation}
+    b^{[2]} = b^{[2]} - \alpha \frac{\partial L}{\partial b^{[2]}}
+\end{equation}\]
+
+\[\begin{equation}
+    W^{[1]} = W^{[1]} - \alpha \frac{\partial L}{\partial W^{[1]}}
+\end{equation}\]
+
+\[\begin{equation}
+    b^{[1]} = b^{[1]} - \alpha \frac{\partial L}{\partial b^{[1]}}
+\end{equation}\]
+
+<p>on each iteration</p>
+
+<p>From chain rule,</p>
+
+\[\frac{\partial L}{\partial Z^{[2]}} = \frac{\partial L}{\partial A^{[2]}} \frac{\partial A^{[2]}}{\partial Z^{[2]}}\]
+
+\[\frac{\partial L}{\partial W^{[2]}} = \frac{\partial L}{\partial A^{[2]}} \frac{\partial A^{[2]}}{\partial Z^{[2]}} \frac{\partial Z^{[2]}}{\partial W^{[2]}} = \frac{\partial L}{\partial Z^{[2]}} (\frac{\partial Z^{[2]}}{\partial W^{[2]}})\]
+
+\[\frac{\partial L}{\partial b^{[2]}} = \frac{\partial L}{\partial A^{[2]}} \frac{\partial A^{[2]}}{\partial Z^{[2]}} \frac{\partial Z^{[2]}}{\partial b^{[2]}} = \frac{\partial L}{\partial Z^{[2]}} (\frac{\partial Z^{[2]}}{\partial b^{[2]}})\]
+
+\[\frac{\partial L}{\partial Z^{[1]}} = \frac{\partial L}{\partial A^{[2]}} \frac{\partial A^{[2]}}{\partial Z^{[2]}} \frac{\partial Z^{[2]}}{\partial A^{[1]}} \frac{\partial A^{[1]}}{\partial Z^{[1]}} = \frac{\partial L}{\partial A^{[1]}} (\frac{\partial A^{[1]}}{\partial Z^{[1]}})\]
+
+\[\frac{\partial L}{\partial W^{[1]}} = \frac{\partial L}{\partial A^{[2]}} \frac{\partial A^{[2]}}{\partial Z^{[2]}} \frac{\partial Z^{[2]}}{\partial A^{[1]}} \frac{\partial A^{[1]}}{\partial Z^{[1]}} \frac{\partial Z^{[1]}}{\partial W^{[1]}} = \frac{\partial L}{\partial Z^{[1]}} (\frac{\partial Z^{[1]}}{\partial W^{[1]}})\]
+
+\[\frac{\partial L}{\partial b^{[1]}} = \frac{\partial L}{\partial A^{[2]}} \frac{\partial A^{[2]}}{\partial Z^{[2]}} \frac{\partial Z^{[2]}}{\partial A^{[1]}} \frac{\partial A^{[1]}}{\partial Z^{[1]}} \frac{\partial Z^{[1]}}{\partial b^{[1]}} = \frac{\partial L}{\partial Z^{[1]}} (\frac{\partial Z^{[1]}}{\partial b^{[1]}})\]
+
+<p>Let’s take each one and find it’s values.</p>
+
+\[\begin{equation*}
+    \frac{\partial L}{\partial Z^{[2]}} = \frac{\partial L}{\partial A^{[2]}} \frac{\partial A^{[2]}}{\partial Z^{[2]}}
+\end{equation*}\]
+
+\[\frac{\partial L}{\partial A^{[2]}} = \frac{\partial}{\partial A^{[2]}}-(Ylog(A^{[2]}) + (1-Y)log(1-A^{[2]}))\]
+
+\[= -1*(Y*\frac{1}{A^{[2]}} + (1-Y)*\frac{1}{1-A^{[2]}}*-1)\]
+
+\[= \frac{-Y}{A^{[2]}} + \frac{1-Y}{1-A^{[2]}}\]
+
+\[= \frac{-Y+YA^{[2]}+A^{[2]}-A^{[2]}Y}{A^{[2]}(1-A^{[2]})}\]
+
+\[\boxed{
+    \begin{equation*}
+        \frac{\partial L}{\partial A^{[2]}} = \frac{A^{[2]} - Y}{A^{[2]}(1-A^{[2]})}
+    \end{equation*}
+}\]
+
+\[\frac{\partial A^{[2]}}{\partial Z^{[2]}} = \frac{\partial }{\partial Z^{[2]}}(\frac{1}{1+ e^{-z^{[2]}} }) = \frac{\partial }{\partial Z^{[2]}}(1+ e^{-z^{[2]}})^{-1}
+\\
+= -1*(1+ e^{-z^{[2]}})^{-2}*e^{-z^{[2]}}*-1
+\\
+= \frac{e^{-z^{[2]}}}{(1+ e^{-z^{[2]}})^2}
+\\
+= \frac{1}{(1+ e^{-z^{[2]}})} * \frac{e^{-z^{[2]}}}{(1+ e^{-z^{[2]}})}
+\\
+= \frac{1}{(1+ e^{-z^{[2]}})} * \frac{1+e^{-z^{[2]}}-1}{(1+ e^{-z^{[2]}})}
+\\
+= \frac{1}{(1+ e^{-z^{[2]}})} * (1-\frac{1}{(1+ e^{-z^{[2]}})})
+\\\]
+
+\[\boxed{
+    \begin{equation*}
+        \frac{\partial A^{[2]}}{\partial Z^{[2]}} = A^{[2]}*(1-A^{[2]})
+    \end{equation*}
+}\]
+
+\[\frac{\partial L}{\partial Z^{[2]}} = \frac{\partial L}{\partial A^{[2]}} \frac{\partial A^{[2]}}{\partial Z^{[2]}}
+\\
+= \frac{A^{[2]} - Y}{A^{[2]}(1-A^{[2]})} * A^{[2]}*(1-A^{[2]})\]
+
+\[\boxed{
+    \begin{equation*}
+        \frac{\partial L}{\partial Z^{[2]}} = A^{[2]} - Y
+    \end{equation*}
+}\]
+
+\[\frac{\partial Z^{[2]}}{\partial W^{[2]}} = \frac{\partial }{\partial W^{[2]}}(W^{[2]}A^{[1]} + b^{[2]})
+    = A^{[1]}\]
+
+\[\boxed{
+    \begin{equation*}
+        \frac{\partial L}{\partial W^{[2]}} = \frac{\partial L}{\partial Z^{[2]}} (\frac{\partial Z^{[2]}}{\partial W^{[2]}}) = \frac{\partial L}{\partial Z^{[2]}}A^{[1]}
+    \end{equation*}
+}\]
+
+\[\boxed{
+    \begin{equation*}
+        \frac{\partial L}{\partial b^{[2]}} = \frac{\partial L}{\partial Z^{[2]}} (\frac{\partial Z^{[2]}}{\partial b^{[2]}}) = \frac{\partial L}{\partial Z^{[2]}}
+    \end{equation*}
+}\]
+
+\[\frac{\partial Z^{[2]}}{\partial A^{[1]}} = \frac{\partial }{\partial A^{[1]}}(W^{[2]}A^{[1]} + b^{[2]}) = W^{[2]}
+\\
+\frac{\partial A^{[1]}}{\partial Z^{[1]}} = \frac{\partial }{\partial Z^{[1]}} (\sigma(Z^{[1]})) = A^{[1]}*(1-A^{[1]})
+\\
+\frac{\partial L}{\partial Z^{[1]}} = \frac{\partial L}{\partial Z^{[2]}} \frac{\partial Z^{[2]}}{\partial A^{[1]}} (\frac{\partial A^{[1]}}{\partial Z^{[1]}}) = \frac{\partial L}{\partial A^{[1]}}(\frac{\partial A^{[1]}}{\partial Z^{[1]}})
+\\\]
+
+\[\boxed{
+    \begin{equation*}
+        \frac{\partial L}{\partial Z^{[1]}} = \frac{\partial L}{\partial A^{[1]}}*g'(Z^{[1]})
+    \end{equation*}
+}\]
+
+<p>where</p>
+
+\[\frac{\partial L}{\partial A^{[1]}} = \frac{\partial L}{\partial Z^{[2]}}W^{[2]}\]
+
+\[g'(Z^{[1]}) = A^{[1]}*(1-A^{[1]})\]
+
+\[\frac{\partial L}{\partial W^{[1]}} = \frac{\partial L}{\partial Z^{[1]}} (\frac{\partial Z^{[1]}}{\partial W^{[1]}})\]
+
+\[\boxed{
+    \begin{equation*}
+        \frac{\partial L}{\partial W^{[1]}} = \frac{\partial L}{\partial Z^{[1]}} A^{[0]}
+    \end{equation*}
+}\]
+
+\[\boxed{
+    \begin{equation*}
+        \frac{\partial L}{\partial b^{[1]}} = \frac{\partial L}{\partial Z^{[1]}}
+    \end{equation*}
+}\]
+
+<p>To summarize all the equation,</p>
+
+\[\begin{equation}
+    W^{[2]} = W^{[2]} - \alpha \frac{\partial L}{\partial W^{[2]}}
+\end{equation}\]
+
+\[\begin{equation}
+    b^{[2]} = b^{[2]} - \alpha \frac{\partial L}{\partial b^{[2]}}
+\end{equation}\]
+
+\[\begin{equation}
+    W^{[1]} = W^{[1]} - \alpha \frac{\partial L}{\partial W^{[1]}}
+\end{equation}\]
+
+\[\begin{equation}
+    b^{[1]} = b^{[1]} - \alpha \frac{\partial L}{\partial b^{[1]}}
+\end{equation}\]
+
+<p>where</p>
+
+\[\begin{equation}
+    \frac{\partial L}{\partial Z^{[2]}} = A^{[2]} - Y
+\end{equation}\]
+
+\[\begin{equation}
+    \frac{\partial L}{\partial W^{[2]}} = \frac{\partial L}{\partial Z^{[2]}}A^{[1]}
+\end{equation}\]
+
+\[\begin{equation}
+    \frac{\partial L}{\partial b^{[2]}} = \frac{\partial L}{\partial Z^{[2]}}
+\end{equation}\]
+
+\[\begin{equation}
+        \frac{\partial L}{\partial Z^{[1]}} = \frac{\partial L}{\partial A^{[1]}}*g'(Z^{[1]})
+\end{equation}\]
+
+\[\begin{equation}
+    \frac{\partial L}{\partial A^{[1]}} = \frac{\partial L}{\partial Z^{[2]}}W^{[2]}
+\end{equation}\]
+
+\[\begin{equation}
+    \frac{\partial L}{\partial W^{[1]}} = \frac{\partial L}{\partial Z^{[1]}} A^{[0]}
+    
+\end{equation}\]
+
+\[\begin{equation}
+    \frac{\partial L}{\partial b^{[1]}} = \frac{\partial L}{\partial Z^{[1]}}
+\end{equation}\]
+
+<h2 id="generalized-form">Generalized Form</h2>
+
+<p>To generalize, for an n layer nerual network,</p>
+
+\[\boxed{
+    Z^{[l]}=W^{[l]}*A^{[l-1]}+b^{[l]}
+}\]
+
+\[\boxed{
+    A^{[l]}=g^{[l]}(Z^{[l]})
+}\]
+
+\[\boxed{
+    dZ^{[l]}=dA^{[l]}*g'^{[l]}(Z^{[l]})
+}\]
+
+\[\boxed{
+    dW^{[l]}=dZ^{[l]}*A^{[l-1]}
+}\]
+
+\[\boxed{
+    db^{[l]}=dZ^{[l]}
+}\]
+
+\[\boxed{
+    dA^{[l-1]}=W^{[l]}*dZ^{[l]}
+}\]]]></content><author><name></name></author><category term="Deep Learning" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Designing a Fish bowl using blender</title><link href="https://www.eionix.co.in/2022/11/20/fish-bowl.html" rel="alternate" type="text/html" title="Designing a Fish bowl using blender" /><published>2022-11-20T00:00:00+05:30</published><updated>2022-11-20T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/11/20/fish-bowl</id><content type="html" xml:base="https://www.eionix.co.in/2022/11/20/fish-bowl.html"><![CDATA[<p>This is a fish bowl I designed using blender. Blender is famous for it’s steep learning curve. But once learned, it’s a very handy tool in your arsenel.</p>
 
 <script>
         OV.SetExternalLibLocation ('/assets/o3dv/libs'); // tell the engine where to find the libs folder
@@ -1570,22 +1856,4 @@ Installation steps: <a href="Ubuntu_Xenial">Link</a></p>
 <img src="https://4.bp.blogspot.com/-6fCIj7m0DmM/XDV8KaCT8sI/AAAAAAAABmk/DmUULnhi_zohNR0SUDEvtJTIqk9hFxTPQCK4BGAYYCw/s1600/BLR_0185.JPG" alt="Final preview 4" />
 <img src="https://3.bp.blogspot.com/-vVNex884yb0/XDWae__435I/AAAAAAAABnM/k0EXHvjcIbQcI2Av7lzCG_pMhOuZnmbHACK4BGAYYCw/s1600/BLR_0001.JPG" alt="Final preview 5" /></p>
 
-<iframe width="320" height="266" src="https://www.youtube.com/embed/Q5mC5lRfhfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Atmega328PU" /><category term="ROS" /><category term="Product Design" /><category term="Pi" /><summary type="html"><![CDATA[I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.]]></summary></entry><entry><title type="html">Inventory App for hobbyists</title><link href="https://www.eionix.co.in/2018/10/06/inventory-app-for-hobbyists.html" rel="alternate" type="text/html" title="Inventory App for hobbyists" /><published>2018-10-06T16:39:00+05:30</published><updated>2018-10-06T16:39:00+05:30</updated><id>https://www.eionix.co.in/2018/10/06/inventory-app-for-hobbyists</id><content type="html" xml:base="https://www.eionix.co.in/2018/10/06/inventory-app-for-hobbyists.html"><![CDATA[<p>I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.</p>
-
-<p>You can find the whole source code + binaries on my github repository <a href="https://github.com/krishnan793/inventoryApp">link</a>.</p>
-
-<h2 id="searching-the-inventory-item">Searching the inventory item</h2>
-
-<p><img src="https://3.bp.blogspot.com/-ujdfbPOoH74/W7iWCTGLHRI/AAAAAAAABhc/15-iDI8ZrRY_o6AuO0wg4go0agqjb-nCgCK4BGAYYCw/s1600/search.gif" alt="Searching" /></p>
-
-<h2 id="adding-entries">Adding entries</h2>
-
-<p><img src="https://2.bp.blogspot.com/-W-m42a8tOOs/W7iWQB6zsVI/AAAAAAAABhk/E8RoMqfow8UYVnYsSLuq_ie09De2DzhNACK4BGAYYCw/s1600/addValue.gif" alt="Adding" /></p>
-
-<h2 id="modify-entry">Modify entry</h2>
-
-<p><img src="https://1.bp.blogspot.com/-G8ZBStXWYu0/W7iWZMv6eWI/AAAAAAAABhw/WrHfeUDLABAmWn4FUwSjTD32ZsX7u5tvgCK4BGAYYCw/s1600/change%2Bvalue.gif" alt="Modifying" /></p>
-
-<h2 id="delete-entry">Delete entry</h2>
-
-<p><img src="https://3.bp.blogspot.com/-AN3R868aGhU/W7iW75cVgpI/AAAAAAAABiM/fhFjztMe-h0iWSHJjKG6zEa7YifScPeIwCK4BGAYYCw/s320/delete.gif" alt="Deleting" /></p>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Electronics" /><summary type="html"><![CDATA[I used to buy a lot of small electronics component and sometimes store it for future use. The problem is sometimes it is hard to keep track of what you have in your collection. I find it hard to find any free inventory app that does the job. There are pretty good paid software, if you want to use it for some shops/warehouse etc. So I made an app that does the job. It is build using nwjs framework.]]></summary></entry></feed>
+<iframe width="320" height="266" src="https://www.youtube.com/embed/Q5mC5lRfhfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Atmega328PU" /><category term="ROS" /><category term="Product Design" /><category term="Pi" /><summary type="html"><![CDATA[I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.]]></summary></entry></feed>
