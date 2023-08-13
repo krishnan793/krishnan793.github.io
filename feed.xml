@@ -1,4 +1,196 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2022-12-09T22:45:20+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Forward &amp;amp; Backward Propagation</title><link href="https://www.eionix.co.in/2022/12/09/nerual-network-derrivation.html" rel="alternate" type="text/html" title="Forward &amp;amp; Backward Propagation" /><published>2022-12-09T00:00:00+05:30</published><updated>2022-12-09T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/12/09/nerual-network-derrivation</id><content type="html" xml:base="https://www.eionix.co.in/2022/12/09/nerual-network-derrivation.html"><![CDATA[<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous" />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://www.eionix.co.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.eionix.co.in/" rel="alternate" type="text/html" /><updated>2023-08-13T15:36:51+05:30</updated><id>https://www.eionix.co.in/feed.xml</id><title type="html">Ananth’s Blog</title><subtitle>A personal blog having hobby projects.</subtitle><entry><title type="html">Teardown Homemate IoT Sensor</title><link href="https://www.eionix.co.in/2023/08/13/iot-sensor-home-assistant.html" rel="alternate" type="text/html" title="Teardown Homemate IoT Sensor" /><published>2023-08-13T00:00:00+05:30</published><updated>2023-08-13T00:00:00+05:30</updated><id>https://www.eionix.co.in/2023/08/13/iot-sensor-home-assistant</id><content type="html" xml:base="https://www.eionix.co.in/2023/08/13/iot-sensor-home-assistant.html"><![CDATA[<p><a href="https://www.home-assistant.io/">Home Assistant</a> is an open source home automation software stack that puts local control and privacy first. This is pretty good and the UI is also very customisable and can be extended easily. I want to replace my own custom <a href="https://www.eionix.co.in/2019/06/29/smart-home-display-iot-diy-google-home-hub.html">wall display</a> with this. Before that I need to find couple of IoT switches and relays which can be used to automate my home setup.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>The tricky part is to find a brand (in India) that works with home assistant. Finally bought one <a href="https://homemate.co.in/product/wi-fi-fan-touch-switch/">https://homemate.co.in/product/wi-fi-fan-touch-switch/</a> manufactured by HomeMate <a href="https://homemate.co.in/">https://homemate.co.in/</a>.</p>
+
+<p><img src="/assets/img/homemate_fan_switch.webp" alt="switch" /></p>
+
+<p>Turns out, these devices run a custom firmware build by Tuya platform (A chineese IoT/AI company) and there is a Home Assitant integration plugin called <a href="https://www.home-assistant.io/integrations/tuya/">Tuya</a> for integrating. You can configure those devices using this plugin and will work most of the times (:-)). But I do not want an IoT device in my network that send stats every now and then to a Chineese cloud vendor. So let’s teardown this and see what’s inside and may be we can flash our own custom firmware.</p>
+
+<h2 id="teardown">Teardown</h2>
+
+<p>There is a dedicated app which can be used to configure the device. Once configured you can switch the fan on/off set timer etc… Let’s tear down and see what’s inside first.</p>
+
+<p><img src="/assets/img/homemate_teardown1.jpeg" alt="teardown" />
+<img src="/assets/img/homemate_teardown2.jpeg" alt="teardown" />
+<img src="/assets/img/homemate_teardown3.jpeg" alt="teardown" />
+<img src="/assets/img/homemate_teardown4.jpeg" alt="teardown" /></p>
+
+<p>Turns out, it’s a CB3s module <a href="https://developer.tuya.com/en/docs/iot/cb3s?id=Kai94mec0s076">https://developer.tuya.com/en/docs/iot/cb3s?id=Kai94mec0s076</a>. On further investigation, it turns out that the entire module is built up using tuya IoT Core which is a chineese IoT/AI company service. They offers a free to brand home solution which can be created solely using their Tuya web portal and to choose any predisigned products/wifi modules and as well as mobile apps. The initial devices were using esp8266 chips. Found this <a href="https://github.com/ct-Open-Source/tuya-convert">tuya-convert</a> github link where it expains how to hack these chips and flash a custom firmware. Probably they changed the chips from esp8266 to cbxx chips. It would have been much easier to flash esp8266 chips.</p>
+
+<p>Found this link <a href="https://github.com/tuya-cloudcutter/tuya-cloudcutter">tuya-cloud-cutter</a> where it is possible to do the same but for the cb3s modules. Since the chip is not esp based, we cannot use <a href="https://esphome.io/">ESPHome</a> or <a href="https://tasmota.github.io/docs/">Tasmota</a>. There is a similar one called <a href="https://github.com/openshwprojects/OpenBK7231T_App">OpenBeken</a> which supports the CB3s module.</p>
+
+<p>Following <a href="https://github.com/ct-Open-Source/tuya-convert">tuya-convert</a> steps will help in installing the OpenBeken build. Before that, you can find out the current installed firmware from the native android app. Then find a compaitable build from the <a href="https://github.com/openshwprojects/OpenBK7231T_App/releases/">release</a> page. You can follow the <a href="https://www.elektroda.com/">Electroda</a> forum for more information on the Openbeken and tuya devices.</p>
+
+<p>Once you finished with the tuya-convert steps, you will end up with a openbeken firmware. Similar to tasmota, the device will create a Hotspot and you can navigate to a web interface at 192.168.4.1.</p>
+
+<p><img src="/assets/img/openbeken_webportal.png" alt="openbeken_web_portal" /></p>
+
+<p>Now you need to configure the device. For this you need to know the pinout. It seems different vendors may change the pinout slightly. Also depending on the vendors, they may choose a slighty different chip within the circuit board (for example some may use BL0937 or BL0942 for power monitoring). There is also a tuya MCU chip which is connected via UART (I guess) to the main chip (CB3S).The CB3S chip will send custom commands to the tuyaMCU and it will execute those.</p>
+
+<p>The openBeken firmware has support for all of these modules. You only need to figure out the pin layout and it’s configuration. A big kudos to those who worked on these projects and also for figuring out the commands tuyaMCU supports.</p>
+
+<p>Go to <a href="http://192.168.4.1/app?">http://192.168.4.1/app?</a> and configure the pins (detailed configuration are mentioned below. Had to spend a lot of time figuring out the pinout/configurations). You may also need to add an autoexec.bat file which is executed on boot. This can be used to load drivers and tuyaMCU configurations. Also configure your wifi and home assistant server details.</p>
+
+<p>My initial thought was to replace the CB3S module with my ESP12E module and flash ESPHome or custom firmware. That is not required anymore. Chances are that homemate use the same platform for other product variants as well. So I bought couple of their other products as well.</p>
+
+<h3 id="1-homemate-wifi-mini-smart-plug-socket-10-a">1. Homemate WiFi mini Smart Plug Socket 10 A</h3>
+
+<p><strong>Pinout configuration</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tuya"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bDetailed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full Device Name Here"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enter short model name here"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"chip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BK7231N"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"board"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"flags"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1024"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"TODO"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TODO"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"pins"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BL0937CF1;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BL0937CF;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LED_n;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Btn;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BL0937SEL;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"26"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rel;1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"startDriver BL0937"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://obrazki.elektroda.pl/YOUR_IMAGE.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"wiki"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.elektroda.com/rtvforum/topic_YOUR_TOPIC.html"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="2-homemate-wifi-smart-heavy-duty-plug-socket-16-a">2. Homemate WiFi Smart Heavy Duty Plug Socket 16 A</h3>
+
+<p><strong>Pinout configuration</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tuya"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bDetailed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full Device Name Here"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enter short model name here"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"chip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BK7231T"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"board"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"flags"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1024"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"TODO"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TODO"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"pins"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BL0937CF;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BL0937CF1;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Btn;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BL0937SEL;1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"26"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rel;1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"startDriver BL0937"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://obrazki.elektroda.pl/YOUR_IMAGE.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"wiki"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.elektroda.com/rtvforum/topic_YOUR_TOPIC.html"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>autoexec.bat</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SetupEnergyStats
+startDriver BL0937
+startDriver NTP
+</code></pre></div></div>
+<h3 id="3-homemate-wifi-4-gang-smart-touch-switch">3. Homemate WiFi 4 Gang Smart Touch Switch</h3>
+
+<p><strong>autoexec.bat</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>startDriver TuyaMCU
+
+setChannelType 1 toggle
+setChannelType 2 toggle
+setChannelType 3 toggle
+setChannelType 4 toggle
+setChannelType 13 toggle
+
+setChannelType 7 TextField
+setChannelType 8 TextField
+setChannelType 9 TextField
+setChannelType 10 TextField
+
+linkTuyaMCUOutputToChannel 1 1 1
+linkTuyaMCUOutputToChannel 2 1 2
+linkTuyaMCUOutputToChannel 3 1 3
+linkTuyaMCUOutputToChannel 4 1 4
+linkTuyaMCUOutputToChannel 7 2 7
+linkTuyaMCUOutputToChannel 8 2 8
+linkTuyaMCUOutputToChannel 9 2 9
+linkTuyaMCUOutputToChannel 10 2 10
+linkTuyaMCUOutputToChannel 13 1 13
+</code></pre></div></div>
+<h3 id="4-homemate-wifi-smart-regulator-switch">4. Homemate WiFi Smart Regulator Switch</h3>
+
+<p><strong>autoexec.bat</strong></p>
+
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">AutoExec</span>
+
+// <span class="nb">start</span> <span class="kd">MCU</span> <span class="kd">driver</span>
+<span class="kd">startDriver</span> <span class="kd">TuyaMCU</span>
+
+// <span class="kd">fan</span> <span class="na">on/off </span><span class="kd">channel</span>
+<span class="kd">setChannelType</span> <span class="m">1</span> <span class="kd">toggle</span>
+
+//fan <span class="kd">speed</span> <span class="kd">channel</span>
+<span class="kd">setChannelType</span> <span class="m">3</span> <span class="kd">OffLowestLowMidHighHighest</span>
+
+// <span class="kd">child</span> <span class="kd">Lock</span> <span class="kd">channel</span>
+<span class="kd">setChannelType</span> <span class="m">14</span> <span class="kd">toggle</span>
+
+// <span class="kd">countdown</span> <span class="kd">channel</span>
+<span class="kd">setChannelType</span> <span class="m">22</span> <span class="kd">TextField</span>
+
+// <span class="kd">remaining</span> <span class="kd">timer</span> <span class="kd">channel</span>
+<span class="kd">setChannelType</span> <span class="m">23</span> <span class="kd">TextField</span>
+
+// <span class="kd">link</span> <span class="kd">output</span> <span class="m">1</span> <span class="kd">to</span> <span class="kd">channel</span> <span class="m">1</span>
+<span class="kd">linkTuyaMCUOutputToChannel</span> <span class="m">1</span> <span class="m">1</span> <span class="m">1</span>
+
+// <span class="kd">link</span> <span class="kd">output</span> <span class="m">3</span> <span class="kd">to</span> <span class="kd">channel</span> <span class="m">3</span>
+<span class="kd">linkTuyaMCUOutputToChannel</span> <span class="m">3</span> <span class="m">2</span> <span class="m">3</span>
+
+// <span class="kd">link</span> <span class="kd">output</span> <span class="m">14</span> <span class="kd">to</span> <span class="kd">channel</span> <span class="m">14</span>
+<span class="kd">linkTuyaMCUOutputToChannel</span> <span class="m">14</span> <span class="m">1</span> <span class="m">14</span>
+
+// <span class="kd">link</span> <span class="kd">output</span> <span class="m">22</span> <span class="kd">to</span> <span class="kd">channel</span> <span class="m">22</span>
+<span class="kd">linkTuyaMCUOutputToChannel</span> <span class="m">22</span> <span class="m">2</span> <span class="m">22</span>
+
+// <span class="kd">link</span> <span class="kd">output</span> <span class="m">23</span> <span class="kd">to</span> <span class="kd">channel</span> <span class="m">23</span>
+<span class="kd">linkTuyaMCUOutputToChannel</span> <span class="m">23</span> <span class="m">2</span> <span class="m">23</span>
+
+</code></pre></div></div>
+
+<p>You can also look at my post in electroda.come <a href="https://www.elektroda.com/rtvforum/topic3991120.html">here</a>. For power plug you need to calibrate your devices once you flashed the openbeken firmwares.</p>
+
+<p><img src="/assets/img/tear_down_power_plug1.jpeg" alt="teardown" />
+<img src="/assets/img/tear_down_power_plug2.jpeg" alt="teardown" />
+<img src="/assets/img/tear_down_power_plug3.jpeg" alt="teardown" />
+<img src="/assets/img/tear_down_power_plug4.jpeg" alt="teardown" />
+<img src="/assets/img/tear_down_power_plug5.jpeg" alt="teardown" /></p>
+
+<p>For this, you need a traditional incandascent lamp. You could use an LED buld as well but it won’t be accurate as the power fluctuates. An incadescent lamp draws exactly the same power at almost constant current without any fluctuations. I managed to find a 100W incandescent bulb from a local shop to calibrate the sensors. The 10A power plug and 16A power plug both uses BL0937 chip but the pin layout is different. Once you caliberate the device then you are good to go. You do not need any custom integration plugin for homeassistant and everything works completly local.</p>
+
+<p>It seems there are a lot of IoT Devices that uses the same tuya platform. I saw a post from Pallaw Agarwal <a href="https://pallavaggarwal.in/2022/12/07/wipro-smart-plug-16a-teardown/">https://pallavaggarwal.in/2022/12/07/wipro-smart-plug-16a-teardown</a> who did a teardown of Wipro Smart Plug. The circuit board and the chip is very much identical and probably run the same tuya firmware. There is also one more brand called <a href="https://kamonk.in/">Kamonk</a> which looks identical to that of HomeMate. It may also run on the same firmware.</p>
+
+<p><img src="/assets/img/homemate_madeinindia.png" alt="teardown" /></p>
+
+<p>These brands are labeled as #ProudlyMadeIndia initiatives and procalimed as completly designed, developed and made in india. But atleast the entire software stack is not made by an Indian firm.</p>
+
+<h2 id="homeassistant">HomeAssistant</h2>
+
+<p>Once all devices are setup properly, this will come in the homeassistant. Since the blog entry is not specific to home assistant, I am not going into the details. But once evrything is done, the dashboard looks pretty good.</p>
+
+<p><img src="/assets/img/dashboard.png" alt="dasboard" /></p>]]></content><author><name></name></author><category term="Home Assistant" /><category term="IoT" /><summary type="html"><![CDATA[Home Assistant is an open source home automation software stack that puts local control and privacy first. This is pretty good and the UI is also very customisable and can be extended easily. I want to replace my own custom wall display with this. Before that I need to find couple of IoT switches and relays which can be used to automate my home setup.]]></summary></entry><entry><title type="html">Forward &amp;amp; Backward Propagation</title><link href="https://www.eionix.co.in/2022/12/09/nerual-network-derrivation-copy.html" rel="alternate" type="text/html" title="Forward &amp;amp; Backward Propagation" /><published>2022-12-09T00:00:00+05:30</published><updated>2022-12-09T00:00:00+05:30</updated><id>https://www.eionix.co.in/2022/12/09/nerual-network-derrivation%20copy</id><content type="html" xml:base="https://www.eionix.co.in/2022/12/09/nerual-network-derrivation-copy.html"><![CDATA[<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous" />
 
 <script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
 
@@ -1631,229 +1823,4 @@ private and one with the build files.</p>
   <li><a href="Markdown_Reference">Markdown_Reference</a></li>
   <li><a href="GitHub_DNS_Link">GitHub_DNS_Link</a></li>
   <li><a href="Jekyll_Adding_Layouts">Jekyll_Adding_Layouts</a></li>
-</ul>]]></content><author><name></name></author><category term="Blogging" /><summary type="html"><![CDATA[This post talks about how you can setup a blog using Jekyll and host it using GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll takes your content, renders Markdown and Liquid templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server.]]></summary></entry><entry><title type="html">Product Design of a 4 wheel differential drive robot</title><link href="https://www.eionix.co.in/2019/01/09/product-design-of-4-wheel-differential.html" rel="alternate" type="text/html" title="Product Design of a 4 wheel differential drive robot" /><published>2019-01-09T12:35:00+05:30</published><updated>2019-01-09T12:35:00+05:30</updated><id>https://www.eionix.co.in/2019/01/09/product-design-of-4-wheel-differential</id><content type="html" xml:base="https://www.eionix.co.in/2019/01/09/product-design-of-4-wheel-differential.html"><![CDATA[<p>I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.</p>
-
-<iframe width="320" height="266" src="https://www.youtube.com/embed/Q5mC5lRfhfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-
-<p>The methods I followed may not be the best practice. The only aim is to reach from idea to actual product (prototype).</p>
-
-<p><img src="/assets/img/dest.jpeg" alt="Thumbnail" /></p>
-
-<h2 id="features">Features</h2>
-
-<ul>
-  <li>4 Wheel Differential Drive</li>
-  <li>Camera</li>
-  <li>WiFi</li>
-  <li>IMU</li>
-  <li>GPS(optional)</li>
-</ul>
-
-<h2 id="overview">Overview</h2>
-
-<p>A 4 wheeled differential mobile robot with wheel encoders, camera, WiFi, IMU and GPS(optional). The first thing I did was to come up with an overall architecture. Raspberry pi 3 will be the heart of the robot. Pi Zero was considered in the beginning, but eventually had to  change because of the lack of support for ROS. Even though able to compile ROS from scratch, it became so hard to compile other packages needed for the project. Since I do not want to use pi to directly control motors, I had to design a separate controller circuit to handle motors. Encoder was later discarded to make the project simple. Controller circuit will talk with pi using i2c. Atmega328p is used for the controller circuit. IMU will also communicate with pi using i2c.</p>
-
-<h2 id="architecture">Architecture</h2>
-
-<p><img src="https://1.bp.blogspot.com/-vdBU-uljYjg/XA0lgtgnTkI/AAAAAAAABjI/Aw2r9m2bjY4nAorFAxHD-OWNnOM5bk1CwCK4BGAYYCw/s1600/architectureV2.png" alt="Device architecture" /><br />
-Selected N20 DC12V 300RPM motor for driving the robot. With a rated torque of 0.4 Kg/cm, it was more than enough to drive the robot since expected overall weight of robot will not cross 1 Kg. Selected a battery with voltage 11.1 which is enough for the motors. A voltage regulator is needed to power Pi and motor circuits. Atmega328P is selected for the controller circuit. It has enough internal PWM to drive 4 motors. Since I had to make the controller circuit as small as possible, I was searching for SMD components. Found one SMD package for l293D which is enough to drive the motor with a stall current 300 mA. In order to keep track of current, I selected ACS712. For measuring internal temperature, LM35 was selected.</p>
-
-<h2 id="specifications">Specifications</h2>
-
-<h3 id="motor">Motor</h3>
-
-<p>Name: N20 DC12V 300RPM Mini Metal Gear Motor (12GAN20)<br />
-shop: banggood<br />
-<img src="https://img.staticbg.com/thumb/view/oaupload/banggood/images/56/0F/20d5045b-fa8d-404d-983e-cfc1e1423971.jpg" alt="N20 DC12V Motor" width="150px" /></p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Rated voltage</td>
-      <td>DC 12V</td>
-    </tr>
-    <tr>
-      <td>Speed</td>
-      <td>300 RPM</td>
-    </tr>
-    <tr>
-      <td>Shaft Diameter</td>
-      <td>3mm</td>
-    </tr>
-    <tr>
-      <td>Diameter</td>
-      <td>12mm</td>
-    </tr>
-    <tr>
-      <td>fuselage without shaft length</td>
-      <td>26mm</td>
-    </tr>
-    <tr>
-      <td>Output axial length</td>
-      <td>10mm</td>
-    </tr>
-    <tr>
-      <td>Screw</td>
-      <td>M3</td>
-    </tr>
-    <tr>
-      <td>Quantity</td>
-      <td>4pcs</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>Non-loaded</td>
-      <td>Non-loaded</td>
-      <td>Rated load</td>
-      <td>Rated load</td>
-      <td>Rated load</td>
-      <td>stall</td>
-      <td>stall</td>
-    </tr>
-    <tr>
-      <td>Voltage range (V)</td>
-      <td>Rated voltage</td>
-      <td>speed(RPM)</td>
-      <td>current(A)</td>
-      <td>speed(RPM)</td>
-      <td>current(A)</td>
-      <td>torque(KG.CM)</td>
-      <td>torque(KG.CM)</td>
-      <td>current(A)</td>
-    </tr>
-    <tr>
-      <td>6-12</td>
-      <td>12</td>
-      <td>300</td>
-      <td>0.05</td>
-      <td>240</td>
-      <td>0.09</td>
-      <td>0.6</td>
-      <td>4.00</td>
-      <td>0.3</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="main-computer">Main computer</h2>
-
-<p>Name: Raspberry Pi 3 Model B+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Processor</td>
-      <td>Broadcom BCM2837B0, Cortex-A53 64-bit SoC @ 1.4GHz 1GB</td>
-    </tr>
-    <tr>
-      <td>Memory</td>
-      <td>LPDDR2 SDRAM</td>
-    </tr>
-    <tr>
-      <td>Connectivity</td>
-      <td>2.4GHz and 5GHz IEEE 802.11.b/g/n/ac wireless LAN, Bluetooth 4.2, BLE Gigabit Ethernet over USB 2.0 (maximum throughput 300Mbps)</td>
-    </tr>
-    <tr>
-      <td>Access</td>
-      <td>4 × USB 2.0 ports Extended 40-pin GPIO header</td>
-    </tr>
-    <tr>
-      <td>Video &amp; sound</td>
-      <td>1 × full size HDMI MIPI DSI display port MIPI CSI camera port 4 pole stereo output and composite video port H.264, MPEG-4 decode (1080p30); H.264 encode (1080p30); OpenGL ES 1.1, 2.0 graphics</td>
-    </tr>
-    <tr>
-      <td>Multimedia: SD card support</td>
-      <td>Micro SD format for loading operating system and data storage 5V/2.5A DC via micro USB connector 5V DC via GPIO header Power over Ethernet (PoE)–enabled (requires separate PoE HAT)</td>
-    </tr>
-    <tr>
-      <td>Operating temperature</td>
-      <td>0–50°C</td>
-    </tr>
-    <tr>
-      <td>Production lifetime</td>
-      <td>The Raspberry Pi 3 Model B+ will remain in production until at least January 2023</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="dimension">Dimension</h3>
-
-<p><img src="https://d2mxuefqeaa7sj.cloudfront.net/s_7DE74831DB2CB5D12B9EF081E317660A0AD9BDC05CFC157FD2EEC025DFA2B08F_1537454051611_Dimension_pi_3B.png" alt="Raspberry pi Dimension" /></p>
-
-<p>Schematics: <a href="Pi_3_Schematics">Link</a><br />
-OS: Ubuntu MATE 16.04.2 (Xenial)<br />
-Installation steps: <a href="Ubuntu_Xenial">Link</a></p>
-
-<h2 id="temperature-sensor">Temperature sensor</h2>
-
-<ul>
-  <li>Name: LM35</li>
-  <li>Linear + 10-mV/°C Scale Factor</li>
-  <li>0.5°C Ensured Accuracy (at 25°C)</li>
-  <li>Rated for Full −55°C to 150°C Range</li>
-  <li>Operates From 4 V to 30 V</li>
-  <li>Less Than 60-μA Current Drain</li>
-  <li>Low-Impedance Output, 0.1 Ω for 1-mA Load</li>
-</ul>
-
-<h2 id="current-sensor">Current sensor</h2>
-
-<ul>
-  <li>Name: ACS712ELCTR-05B-T</li>
-  <li>Small footprint, low-profile SOIC8 package</li>
-  <li>1.2 mΩ internal conductor resistance</li>
-  <li>2.1 kVRMS minimum isolation voltage from pins 1-4 to pins 5-8</li>
-  <li>5.0 V, single supply operation</li>
-  <li>66 to 185 mV/A output sensitivity</li>
-  <li>Optimized current range : ±5</li>
-  <li>Sensitivity: 185 mV/A</li>
-</ul>
-
-<h2 id="schematics">Schematics</h2>
-
-<p><img src="https://3.bp.blogspot.com/-ltmOj3ImY_c/XA0obzqc1WI/AAAAAAAABjk/yjIZtDElw-sZdqwQPbFVNOGLzJsy6ylQACK4BGAYYCw/s1600/l293dDIP.png" alt="Schematics" /></p>
-
-<h2 id="pcb-layout">PCB Layout</h2>
-
-<p>After finishing with the schematics and some initial breadboard prototyping, moved directly to pcb layout design.</p>
-
-<p><img src="https://3.bp.blogspot.com/-DezjGJ_SHcI/XA0o5caOeeI/AAAAAAAABkA/Juk2RpCdC6shW60tUsURsg9wwfsovas4ACK4BGAYYCw/s320/PCB.png" alt="PCB layout 1" />
-<img src="https://2.bp.blogspot.com/-4sMIbJJQNEg/XA0pM8i_JQI/AAAAAAAABkM/hdM7r4KppikvzGeKNzxFsOFUVwCFb4_TQCK4BGAYYCw/s320/PCB_3D.png" alt="PCB layout 2" />
-<img src="https://4.bp.blogspot.com/-uwECuCmrtJY/XA0pQEiYN-I/AAAAAAAABkU/FYGH66JfuXAPCv-SISLX9Q-k-YhhE20agCK4BGAYYCw/s320/3D.png" alt="PCB layout 3" /></p>
-
-<p>Since it is a 2 layer PCB, I had to order PCB from outside. LION circuits seemed to be a good choice. Apart from the fact that choosing colour of the PCB will cost you double, service seems to be good.</p>
-
-<p><img src="https://1.bp.blogspot.com/-N62WiJrh15s/XA0tN2Pq4fI/AAAAAAAABk4/162FQDdpt5E5cRptGWjb4jaPOx2i3vsAgCK4BGAYYCw/s320/IMG_20181209_201406414.jpg" alt="PCB layout 4" />
-<img src="https://4.bp.blogspot.com/-zK4L3x5m3m8/XA0tNuMiFzI/AAAAAAAABk0/_vXzsMxcZQAM6Nq9EPDOZ27-TA2sYkwNwCK4BGAYYCw/s320/IMG_20181209_201428683.jpg" alt="PCB layout 5" /></p>
-
-<p>After an hour of hand soldering….</p>
-
-<p><img src="https://1.bp.blogspot.com/-XbqHNzFl2Xc/XA0pokgXf9I/AAAAAAAABkk/2aKwySsZcCoBYx6omQfYQIaszk5RXtkkgCK4BGAYYCw/s320/image_preview.jpeg" alt="PCB layout 5" /></p>
-
-<h2 id="cad-modelling">CAD Modelling</h2>
-
-<p>I have used solidworks before. But for this project I tried fusion 360, which seems to be good. One weeks of YouTube tutorials was enough to get started. Had to redesign the model two times. But it was worth the effort.</p>
-
-<p><img src="https://4.bp.blogspot.com/-xDXtBYaP2cM/XA0uYdfv0XI/AAAAAAAABlY/dipXTNpBL2s-OkwcCTqTMxvGJNAO947pgCK4BGAYYCw/s320/isometric.PNG" alt="Wireframe 1" />
-<img src="https://1.bp.blogspot.com/-LkxivYLW3v0/XA0uWtX__UI/AAAAAAAABlQ/3xhBUE0vyGAvnIfSsR7WfT6URInOtfyvwCK4BGAYYCw/s320/Capture.PNG" alt="Wireframe 2" />
-<img src="https://3.bp.blogspot.com/-Uit16dTn4AQ/XA0uUSH-zEI/AAAAAAAABlI/CspNW6kIvPgNk8G_aHn1ORaYRYBhU9qtACK4BGAYYCw/s320/dimension.PNG" alt="3D rendered" /></p>
-
-<h2 id="3d-printing">3D printing</h2>
-
-<p>I had two split the bottom body into two parts for easy 3D printing and later I glued it together.</p>
-
-<h2 id="final-preview">Final Preview</h2>
-
-<p><img src="https://2.bp.blogspot.com/-WD8crbpPltw/XDV8JLFuNuI/AAAAAAAABmc/I6uuc2be-TMI5iBj5Ktdb5BzC8ummmNGACK4BGAYYCw/s1600/BLR_0187.JPG" alt="Final preview 1" />
-<img src="https://2.bp.blogspot.com/-CwnWzdCNKp4/XDV8GK2aPII/AAAAAAAABmM/Af5NH8mgFXg9qXIqmOyBulJxhSMVris-gCK4BGAYYCw/s1600/BLR_0188.JPG" alt="Final preview 2" />
-<img src="https://2.bp.blogspot.com/-JmZFS9Xr9Rw/XDV8IzknhuI/AAAAAAAABmY/WyOmIdZc7wA6BxN0bmmMeyA7_r7GgqdXQCK4BGAYYCw/s1600/BLR_0189.JPG" alt="Final preview 3" />
-<img src="https://4.bp.blogspot.com/-6fCIj7m0DmM/XDV8KaCT8sI/AAAAAAAABmk/DmUULnhi_zohNR0SUDEvtJTIqk9hFxTPQCK4BGAYYCw/s1600/BLR_0185.JPG" alt="Final preview 4" />
-<img src="https://3.bp.blogspot.com/-vVNex884yb0/XDWae__435I/AAAAAAAABnM/k0EXHvjcIbQcI2Av7lzCG_pMhOuZnmbHACK4BGAYYCw/s1600/BLR_0001.JPG" alt="Final preview 5" /></p>
-
-<iframe width="320" height="266" src="https://www.youtube.com/embed/Q5mC5lRfhfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>]]></content><author><name>ANANTHAKRISHNAN</name></author><category term="Robotics" /><category term="Atmega328PU" /><category term="ROS" /><category term="Product Design" /><category term="Pi" /><summary type="html"><![CDATA[I have been thinking of creating a small mobile robot from scratch. From scratch means, go through all the steps of a product development. Design the overall architecture, design the circuits, make 3D model of the parts, 3D print the parts and finally integrate with ROS.]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="Blogging" /><summary type="html"><![CDATA[This post talks about how you can setup a blog using Jekyll and host it using GitHub. Jekyll offers simple and blog-aware, static site generation. Jekyll takes your content, renders Markdown and Liquid templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server.]]></summary></entry></feed>
