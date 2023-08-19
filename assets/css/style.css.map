@@ -3,11 +3,11 @@
 	"file": "style.css",
 	"sources": [
 		"style.scss",
-		"../../../../../../../tmp/jekyll-remote-theme-20230813-32857-t7w0df/_sass/cayman.scss",
-		"../../../../../../../tmp/jekyll-remote-theme-20230813-32857-t7w0df/_sass/jekyll-theme-cayman.scss",
-		"../../../../../../../tmp/jekyll-remote-theme-20230813-32857-t7w0df/_sass/normalize.scss",
-		"../../../../../../../tmp/jekyll-remote-theme-20230813-32857-t7w0df/_sass/rouge-github.scss",
-		"../../../../../../../tmp/jekyll-remote-theme-20230813-32857-t7w0df/_sass/variables.scss"
+		"../../../../../../../tmp/jekyll-remote-theme-20230819-39254-6yx345/_sass/cayman.scss",
+		"../../../../../../../tmp/jekyll-remote-theme-20230819-39254-6yx345/_sass/jekyll-theme-cayman.scss",
+		"../../../../../../../tmp/jekyll-remote-theme-20230819-39254-6yx345/_sass/normalize.scss",
+		"../../../../../../../tmp/jekyll-remote-theme-20230819-39254-6yx345/_sass/rouge-github.scss",
+		"../../../../../../../tmp/jekyll-remote-theme-20230819-39254-6yx345/_sass/variables.scss"
 	],
 	"sourcesContent": [
 		"@import \"cayman\";\n\n.compact_img {\n  width: 200px;\n}\n\n.post-thumbnail{\n}\n.post-date{\n    color: rgba(0,0,0,0.54);\n}\n\n.post-title {\n\n}\n\n.post-desc {\n\toverflow-wrap: normal;\n\ttext-align: normal;\n}\n.post-inner {\n}",
