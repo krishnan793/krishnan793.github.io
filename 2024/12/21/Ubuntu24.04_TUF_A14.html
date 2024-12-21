@@ -14,22 +14,21 @@
     <meta charset="UTF-8">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>BeagleBoneBlack GPIO Push Button + LED | Ananth’s Blog</title>
+<title>Setting Ubuntu 24.04 on ASUS TUF A14 | Ananth’s Blog</title>
 <meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="BeagleBoneBlack GPIO Push Button + LED" />
-<meta name="author" content="ANANTHAKRISHNAN" />
+<meta property="og:title" content="Setting Ubuntu 24.04 on ASUS TUF A14" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="&nbsp;" />
-<meta property="og:description" content="&nbsp;" />
-<link rel="canonical" href="https://www.eionix.co.in/2015/02/27/beagleboneblack-gpio-push-button-led.html" />
-<meta property="og:url" content="https://www.eionix.co.in/2015/02/27/beagleboneblack-gpio-push-button-led.html" />
+<meta name="description" content="Setting up Linux on a modern laptop can be a challenging process. Often, it takes time for Linux distributions to roll out updates for the latest hardware drivers. As a result, the out-of-the-box experience when installing popular distributions is not great. Only a small percentage of users are interested in running fully-fledged Linux system on laptop segment, which may explain why many laptop vendors don’t prioritize Linux support." />
+<meta property="og:description" content="Setting up Linux on a modern laptop can be a challenging process. Often, it takes time for Linux distributions to roll out updates for the latest hardware drivers. As a result, the out-of-the-box experience when installing popular distributions is not great. Only a small percentage of users are interested in running fully-fledged Linux system on laptop segment, which may explain why many laptop vendors don’t prioritize Linux support." />
+<link rel="canonical" href="https://www.eionix.co.in/2024/12/21/Ubuntu24.04_TUF_A14.html" />
+<meta property="og:url" content="https://www.eionix.co.in/2024/12/21/Ubuntu24.04_TUF_A14.html" />
 <meta property="og:site_name" content="Ananth’s Blog" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2015-02-27T23:22:00+05:30" />
+<meta property="article:published_time" content="2024-12-21T00:00:00+05:30" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="BeagleBoneBlack GPIO Push Button + LED" />
+<meta property="twitter:title" content="Setting Ubuntu 24.04 on ASUS TUF A14" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"ANANTHAKRISHNAN"},"dateModified":"2015-02-27T23:22:00+05:30","datePublished":"2015-02-27T23:22:00+05:30","description":"&nbsp;","headline":"BeagleBoneBlack GPIO Push Button + LED","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.eionix.co.in/2015/02/27/beagleboneblack-gpio-push-button-led.html"},"url":"https://www.eionix.co.in/2015/02/27/beagleboneblack-gpio-push-button-led.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-21T00:00:00+05:30","datePublished":"2024-12-21T00:00:00+05:30","description":"Setting up Linux on a modern laptop can be a challenging process. Often, it takes time for Linux distributions to roll out updates for the latest hardware drivers. As a result, the out-of-the-box experience when installing popular distributions is not great. Only a small percentage of users are interested in running fully-fledged Linux system on laptop segment, which may explain why many laptop vendors don’t prioritize Linux support.","headline":"Setting Ubuntu 24.04 on ASUS TUF A14","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.eionix.co.in/2024/12/21/Ubuntu24.04_TUF_A14.html"},"url":"https://www.eionix.co.in/2024/12/21/Ubuntu24.04_TUF_A14.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1097,10 +1096,136 @@
         </style>
         <div id="page-content">
           
-            <h1> BeagleBoneBlack GPIO Push Button + LED </h1>
+            <h1> Setting Ubuntu 24.04 on ASUS TUF A14 </h1>
             
-          27 Feb 2015
-          <div dir="ltr" style="text-align: left;" trbidi="on"><br /><div class="separator" style="clear: both; text-align: center;"><iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/lt5YRmMmm1Y/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/lt5YRmMmm1Y?feature=player_embedded" width="320"></iframe></div><script src="https://gist.github.com/krishnan793/29c75261168040c99102.js"></script>&nbsp; </div>
+          21 Dec 2024
+          <p>Setting up Linux on a modern laptop can be a challenging process. Often, it takes time for Linux distributions to roll out updates for the latest hardware drivers. As a result, the out-of-the-box experience when installing popular distributions is not great. Only a small percentage of users are interested in running fully-fledged Linux system on laptop segment, which may explain why many laptop vendors don’t prioritize Linux support.</p>
+
+<p>In this post, I’ll share how to set up ASUS TUF 2024 A14 to run Ubuntu 24.04 LTS. This machine is equipped with a Ryzen HX370 processor, an Nvidia 4060 GPU, and maxed-out specifications. It’s a good machine for the price, particularly in the Indian market, and I’ve been impressed with its performance.</p>
+
+<h2 id="challenges-with-linux-on-modern-laptops">Challenges with Linux on Modern Laptops</h2>
+
+<p>One of the main hurdles with installing Linux on modern laptops is driver compatibility. Popular Linux distributions often lag in supporting cutting-edge hardware, especially when it comes to GPUs, Wi-Fi, and power management features. This delay can lead to frustrating issues like poor battery life, missing functionality, or even an inability to boot properly. This often push people to opt old hardwares (laptop segment) to run linux.</p>
+
+<h2 id="why-this-post">Why this Post?</h2>
+
+<p>Before buying this laptop, I researched its Linux compatibility and how challenging it would be to set up and run a Linux distribution smoothly. I didn’t want a system that works inconsistently. The ASUS TUF 2024 A14 stood out to me for its excellent specifications. Its combination of Ryzen HX370 and Nvidia 4060 ensures top-notch performance for both productivity tasks and gaming. However, as expected, setting it up for Linux required some extra effort to ensure everything worked properly. While there are utilities like <code class="language-plaintext highlighter-rouge">asusctl</code> and <code class="language-plaintext highlighter-rouge">supergfxctl</code> for Linux support, there are still challenges to get them working seamlessly. This post serves as a quick referece for those interested to setup Ubuntu 24.04 on this machine.</p>
+
+<h2 id="steps-to-set-up-ubuntu-2404-lts">Steps to Set Up Ubuntu 24.04 LTS</h2>
+
+<p>I have used Ubuntu 24.04 due to it’s LTS support. Follow these steps:</p>
+
+<h3 id="ubuntu-installation-steps">Ubuntu Installation Steps</h3>
+
+<ol>
+  <li><strong>Boot Ubuntu 24.04 using USB</strong>: Boot Ubuntu 24.04 using USB and add the following boot parameter by editing grub entry for failsafe graphics(press e and add the following on the line that start with linux ):
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nouveau.modeset=0
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Install Ubuntu</strong>: During installation, avoid installing the Nvidia driver (if secureboot is enabled).</p>
+  </li>
+  <li>
+    <p><strong>Reboot</strong>: Restart the system and select failsafe mode again with <code class="language-plaintext highlighter-rouge">nouveau.modeset=0</code>.</p>
+  </li>
+  <li><strong>Enable networking and drop to root</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>linux-image-6.11.0-1010-oem
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>linux-headers-6.11.0-1010-oem
+<span class="nb">sudo </span>reboot
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Boot Normally</strong>: After reboot, install Nvidia drivers:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ubuntu-drivers list
+<span class="nb">sudo </span>ubuntu-drivers <span class="nb">install</span>
+</code></pre></div>    </div>
+    <p>Set a temporary password for MOC key installation. This step is required to sign and validate the new drivers with a Machine Owner Key (MOC), ensuring they work with Secure Boot enabled. There’s no need to disable Secure Boot during this process.</p>
+  </li>
+  <li>
+    <p><strong>Virtualization Setup</strong></p>
+
+    <p>Install virtualization tools:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager virtiofsd
+</code></pre></div>    </div>
+
+    <p>Add your user to the relevant groups:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>addgrp <span class="nv">$USER</span> libvirt
+ <span class="nb">sudo </span>addgrp <span class="nv">$USER</span> kvm
+</code></pre></div>    </div>
+
+    <p>Install dependencies:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get <span class="nb">install </span>git
+ <span class="nb">sudo </span>apt-get <span class="nb">install </span>curl
+</code></pre></div>    </div>
+
+    <p><strong>Configure <code class="language-plaintext highlighter-rouge">supergfxd</code> to enable vfio</strong>:</p>
+
+    <p>This configuration is required only if you plan to pass through the Nvidia GPU to KVM for virtualization purposes. Follow these steps to clone and install <code class="language-plaintext highlighter-rouge">supergfxctl</code> from GitLab:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get <span class="nb">install </span>git build-essential cmake
+ <span class="nb">cd</span> ~
+ git clone https://gitlab.com/asus-linux/supergfxctl.git
+ <span class="nb">cd </span>supergfxctl
+ make
+ <span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div>    </div>
+
+    <p>After installation, update the <code class="language-plaintext highlighter-rouge">supergfxd</code> configuration file with <code class="language-plaintext highlighter-rouge">vfio_enable: true</code>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/supergfxd.conf
+</code></pre></div>    </div>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Integrated"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"vfio_enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"vfio_save"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"always_reboot"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"no_logind"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"logout_timeout_s"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"hotplug_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"None"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Customization</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt <span class="nb">install </span>gnome-shell-extension-manager
+</code></pre></div>    </div>
+
+    <p><strong>Gnome extensions</strong></p>
+
+    <ul>
+      <li><a href="https://extensions.gnome.org/extension/841/freon/">freon</a></li>
+      <li><a href="https://extensions.gnome.org/extension/7018/gpu-supergfxctl-switch/">gpu-supergfxctl-switch</a></li>
+    </ul>
+
+    <p>Install dependencies:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt <span class="nb">install </span>lm-sensors
+ <span class="nb">sudo </span>sensors-detect <span class="nt">--auto</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="results">Results</h2>
+
+<p>To reduce battery usage, you can switch to integrated graphics using <code class="language-plaintext highlighter-rouge">supergfxctl -m Integrated</code> and reduce the monitor refresh rate to <code class="language-plaintext highlighter-rouge">60 Hz</code>. A logout is required for GPU change. Able to get a power consumption of <code class="language-plaintext highlighter-rouge">~7W</code> during light usage, such as browsing and video playback. While this is not a thorough benchmark, achieving 7W consumption on a 73Wh battery gives atleast 8–9 hours of battery life.</p>
+
+<p>I managed to get KVM with Ubuntu running at <code class="language-plaintext highlighter-rouge">~8.3W</code> of power consumption, which is impressive considering that the HX370 processor is designed to be power-efficient.</p>
+
+<p>You can switch to Hybrid mode using <code class="language-plaintext highlighter-rouge">supergfxctl -m Hybrid</code>. However, there is a drawback: the default GPU in this mode is the dGPU (Nvidia 4060), and the display manager is rendered using the Nvidia GPU. Also when you switch to Hybrid, X11 will be your display manager instead of wayland. Unfortunately, I was unable to set the iGPU as the default and use the Nvidia GPU solely for offloading rendering tasks.</p>
+
+<p><img src="/assets/img/battery_stats.png" alt="battery stat" /></p>
+
+<p>Additionally, <code class="language-plaintext highlighter-rouge">asusctl</code> had issues starting up and was unreliable in my setup (it do not support ubuntu officially). It worked randomly, so I am not using it at the moment. If someone manages to get it working consistently, it could enable features like adjusting fan curves and other performance settings.</p>
+
+<p>Lastly, with <code class="language-plaintext highlighter-rouge">supergfxctl -m Vfio</code>, you can attach the Nvidia GPU to any of your VM machines, which is a useful feature for virtualization. You can use the gnome shell extension <a href="https://extensions.gnome.org/extension/7018/gpu-supergfxctl-switch/">gpu-supergfxctl-switch</a> to quickly change from the settings. For more detailed configurations follow <a href="https://asus-linux.org/guides/vfio-guide/">Vfio guide</a>.</p>
+
+<p>You can follow up on this if you want to explore the VM options</p>
+
         </div>
         
           <br><br>
